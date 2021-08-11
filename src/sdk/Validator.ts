@@ -103,8 +103,6 @@ export const validate = (application: Application): string[] => {
           application.app.medias
       );
     } else {
-      const indexes: number[] = [];
-
       application.app.medias.forEach((media) => {
         if (!media.uri) {
           issues.push('Uri value is missing');
@@ -124,21 +122,6 @@ export const validate = (application: Application): string[] => {
           if (media.type !== 'image' && media.type !== 'video') {
             issues.push('Type value is invalid. Value: ' + media.type);
           }
-        }
-
-        if (media.index === undefined) {
-          issues.push('Index value is missing');
-        } else {
-          if (isNaN(parseInt(media.index.toString()))) {
-            issues.push('Index value is not a number. Value: ' + media.index);
-          }
-
-          const existingIndex = indexes.findIndex((i) => i === media.index);
-          if (existingIndex > -1) {
-            issues.push('Index value: ' + media.index + ' is not unique');
-          }
-
-          indexes.push(media.index);
         }
       });
     }

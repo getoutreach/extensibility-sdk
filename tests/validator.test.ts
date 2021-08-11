@@ -73,8 +73,6 @@ describe('manifest tests', () => {
     test.only('applicationId should be defined', () => {
       const manifest = getNewValidApplicationManifest();
 
-      console.log(JSON.stringify(manifest, null, 2));
-
       delete (manifest.api as any).applicationId;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -242,7 +240,6 @@ describe('manifest tests', () => {
         const manifest: Application = getNewValidApplicationManifest();
         manifest.app.medias = [
           {
-            index: 0,
             title: 'Some title',
             type: 'image',
             uri: 'not-a-valid-url',
@@ -290,13 +287,11 @@ describe('manifest tests', () => {
         const manifest: Application = getNewValidApplicationManifest();
         manifest.app.medias = [
           {
-            index: 0,
             title: 'Some title',
             type: 'image',
             uri: 'https://www.site.com/image.png',
           },
           {
-            index: 0,
             title: 'Some title',
             type: 'image',
             uri: 'https://www.site.com/image.png',
@@ -401,7 +396,7 @@ const getNewValidApplicationManifest = (): Application => {
     },
     identifier: 'app-identifier',
     locales: [Locale.ENGLISH],
-    store: Store.Personal,
+    store: Store.PRIVATE,
     title: {
       en: 'Some title (en)',
     },

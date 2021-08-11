@@ -8,7 +8,7 @@
  * @enum {number}
  */
 export enum Store {
-  Personal = 'personal',
-  Private = 'private',
-  Public = 'public',
+  PRIVATE = 'private',
+  INTERNAL = 'internal',
+  PUBLIC = 'public',
 }

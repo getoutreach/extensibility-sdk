@@ -24,14 +24,6 @@ export class ManifestMedia {
   public title: string;
 
   /**
-   * Ordinal index of file compared to other files.
-   *
-   * @type {number}
-   * @memberof ManifestMedia
-   */
-  public index: number;
-
-  /**
    * Type of the media file.
    *
    * @type {('video' | 'image')}
