@@ -1,0 +1,68 @@
+version: 2.1
+
+commands:
+    check-version:
+        description: Halt Circle CI step if pkg version did not change
+        steps:
+            - run: |
+                version_diff=$(git diff main package.json | grep \"version\": | wc -l || :)
+                if [[ $version_diff -eq 0 ]]; then
+                  echo "Halt due to no updated version"
+                  circleci step halt
+                fi
+
+jobs:
+    test:
+        working_directory: ~/repo
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - checkout
+            - run:
+                name: Installing package dependencies
+                command: yarn install --frozen-lockfile
+            - run:
+                name: Lint SDK
+                command: yarn lint
+            - run:
+                name: Build SDK
+                command: yarn build
+            - run:
+                name: Test SDK
+                command: yarn test
+
+    build_public_package:
+        working_directory: ~/repo
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - checkout
+            - check-version
+            - run:
+                name: Installing package dependencies
+                command: yarn install --frozen-lockfile
+            - run:
+                name: Build SDK
+                command: yarn build
+            - run:
+                name: Package SDK
+                command: yarn package
+            - run:
+                name: Authenticate with registry
+                command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+            - run:
+                name: Publish package
+                command: npm publish
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+            - test
+
+            - build_public_package:
+                requires:
+                    - test
+                filters:
+                    branches:
+                        only: main
