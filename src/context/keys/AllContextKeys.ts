@@ -6,7 +6,7 @@ import { ClientContextKeys } from './ClientContextKeys';
 import { ProspectContextKeys } from './ProspectContextKeys';
 
 export type AllContextKeys =
-  | UserContextKeys
+  UserContextKeys
   | AccountContextKeys
   | OpportunityContextKeys
   | ClientContextKeys

@@ -1,7 +1,4 @@
-import { ContextParam } from '../../../context/host/ContextParam';
-import { OutreachContext } from '../../../context/OutreachContext';
 import { utils } from '../../../utils';
-import { Application } from '../../Application';
 import { Extension } from '../Extension';
 import { ManifestHost } from './ManifestHost';
 import { ManifestHostEnvironment } from './ManifestHostEnvironment';
@@ -11,13 +8,28 @@ import addonSdk from '../../../index';
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
+import { OutreachContext } from '../../../context/OutreachContext';
+import { ContextParam } from '../../../context/host/ContextParam';
+import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 
-export class TabExtension extends Extension {
+export abstract class TabExtension extends Extension {
+  /**
+   * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
+   * to be sent during the initialization process.
+   * It is a string array of predefined Outreach properties describing attributes of the Outreach user loading the addon.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
+   * @type {TabExtensionType}
+   * @memberof TabExtension
+   */
+  public abstract context: AllContextKeys[];
+
   /**
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#environment
    *
    * @type {ManifestHostEnvironment}
-   * @memberof ManifestHost
+   * @memberof TabExtension
    */
   public environment?: ManifestHostEnvironment;
 
@@ -26,17 +38,17 @@ export class TabExtension extends Extension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
    * @type {ManifestHost}
-   * @memberof Manifest
+   * @memberof TabExtension
    */
   public host: ManifestHost;
 
   /**
-   * Type property defines what the type of addon is and where it should be loaded.
+   * Type property defines the type of tab extension
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
    * @type {TabExtensionType}
-   * @memberof Host
+   * @memberof TabExtension
    */
-  public type: TabExtensionType;
+  public abstract type: TabExtensionType;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
@@ -76,7 +88,7 @@ export class TabExtension extends Extension {
    * @return {*}  {string[]}
    * @memberof TabExtension
    */
-  validate(application: Application): string[] {
+  validate(): string[] {
     const issues: string[] = [];
 
     if (!this.host) {
@@ -88,7 +100,7 @@ export class TabExtension extends Extension {
         );
       }
 
-      if (!this.hostUrlValidation(application)) {
+      if (!this.hostUrlValidation()) {
         issues.push('Host url is invalid. Value: ' + this.host.url);
       }
 
@@ -100,19 +112,25 @@ export class TabExtension extends Extension {
       }
     }
 
+    if (!this.context) {
+      issues.push('Context section is missing');
+    } else {
+      if (!Array.isArray(this.context)) {
+        issues.push('Context section is not an array. Value: ' + this.context);
+      }
+    }
+
     return issues;
   }
 
-  private hostUrlValidation = (application: Application): boolean => {
+  private hostUrlValidation = (): boolean => {
     const hostUrl = this.host.url;
     if (!hostUrl) {
       return false;
     }
 
     const contextParams: ContextParam[] = [];
-    application.context.forEach((key) =>
-      contextParams.push({ key, value: 'marker' })
-    );
+    this.context.forEach((key) => contextParams.push({ key, value: 'marker' }));
 
     try {
       const { url } = utils.tokenizeUrl(hostUrl, contextParams);

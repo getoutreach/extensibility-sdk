@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { ConfigurationItem } from '../configuration/ConfigurationItem';
-import { AllContextKeys } from '../context/keys/AllContextKeys';
 import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
 import { ManifestApp } from './ManifestApp';
@@ -53,18 +52,6 @@ export class Application {
    * @memberof Application
    */
   public configuration?: ConfigurationItem[];
-
-  /**
-   * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
-   * to be sent during the initialization process.
-   * It is a string array of predefined Outreach properties describing attributes of the Outreach user loading the addon.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {AllContextKeys[]}
-   * @memberof Application
-   */
-  public context: AllContextKeys[];
 
   /**
    * Collection of one or more extensions being packaged in this application manifest.

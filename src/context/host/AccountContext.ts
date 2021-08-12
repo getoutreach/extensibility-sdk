@@ -1,5 +1,4 @@
 import { AccountContextKeys } from '../keys/AccountContextKeys';
-// eslint-disable-next-line no-unused-vars
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
 import { ExternalInfoContext } from './ExternalInfoContext';

@@ -1,9 +1,4 @@
-import { ClientContextKeys } from '../context/keys/ClientContextKeys';
-import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
-import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
-import { UserContextKeys } from '../context/keys/UserContextKeys';
 import { utils } from '../utils';
-import { AccountContextKeys } from '../context/keys/AccountContextKeys';
 import { Application } from '../manifest/Application';
 import { Scopes } from '../manifest/api/Scopes';
 import { Store } from '../manifest/app/Store';
@@ -127,40 +122,6 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (!application.context) {
-    issues.push('Context section is missing');
-  } else {
-    if (!Array.isArray(application.context)) {
-      issues.push(
-        'Context section is not an array. Value: ' + application.context
-      );
-    } else {
-      application.context.forEach((context) => {
-        if (
-          !Object.values(UserContextKeys).includes(
-            context as UserContextKeys
-          ) &&
-          !Object.values(ClientContextKeys).includes(
-            context as ClientContextKeys
-          ) &&
-          !Object.values(OpportunityContextKeys).includes(
-            context as OpportunityContextKeys
-          ) &&
-          !Object.values(ProspectContextKeys).includes(
-            context as ProspectContextKeys
-          ) &&
-          !Object.values(AccountContextKeys).includes(
-            context as AccountContextKeys
-          )
-        ) {
-          issues.push(
-            'Context key is not one of the valid values. Key: ' + context
-          );
-        }
-      });
-    }
-  }
-
   if (!application.app.description) {
     issues.push('Description section is missing.');
   } else {
@@ -193,7 +154,7 @@ export const validate = (application: Application): string[] => {
   }
 
   application.extensions.forEach((ext) => {
-    ext.validate(application).forEach((extIssue) => issues.push(extIssue));
+    ext.validate().forEach((extIssue) => issues.push(extIssue));
   });
 
   return issues;

@@ -27,7 +27,7 @@ To enable obtaining that token, Outreach API supports OAuth flow where the Outre
 
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#initial-authentication-flow) will start.
 
-A request to the endpoint defined in [redirectUri](outreach-api.md#redirectUri) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token, which is used with [Outreach application](manifest.md#applicationId) and [Outreach OAuth app secret](outreach-OAuth-settings.md) so a proper Outreach API access token and refresh tokens could be obtained.
+A request to the endpoint defined in [redirectUri](outreach-api.md#redirectUri) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token, which is used with [Outreach application](manifest.md#applicationId) and Outreach OAuth app secret so a proper Outreach API access token and refresh tokens could be obtained.
 
 The add-on host will cache the retrieved tokens, so the next time user needs to obtain a new Outreach API access token, it doesn't have to go again through the consent flow.
 
@@ -91,7 +91,7 @@ With that add-on OAuth application created, you will have:
 
 _The redirect URI can be the same as the add-on host URL defined in the manifest or a dedicated URL._
 
-You can learn more about how to set up this on the [Outreach app settings page](outreach-OAuth-settings.md).
+In order to get more info on your OAuth app settings or change a redirectUri value, please contact Outreach support team at cxt-sdk@outreach.io
 
 ## Token endpoint
 

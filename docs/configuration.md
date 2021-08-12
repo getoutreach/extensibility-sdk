@@ -1,13 +1,13 @@
 <!-- omit in toc -->
 
-# Addon configuration
+# application configuration
 
-Some of the add-ons require a user-specific configuration to be initialized properly.
+Some of the applications require a user-specific configuration to be initialized properly.
 
-That configuration contains one or more user values either when the user installed the add-on or at the moment of first interaction (if the add-on was installed for the user by an admin).
+That configuration contains one or more user values either when the user installed the application or at the moment of first interaction (if the application was installed for the user by an admin).
 
-Add-on creator needs to define in manifest what are the configuration values Outreach needs to collect for them, and Outreach will then construct a UI component that will gather and persist configuration data from the user.
-Outreach application will send to add-on all of those collected with every add-on initialization.
+Application creator needs to define in manifest what are the configuration values Outreach needs to collect for them, and Outreach will then construct a UI component that will gather and persist configuration data from the user.
+Outreach application will send to application all of those collected with every application initialization.
 
 - [Manifest configuration definition](#manifest-configuration-definition)
   - [Example configuration section](#example-configuration-section)
@@ -26,15 +26,15 @@ Outreach application will send to add-on all of those collected with every add-o
 
 ## Manifest configuration definition
 
-The manifest has to have a configuration section that will describe the Outreach app's values add-on needs to initialize.
+The manifest has to have a configuration section that will describe the Outreach app's values application needs to initialize.
 
 The configuration section contains zero or more configuration items.
 
 ### Example configuration section
 
-Let's look at an example of an add-on that requires Outreach users to visit the add-on creator web site and obtain their client id, key, and secret for accessing add-on creator APIs. Those values add-on expects Outreach to provide during the add-on initialization, so add-on can use them to access its APIs in the context of Outreach user.
+Let's look at an example of an application that requires Outreach users to visit the application owner web site and obtain their client id, key, and secret for accessing application creator APIs. Those values application expects Outreach to provide during the application initialization, so application can use them to access its APIs in the context of Outreach user.
 
-The add-on creator will add a config section into the manifest with three configuration items to achieve this.
+The application owner will add a config section into the manifest with three configuration items to achieve this.
 
 ```json
 manifest: {
@@ -77,7 +77,7 @@ Every configuration item has a list of properties describing the type of configu
 
 #### key
 
-Keycode of the configuration value. It is sent as a part of the add-on initialization context, and through the URL, so it is recommended to be short.
+Keycode of the configuration value. It is sent as a part of the application initialization context, and through the URL, so it is recommended to be short.
 
 #### text
 
@@ -116,19 +116,19 @@ Represents a value defining if the Outreach app will pass the configuration valu
 
 ### Configuration values
 
-Configuration value is a combination of key and value where the key is [configuationItem.key](#key), and value is value Outreach user-entered before the add-on loads.
+Configuration value is a combination of key and value where the key is [configuationItem.key](#key), and value is value Outreach user-entered before the application loads.
 
-Those values are passes to addon through url and add-on sdk initialization event.
+Those values are passes to application through url and application sdk initialization event.
 
 #### URL support
 
-As you can see in the example above, the clientId value is an example of the value passed through UI as an add-on will need it very early.
+As you can see in the example above, the clientId value is an example of the value passed through UI as an application will need it very early.
 The url used for loading will have an additional parameter for clientId
 
 ```http
-http://some-site.com/addon?...&clientId=a12345
+http://some-site.com/application?...&clientId=a12345
 ```
 
 #### SDK support
 
-All of the configuration values are sent to addon through the addon [initilization message config property](https://github.com/getoutreach/extensibility-sdk/blob/master/docs/sdk.md#addon-initialization).
+All of the configuration values are sent to application through the application [initilization message config property](https://github.com/getoutreach/extensibility-sdk/blob/master/docs/sdk.md#application-initialization).

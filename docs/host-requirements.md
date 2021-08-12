@@ -1,6 +1,6 @@
 
 <!-- omit in toc -->
-# Addon page host requirements
+# Outreach application page host requirements
 
 This document outlines the page's general add-on hosting requirements defined in [manifest.url](manifest.md#url). Outreach will create an iframe for the add-on and set its src property to this URL. Thus, the URL response needs to fulfill a few simple requirements for proper add-on functionality.
 

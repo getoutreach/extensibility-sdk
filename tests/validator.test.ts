@@ -7,12 +7,13 @@ import { Store } from '../src/manifest/app/Store';
 import { Scopes } from '../src/manifest/api/Scopes';
 
 import { TabExtension } from '../src/manifest/extensions/tabs/TabExtension';
-import { TabExtensionType } from '../src/manifest/extensions/tabs/TabExtensionType';
-
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { ApplicationTabExtension } from '../src/manifest/extensions/tabs/types/ApplicationTabExtension';
+import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
 
 import { Locale } from '../src/sdk/Locale';
+import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
+import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { ProspectContextKeys } from '../src/context/keys/ProspectContextKeys';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -183,22 +184,51 @@ describe('manifest tests', () => {
   });
 
   describe('context', () => {
-    test('only valid contexts should be acceptable', () => {
+    test('only valid application contexts should be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-
-      manifest.context = [
+      const tabExtension = manifest.extensions[0] as ApplicationTabExtension;
+      tabExtension.context = [
         'bananas',
+        UserContextKeys.ID,
         OpportunityContextKeys.ID,
+        ,
         'apples',
       ] as any;
 
       var issues = validate(manifest);
-      expect(issues.length).toBe(2);
+      expect(issues.length).toBe(3);
       expect(issues[0]).toBe(
-        'Context key is not one of the valid values. Key: bananas'
+        'Context key is not one of the valid values for the application tab extension. Key: bananas'
       );
       expect(issues[1]).toBe(
-        'Context key is not one of the valid values. Key: apples'
+        'Context key is not one of the valid values for the application tab extension. Key: opp.id'
+      );
+      expect(issues[2]).toBe(
+        'Context key is not one of the valid values for the application tab extension. Key: apples'
+      );
+    });
+
+    test('only valid opportunity contexts should be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      const tabExtension = manifest.extensions[1] as OpportunityTabExtension;
+      tabExtension.context = [
+        'bananas',
+        UserContextKeys.ID,
+        ProspectContextKeys.ID,
+        ,
+        'apples',
+      ] as any;
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(3);
+      expect(issues[0]).toBe(
+        'Context key is not one of the valid values for the application tab extension. Key: bananas'
+      );
+      expect(issues[1]).toBe(
+        'Context key is not one of the valid values for the application tab extension. Key: pro.id'
+      );
+      expect(issues[2]).toBe(
+        'Context key is not one of the valid values for the application tab extension. Key: apples'
       );
     });
   });
@@ -352,8 +382,9 @@ describe('manifest tests', () => {
   });
 
   describe('store', () => {
-    test('only valid store type hould be acceptable', () => {
+    test.only('only valid store type hould be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
+      console.log(manifest);
       manifest.app.store = 'BANANAS' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -369,18 +400,34 @@ describe('manifest tests', () => {
 });
 
 const getNewValidApplicationManifest = (): Application => {
-  const tabExtension = new TabExtension();
-  tabExtension.identifier = 'opportunity-tab-addon';
-  tabExtension.environment = {
+  const opportunityTabExtension = new OpportunityTabExtension();
+  opportunityTabExtension.identifier = 'opportunity-tab-addon';
+  opportunityTabExtension.environment = {
     fullWidth: false,
     decoration: 'none',
   };
-  tabExtension.host = {
+  opportunityTabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
-  tabExtension.type = TabExtensionType.OpportunityTab;
-  tabExtension.version = '0.99';
+  opportunityTabExtension.version = '0.99';
+  opportunityTabExtension.context = [
+    UserContextKeys.ID,
+    OpportunityContextKeys.ID,
+  ];
+
+  const appTabExtension = new ApplicationTabExtension();
+  appTabExtension.identifier = 'app-tabaddon';
+  appTabExtension.environment = {
+    fullWidth: false,
+    decoration: 'none',
+  };
+  appTabExtension.host = {
+    icon: 'http://someurl.com/favicon.png',
+    url: 'http://someurl.com/host',
+  };
+  appTabExtension.version = '0.98';
+  appTabExtension.context = [UserContextKeys.ID];
 
   const application = new Application();
   application.app = {
@@ -391,6 +438,18 @@ const getNewValidApplicationManifest = (): Application => {
       websiteUrl: 'https://someurl.com/',
     },
     categories: [Category.ACCOUNT_BASED_MARKETING],
+    medias: [
+      {
+        uri: 'https://someurl.com/image.png',
+        title: 'Our awesome extension',
+        type: 'image',
+      },
+      {
+        uri: 'https://youtube.com/some_video',
+        title: 'Our awesome animation',
+        type: 'video',
+      },
+    ],
     description: {
       en: 'Some description (en)',
     },
@@ -411,8 +470,7 @@ const getNewValidApplicationManifest = (): Application => {
     connect: 'https://someurl.com/connect',
   };
 
-  application.context = [UserContextKeys.ID, OpportunityContextKeys.ID];
-  application.extensions = [tabExtension];
+  application.extensions = [appTabExtension, opportunityTabExtension];
 
   return application;
 };

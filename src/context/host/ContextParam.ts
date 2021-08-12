@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
-import { AllContextKeys } from '../..';
+import { AllContextKeys } from '../keys/AllContextKeys';
 
 export class ContextParam {
   /**

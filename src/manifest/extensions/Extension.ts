@@ -1,5 +1,4 @@
 import { OutreachContext } from '../../context/OutreachContext';
-import { Application } from '../Application';
 
 export abstract class Extension {
   /**
@@ -26,10 +25,10 @@ export abstract class Extension {
    * @return {*}  {string[]}
    * @memberof Extension
    */
-  abstract validate(application: Application): string[];
+  abstract validate(): string[];
 
   /**
-   * Enables extension to contribute to building up 
+   * Enables extension to contribute to building up
    * outreach context which will be send to addon creator
    *
    * @abstract

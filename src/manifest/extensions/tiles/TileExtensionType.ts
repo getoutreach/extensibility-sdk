@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 /**
  * List of supported inteligent tile extension types.
  * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
