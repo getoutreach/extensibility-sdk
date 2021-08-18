@@ -90,7 +90,13 @@ export * from './manifest/api/Scopes';
 export * from './utils';
 
 export * from './manifest/extensions/tabs/TabExtensionType';
+export * from './manifest/extensions/tabs/types/AccountTabExtension';
+export * from './manifest/extensions/tabs/types/ApplicationTabExtension';
+export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
+export * from './manifest/extensions/tabs/types/ProspectTabExtension';
+
 export * from './manifest/extensions/tiles/TileExtensionType';
+export * from './manifest/extensions/tiles/TileExtension';
 
 class Task<T> {
   public promise: Promise<T>;
