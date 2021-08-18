@@ -10,7 +10,8 @@ export class ApplicationTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof ApplicationTabExtension
    */
-  public readonly type: TabExtensionType = TabExtensionType.APPLICATION;
+  public readonly type: TabExtensionType.APPLICATION =
+    TabExtensionType.APPLICATION;
 
   /**
    * In this section, the application author defines a list of predefined context information that application tab extension

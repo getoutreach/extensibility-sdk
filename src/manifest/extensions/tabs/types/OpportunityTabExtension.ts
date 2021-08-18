@@ -11,7 +11,8 @@ export class OpportunityTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof OpportunityTabExtension
    */
-  public readonly type: TabExtensionType = TabExtensionType.OPPORTUNITY;
+  public readonly type: TabExtensionType.OPPORTUNITY =
+    TabExtensionType.OPPORTUNITY;
 
   /**
    * In this section, the application author defines a list of predefined context information that

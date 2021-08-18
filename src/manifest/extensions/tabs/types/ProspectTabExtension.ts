@@ -11,7 +11,7 @@ export class ProspectTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof ProspectTabExtension
    */
-  public readonly type: TabExtensionType = TabExtensionType.PROSPECT;
+  public readonly type: TabExtensionType.PROSPECT = TabExtensionType.PROSPECT;
 
   /**
    * In this section, the application author defines a list of predefined context information that

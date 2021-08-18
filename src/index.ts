@@ -103,6 +103,7 @@ export * from './manifest/extensions/tiles/TileExtensionType';
 export * from './manifest/extensions/tiles/TileExtension';
 
 export * from './manifest/extensions/Extension';
+export * from './manifest/extensions/ExtensionType';
 
 class Task<T> {
   public promise: Promise<T>;
