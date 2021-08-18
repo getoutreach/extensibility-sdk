@@ -736,14 +736,8 @@ class AddonsSdk {
       return null;
     }
 
-    const hostOrigin = utils.validHostOrigin(
-      messageEvent.origin,
-      logger.current
-    );
-    const connectOrigin = utils.validConnectOrigin(
-      messageEvent.origin,
-      logger.current
-    );
+    const hostOrigin = utils.validHostOrigin(messageEvent.origin);
+    const connectOrigin = utils.validConnectOrigin(messageEvent.origin);
     if (!hostOrigin && !connectOrigin) {
       logger.current.log({
         origin: EventOrigin.ADDON,
