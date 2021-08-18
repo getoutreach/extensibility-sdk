@@ -11,7 +11,7 @@ export class AccountTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof AccountTabExtension
    */
-  public type: TabExtensionType = TabExtensionType.ACCOUNT;
+  public type: TabExtensionType.ACCOUNT = TabExtensionType.ACCOUNT;
 
   /**
    * In this section, the application author defines a list of predefined context information that prospect tab extension
