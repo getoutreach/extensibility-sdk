@@ -166,7 +166,7 @@ class AddonsSdk {
   };
 
   /**
-   * Gets or sets the minimal log level used for
+   * Gets the minimal log level used for
    * deciding which one of the logs should be ignored
    * and which one processed.
    *
@@ -176,6 +176,15 @@ class AddonsSdk {
   public get logLevel(): LogLevel {
     return logger.current.level;
   }
+
+  /**
+   * Sets the minimal log level used for
+   * deciding which one of the logs should be ignored
+   * and which one processed.
+   *
+   * @type {LogLevel}
+   * @memberof AddonsSdk
+   */
   public set logLevel(v: LogLevel) {
     logger.current.level = v;
   }
