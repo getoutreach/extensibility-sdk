@@ -384,7 +384,6 @@ describe('manifest tests', () => {
   describe('store', () => {
     test.only('only valid store type hould be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      console.log(manifest);
       manifest.app.store = 'BANANAS' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);

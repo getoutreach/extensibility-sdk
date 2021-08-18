@@ -1,10 +1,11 @@
 import { Token } from '../Token';
 import runtime from '../RuntimeContext';
 
-import addonSdk, { Constants } from '../../index';
+import { Constants } from '../../index';
 import { EventOrigin } from '../logging/EventOrigin';
 import { EventType } from '../logging/EventType';
 import { LogLevel } from '../logging/LogLevel';
+import logger from '../logging/Logger';
 
 class TokenService {
   public fetchTokenAsync = async (): Promise<string | null> => {
@@ -41,7 +42,7 @@ class TokenService {
         if (token.expiresAt > Date.now()) {
           return Promise.resolve(token.value);
         } else {
-          addonSdk?.logger.log({
+          logger.current.log({
             origin: EventOrigin.ADDON,
             type: EventType.INTERNAL,
             level: LogLevel.Debug,
@@ -50,7 +51,7 @@ class TokenService {
           });
         }
       } catch (e) {
-        addonSdk?.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           level: LogLevel.Error,
@@ -64,7 +65,7 @@ class TokenService {
   };
 
   public cacheToken = (token: Token) => {
-    addonSdk?.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.INTERNAL,
       level: LogLevel.Debug,
@@ -93,7 +94,7 @@ class TokenService {
       });
 
       if (!r.ok) {
-        addonSdk?.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           level: r.status === 404 ? LogLevel.Debug : LogLevel.Error,
@@ -105,7 +106,7 @@ class TokenService {
 
       return (await r.json()) as Token;
     } catch (e) {
-      addonSdk?.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Error,

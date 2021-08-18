@@ -4,20 +4,21 @@
 
 Table of content
 
-- [Summary](#summary)
-- [Addon initialization](#addon-initialization)
-  - [Define log level (optional)](#define-log-level-optional)
-  - [Load event handler](#load-event-handler)
-  - [Sdk initialization](#sdk-initialization)
-    - [Outreach context](#outreach-context)
-- [Additional addon function](#additional-addon-function)
-  - [Notify function](#notify-function)
-  - [Decorate function](#decorate-function)
-  - [Navigate function](#navigate-function)
-  - [Environment function](#environment-function)
-- [Add-on authentication](#add-on-authentication)
-  - [getToken function](#gettoken-function)
-  - [authorize function](#authorize-function)
+- [Add-on SDK](#add-on-sdk)
+  - [Summary](#summary)
+  - [Addon initialization](#addon-initialization)
+    - [Logger](#logger)
+    - [Load event handler](#load-event-handler)
+    - [Sdk initialization](#sdk-initialization)
+      - [Outreach context](#outreach-context)
+  - [Additional addon function](#additional-addon-function)
+    - [Notify function](#notify-function)
+    - [Decorate function](#decorate-function)
+    - [Navigate function](#navigate-function)
+    - [Environment function](#environment-function)
+  - [Add-on authentication](#add-on-authentication)
+    - [getToken function](#gettoken-function)
+    - [authorize function](#authorize-function)
 
 ## Summary
 
@@ -41,16 +42,24 @@ In order for the addon to get into initialized state, there are a few simple ste
 - Subscribe to [load event](#load-event-handler-optional)
 - Sdk [initialization](#sdk-initialization).
 
-### Define log level (optional)
+### Logger 
 
-In case there is a need for observing other types of events, addonSdk defines a logLevel property that can be set to one of the enum values.
+SDK has an internal logger used to publish diagnostic information, which helps addon creators develop the addon.
+
+By default, SDK uses [DefaultLogger.ts](https://github.com/getoutreach/extensibility-sdk/blob/master/src/sdk/logging/DefaultLogger.ts) implementation with **Error** log level, which means that only logs of error type will be published to console log.
+
+If there is a need to observe other types of events, sdk defines a logLevel property that can be set to one of the enum values.
 None| Debug | Info | Warn | Error.
 
 ```javascript
 addonSdk.logLevel = LogLevel.Debug;
 ```
 
-Default value is **Error** which means that only error logs will be sent to addon using sdk.
+If the addon creator wants to implement its own logger, the logger needs to implement [ILogger.ts](https://github.com/getoutreach/extensibility-sdk/blob/master/src/sdk/logging/ILogger.ts) interface and set to be used by addonSdk before intialization
+
+```javascript
+addonSdk.setLogger(myOwnLogger);
+```
 
 ### Load event handler
 
@@ -87,16 +96,16 @@ Once the initialization context is received, sdk is ready to perform its functio
 
 #### Outreach context
 
-[Outreach context](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/OutreachContext.ts) sent to onInit method has next properties:
+[Outreach context](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/OutreachContext.ts) sent to onInit method has next properties:
 
 - locale - Outreach User locale to be used for rendering addon UI (e.g. en)
 - theme - Outreach app theme to be used for rendering addon UI (e.g. light)
-- account - [Information about current account](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/AccountContext.ts) Outreach user is looking at (optional)
-- user - [Information about current outreach user](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/UserContext.ts) Outreach user is looking at (optional)
-- opportunity - [Information about current opportunity](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/OpportunityContext.ts) Outreach user is looking at (optional)
-- prospect - [Information about current prospect](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/ProspectContext.ts) Outreach user is looking at (optional)
+- account - [Information about current account](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/AccountContext.ts) Outreach user is looking at (optional)
+- user - [Information about current outreach user](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/UserContext.ts) Outreach user is looking at (optional)
+- opportunity - [Information about current opportunity](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/OpportunityContext.ts) Outreach user is looking at (optional)
+- prospect - [Information about current prospect](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/ProspectContext.ts) Outreach user is looking at (optional)
 - config - User-specific [addon configuration](configuration.md#) (if any)
-- host - [Information about the addon hosting environment](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/HostContext.ts) including all the of the url parameters defined in manifest host url and in browser location search params.
+- host - [Information about the addon hosting environment](https://github.com/getoutreach/extensibility-sdk/blob/master/src/context/host/HostContext.ts) including all the of the url parameters defined in manifest host url and in browser location search params.
 
 ## Additional addon function
 

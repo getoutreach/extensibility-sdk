@@ -3,7 +3,7 @@ import { ContextParam } from './context/host/ContextParam';
 import { EventOrigin } from './sdk/logging/EventOrigin';
 import { EventType } from './sdk/logging/EventType';
 import { LogLevel } from './sdk/logging/LogLevel';
-import { ILogger } from './sdk/logging/Logger';
+import logger from './sdk/logging/Logger';
 
 export class utils {
   /**
@@ -71,10 +71,7 @@ export class utils {
     return originHost;
   };
 
-  public static validHostOrigin = (
-    origin: string,
-    logger: ILogger
-  ): boolean => {
+  public static validHostOrigin = (origin: string): boolean => {
     if (!origin) {
       return false;
     }
@@ -84,7 +81,7 @@ export class utils {
       origin.endsWith('outreach-dev.com');
 
     if (!valid) {
-      logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
@@ -97,10 +94,7 @@ export class utils {
     return true;
   };
 
-  public static validConnectOrigin = (
-    origin: string,
-    logger: ILogger
-  ): boolean => {
+  public static validConnectOrigin = (origin: string): boolean => {
     if (!origin) {
       return false;
     }
@@ -110,7 +104,7 @@ export class utils {
     }
 
     if (!runtime.application.api) {
-      logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
@@ -126,7 +120,7 @@ export class utils {
     const connectOrigin = utils.getUrlDomain(connectUri);
     const connectMessage = origin === connectOrigin;
     if (!connectMessage) {
-      logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,

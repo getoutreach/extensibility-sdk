@@ -6,7 +6,7 @@ import { TabExtensionType } from '../TabExtensionType';
 
 export class AccountTabExtension extends TabExtension {
   /**
-   * Application tab extension type is 'tab-account'
+   * Account tab extension type is 'tab-account'
    *
    * @type {TabExtensionType}
    * @memberof AccountTabExtension
