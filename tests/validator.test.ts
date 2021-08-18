@@ -71,7 +71,7 @@ describe('manifest tests', () => {
       expect(issues[0]).toBe('Invalid api scope value. Value: BANANA');
     });
 
-    test.only('applicationId should be defined', () => {
+    test('applicationId should be defined', () => {
       const manifest = getNewValidApplicationManifest();
 
       delete (manifest.api as any).applicationId;
@@ -138,7 +138,7 @@ describe('manifest tests', () => {
     test('host.url - tokenized url should be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
       const tabExtension = manifest.extensions[0] as TabExtension;
-      tabExtension.host.url = 'https://tokenizedurl.com/{opp.id}?uid={usr.id}';
+      tabExtension.host.url = 'https://tokenizedurl.com/?uid={usr.id}';
       var issues = validate(manifest);
       expect(issues.length).toBe(0);
     });
@@ -222,13 +222,13 @@ describe('manifest tests', () => {
       var issues = validate(manifest);
       expect(issues.length).toBe(3);
       expect(issues[0]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: bananas'
+        'Context key is not one of the valid values for the opportunity tab extension. Key: bananas'
       );
       expect(issues[1]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: pro.id'
+        'Context key is not one of the valid values for the opportunity tab extension. Key: pro.id'
       );
       expect(issues[2]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: apples'
+        'Context key is not one of the valid values for the opportunity tab extension. Key: apples'
       );
     });
   });
@@ -282,57 +282,6 @@ describe('manifest tests', () => {
         );
       });
 
-      test('No index', () => {
-        const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
-          {
-            title: 'Some title',
-            type: 'image',
-            uri: 'https://www.site.com/image.png',
-          } as any,
-        ];
-        var issues = validate(manifest);
-
-        expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Index value is missing');
-      });
-      test('Index is not a number', () => {
-        const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
-          {
-            index: 'not-a-number',
-            title: 'Some title',
-            type: 'image',
-            uri: 'https://www.site.com/image.png',
-          } as any,
-        ];
-        var issues = validate(manifest);
-
-        expect(issues.length).toBe(1);
-        expect(issues[0]).toBe(
-          'Index value is not a number. Value: not-a-number'
-        );
-      });
-      test('Index is duplicated', () => {
-        const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
-          {
-            title: 'Some title',
-            type: 'image',
-            uri: 'https://www.site.com/image.png',
-          },
-          {
-            title: 'Some title',
-            type: 'image',
-            uri: 'https://www.site.com/image.png',
-          },
-        ];
-        var issues = validate(manifest);
-
-        expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Index value: 0 is not unique');
-      });
-
       test('Title is missing', () => {
         const manifest: Application = getNewValidApplicationManifest();
         manifest.app.medias = [
@@ -382,9 +331,8 @@ describe('manifest tests', () => {
   });
 
   describe('store', () => {
-    test.only('only valid store type hould be acceptable', () => {
+    test('only valid store type hould be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      console.log(manifest);
       manifest.app.store = 'BANANAS' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);

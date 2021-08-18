@@ -19,7 +19,7 @@ import runtime, { RuntimeContext } from './sdk/RuntimeContext';
 import tokenService from './sdk/services/tokenService';
 import authService from './sdk/services/oauthService';
 
-import { Logger, ILogger } from './sdk/logging/Logger';
+import logger from './sdk/logging/Logger';
 import { Constants } from './sdk/Constants';
 import { EventType } from './sdk/logging/EventType';
 import { EventOrigin } from './sdk/logging/EventOrigin';
@@ -33,6 +33,7 @@ import { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
 import { LoadInfoMessage } from './sdk/messages/LoadInfoMessage';
 import { LoadingContext } from './context/LoadingContext';
 import { ManifestHostEnvironment } from './manifest/extensions/tabs/ManifestHostEnvironment';
+import { ILogger } from './sdk/logging/ILogger';
 
 export * from './context/host/AccountContext';
 export * from './context/host/ContextParam';
@@ -66,7 +67,7 @@ export * from './sdk/logging/Event';
 export * from './sdk/logging/EventOrigin';
 export * from './sdk/logging/EventType';
 export * from './sdk/logging/LogLevel';
-export { ILogger } from './sdk/logging/Logger';
+export { ILogger } from './sdk/logging/ILogger';
 
 export * from './sdk/Locale';
 export * from './sdk/RuntimeContext';
@@ -89,8 +90,19 @@ export * from './manifest/extensions/tabs/ManifestHost';
 export * from './manifest/api/Scopes';
 export * from './utils';
 
+export * from './manifest/extensions/tabs/ManifestHost';
+export * from './manifest/extensions/tabs/ManifestHostEnvironment';
+export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
+export * from './manifest/extensions/tabs/types/AccountTabExtension';
+export * from './manifest/extensions/tabs/types/ApplicationTabExtension';
+export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
+export * from './manifest/extensions/tabs/types/ProspectTabExtension';
+
 export * from './manifest/extensions/tiles/TileExtensionType';
+export * from './manifest/extensions/tiles/TileExtension';
+
+export * from './manifest/extensions/Extension';
 
 class Task<T> {
   public promise: Promise<T>;
@@ -142,7 +154,40 @@ class AddonsSdk {
 
   public onMessage: (message: Message) => void;
 
-  public logger: ILogger = new Logger();
+  /**
+   * Changes the implementation of the logger used by SDK for
+   * publishing diagnostic info and events
+   *
+   * @param {ILogger} newLogger
+   * @memberof AddonsSdk
+   */
+  public setLogger = (newLogger: ILogger) => {
+    logger.current = newLogger;
+  };
+
+  /**
+   * Gets the minimal log level used for
+   * deciding which one of the logs should be ignored
+   * and which one processed.
+   *
+   * @type {LogLevel}
+   * @memberof AddonsSdk
+   */
+  public get logLevel(): LogLevel {
+    return logger.current.level;
+  }
+
+  /**
+   * Sets the minimal log level used for
+   * deciding which one of the logs should be ignored
+   * and which one processed.
+   *
+   * @type {LogLevel}
+   * @memberof AddonsSdk
+   */
+  public set logLevel(v: LogLevel) {
+    logger.current.level = v;
+  }
 
   /**
    * Creates an instance of AddonsSdk.
@@ -150,7 +195,7 @@ class AddonsSdk {
    */
   constructor() {
     this.onInit = (context: OutreachContext) => {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.HOST,
         type: EventType.MESSAGE,
         messageType: MessageType.INIT,
@@ -161,7 +206,7 @@ class AddonsSdk {
     };
 
     this.onMessage = (message: Message) => {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.HOST,
         type: EventType.MESSAGE,
         messageType: message.type,
@@ -225,7 +270,7 @@ class AddonsSdk {
     message.notificationType = type;
     this.sendMessage(message, true);
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -252,7 +297,7 @@ class AddonsSdk {
 
     this.sendMessage(message, true);
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -273,7 +318,7 @@ class AddonsSdk {
     const message = new ConfigureMessage();
     this.sendMessage(message, true);
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -304,7 +349,7 @@ class AddonsSdk {
     message.params = params;
     this.sendMessage(message, true);
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -340,7 +385,7 @@ class AddonsSdk {
       const message = new ReadyMessage();
       const postMessage = JSON.stringify(message);
 
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.MESSAGE,
         messageType: MessageType.READY,
@@ -376,7 +421,7 @@ class AddonsSdk {
     message.environment = environment;
     this.sendMessage(message, true);
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -423,7 +468,7 @@ class AddonsSdk {
       }
     );
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.INTERNAL,
       message: '[CXT][AddonSdk]::authenticate-starting authorize promise',
@@ -468,7 +513,7 @@ class AddonsSdk {
     const postMessage = JSON.stringify(message);
 
     if (!logged) {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.MESSAGE,
         messageType: message.type,
@@ -489,7 +534,7 @@ class AddonsSdk {
       logLevel = LogLevel.Warning;
     }
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.MESSAGE,
       messageType: message.type,
@@ -511,7 +556,7 @@ class AddonsSdk {
     if (!this.initTask) {
       const error =
         '[CXT] Please initialize SDK by calling sdk.init() before performing any additional calls';
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         messageType: MessageType.INIT,
@@ -531,7 +576,7 @@ class AddonsSdk {
   private handleReceivedMessage = (messageEvent: MessageEvent) => {
     const addonMessage = this.getAddonMessage(messageEvent);
     if (!addonMessage) {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
@@ -542,7 +587,7 @@ class AddonsSdk {
       return;
     }
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.HOST,
       type: EventType.MESSAGE,
       messageType: addonMessage.type,
@@ -569,7 +614,7 @@ class AddonsSdk {
       case MessageType.REQUEST_DECORATION_UPDATE:
       case MessageType.REQUEST_NOTIFY:
       case MessageType.REQUEST_RELOAD:
-        this.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           message: `[CXT][AddonSdk] :: onReceived - Client event ${addonMessage.type} received from host (ERROR)`,
@@ -578,7 +623,7 @@ class AddonsSdk {
         });
         break;
       default:
-        this.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           message: `[CXT][AddonSdk] :: onReceived - Unknown event type: ${addonMessage.type}`,
@@ -647,7 +692,7 @@ class AddonsSdk {
 
     runtime.application.extensions.forEach((ext) => ext.init(outreachContext));
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.INTERNAL,
       message: '[CXT][AddonSdk]::preprocessInitMessage',
@@ -669,7 +714,7 @@ class AddonsSdk {
     });
 
     if (this.authorizeTask) {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         message: '[CXT][AddonSdk]::onReceived-Resolving authorize promise',
@@ -682,7 +727,7 @@ class AddonsSdk {
         this.authorizeTask.onrejected('No token value received');
       }
     } else {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         message: `[CXT][AddonSdk] ::onReceived - Client event ${tokenMessage.type} received without promise to resolve`,
@@ -697,13 +742,10 @@ class AddonsSdk {
       return null;
     }
 
-    const hostOrigin = utils.validHostOrigin(messageEvent.origin, this.logger);
-    const connectOrigin = utils.validConnectOrigin(
-      messageEvent.origin,
-      this.logger
-    );
+    const hostOrigin = utils.validHostOrigin(messageEvent.origin);
+    const connectOrigin = utils.validConnectOrigin(messageEvent.origin);
     if (!hostOrigin && !connectOrigin) {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
@@ -718,7 +760,7 @@ class AddonsSdk {
     }
 
     if (!messageEvent.data || typeof messageEvent.data !== 'string') {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
@@ -733,7 +775,7 @@ class AddonsSdk {
     try {
       hostMessage = JSON.parse(messageEvent.data);
       if (!hostMessage || !hostMessage.type) {
-        this.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           level: LogLevel.Debug,
@@ -745,7 +787,7 @@ class AddonsSdk {
         return null;
       }
     } catch (e) {
-      this.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Debug,
@@ -762,7 +804,7 @@ class AddonsSdk {
         messageEvent
       );
       if (!initializedOrigin) {
-        this.logger.log({
+        logger.current.log({
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           level: LogLevel.Trace,
@@ -784,11 +826,11 @@ class AddonsSdk {
       return null;
     }
 
-    if (!utils.validHostOrigin(messageEvent.origin, this.logger)) {
+    if (!utils.validHostOrigin(messageEvent.origin)) {
       return null;
     }
 
-    this.logger.log({
+    logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.INTERNAL,
       level: LogLevel.Debug,
@@ -804,7 +846,7 @@ class AddonsSdk {
 declare global {
   interface Window {
     outreach: {
-      log?: LogLevel;
+      logLevel?: LogLevel;
       addonSdk?: AddonsSdk;
     };
   }

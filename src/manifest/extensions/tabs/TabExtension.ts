@@ -4,15 +4,15 @@ import { ManifestHost } from './ManifestHost';
 import { ManifestHostEnvironment } from './ManifestHostEnvironment';
 import { TabExtensionType } from './TabExtensionType';
 
-import addonSdk from '../../../index';
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
 import { ContextParam } from '../../../context/host/ContextParam';
 import { AllContextKeys } from '../../../context/keys/AllContextKeys';
+import logger from '../../../sdk/logging/Logger';
 
-export abstract class TabExtension extends Extension {
+export class TabExtension extends Extension {
   /**
    * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
    * to be sent during the initialization process.
@@ -23,7 +23,7 @@ export abstract class TabExtension extends Extension {
    * @type {TabExtensionType}
    * @memberof TabExtension
    */
-  public abstract context: AllContextKeys[];
+  public context: AllContextKeys[];
 
   /**
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#environment
@@ -48,7 +48,7 @@ export abstract class TabExtension extends Extension {
    * @type {TabExtensionType}
    * @memberof TabExtension
    */
-  public abstract type: TabExtensionType;
+  public type: TabExtensionType;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
@@ -70,7 +70,7 @@ export abstract class TabExtension extends Extension {
         });
       });
     } catch (e) {
-      addonSdk?.logger.log({
+      logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         message: '[CXT][TabExtension]::init- invalid manifest url',
