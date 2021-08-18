@@ -1,4 +1,5 @@
 import { OutreachContext } from '../../context/OutreachContext';
+import { ExtensionType } from './ExtensionType';
 
 export abstract class Extension {
   /**
@@ -16,6 +17,14 @@ export abstract class Extension {
    * @memberof Extension
    */
   version: string;
+
+  /**
+   * Type property defines the type of extension
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
+   * @type {ExtensionType}
+   * @memberof Extension
+   */
+  public type: ExtensionType;
 
   /**
    * Every extension has to be able to perform its own validation.
