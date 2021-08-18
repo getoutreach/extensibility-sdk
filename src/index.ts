@@ -94,14 +94,11 @@ export * from './manifest/extensions/tabs/ManifestHost';
 export * from './manifest/extensions/tabs/ManifestHostEnvironment';
 export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
-
 export * from './manifest/extensions/tabs/types/AccountTabExtension';
-
-/*
 export * from './manifest/extensions/tabs/types/ApplicationTabExtension';
 export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export * from './manifest/extensions/tabs/types/ProspectTabExtension';
-*/
+
 export * from './manifest/extensions/tiles/TileExtensionType';
 export * from './manifest/extensions/tiles/TileExtension';
 
