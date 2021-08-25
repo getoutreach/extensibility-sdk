@@ -57,75 +57,92 @@ All of the manifest properties are grouped in a few groups:
 Here is the sample manifest file of the hello world application having two extensions: application tab extension and opportunity tab extension.
 
 ```json
-"app": {
-  "author": {
-    "company": "Acme ltd",
-    "privacyUrl": "https://someurl.com/privacy",
-    "termsOfUseUrl": "https://someurl.com/tos",
-    "websiteUrl": "https://someurl.com/"
+{
+  "app": {
+    "author": {
+      "company": "Acme ltd",
+      "privacyUrl": "https://someurl.com/privacy",
+      "termsOfUseUrl": "https://someurl.com/tos",
+      "websiteUrl": "https://someurl.com/"
+    },
+    "categories": [
+      "account_based_marketing"
+    ],
+    "headline": {
+      "en": "Some short description (en)"
+    },
+    "description": {
+      "en": "Some description (en)"
+    },
+    "identifier": "app-identifier",
+    "locales": [
+      "en"
+    ],
+    "medias": [
+      {
+        "uri": "https://someurl.com/image.png",
+        "title": "Our awesome extension",
+        "type": "image"
+      },
+      {
+        "uri": "https://youtube.com/some_video",
+        "title": "Our awesome animation",
+        "type": "video"
+      }
+    ],
+    "store": "private",
+    "title": {
+      "en": "Some title (en)"
+    },
+    "version": "0.10",
+    "icon": "https://someurl.com/image.png"
   },
-  "categories": ["account_based_marketing"],
-  "description": {
-    "en": "Some description (en)"
+  "api": {
+    "scopes": [
+      "accounts.all",
+      "calls.all"
+    ],
+    "applicationId": "AbCd123456qW",
+    "redirectUri": "https://application-host.com/hello-world",
+    "token": "https://someurl.com/token",
+    "connect": "https://someurl.com/connect"
   },
-  "identifier": "app-identifier",
-  "locales": ["en"],
-  "medias": [
+  "ext": [
     {
-      "uri": "https://someurl.com/image.png",
-      "title": "Our awesome extension",
-      "type": "image"
+      "context": [
+        "usr.id"
+      ],
+      "identifier": "hello-world-app",
+      "environment": {
+        "fullWidth": false,
+        "decoration": "none"
+      },
+      "host": {
+        "icon": "http://someurl.com/favicon.png",
+        "url": "http://someurl.com/host/app"
+      },
+      "type": "application",
+      "version": "0.98"
     },
     {
-      "uri": "https://youtube.com/some_video",
-      "title": "Our awesome animation",
-      "type": "video"
+      "context": [
+        "usr.id",
+        "opp.id"
+      ],
+      "identifier": "hello-world-opportunity",
+      "environment": {
+        "fullWidth": false,
+        "decoration": "none"
+      },
+      "host": {
+        "icon": "http://someurl.com/favicon.png",
+        "url": "http://someurl.com/host/opp"
+      },
+      "type": "tab-opportunity",
+      "version": "0.99"
     }
-  ],
-  "store": "private",
-  "title": {
-    "en": "Some title (en)"
-   },
-   "version": 0.10
-},
-"api": {
- "scopes": ["accounts.all", "calls.all"],
- "applicationId": "AbCd123456qW",
- "redirectUri": "https://application-host.com/hello-world",
- "token": "https://someurl.com/token",
- "connect": "https://someurl.com/connect"
-},
-"ext": [
- {
-  "context": [ "usr.id"],
-  "identifier": "hello-world-app",
-  "environment": {
-   "fullWidth": false,
-   "decoration": "none",
-  },
-  "host": {
-   "icon": "http://someurl.com/favicon.png",
-   "url": "http://someurl.com/host/app",
-  },
-  "type": "application",
-  "version": "0.98"
- },
- {
-  "context": [ "usr.id", "opp.id"],
-  "identifier": "hello-world-opportunity",
-  "environment": {
-   "fullWidth": false,
-   "decoration": "none",
-  },
-  "host": {
-   "icon": "http://someurl.com/favicon.png",
-   "url": "http://someurl.com/host/opp",
-  },
-  "type": "tab-opportunity",
-  "version": "0.99"
-
- }
-]
+  ]
+}
 ```
 
 ## Manifest JSON schema
