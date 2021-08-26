@@ -54,6 +54,14 @@ describe('manifest tests', () => {
         'Author website url is invalid url. Value: bananas'
       );
     });
+
+    test('email should be email', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.app.author.email = 'bananas';
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Author e-mail is invalid e-mail. Value: bananas');
+    });
   });
 
   describe('api', () => {
