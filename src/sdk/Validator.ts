@@ -6,7 +6,7 @@ import { Store } from '../manifest/app/Store';
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
  *
- * @param {Manifest} application
+ * @param {Application} application
  * @returns {string[]} list of validation issues (if any)
  */
 export const validate = (application: Application): string[] => {
@@ -54,6 +54,12 @@ export const validate = (application: Application): string[] => {
   if (!application.app.author) {
     issues.push('Author section is missing');
   } else {
+    if (!utils.emailValidation(application.app.author.email)) {
+      issues.push(
+        'Author e-mail is invalid e-mail. Value: ' +
+          application.app.author.email
+      );
+    }
     if (!utils.urlValidation(application.app.author.websiteUrl)) {
       issues.push(
         'Author website url is invalid url. Value: ' +
@@ -127,6 +133,24 @@ export const validate = (application: Application): string[] => {
   } else {
     if (!application.app.description.en) {
       issues.push('Description section is missing English entry.');
+    }
+  }
+
+  if (!application.app.headline) {
+    issues.push('Headline section is missing.');
+  } else {
+    if (!application.app.headline.en) {
+      issues.push('Headline section is missing English entry.');
+    }
+  }
+
+  if (!application.app.icon) {
+    issues.push('Application icon is missing.');
+  } else {
+    if (!utils.urlValidation(application.app.icon)) {
+      issues.push(
+        'Application icon url is invalid url. Value: ' + application.app.icon
+      );
     }
   }
 

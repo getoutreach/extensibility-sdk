@@ -380,6 +380,7 @@ const getNewValidApplicationManifest = (): Application => {
   const application = new Application();
   application.app = {
     author: {
+      email: 'author@someurl.com',
       company: 'Acme ltd',
       privacyUrl: 'https://someurl.com/privacy',
       termsOfUseUrl: 'https://someurl.com/tos',
@@ -398,10 +399,14 @@ const getNewValidApplicationManifest = (): Application => {
         type: 'video',
       },
     ],
+    headline: {
+      en: 'Some headline (en)',
+    },
     description: {
       en: 'Some description (en)',
     },
     identifier: 'app-identifier',
+    icon: 'https://someurl.com/icon',
     locales: [Locale.ENGLISH],
     store: Store.PRIVATE,
     title: {

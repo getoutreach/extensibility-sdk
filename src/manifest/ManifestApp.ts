@@ -11,7 +11,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#identifier
    * @type {string}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public identifier: string = '';
 
@@ -29,15 +29,15 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#author
    * @type {ManifestAuthor}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public author: ManifestAuthor;
 
   /**
    * Collection of one or more extension categories.
    *
-   * @type {AddonCategory[]}
-   * @memberof Manifest
+   * @type {Category[]}
+   * @memberof ManifestApp
    */
   public categories?: Category[] = [];
 
@@ -47,9 +47,26 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#description
    * @type {LocalizedString}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public description: LocalizedString;
+
+  /**
+   * A localized short addon description is shown in the addon store to
+   * explain what the addon does and why someone would want to install it.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#description
+   * @type {LocalizedString}
+   * @memberof ManifestApp
+   */
+  public headline: LocalizedString;
+
+  /**
+   * Application icon URL
+   * @type {string}
+   * @memberof ManifestApp
+   */
+  public icon: string;
 
   /**
    * Collection of zero or more manifest media file used in extension marketplace
@@ -58,7 +75,7 @@ export class ManifestApp {
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#media
    *
    * @type {ManifestMedia}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public medias?: ManifestMedia[] = [];
 
@@ -66,8 +83,8 @@ export class ManifestApp {
    * Type of addon: public, private or personal.
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#store
-   * @type {AppStore}
-   * @memberof Manifest
+   * @type {Store}
+   * @memberof ManifestApp
    */
   public store: Store;
 
@@ -76,7 +93,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#title
    * @type {LocalizedString}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public title: LocalizedString;
 
@@ -85,7 +102,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#version
    * @type {string}
-   * @memberof Manifest
+   * @memberof ManifestApp
    */
   public version: string;
 }
