@@ -14,11 +14,19 @@ export class ManifestAuthor {
   company: string;
 
   /**
+   * E-mail address for contacts.
+   *
+   * @type {string}
+   * @memberof ManifestAuthor
+   */
+  email: string;
+
+  /**
    *
    * Website of the addon creator.
    *
    * @type {string}
-   * @memberof Author
+   * @memberof ManifestAuthor
    */
   websiteUrl: string;
 
@@ -26,7 +34,7 @@ export class ManifestAuthor {
    * Url of the addon creator privacy policy.
    *
    * @type {string}
-   * @memberof Author
+   * @memberof ManifestAuthor
    */
   privacyUrl: string;
 
@@ -34,7 +42,7 @@ export class ManifestAuthor {
    * Terms of use policy url.
    *
    * @type {string}
-   * @memberof Author
+   * @memberof ManifestAuthor
    */
   termsOfUseUrl: string;
 }

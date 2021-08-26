@@ -60,7 +60,8 @@ Here is the sample manifest file of the hello world application having two exten
 {
   "app": {
     "author": {
-      "company": "Acme ltd",
+      "company": "Acme ltd", 
+      "email": "author@someurl.com",
       "privacyUrl": "https://someurl.com/privacy",
       "termsOfUseUrl": "https://someurl.com/tos",
       "websiteUrl": "https://someurl.com/"

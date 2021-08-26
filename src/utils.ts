@@ -161,4 +161,12 @@ export class utils {
       return false;
     }
   };
+
+  public static emailValidation = (email: string): boolean => {
+    if (!email) {
+      return false;
+    }
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 }
