@@ -1,0 +1,289 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
+  "properties": {
+    "app": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "object",
+          "properties": {
+            "websiteUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "privacyUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "termsOfUseUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "company": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            }
+          },
+          "required": [
+            "websiteUrl",
+            "company",
+            "email"
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ]
+        },
+        "headline": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ]
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ]
+        },
+        "identifier": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "store": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "internal"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+$",
+          "maxLength": 64
+        },
+        "icon": {
+          "type": "string",
+          "format": "uri"
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "medias": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "url",
+                  "options",
+                  "select",
+                  "string"
+                ]
+              },
+              "websiteUrl": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "configuration": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "number",
+                  "date",
+                  "url",
+                  "options",
+                  "select",
+                  "string"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "urlInclude": {
+                "type": "boolean"
+              },
+              "text": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultValue": {
+                "type": "string"
+              },
+              "validator": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "key",
+              "type",
+              "text"
+            ]
+          }
+        }
+      },
+      "required": [
+        "title",
+        "headline",
+        "description",
+        "icon",
+        "author",
+        "version"
+      ]
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "connect": {
+          "type": "string"
+        }
+      }
+    },
+    "ext": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+$",
+            "maxLength": 64
+          },
+          "identifier": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "tab-account",
+              "tab-opportunity",
+              "tab-prospect",
+              "left-side-menu",
+              "application"
+            ]
+          },
+          "host": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "icon": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "icon",
+              "url"
+            ]
+          },
+          "environment": {
+            "type": "object",
+            "properties": {
+              "fullWidth": {
+                "type": "boolean"
+              },
+              "decoration": {
+                "type": "string"
+              }
+            }
+          },
+          "context": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "identifier",
+          "type",
+          "version",
+          "host",
+          "environment"
+        ]
+      }
+    }
+  },
+  "required": [
+    "app",
+    "ext"
+  ]
+}
