@@ -60,7 +60,7 @@ There are two types of application extensions you can create with the Outreach c
 
 Application extension is a type of extension where the application creator wants to bring its all app to Outreach.
 
-![alt text](docs/assets/left-side-menu-addon-example.png "Left side menu addon example")
+![alt text](docs/assets/app-tab-extension-example.png "Left side menu addon example")
 This type of extension has an icon in the left side menu at the same level as other Outreach icons. Clicking on that icon will load an iframe taking the whole space and showing the extension host page defined in the manifest.
 
 Application extension can receive only user and organisation [contextual information](context.md).
@@ -71,7 +71,7 @@ Application extension can define a special [notifications endpoint](manifest.md#
 
 Tab extension is an extension that enables you to load your application in a context of a specific account, prospect, or opportunity. Your application is being loaded as an additional tab beside other standard Outreach tabs.
 
-![alt text](docs/assets/tab-addon-example.png "Tab addon example")
+![alt text](docs/assets/account-tab-extension-example.png "Tab addon example")
 
 Tab extension are loaded after the tab is being opened.
 In addition to the organization and user context available to application extension, they can receive current account context (account tab), current prospect context (prospect tab), and current opportunity context (opportunity tab).
