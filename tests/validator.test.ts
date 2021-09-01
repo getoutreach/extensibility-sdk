@@ -14,6 +14,7 @@ import { Locale } from '../src/sdk/Locale';
 import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { ProspectContextKeys } from '../src/context/keys/ProspectContextKeys';
+import { TabExtensionType } from '../src';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -169,6 +170,47 @@ describe('manifest tests', () => {
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host type  is invalid. Value: BANANAS');
+    });
+
+    test('host.notificationUrl - is optional property', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      const tabExtension = manifest.extensions[0] as TabExtension;
+      delete tabExtension.host.notificationsUrl;
+      var issues = validate(manifest);
+      expect(issues.length).toBe(0);
+    });
+
+    test('host.notificationUrl - can be defined on addons other then left side menu extensions', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      const tabExtension = manifest.extensions[0] as TabExtension;
+      tabExtension.type = TabExtensionType.ACCOUNT;
+      tabExtension.host.notificationsUrl = 'https://someurl.com/endpoint';
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Notifications url can be defined only for application tab extension. Type: tab-account'
+      );
+    });
+
+    test('host.notificationUrl - only url should be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      const tabExtension = manifest.extensions[0] as TabExtension;
+      tabExtension.type = TabExtensionType.APPLICATION;
+      tabExtension.host.notificationsUrl = 'bananas';
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Notifications url definition is invalid url. Value: bananas'
+      );
+    });
+
+    test('host.notificationUrl - tokenized url should be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      const tabExtension = manifest.extensions[0] as TabExtension;
+      tabExtension.host.notificationsUrl =
+        'https://tokenizedurl.com/{usr.id}?uid={usr.id}';
+      var issues = validate(manifest);
+      expect(issues.length).toBe(0);
     });
   });
 

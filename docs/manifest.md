@@ -5,42 +5,43 @@
 Table of content:
 
 - [Manifest file](#manifest-file)
-	- [Sample manifest](#sample-manifest)
-	- [Manifest JSON schema](#manifest-json-schema)
-	- [Application section properties ("app")](#application-section-properties-app)
-		- [author](#author)
-		- [categories](#categories)
-		- [description](#description)
-		- [identifier](#identifier)
-		- [locales](#locales)
-		- [medias](#medias)
-		- [store](#store)
-		- [title](#title)
-		- [version](#version)
-	- [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
-		- [applicationId](#applicationid)
-		- [redirectUri](#redirecturi)
-		- [scopes](#scopes)
-		- [token](#token)
-		- [connect](#connect)
-	- [Configuration section ("config")](#configuration-section-config)
-	- [Extensions section ("ext")](#extensions-section-ext)
-		- [Shared extension properties](#shared-extension-properties)
-			- [identifer (extension)](#identifer-extension)
-			- [version (extension)](#version-extension)
-		- [Tab extension properties](#tab-extension-properties)
-			- [context (tab extension)](#context-tab-extension)
-				- [Application tab extension](#application-tab-extension)
-				- [Account tab extension](#account-tab-extension)
-				- [Prospect tab extension](#prospect-tab-extension)
-				- [Opportunity tab extension](#opportunity-tab-extension)
-			- [Environment (tab extension)](#environment-tab-extension)
-				- [fullWidth (tab extension)](#fullwidth-tab-extension)
-				- [decoration (tab extension)](#decoration-tab-extension)
-			- [Host (tab extension)](#host-tab-extension)
-				- [url](#url)
-				- [icon](#icon)
-			- [type](#type)
+  - [Sample manifest](#sample-manifest)
+  - [Manifest JSON schema](#manifest-json-schema)
+  - [Application section properties ("app")](#application-section-properties-app)
+    - [author](#author)
+    - [categories](#categories)
+    - [description](#description)
+    - [identifier](#identifier)
+    - [locales](#locales)
+    - [medias](#medias)
+    - [store](#store)
+    - [title](#title)
+    - [version](#version)
+  - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
+    - [applicationId](#applicationid)
+    - [redirectUri](#redirecturi)
+    - [scopes](#scopes)
+    - [token](#token)
+    - [connect](#connect)
+  - [Configuration section ("config")](#configuration-section-config)
+  - [Extensions section ("ext")](#extensions-section-ext)
+    - [Shared extension properties](#shared-extension-properties)
+      - [identifer (extension)](#identifer-extension)
+      - [version (extension)](#version-extension)
+    - [Tab extension properties](#tab-extension-properties)
+      - [context (tab extension)](#context-tab-extension)
+        - [Application tab extension](#application-tab-extension)
+        - [Account tab extension](#account-tab-extension)
+        - [Prospect tab extension](#prospect-tab-extension)
+        - [Opportunity tab extension](#opportunity-tab-extension)
+      - [Environment (tab extension)](#environment-tab-extension)
+        - [fullWidth (tab extension)](#fullwidth-tab-extension)
+        - [decoration (tab extension)](#decoration-tab-extension)
+      - [Host (tab extension)](#host-tab-extension)
+        - [url](#url)
+        - [icon](#icon)
+      - [type](#type)
+      - [notificationsUrl](#notificationsurl)
 
 Manifest is a simple JSON file that the application developer uploads to Outreach and which contains all of the data needed for Outreach to host the application in an iframe.
 
@@ -120,7 +121,8 @@ Here is the sample manifest file of the hello world application having two exten
       },
       "host": {
         "icon": "http://someurl.com/favicon.png",
-        "url": "http://someurl.com/host/app"
+        "url": "http://someurl.com/host/app",
+        "notificationsUrl": "https://addon-host.com/notification",
       },
       "type": "application",
       "version": "0.98"
@@ -423,3 +425,14 @@ Application tab extension example
 Account tab extension example
 
 ![alt text](assets/account-tab-extension-example.png 'Account tab extension example')
+
+#### notificationsUrl
+
+This is optional address of the endpoint serving notification centric version of the addon experience.
+
+If defined, this endpoint will serve an empty HTML page with SDK on it, and the Outreach app will load it early without the need for user interaction.
+That's how addon can update badge decoration and invite Outreach user to open full addon experience as defined in host.url property.
+
+Only appllication addons of AddonType.LeftSideMenu type can only use this property.
+
+_To see a sample of how to use this in your addon code look at the [Beacon addon sample addon](https://github.com/getoutreach/clientxtdocs/blob/master/samples/beacon/src/App.tsx)_
