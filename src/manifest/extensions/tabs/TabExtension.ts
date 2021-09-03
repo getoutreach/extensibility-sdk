@@ -59,8 +59,6 @@ export class TabExtension extends Extension implements IHostableExtension {
    * @memberof TabExtension
    */
   init(context: OutreachContext): boolean {
-    
-    
     let modified = false;
     try {
       // 1. copy url search parameters to context urlParams
@@ -73,6 +71,8 @@ export class TabExtension extends Extension implements IHostableExtension {
           value: value,
         });
       });
+
+      //2. complete the tokenize url with contextual data.
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
@@ -83,8 +83,6 @@ export class TabExtension extends Extension implements IHostableExtension {
       });
     }
 
-
-    
     return modified;
   }
 
