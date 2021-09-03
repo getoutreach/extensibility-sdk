@@ -4,7 +4,7 @@ import { OpportunityContext } from './host/OpportunityContext';
 import { AccountContext } from './host/AccountContext';
 import { ProspectContext } from './host/ProspectContext';
 import { HostContext } from './host/HostContext';
-import { Locale, Theme } from '..';
+import { ContextParam, Locale, Theme } from '..';
 import { ConfigurationValue } from '../configuration/ConfigurationValue';
 
 export class OutreachContext {
@@ -88,4 +88,26 @@ export class OutreachContext {
    * @memberof OutreachContext
    */
   public config?: ConfigurationValue[];
+
+  public toParams = (): ContextParam[] => {
+    const params: ContextParam[] = [];
+
+    if (this.account) {
+      this.account.toParams().forEach((p) => params.push(p));
+    }
+
+    if (this.opportunity) {
+      this.opportunity.toParams().forEach((p) => params.push(p));
+    }
+
+    if (this.prospect) {
+      this.prospect.toParams().forEach((p) => params.push(p));
+    }
+
+    if (this.user) {
+      this.user.toParams().forEach((p) => params.push(p));
+    }
+
+    return params;
+  };
 }

@@ -60,6 +60,7 @@ export class TabExtension extends Extension implements IHostableExtension {
    */
   init(context: OutreachContext): boolean {
     let modified = false;
+
     try {
       // 1. copy url search parameters to context urlParams
       const url = new URL(this.host.url);
@@ -72,7 +73,14 @@ export class TabExtension extends Extension implements IHostableExtension {
         });
       });
 
-      //2. complete the tokenize url with contextual data.
+      //2. complete the tokenize url with contextual data of host url and notifications url
+      this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
+      if (this.host.notificationsUrl) {
+        this.host.notificationsUrl = utils.tokenizeUrl(
+          this.host.notificationsUrl,
+          context.toParams()
+        ).url;
+      }
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
