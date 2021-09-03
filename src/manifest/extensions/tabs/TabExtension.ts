@@ -12,6 +12,7 @@ import { ContextParam } from '../../../context/host/ContextParam';
 import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
 import { IHostableExtension } from '../IHostableExtension';
+import { LocalizedString } from '../../app/LocalizedString';
 
 export class TabExtension extends Extension implements IHostableExtension {
   /**
@@ -50,6 +51,24 @@ export class TabExtension extends Extension implements IHostableExtension {
    * @memberof TabExtension
    */
   public type: TabExtensionType;
+
+  /**
+   * Optional property defining the text, which will be shown as the tab title.
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public title?: LocalizedString;
+
+  /**
+   * Optional property defining the text, which will be shown as the tab title tooltip.
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public description?: LocalizedString;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
