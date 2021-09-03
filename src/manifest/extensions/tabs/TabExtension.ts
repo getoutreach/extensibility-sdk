@@ -11,8 +11,10 @@ import { OutreachContext } from '../../../context/OutreachContext';
 import { ContextParam } from '../../../context/host/ContextParam';
 import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
+import { IHostableExtension } from '../IHostableExtension';
+import { LocalizedString } from '../../app/LocalizedString';
 
-export class TabExtension extends Extension {
+export class TabExtension extends Extension implements IHostableExtension {
   /**
    * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
    * to be sent during the initialization process.
@@ -51,6 +53,24 @@ export class TabExtension extends Extension {
   public type: TabExtensionType;
 
   /**
+   * Optional property defining the text, which will be shown as the tab title.
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public title?: LocalizedString;
+
+  /**
+   * Optional property defining the text, which will be shown as the tab title tooltip.
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public description?: LocalizedString;
+
+  /**
    * Initialize Outreach context with tab extension contextual information.
    *
    * @param {OutreachContext} context
@@ -59,7 +79,9 @@ export class TabExtension extends Extension {
    */
   init(context: OutreachContext): boolean {
     let modified = false;
+
     try {
+      // 1. copy url search parameters to context urlParams
       const url = new URL(this.host.url);
       const searchParams = new URLSearchParams(url.search);
       searchParams.forEach((value, key) => {
@@ -69,6 +91,15 @@ export class TabExtension extends Extension {
           value: value,
         });
       });
+
+      //2. complete the tokenize url with contextual data of host url and notifications url
+      this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
+      if (this.host.notificationsUrl) {
+        this.host.notificationsUrl = utils.tokenizeUrl(
+          this.host.notificationsUrl,
+          context.toParams()
+        ).url;
+      }
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
@@ -78,6 +109,7 @@ export class TabExtension extends Extension {
         context: [`url: ${this.host.url}`, `e: ${e}`],
       });
     }
+
     return modified;
   }
 
@@ -100,7 +132,7 @@ export class TabExtension extends Extension {
         );
       }
 
-      if (!this.hostUrlValidation()) {
+      if (!this.hostUrlValidation(this.host.url)) {
         issues.push('Host url is invalid. Value: ' + this.host.url);
       }
 
@@ -109,6 +141,22 @@ export class TabExtension extends Extension {
         !Object.values(TabExtensionType).includes(this.type as TabExtensionType)
       ) {
         issues.push('Host type  is invalid. Value: ' + this.type);
+      }
+
+      if (this.host.notificationsUrl) {
+        if (!this.hostUrlValidation(this.host.notificationsUrl)) {
+          issues.push(
+            'Notifications url definition is invalid url. Value: ' +
+              this.host.notificationsUrl
+          );
+        }
+
+        if (this.type !== TabExtensionType.APPLICATION) {
+          issues.push(
+            'Notifications url can be defined only for application tab extension. Type: ' +
+              this.type
+          );
+        }
       }
     }
 
@@ -123,12 +171,7 @@ export class TabExtension extends Extension {
     return issues;
   }
 
-  private hostUrlValidation = (): boolean => {
-    const hostUrl = this.host.url;
-    if (!hostUrl) {
-      return false;
-    }
-
+  private hostUrlValidation = (hostUrl: string): boolean => {
     const contextParams: ContextParam[] = [];
     this.context.forEach((key) => contextParams.push({ key, value: 'marker' }));
 

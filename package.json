@@ -1,7 +1,7 @@
 {
   "name": "@outreach/extensibility-sdk",
   "license": "MIT",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": false,
   "contributors": [
     "Outreach Client Extensibility Team <cxt-sdk@outreach.io>"
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/getoutreach/extensibility-sdk#readme",
   "devDependencies": {
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "copyfiles": "^2.4.1",

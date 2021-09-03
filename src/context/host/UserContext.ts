@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import { UserContextKeys } from '../keys/UserContextKeys';
 import { ContextParam } from './ContextParam';
+import { Context } from './CustomContext';
 
-export class UserContext {
+export class UserContext extends Context {
   /**
    * Unique user identifier
    *
@@ -103,4 +104,85 @@ export class UserContext {
 
     return true;
   };
+
+  public toParams(): ContextParam[] {
+    const params: ContextParam[] = [];
+    if (this.email) {
+      params.push({
+        key: UserContextKeys.EMAIL,
+        value: this.email,
+      });
+    }
+
+    if (this.firstName) {
+      params.push({
+        key: UserContextKeys.FIRST_NAME,
+        value: this.firstName,
+      });
+    }
+
+    if (this.id) {
+      params.push({
+        key: UserContextKeys.ID,
+        value: this.id,
+      });
+    }
+
+    if (this.lastName) {
+      params.push({
+        key: UserContextKeys.LAST_NAME,
+        value: this.lastName,
+      });
+    }
+
+    if (this.title) {
+      params.push({
+        key: UserContextKeys.TITLE,
+        value: this.title,
+      });
+    }
+
+    if (this.username) {
+      params.push({
+        key: UserContextKeys.USERNAME,
+        value: this.username,
+      });
+    }
+
+    if (this.customField1) {
+      params.push({
+        key: UserContextKeys.CUSTOM_FIELD_1,
+        value: this.customField1,
+      });
+    }
+
+    if (this.customField2) {
+      params.push({
+        key: UserContextKeys.CUSTOM_FIELD_2,
+        value: this.customField2,
+      });
+    }
+
+    if (this.customField3) {
+      params.push({
+        key: UserContextKeys.CUSTOM_FIELD_3,
+        value: this.customField3,
+      });
+    }
+
+    if (this.customField4) {
+      params.push({
+        key: UserContextKeys.CUSTOM_FIELD_4,
+        value: this.customField4,
+      });
+    }
+
+    if (this.customField5) {
+      params.push({
+        key: UserContextKeys.CUSTOM_FIELD_5,
+        value: this.customField5,
+      });
+    }
+    return params;
+  }
 }
