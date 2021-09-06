@@ -2,11 +2,10 @@ import { Message } from './Message';
 import { MessageType } from './MessageType';
 import { Theme } from '../Theme';
 import { Locale } from '../Locale';
-import { Application } from '../../manifest/Application';
 import { UrlParam } from '../../context/host/UrlParam';
 import { ContextParam } from '../../context/host/ContextParam';
 import { ConfigurationValue } from '../../configuration/ConfigurationValue';
-import { Extension } from '../..';
+import { Application, Extension } from '../..';
 
 export class InitMessage extends Message {
   /**
@@ -18,51 +17,12 @@ export class InitMessage extends Message {
   }
 
   /**
-   * Language locale to be used in rendering addon.
+   * An application manifest definition used to initialize this extension.
    *
-   * @type {Locale}
+   * @type {Application}
    * @memberof InitMessage
    */
-  locale: Locale = Locale.ENGLISH;
-  /**
-   * A theme addon should be using in rendering.
-   *
-   * @type {Theme}
-   * @memberof InitMessage
-   */
-  theme: Theme = Theme.LIGHT;
-  /**
-   * Unique identifier hash of the Outreach user.
-   *
-   * @type {(string)}
-   * @memberof InitMessage
-   */
-  userIdentifier: string;
-
-  /**
-   * Collection of the context parameters
-   *
-   * @type {ContextParam[]}
-   * @memberof InitMessage
-   */
-  context: ContextParam[] = [];
-
-  /**
-   * Collection of window location search parameters
-   * in the moment of loading addons
-   *
-   * @type {UrlParam[]}
-   * @memberof InitMessage
-   */
-  locationSearchParams: UrlParam[] = [];
-
-  /**
-   * An application manifest definition used to initialize this addon.
-   *
-   * @type {Extension}
-   * @memberof InitMessage
-   */
-  extension: Extension;
+  application: Application;
 
   /**
    * Optional section containing configuration values
@@ -74,6 +34,39 @@ export class InitMessage extends Message {
   configuration: ConfigurationValue[];
 
   /**
+   * Collection of the context parameters
+   *
+   * @type {ContextParam[]}
+   * @memberof InitMessage
+   */
+  context: ContextParam[] = [];
+
+  /**
+   * An application manifest extension definition used to initialize this extension.
+   *
+   * @type {Extension}
+   * @memberof InitMessage
+   */
+  extension: Extension;
+
+  /**
+   * Language locale to be used in rendering addon.
+   *
+   * @type {Locale}
+   * @memberof InitMessage
+   */
+  locale: Locale = Locale.ENGLISH;
+
+  /**
+   * Collection of window location search parameters
+   * in the moment of loading addons
+   *
+   * @type {UrlParam[]}
+   * @memberof InitMessage
+   */
+  locationSearchParams: UrlParam[] = [];
+
+  /**
    * Session id value is generated on host and is unique per addon loading.
    * If can be used used to correlate events on server and addon and enable
    * e2e tracking or it can be used when reporting an addon issue to Outreach.
@@ -82,4 +75,20 @@ export class InitMessage extends Message {
    * @memberof InitMessage
    */
   public sessionId: string;
+
+  /**
+   * A theme addon should be using in rendering.
+   *
+   * @type {Theme}
+   * @memberof InitMessage
+   */
+  theme: Theme = Theme.LIGHT;
+
+  /**
+   * Unique identifier hash of the Outreach user.
+   *
+   * @type {(string)}
+   * @memberof InitMessage
+   */
+  userIdentifier: string;
 }

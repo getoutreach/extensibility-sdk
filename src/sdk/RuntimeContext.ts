@@ -2,16 +2,29 @@ import { Locale } from './Locale';
 import { Theme } from './Theme';
 import { Application } from '../manifest/Application';
 import { ConfigurationValue } from '../configuration/ConfigurationValue';
+import { Extension } from '..';
 
 export class RuntimeContext {
   /**
    *
-   * An application manifest definition used to initialize this addon.
+   * An application definition used in operating this addon.
    *
    * @type {Application}
    * @memberof RuntimeContext
    */
   public application: Application;
+
+  public configuration?: ConfigurationValue[] = [];
+
+  /**
+   * An application extension definition used in operating the addon.
+   *
+   * @type {Extension}
+   * @memberof RuntimeContext
+   */
+  public extension: Extension;
+
+  public locale: Locale = Locale.ENGLISH;
 
   /**
    * Addon host origin address.
@@ -21,10 +34,6 @@ export class RuntimeContext {
    */
   public origin: string;
 
-  public locale: Locale = Locale.ENGLISH;
-
-  public theme: Theme = Theme.LIGHT;
-
   /**
    * Correlation id sent as a part of init message from Outreach addon host
    *
@@ -33,9 +42,9 @@ export class RuntimeContext {
    */
   public sessionId: string;
 
-  public userIdentifier!: string;
+  public theme: Theme = Theme.LIGHT;
 
-  public configuration?: ConfigurationValue[] = [];
+  public userIdentifier!: string;
 }
 
 export default new RuntimeContext();

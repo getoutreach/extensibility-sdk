@@ -644,12 +644,13 @@ class AddonsSdk {
   private preprocessInitMessage = (
     initMessage: InitMessage
   ): OutreachContext => {
-    runtime.locale = initMessage.locale;
-    runtime.theme = initMessage.theme;
-    runtime.userIdentifier = initMessage.userIdentifier;
     runtime.application = initMessage.application;
     runtime.configuration = initMessage.configuration;
+    runtime.extension = initMessage.extension;
+    runtime.locale = initMessage.locale;
     runtime.sessionId = initMessage.sessionId;
+    runtime.theme = initMessage.theme;
+    runtime.userIdentifier = initMessage.userIdentifier;
 
     const outreachContext = new OutreachContext();
     outreachContext.locale = runtime.locale;
