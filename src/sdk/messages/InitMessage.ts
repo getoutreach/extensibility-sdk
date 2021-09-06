@@ -6,6 +6,7 @@ import { Application } from '../../manifest/Application';
 import { UrlParam } from '../../context/host/UrlParam';
 import { ContextParam } from '../../context/host/ContextParam';
 import { ConfigurationValue } from '../../configuration/ConfigurationValue';
+import { Extension } from '../..';
 
 export class InitMessage extends Message {
   /**
@@ -58,10 +59,10 @@ export class InitMessage extends Message {
   /**
    * An application manifest definition used to initialize this addon.
    *
-   * @type {Application}
+   * @type {Extension}
    * @memberof InitMessage
    */
-  application: Application;
+  extension: Extension;
 
   /**
    * Optional section containing configuration values

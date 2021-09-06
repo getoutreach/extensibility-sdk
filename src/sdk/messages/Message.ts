@@ -11,7 +11,7 @@ export class Message {
   /**
    *Creates an instance of AddonMessage.
    * @param {MessageType} type
-   * @memberof AddonMessage
+   * @memberof Message
    */
   constructor(type: MessageType) {
     this.type = type;
@@ -21,7 +21,7 @@ export class Message {
    * Type of message being sent
    *
    * @type {string}
-   * @memberof AddonMessage
+   * @memberof Message
    */
   public type: MessageType;
 }
