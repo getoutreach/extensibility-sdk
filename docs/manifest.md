@@ -61,7 +61,7 @@ Here is the sample manifest file of the hello world application having two exten
 {
   "app": {
     "author": {
-      "company": "Acme ltd", 
+      "company": "Acme ltd",
       "email": "author@someurl.com",
       "privacyUrl": "https://someurl.com/privacy",
       "termsOfUseUrl": "https://someurl.com/tos",
@@ -172,7 +172,7 @@ A localized application description is shown in the application store to explain
 
 ### identifier
 
-Unique identifier of the application as defined by the application creator
+Unique identifier of the application as defined by the application creator. The identifier may contain uppercase or lowercase letters ('A' through 'Z'), numbers, underscores ('_'), hyphens('-') and dots('.'). The minimum length is 6 characters a the maximum is 128.
 
 ### locales
 
