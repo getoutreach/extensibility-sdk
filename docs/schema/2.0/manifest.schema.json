@@ -75,7 +75,9 @@
         },
         "identifier": {
           "type": "string",
-          "maxLength": 128
+          "minLength": 6,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9._-]+$"
         },
         "store": {
           "type": "string",
