@@ -1,18 +1,20 @@
 import { utils } from '../../../utils';
 import { Extension } from '../Extension';
-import { ManifestHostEnvironment } from './ManifestHostEnvironment';
-import { TabExtensionType } from './TabExtensionType';
+import { ShellExtensionHost } from './ShellExtensionHost';
 
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
-import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
 import { IHostableExtension } from '../IHostableExtension';
 import { LocalizedString } from '../../app/LocalizedString';
+import { UserContextKeys } from '../../../context/keys/UserContextKeys';
+import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
+import { ShellExtensionType } from './ShellExtensionType';
+import { ExtensionType } from '../ExtensionType';
 
-export class TabExtension extends Extension implements IHostableExtension {
+export class ShellExtension extends Extension implements IHostableExtension {
   /**
    * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
    * to be sent during the initialization process.
@@ -23,15 +25,16 @@ export class TabExtension extends Extension implements IHostableExtension {
    * @type {TabExtensionType}
    * @memberof TabExtension
    */
-  public context: AllContextKeys[];
+  public context: (UserContextKeys | ClientContextKeys)[];
 
   /**
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#environment
+   * Definition of addon host
    *
-   * @type {ManifestHostEnvironment}
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
+   * @type {ManifestHost}
    * @memberof TabExtension
    */
-  public environment?: ManifestHostEnvironment;
+  public host: ShellExtensionHost;
 
   /**
    * Type property defines the type of tab extension
@@ -39,7 +42,7 @@ export class TabExtension extends Extension implements IHostableExtension {
    * @type {TabExtensionType}
    * @memberof TabExtension
    */
-  public type: TabExtensionType;
+  public type!: ExtensionType;
 
   /**
    * Optional property defining the text, which will be shown as the tab title.
@@ -49,15 +52,6 @@ export class TabExtension extends Extension implements IHostableExtension {
    * @memberof TabExtension
    */
   public title?: LocalizedString;
-
-  /**
-   * Optional property defining the text, which will be shown as the tab title tooltip.
-   * If omitted, app.headline manifest value will be used.
-   *
-   * @type {LocalizedString}
-   * @memberof TabExtension
-   */
-  public description?: LocalizedString;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
@@ -83,6 +77,12 @@ export class TabExtension extends Extension implements IHostableExtension {
 
       //2. complete the tokenize url with contextual data of host url and notifications url
       this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
+      if (this.host.notificationsUrl) {
+        this.host.notificationsUrl = utils.tokenizeUrl(
+          this.host.notificationsUrl,
+          context.toParams()
+        ).url;
+      }
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
@@ -121,9 +121,22 @@ export class TabExtension extends Extension implements IHostableExtension {
 
       if (
         !this.type ||
-        !Object.values(TabExtensionType).includes(this.type as TabExtensionType)
+        !Object.values(ShellExtensionType).includes(
+          this.type as ShellExtensionType
+        )
       ) {
         issues.push('Host type  is invalid. Value: ' + this.type);
+      }
+
+      if (this.host.notificationsUrl) {
+        if (
+          !utils.hostUrlValidation(this.host.notificationsUrl, this.context)
+        ) {
+          issues.push(
+            'Notifications url definition is invalid url. Value: ' +
+              this.host.notificationsUrl
+          );
+        }
       }
     }
 
@@ -133,6 +146,22 @@ export class TabExtension extends Extension implements IHostableExtension {
       if (!Array.isArray(this.context)) {
         issues.push('Context section is not an array. Value: ' + this.context);
       }
+
+      this.context.forEach((context) => {
+        if (
+          !Object.values(UserContextKeys).includes(
+            context as UserContextKeys
+          ) &&
+          !Object.values(ClientContextKeys).includes(
+            context as ClientContextKeys
+          )
+        ) {
+          issues.push(
+            'Context key is not one of the valid values for the application tab extension. Key: ' +
+              context
+          );
+        }
+      });
     }
 
     return issues;

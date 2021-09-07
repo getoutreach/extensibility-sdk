@@ -7,11 +7,6 @@
  */
 export enum TabExtensionType {
   /**
-   * Application extension (a.k.a 'left side menu addon')
-   */
-  APPLICATION = 'application',
-
-  /**
    * Account details tab extension
    */
   ACCOUNT = 'tab-account',
@@ -25,4 +20,9 @@ export enum TabExtensionType {
    * Prospect details tab extension
    */
   PROSPECT = 'tab-prospect',
+
+  /**
+   * Sidebar shown on the right side of the tabs
+   */
+  SIDEBAR = 'tab-sidebar',
 }

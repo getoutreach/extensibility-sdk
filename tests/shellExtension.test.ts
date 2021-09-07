@@ -1,15 +1,14 @@
+import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 import { OpportunityContext } from '../src/context/host/OpportunityContext';
 import { UserContext } from '../src/context/host/UserContext';
 import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { ProspectContextKeys } from '../src/context/keys/ProspectContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { OutreachContext } from '../src/context/OutreachContext';
-import { TabExtension } from '../src/manifest/extensions/tabs/TabExtension';
-import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
+import { ShellExtension } from '../src/manifest/extensions/shell/ShellExtension';
 
-describe('TabExtension init tests', () => {
+describe('ShellExtension init tests', () => {
   test('init will tokenize host url', () => {
-    const tabExtension = getValidOpportunityTabExtension();
+    const tabExtension = getValidApplicationTabExtension();
     tabExtension.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
     tabExtension.init(getOutreachContext());
 
@@ -17,25 +16,29 @@ describe('TabExtension init tests', () => {
       'https://app-host.com/opp-id-123?usr=usr-id-123'
     );
   });
+
+  test('init will tokenize notification url', () => {
+    const tabExtension = getValidApplicationTabExtension();
+    tabExtension.host.notificationsUrl =
+      'https://app-host.com/{opp.id}?usr={usr.id}';
+    tabExtension.init(getOutreachContext());
+    expect(tabExtension.host.notificationsUrl).toBe(
+      'https://app-host.com/opp-id-123?usr=usr-id-123'
+    );
+  });
 });
 
-describe('TabExension validate tests', () => {
+describe('ShellExension validate tests', () => {
   test('title is optional', () => {
-    const tabExtension = getValidOpportunityTabExtension();
+    const tabExtension = getValidApplicationTabExtension();
     delete tabExtension.title;
-    var issues = tabExtension.validate();
-    expect(issues.length).toBe(0);
-  });
-  test('description is optional', () => {
-    const tabExtension = getValidOpportunityTabExtension();
-    delete tabExtension.description;
     var issues = tabExtension.validate();
     expect(issues.length).toBe(0);
   });
 
   describe('host', () => {
     test('host has to be defined', () => {
-      const tabExtension = getValidOpportunityTabExtension();
+      const tabExtension = getValidApplicationTabExtension();
       delete (tabExtension as any).host;
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -43,7 +46,7 @@ describe('TabExension validate tests', () => {
     });
 
     test('host.url - only url should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension();
+      const tabExtension = getValidApplicationTabExtension();
       tabExtension.host.url = 'BANANAS';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -51,14 +54,14 @@ describe('TabExension validate tests', () => {
     });
 
     test('host.url - tokenized url should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension();
+      const tabExtension = getValidApplicationTabExtension();
       tabExtension.host.url = 'https://tokenizedurl.com/?uid={usr.id}';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(0);
     });
 
     test('host.icon - only url should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension();
+      const tabExtension = getValidApplicationTabExtension();
       tabExtension.host.icon = 'bananas';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -68,35 +71,53 @@ describe('TabExension validate tests', () => {
     });
 
     test('only valid type should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension() as TabExtension;
+      const tabExtension = getValidApplicationTabExtension() as ShellExtension;
       tabExtension.type = 'BANANAS' as any;
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host type  is invalid. Value: BANANAS');
     });
+
+    test('host.notificationUrl - is optional property', () => {
+      const tabExtension = getValidApplicationTabExtension();
+      delete tabExtension.host.notificationsUrl;
+      var issues = tabExtension.validate();
+      expect(issues.length).toBe(0);
+    });
+
+    test('host.notificationUrl - only url should be acceptable', () => {
+      const tabExtension = getValidApplicationTabExtension();
+      tabExtension.host.notificationsUrl = 'bananas';
+      var issues = tabExtension.validate();
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Notifications url definition is invalid url. Value: bananas'
+      );
+    });
   });
 
   describe('context', () => {
-    test('only valid opportunity contexts should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension();
+    test('only valid application contexts should be acceptable for applicatition tab', () => {
+      const tabExtension = getValidApplicationTabExtension();
       tabExtension.context = [
         'bananas',
         UserContextKeys.ID,
-        ProspectContextKeys.ID,
+        OpportunityContextKeys.ID,
         ,
         'apples',
       ] as any;
 
       var issues = tabExtension.validate();
+
       expect(issues.length).toBe(3);
       expect(issues[0]).toBe(
-        'Context key is not one of the valid values for the opportunity tab extension. Key: bananas'
+        'Context key is not one of the valid values for the application tab extension. Key: bananas'
       );
       expect(issues[1]).toBe(
-        'Context key is not one of the valid values for the opportunity tab extension. Key: pro.id'
+        'Context key is not one of the valid values for the application tab extension. Key: opp.id'
       );
       expect(issues[2]).toBe(
-        'Context key is not one of the valid values for the opportunity tab extension. Key: apples'
+        'Context key is not one of the valid values for the application tab extension. Key: apples'
       );
     });
   });
@@ -112,19 +133,16 @@ const getOutreachContext = () => {
 
   return context;
 };
-const getValidOpportunityTabExtension = (): OpportunityTabExtension => {
-  var tabExtension = new OpportunityTabExtension();
-  tabExtension.identifier = 'opportunity-tab-addon';
-  tabExtension.environment = {
-    fullWidth: false,
-    decoration: 'none',
-  };
+
+const getValidApplicationTabExtension = (): ApplicationShellExtension => {
+  var tabExtension = new ApplicationShellExtension();
+  tabExtension.identifier = 'app-tab-addon';
   tabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
   tabExtension.version = '0.99';
-  tabExtension.context = [UserContextKeys.ID, OpportunityContextKeys.ID];
+  tabExtension.context = [UserContextKeys.ID];
 
   return tabExtension;
 };

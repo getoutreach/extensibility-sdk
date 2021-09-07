@@ -1,4 +1,5 @@
 import { OutreachContext } from '../../context/OutreachContext';
+import { ExtensionHost } from './ExtensionHost';
 import { ExtensionType } from './ExtensionType';
 
 export abstract class Extension {
@@ -25,6 +26,15 @@ export abstract class Extension {
    * @memberof Extension
    */
   public type: ExtensionType;
+
+  /**
+   * Definition of addon host
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
+   * @type {TabManifestHost}
+   * @memberof TabExtension
+   */
+  public host: ExtensionHost;
 
   /**
    * Every extension has to be able to perform its own validation.

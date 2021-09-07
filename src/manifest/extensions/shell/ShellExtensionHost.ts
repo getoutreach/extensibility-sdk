@@ -1,3 +1,5 @@
+import { ExtensionHost } from '../ExtensionHost';
+
 /**
  * Section defining the addon creator hosting property.
  *
@@ -5,26 +7,7 @@
  * @export
  * @class ManifestHost
  */
-export class ManifestHost {
-  /**
-   * Address where the addon hosting web page is hosted.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#url
-   * @type {string}
-   * @memberof Host
-   */
-  url: string;
-
-  /**
-   * Base64 string represents the icon to be shown in the addon store
-   * and (if applicable) in the Outreach app.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#icon
-   * @type {string}
-   * @memberof Host
-   */
-  icon: string;
-
+export class ShellExtensionHost extends ExtensionHost {
   /**
    * Optional address of the endpoint serving notification centric version of the addon experience.
    *
@@ -39,5 +22,5 @@ export class ManifestHost {
    * @type {string}
    * @memberof ManifestHost
    */
-   notificationsUrl?: string;
+  notificationsUrl?: string;
 }

@@ -4,6 +4,7 @@ import { EventOrigin } from './sdk/logging/EventOrigin';
 import { EventType } from './sdk/logging/EventType';
 import { LogLevel } from './sdk/logging/LogLevel';
 import logger from './sdk/logging/Logger';
+import { AllContextKeys } from '.';
 
 export class utils {
   /**
@@ -168,5 +169,22 @@ export class utils {
     }
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  public static hostUrlValidation = (
+    hostUrl: string,
+    context: AllContextKeys[]
+  ): boolean => {
+    const contextParams: ContextParam[] = [];
+    context.forEach((key) => contextParams.push({ key, value: 'marker' }));
+
+    try {
+      const { url } = utils.tokenizeUrl(hostUrl, contextParams);
+      const validatedUrl = new URL(url);
+      return validatedUrl.toString() === url;
+    } catch (e) {
+      console.warn('Invalid host url:', hostUrl, context, e);
+      return false;
+    }
   };
 }

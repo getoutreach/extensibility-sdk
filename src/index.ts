@@ -86,16 +86,16 @@ export * from './manifest/app/LocalizedString';
 export * from './manifest/Application';
 export * from './manifest/ManifestApi';
 export * from './manifest/ManifestAuthor';
-export * from './manifest/extensions/tabs/ManifestHost';
+export * from './manifest/extensions/shell/ShellExtensionHost';
 export * from './manifest/api/Scopes';
 export * from './utils';
 
-export * from './manifest/extensions/tabs/ManifestHost';
+export * from './manifest/extensions/shell/ShellExtensionHost';
 export * from './manifest/extensions/tabs/ManifestHostEnvironment';
 export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
 export * from './manifest/extensions/tabs/types/AccountTabExtension';
-export * from './manifest/extensions/tabs/types/ApplicationTabExtension';
+export * from './manifest/extensions/shell/types/ApplicationShellExtension';
 export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export * from './manifest/extensions/tabs/types/ProspectTabExtension';
 

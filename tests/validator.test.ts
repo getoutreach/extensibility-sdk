@@ -6,12 +6,12 @@ import { Category } from '../src/manifest/app/Category';
 import { Store } from '../src/manifest/app/Store';
 import { Scopes } from '../src/manifest/api/Scopes';
 
-import { ApplicationTabExtension } from '../src/manifest/extensions/tabs/types/ApplicationTabExtension';
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
 
 import { Locale } from '../src/sdk/Locale';
 import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -272,12 +272,8 @@ const getNewValidApplicationManifest = (): Application => {
     OpportunityContextKeys.ID,
   ];
 
-  const appTabExtension = new ApplicationTabExtension();
+  const appTabExtension = new ApplicationShellExtension();
   appTabExtension.identifier = 'app-tabaddon';
-  appTabExtension.environment = {
-    fullWidth: false,
-    decoration: 'none',
-  };
   appTabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
