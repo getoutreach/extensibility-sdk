@@ -2,8 +2,8 @@ import { utils } from '../src/utils';
 import { validate } from '../src/sdk/Validator';
 
 import { Application } from '../src/manifest/Application';
-import { Category } from '../src/manifest/app/Category';
-import { Store } from '../src/manifest/app/Store';
+import { Category } from '../src/manifest/store/Category';
+import { StoreType } from '../src/manifest/store/StoreType';
 import { Scopes } from '../src/manifest/api/Scopes';
 
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
@@ -25,7 +25,7 @@ describe('manifest tests', () => {
   describe('author', () => {
     test('privacyUrl should be url', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.author.privacyUrl = 'bananas';
+      manifest.store.author.privacyUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
@@ -35,7 +35,7 @@ describe('manifest tests', () => {
 
     test('termsOfUseUrl should be url', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.author.termsOfUseUrl = 'bananas';
+      manifest.store.author.termsOfUseUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
@@ -45,7 +45,7 @@ describe('manifest tests', () => {
 
     test('websiteUrl should be url', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.author.websiteUrl = 'bananas';
+      manifest.store.author.websiteUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
@@ -55,7 +55,7 @@ describe('manifest tests', () => {
 
     test('email should be email', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.author.email = 'bananas';
+      manifest.store.author.email = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Author e-mail is invalid e-mail. Value: bananas');
@@ -125,14 +125,14 @@ describe('manifest tests', () => {
   describe('categories', () => {
     test('no categories section is not acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      delete manifest.app.categories;
+      delete manifest.store.categories;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Categories section is missing');
     });
     test('empty categories section is not acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.categories = [];
+      manifest.store.categories = [];
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
@@ -144,14 +144,14 @@ describe('manifest tests', () => {
   describe('medias', () => {
     test('no medias section is acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      delete manifest.app.medias;
+      delete manifest.store.medias;
       var issues = validate(manifest);
       expect(issues.length).toBe(0);
     });
 
     test('no medias section is acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.medias = 'invalid-media-value' as any;
+      manifest.store.medias = 'invalid-media-value' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
@@ -162,7 +162,7 @@ describe('manifest tests', () => {
     describe('Invalid media file info is not acceptable', () => {
       test('No uri', () => {
         const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
+        manifest.store.medias = [
           {
             index: 0,
             title: 'Some title',
@@ -176,7 +176,7 @@ describe('manifest tests', () => {
 
       test('Uri not a valid url', () => {
         const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
+        manifest.store.medias = [
           {
             title: 'Some title',
             type: 'image',
@@ -192,7 +192,7 @@ describe('manifest tests', () => {
 
       test('Title is missing', () => {
         const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
+        manifest.store.medias = [
           {
             index: 0,
             type: 'image',
@@ -207,7 +207,7 @@ describe('manifest tests', () => {
 
       test('Type is missing', () => {
         const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
+        manifest.store.medias = [
           {
             index: 0,
             title: 'Some title',
@@ -222,7 +222,7 @@ describe('manifest tests', () => {
 
       test('Type is invalid', () => {
         const manifest: Application = getNewValidApplicationManifest();
-        manifest.app.medias = [
+        manifest.store.medias = [
           {
             index: 0,
             title: 'Some title',
@@ -241,7 +241,7 @@ describe('manifest tests', () => {
   describe('store', () => {
     test('only valid store type hould be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.app.store = 'BANANAS' as any;
+      manifest.store.type = 'BANANAS' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Store value is invalid. Value:BANANAS');
@@ -282,7 +282,7 @@ const getNewValidApplicationManifest = (): Application => {
   appTabExtension.context = [UserContextKeys.ID];
 
   const application = new Application();
-  application.app = {
+  application.store = {
     author: {
       email: 'author@someurl.com',
       company: 'Acme ltd',
@@ -312,7 +312,7 @@ const getNewValidApplicationManifest = (): Application => {
     identifier: 'app-identifier',
     icon: 'https://someurl.com/icon',
     locales: [Locale.ENGLISH],
-    store: Store.PRIVATE,
+    type: StoreType.PRIVATE,
     title: {
       en: 'Some title (en)',
     },

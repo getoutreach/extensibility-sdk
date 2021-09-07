@@ -2,7 +2,7 @@
 import { ConfigurationItem } from '../configuration/ConfigurationItem';
 import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
-import { ManifestApp } from './ManifestApp';
+import { ManifestStore } from './ManifestStore';
 
 /**
  * Definition of the application manifest file containing all of the information
@@ -14,15 +14,6 @@ import { ManifestApp } from './ManifestApp';
  * @class Application
  */
 export class Application {
-  /**
-   * App section contains the data describing Outreach application containing
-   * one or more extensions.
-   *
-   * @type {ManifestApp}
-   * @memberof Application
-   */
-  public app: ManifestApp;
-
   /**
    * API section contains the data needed for enabling addon
    * OAuth Outreach API access.
@@ -60,4 +51,13 @@ export class Application {
    * @memberof Application
    */
   public extensions: Extension[] = [];
+
+  /**
+   * App section contains the data describing Outreach application containing
+   * one or more extensions.
+   *
+   * @type {ManifestStore}
+   * @memberof Application
+   */
+  public store: ManifestStore;
 }

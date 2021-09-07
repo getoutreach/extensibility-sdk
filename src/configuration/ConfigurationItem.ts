@@ -1,4 +1,4 @@
-import { LocalizedString } from '../manifest/app/LocalizedString';
+import { LocalizedString } from '../manifest/store/LocalizedString';
 import { ConfigurationItemOption } from './ConfigurationItemOption';
 import { ConfigurationItemType } from './ConfigurationItemType';
 

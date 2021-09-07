@@ -8,7 +8,7 @@ import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
 import logger from '../../../sdk/logging/Logger';
 import { IHostableExtension } from '../IHostableExtension';
-import { LocalizedString } from '../../app/LocalizedString';
+import { LocalizedString } from '../../store/LocalizedString';
 import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { ShellExtensionType } from './ShellExtensionType';

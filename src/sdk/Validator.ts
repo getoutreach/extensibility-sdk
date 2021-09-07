@@ -1,7 +1,7 @@
 import { utils } from '../utils';
 import { Application } from '../manifest/Application';
 import { Scopes } from '../manifest/api/Scopes';
-import { Store } from '../manifest/app/Store';
+import { StoreType } from '../manifest/store/StoreType';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -51,60 +51,60 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (!application.app.author) {
+  if (!application.store.author) {
     issues.push('Author section is missing');
   } else {
-    if (!utils.emailValidation(application.app.author.email)) {
+    if (!utils.emailValidation(application.store.author.email)) {
       issues.push(
         'Author e-mail is invalid e-mail. Value: ' +
-          application.app.author.email
+          application.store.author.email
       );
     }
-    if (!utils.urlValidation(application.app.author.websiteUrl)) {
+    if (!utils.urlValidation(application.store.author.websiteUrl)) {
       issues.push(
         'Author website url is invalid url. Value: ' +
-          application.app.author.websiteUrl
+          application.store.author.websiteUrl
       );
     }
-    if (!utils.urlValidation(application.app.author.privacyUrl)) {
+    if (!utils.urlValidation(application.store.author.privacyUrl)) {
       issues.push(
         'Author privacy url is invalid url. Value: ' +
-          application.app.author.privacyUrl
+          application.store.author.privacyUrl
       );
     }
-    if (!utils.urlValidation(application.app.author.termsOfUseUrl)) {
+    if (!utils.urlValidation(application.store.author.termsOfUseUrl)) {
       issues.push(
         'Author terms of use url is invalid url. Value: ' +
-          application.app.author.termsOfUseUrl
+          application.store.author.termsOfUseUrl
       );
     }
   }
 
-  if (!application.app.categories) {
+  if (!application.store.categories) {
     issues.push('Categories section is missing');
   } else {
-    if (!Array.isArray(application.app.categories)) {
+    if (!Array.isArray(application.store.categories)) {
       issues.push(
-        'Categories is not an array. Value: ' + application.app.categories
+        'Categories is not an array. Value: ' + application.store.categories
       );
     } else {
-      if (application.app.categories.length === 0) {
+      if (application.store.categories.length === 0) {
         issues.push(
           'There are no categories selected for addon. Value: ' +
-            application.app.categories
+            application.store.categories
         );
       }
     }
   }
 
-  if (application.app.medias) {
-    if (!Array.isArray(application.app.medias)) {
+  if (application.store.medias) {
+    if (!Array.isArray(application.store.medias)) {
       issues.push(
         'Medias section value is not a valid array. Value: ' +
-          application.app.medias
+          application.store.medias
       );
     } else {
-      application.app.medias.forEach((media) => {
+      application.store.medias.forEach((media) => {
         if (!media.uri) {
           issues.push('Uri value is missing');
         } else {
@@ -128,52 +128,52 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (!application.app.description) {
+  if (!application.store.description) {
     issues.push('Description section is missing.');
   } else {
-    if (!application.app.description.en) {
+    if (!application.store.description.en) {
       issues.push('Description section is missing English entry.');
     }
   }
 
-  if (!application.app.headline) {
+  if (!application.store.headline) {
     issues.push('Headline section is missing.');
   } else {
-    if (!application.app.headline.en) {
+    if (!application.store.headline.en) {
       issues.push('Headline section is missing English entry.');
     }
   }
 
-  if (!application.app.icon) {
+  if (!application.store.icon) {
     issues.push('Application icon is missing.');
   } else {
-    if (!utils.urlValidation(application.app.icon)) {
+    if (!utils.urlValidation(application.store.icon)) {
       issues.push(
-        'Application icon url is invalid url. Value: ' + application.app.icon
+        'Application icon url is invalid url. Value: ' + application.store.icon
       );
     }
   }
 
-  if (!application.app.identifier) {
+  if (!application.store.identifier) {
     issues.push('Manifest identifier definition is missing.');
   }
 
-  if (!application.app.title) {
+  if (!application.store.title) {
     issues.push('Title section is missing.');
   } else {
-    if (!application.app.title.en) {
+    if (!application.store.title.en) {
       issues.push('Title section is missing English entry.');
     }
   }
 
   if (
-    !application.app.store ||
-    !Object.values(Store).includes(application.app.store as Store)
+    !application.store.type ||
+    !Object.values(StoreType).includes(application.store.type as StoreType)
   ) {
-    issues.push('Store value is invalid. Value:' + application.app.store);
+    issues.push('Store value is invalid. Value:' + application.store.type);
   }
 
-  if (!application.app.version) {
+  if (!application.store.version) {
     issues.push('Manifest Version definition is missing.');
   }
 

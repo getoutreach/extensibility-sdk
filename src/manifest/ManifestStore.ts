@@ -1,17 +1,17 @@
 import { LocalizedString } from '..';
-import { Category } from './app/Category';
+import { Category } from './store/Category';
 import { ManifestAuthor } from './ManifestAuthor';
-import { ManifestMedia } from './app/Media';
-import { Store } from './app/Store';
+import { ManifestMedia } from './store/Media';
+import { StoreType } from './store/StoreType';
 import { Locale } from '../sdk/Locale';
 
-export class ManifestApp {
+export class ManifestStore {
   /**
    * Unique application identifier of the addon
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#identifier
    * @type {string}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public identifier: string = '';
 
@@ -19,7 +19,7 @@ export class ManifestApp {
    * List of culture locales supported by the extension
    *
    * @type {Locale[]}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public locales: Locale[] = [Locale.ENGLISH];
 
@@ -29,7 +29,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#author
    * @type {ManifestAuthor}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public author: ManifestAuthor;
 
@@ -37,7 +37,7 @@ export class ManifestApp {
    * Collection of one or more extension categories.
    *
    * @type {Category[]}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public categories?: Category[] = [];
 
@@ -47,7 +47,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#description
    * @type {LocalizedString}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public description: LocalizedString;
 
@@ -57,14 +57,14 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#description
    * @type {LocalizedString}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public headline: LocalizedString;
 
   /**
    * Application icon URL
    * @type {string}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public icon: string;
 
@@ -75,25 +75,25 @@ export class ManifestApp {
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#media
    *
    * @type {ManifestMedia}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public medias?: ManifestMedia[] = [];
 
   /**
    * Type of addon: public, private or personal.
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#store
-   * @type {Store}
-   * @memberof ManifestApp
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#storeType
+   * @type {StoreType}
+   * @memberof ManifestStore
    */
-  public store: Store;
+  public type: StoreType;
 
   /**
    * The localized addon title is shown in the addon store and Outreach app as a tab tile.
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#title
    * @type {LocalizedString}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public title: LocalizedString;
 
@@ -102,7 +102,7 @@ export class ManifestApp {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#version
    * @type {string}
-   * @memberof ManifestApp
+   * @memberof ManifestStore
    */
   public version: string;
 }

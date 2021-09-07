@@ -7,7 +7,7 @@ Table of content:
 - [Manifest file](#manifest-file)
   - [Sample manifest](#sample-manifest)
   - [Manifest JSON schema](#manifest-json-schema)
-  - [Application section properties ("app")](#application-section-properties-app)
+  - [Store section properties ("store")](#store-section-properties-store)
     - [author](#author)
     - [categories](#categories)
     - [description](#description)
@@ -59,7 +59,7 @@ Here is the sample manifest file of the hello world application having two exten
 
 ```json
 {
-  "app": {
+  "store": {
     "author": {
       "company": "Acme ltd",
       "email": "author@someurl.com",
@@ -155,7 +155,7 @@ Internally we validate each submitted manifest using the following schema
 
 A manifest can be validated using the [online tool](https://www.jsonschemavalidator.net/)
 
-## Application section properties ("app")
+## Store section properties ("store")
 
 ### author
 

@@ -7,7 +7,7 @@
  * @export
  * @enum {number}
  */
-export enum Store {
+export enum StoreType {
   /**
    * This is a private store where only invited OR users have access.
    * Main purpose is to enable developers working on an application

@@ -10,7 +10,7 @@ import { OutreachContext } from '../../../context/OutreachContext';
 import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
 import { IHostableExtension } from '../IHostableExtension';
-import { LocalizedString } from '../../app/LocalizedString';
+import { LocalizedString } from '../../store/LocalizedString';
 
 export class TabExtension extends Extension implements IHostableExtension {
   /**
