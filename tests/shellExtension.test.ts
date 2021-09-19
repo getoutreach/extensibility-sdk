@@ -8,7 +8,7 @@ import { ShellExtension } from '../src/manifest/extensions/shell/ShellExtension'
 
 describe('ShellExtension init tests', () => {
   test('init will tokenize host url', () => {
-    const tabExtension = getValidApplicationTabExtension();
+    const tabExtension = getValidShellApplicationExtension();
     tabExtension.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
     tabExtension.init(getOutreachContext());
 
@@ -18,7 +18,7 @@ describe('ShellExtension init tests', () => {
   });
 
   test('init will tokenize notification url', () => {
-    const tabExtension = getValidApplicationTabExtension();
+    const tabExtension = getValidShellApplicationExtension();
     tabExtension.host.notificationsUrl =
       'https://app-host.com/{opp.id}?usr={usr.id}';
     tabExtension.init(getOutreachContext());
@@ -30,7 +30,7 @@ describe('ShellExtension init tests', () => {
 
 describe('ShellExension validate tests', () => {
   test('title is optional', () => {
-    const tabExtension = getValidApplicationTabExtension();
+    const tabExtension = getValidShellApplicationExtension();
     delete tabExtension.title;
     var issues = tabExtension.validate();
     expect(issues.length).toBe(0);
@@ -38,7 +38,7 @@ describe('ShellExension validate tests', () => {
 
   describe('host', () => {
     test('host has to be defined', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       delete (tabExtension as any).host;
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -46,7 +46,7 @@ describe('ShellExension validate tests', () => {
     });
 
     test('host.url - only url should be acceptable', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       tabExtension.host.url = 'BANANAS';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -54,14 +54,14 @@ describe('ShellExension validate tests', () => {
     });
 
     test('host.url - tokenized url should be acceptable', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       tabExtension.host.url = 'https://tokenizedurl.com/?uid={usr.id}';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(0);
     });
 
     test('host.icon - only url should be acceptable', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       tabExtension.host.icon = 'bananas';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -71,7 +71,8 @@ describe('ShellExension validate tests', () => {
     });
 
     test('only valid type should be acceptable', () => {
-      const tabExtension = getValidApplicationTabExtension() as ShellExtension;
+      const tabExtension =
+        getValidShellApplicationExtension() as ShellExtension;
       tabExtension.type = 'BANANAS' as any;
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -79,14 +80,14 @@ describe('ShellExension validate tests', () => {
     });
 
     test('host.notificationUrl - is optional property', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       delete tabExtension.host.notificationsUrl;
       var issues = tabExtension.validate();
       expect(issues.length).toBe(0);
     });
 
     test('host.notificationUrl - only url should be acceptable', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       tabExtension.host.notificationsUrl = 'bananas';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
@@ -98,7 +99,7 @@ describe('ShellExension validate tests', () => {
 
   describe('context', () => {
     test('only valid application contexts should be acceptable for applicatition tab', () => {
-      const tabExtension = getValidApplicationTabExtension();
+      const tabExtension = getValidShellApplicationExtension();
       tabExtension.context = [
         'bananas',
         UserContextKeys.ID,
@@ -134,15 +135,16 @@ const getOutreachContext = () => {
   return context;
 };
 
-const getValidApplicationTabExtension = (): ApplicationShellExtension => {
-  var tabExtension = new ApplicationShellExtension();
-  tabExtension.identifier = 'app-tab-addon';
-  tabExtension.host = {
+const getValidShellApplicationExtension = (): ApplicationShellExtension => {
+  var shellAppExtension = new ApplicationShellExtension();
+  shellAppExtension.identifier = 'app-tab-addon';
+  shellAppExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
+    decoration: 'none',
   };
-  tabExtension.version = '0.99';
-  tabExtension.context = [UserContextKeys.ID];
+  shellAppExtension.version = '0.99';
+  shellAppExtension.context = [UserContextKeys.ID];
 
-  return tabExtension;
+  return shellAppExtension;
 };

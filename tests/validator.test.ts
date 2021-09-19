@@ -258,10 +258,7 @@ describe('manifest tests', () => {
 const getNewValidApplicationManifest = (): Application => {
   const opportunityTabExtension = new OpportunityTabExtension();
   opportunityTabExtension.identifier = 'opportunity-tab-addon';
-  opportunityTabExtension.environment = {
-    fullWidth: false,
-    decoration: 'none',
-  };
+  opportunityTabExtension.fullWidth = false;
   opportunityTabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
@@ -277,6 +274,7 @@ const getNewValidApplicationManifest = (): Application => {
   appTabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
+    decoration: 'none',
   };
   appTabExtension.version = '0.98';
   appTabExtension.context = [UserContextKeys.ID];

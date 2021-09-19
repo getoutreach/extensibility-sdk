@@ -1,4 +1,4 @@
-import { ManifestHostEnvironment } from '../../manifest/extensions/tabs/ManifestHostEnvironment';
+import { EnvironmentInfo } from './EnvironmentInfo';
 import { Message } from './Message';
 import { MessageType } from './MessageType';
 
@@ -14,8 +14,8 @@ export class EnvironmentMessage extends Message {
   /**
    * New environment definition addon requests from host.
    *
-   * @type {ManifestHostEnvironment}
+   * @type {EnvironmentInfo}
    * @memberof EnvironmentMessage
    */
-  public environment: ManifestHostEnvironment;
+  public environment: EnvironmentInfo;
 }

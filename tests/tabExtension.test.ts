@@ -115,10 +115,7 @@ const getOutreachContext = () => {
 const getValidOpportunityTabExtension = (): OpportunityTabExtension => {
   var tabExtension = new OpportunityTabExtension();
   tabExtension.identifier = 'opportunity-tab-addon';
-  tabExtension.environment = {
-    fullWidth: false,
-    decoration: 'none',
-  };
+  tabExtension.fullWidth = false;
   tabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',

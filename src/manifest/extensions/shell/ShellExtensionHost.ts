@@ -5,7 +5,7 @@ import { ExtensionHost } from '../ExtensionHost';
  *
  * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
  * @export
- * @class ManifestHost
+ * @class ShellExtensionHost
  */
 export class ShellExtensionHost extends ExtensionHost {
   /**
@@ -20,7 +20,18 @@ export class ShellExtensionHost extends ExtensionHost {
    *
    * @see https://github.com/getoutreach/clientxtsdk/blob/master/docs/manifest.md#notificationsUrl
    * @type {string}
-   * @memberof ManifestHost
+   * @memberof ShellExtensionHost
    */
   notificationsUrl?: string;
+
+  /**
+   * Type of the decoration to be used for badge decorations.
+   *  - none - no decoration badge
+   *  - simple - a dot will be shown in case of badge decoration message with count > 0
+   *  - full - a badge with counter will be shown.
+   *
+   * @type {('none' | 'simple' | 'full')}
+   * @memberof ShellExtensionHost
+   */
+  public decoration: 'none' | 'simple' | 'full' = 'none';
 }

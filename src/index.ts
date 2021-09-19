@@ -32,8 +32,8 @@ import { NavigationMessage } from './sdk/messages/NavigationMessage';
 import { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
 import { LoadInfoMessage } from './sdk/messages/LoadInfoMessage';
 import { LoadingContext } from './context/LoadingContext';
-import { ManifestHostEnvironment } from './manifest/extensions/tabs/ManifestHostEnvironment';
 import { ILogger } from './sdk/logging/ILogger';
+import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 
 export * from './context/host/AccountContext';
 export * from './context/host/ContextParam';
@@ -90,12 +90,15 @@ export * from './manifest/extensions/shell/ShellExtensionHost';
 export * from './manifest/api/Scopes';
 export * from './utils';
 
+export * from './sdk/messages/EnvironmentInfo';
+
 export * from './manifest/extensions/shell/ShellExtensionHost';
-export * from './manifest/extensions/tabs/ManifestHostEnvironment';
+export * from './manifest/extensions/shell/ShellExtensionType';
+export * from './manifest/extensions/shell/types/ApplicationShellExtension';
+
 export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
 export * from './manifest/extensions/tabs/types/AccountTabExtension';
-export * from './manifest/extensions/shell/types/ApplicationShellExtension';
 export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export * from './manifest/extensions/tabs/types/ProspectTabExtension';
 
@@ -111,7 +114,7 @@ class Task<T> {
   public onrejected: (reason: any) => void;
 }
 
-class AddonsSdk {
+class ExtensibilitySdk {
   private initTimer?: number;
   private initTask?: Task<OutreachContext>;
 
@@ -124,7 +127,7 @@ class AddonsSdk {
    * Setting of the cookie cxt-sdk-user
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/main/docs/outreach-api.md#caching-the-tokens
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public cookie = {
     name: Constants.AUTH_USER_STATE_COOKIE_NAME,
@@ -138,7 +141,7 @@ class AddonsSdk {
    *
    * @deprecated Since version 0.10. Will be removed in version 1.0. Use instead await sdk.init()
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public onInit: (context: OutreachContext) => void;
 
@@ -149,7 +152,7 @@ class AddonsSdk {
    * Addon creator can implement its load handler and handle the received performance data
    * differently (report it to its telemetry service, show a custom addon UI, etc.)
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public onLoad: (context: LoadingContext) => void;
 
@@ -160,7 +163,7 @@ class AddonsSdk {
    * publishing diagnostic info and events
    *
    * @param {ILogger} newLogger
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public setLogger = (newLogger: ILogger) => {
     logger.current = newLogger;
@@ -172,7 +175,7 @@ class AddonsSdk {
    * and which one processed.
    *
    * @type {LogLevel}
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public get logLevel(): LogLevel {
     return logger.current.level;
@@ -184,15 +187,15 @@ class AddonsSdk {
    * and which one processed.
    *
    * @type {LogLevel}
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public set logLevel(v: LogLevel) {
     logger.current.level = v;
   }
 
   /**
-   * Creates an instance of AddonsSdk.
-   * @memberof AddonsSdk
+   * Creates an instance of ExtensibilitySdk.
+   * @memberof ExtensibilitySdk
    */
   constructor() {
     this.onInit = (context: OutreachContext) => {
@@ -239,7 +242,7 @@ class AddonsSdk {
    * Informs the interested parties that sdk is initialized and
    * ready to receive messages from host and other participants.
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    * @deprecated Since version 0.10. Will be removed in version 1.0. Use instead await sdk.init()
    */
   public ready() {
@@ -251,7 +254,7 @@ class AddonsSdk {
   /**
    * Informs the host that addon needs to be reinitialized with
    * fresh init context in order to operate properly
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public initRequest = () => {
     this.sendMessage(new ReadyMessage());
@@ -261,7 +264,7 @@ class AddonsSdk {
    * Sends request to Outreach hosting app to notify Outreach user
    * about a certain even happening in addon.
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public notify = async (text: string, type: NotificationType) => {
     await this.verifySdkInitialized();
@@ -287,7 +290,7 @@ class AddonsSdk {
    *
    * @param {string} value The new decoration value being requested to be shown by the host
    * @param {DecorationType} [type='text'] Type of decoration update (text by default)
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public decorate = async (value: string, type: DecorationType = 'text') => {
     await this.verifySdkInitialized();
@@ -311,7 +314,7 @@ class AddonsSdk {
   /**
    * Sends request to Outreach hosting app to display the configuration form.
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public configure = async () => {
     await this.verifySdkInitialized();
@@ -366,7 +369,7 @@ class AddonsSdk {
    * initialization context
    *
    * @returns {Promise<OutreachContext>}
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public init = async (): Promise<OutreachContext> => {
     if (this.initTask) {
@@ -411,11 +414,9 @@ class AddonsSdk {
    * Requests from host to update hosting environment based on
    * sent specification of the environment.
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
-  public environment = async (
-    environment: ManifestHostEnvironment
-  ): Promise<void> => {
+  public environment = async (environment: EnvironmentInfo): Promise<void> => {
     await this.verifySdkInitialized();
 
     const message = new EnvironmentMessage();
@@ -445,7 +446,7 @@ class AddonsSdk {
    * (e.g. user clicked a button)
    *
    * @returns {Promise<string | null>}
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public authenticate = async (): Promise<string | null> => {
     await this.verifySdkInitialized();
@@ -488,7 +489,7 @@ class AddonsSdk {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#token-endpoint
    *
-   * @memberof AddonsSdk
+   * @memberof ExtensibilitySdk
    */
   public getToken = async (skipCache?: boolean): Promise<string | null> => {
     await this.verifySdkInitialized();
@@ -849,13 +850,13 @@ declare global {
   interface Window {
     outreach: {
       logLevel?: LogLevel;
-      addonSdk?: AddonsSdk;
+      extensibilitySdk?: ExtensibilitySdk;
     };
   }
 }
 
 // exposing sdk as  a global variable
 window.outreach = window.outreach || {};
-window.outreach.addonSdk = new AddonsSdk();
+window.outreach.extensibilitySdk = new ExtensibilitySdk();
 
-export default window.outreach.addonSdk;
+export default window.outreach.extensibilitySdk;

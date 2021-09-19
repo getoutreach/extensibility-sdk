@@ -1,6 +1,5 @@
 import { utils } from '../../../utils';
 import { Extension } from '../Extension';
-import { ManifestHostEnvironment } from './ManifestHostEnvironment';
 import { TabExtensionType } from './TabExtensionType';
 
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
@@ -28,10 +27,13 @@ export class TabExtension extends Extension implements IHostableExtension {
   /**
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#environment
    *
-   * @type {ManifestHostEnvironment}
+   * Should host provide maximum space on the page for addon? (optional)
+   * e.g. If true, for tab addons, Outreach host will hide right pane when addon tab is active
+   *
+   * @type {boolean}
    * @memberof TabExtension
    */
-  public environment?: ManifestHostEnvironment;
+  public fullWidth?: boolean;
 
   /**
    * Type property defines the type of tab extension
