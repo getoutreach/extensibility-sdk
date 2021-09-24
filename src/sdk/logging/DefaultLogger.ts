@@ -13,7 +13,7 @@ export class DefaultLogger implements ILogger {
       case LogLevel.Trace:
         if (this.level <= LogLevel.Trace) {
           // tslint:disable-next-line: no-console
-          console.log(
+          console.debug(
             '[CXT][AddonSdk]::onInfo-trace (default)',
             event,
             event.context

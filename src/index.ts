@@ -34,6 +34,16 @@ import { LoadInfoMessage } from './sdk/messages/LoadInfoMessage';
 import { LoadingContext } from './context/LoadingContext';
 import { ILogger } from './sdk/logging/ILogger';
 import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
+import { Application } from './manifest/Application';
+import { ManifestApi } from './manifest/ManifestApi';
+import { ConfigurationItem } from './configuration/ConfigurationItem';
+import { ManifestStore } from './manifest/ManifestStore';
+import { TabExtensionType } from './manifest/extensions/tabs/TabExtensionType';
+import { AccountTabExtension } from './manifest/extensions/tabs/types/AccountTabExtension';
+import { OpportunityTabExtension } from './manifest/extensions/tabs/types/OpportunityTabExtension';
+import { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
+import { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
+import { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
 
 export * from './context/host/AccountContext';
 export * from './context/host/ContextParam';
@@ -69,7 +79,10 @@ export * from './sdk/logging/EventType';
 export * from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
+export * from './utils';
+
 export * from './sdk/Locale';
+export * from './sdk/messages/EnvironmentInfo';
 export * from './sdk/RuntimeContext';
 export * from './sdk/Theme';
 export * from './sdk/Validator';
@@ -80,33 +93,30 @@ export * from './context/keys/ClientContextKeys';
 export * from './context/keys/OpportunityContextKeys';
 export * from './context/keys/ProspectContextKeys';
 export * from './context/keys/UserContextKeys';
-export * from './manifest/store/Category';
-export * from './manifest/store/StoreType';
-export * from './manifest/store/LocalizedString';
+
 export * from './manifest/Application';
 export * from './manifest/ManifestApi';
 export * from './manifest/ManifestAuthor';
-export * from './manifest/extensions/shell/ShellExtensionHost';
+export * from './manifest/ManifestStore';
 export * from './manifest/api/Scopes';
-export * from './utils';
 
-export * from './sdk/messages/EnvironmentInfo';
+export * from './manifest/store/Category';
+export * from './manifest/store/LocalizedString';
+export * from './manifest/store/StoreType';
 
+
+export * from './manifest/extensions/Extension';
+export * from './manifest/extensions/ExtensionType';
 export * from './manifest/extensions/shell/ShellExtensionHost';
 export * from './manifest/extensions/shell/ShellExtensionType';
 export * from './manifest/extensions/shell/types/ApplicationShellExtension';
-
 export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
 export * from './manifest/extensions/tabs/types/AccountTabExtension';
 export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export * from './manifest/extensions/tabs/types/ProspectTabExtension';
-
 export * from './manifest/extensions/tiles/TileExtensionType';
 export * from './manifest/extensions/tiles/TileExtension';
-
-export * from './manifest/extensions/Extension';
-export * from './manifest/extensions/ExtensionType';
 
 class Task<T> {
   public promise: Promise<T>;
@@ -645,7 +655,7 @@ class ExtensibilitySdk {
   private preprocessInitMessage = (
     initMessage: InitMessage
   ): OutreachContext => {
-    runtime.application = initMessage.application;
+    runtime.application = this.hydrateApplication(initMessage.application);
     runtime.configuration = initMessage.configuration;
     runtime.extension = initMessage.extension;
     runtime.locale = initMessage.locale;
@@ -708,6 +718,38 @@ class ExtensibilitySdk {
     });
 
     return outreachContext;
+  };
+
+  public hydrateApplication = (app: Application) => {
+    const application = new Application();
+    if (app.api) {
+      application.api = Object.assign(new ManifestApi(), app.api);
+    }
+
+    if (app.configuration) {
+      application.configuration = app.configuration.map((item) =>
+        Object.assign(new ConfigurationItem(), item)
+      );
+    }
+
+    application.store = Object.assign(new ManifestStore(), app.store);
+
+    application.extensions = app.extensions.map((ext) => {
+      switch (ext.type) {
+        case TabExtensionType.ACCOUNT:
+          return Object.assign(new AccountTabExtension(), ext);
+        case TabExtensionType.OPPORTUNITY:
+          return Object.assign(new OpportunityTabExtension(), ext);
+        case TabExtensionType.PROSPECT:
+          return Object.assign(new ProspectTabExtension(), ext);
+        case ShellExtensionType.APPLICATION:
+          return Object.assign(new ApplicationShellExtension(), ext);
+        default:
+          throw new Error("Can't hydrate extension " + JSON.stringify(ext));
+      }
+    });
+
+    return application;
   };
 
   private handleRefreshTokenMessage = (tokenMessage: ConnectTokenMessage) => {
