@@ -1,4 +1,6 @@
+import { DecorationStyle } from '../../manifest/extensions/shell/DecorationStyle';
+
 export interface EnvironmentInfo {
   fullWidth?: boolean;
-  decoration: 'none' | 'simple' | 'full';
+  decoration?: DecorationStyle;
 }

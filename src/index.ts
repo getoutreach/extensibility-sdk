@@ -6,7 +6,7 @@ import { MessageType } from './sdk/messages/MessageType';
 import { OutreachContext } from './context/OutreachContext';
 import { NotificationType } from './sdk/messages/NotificationType';
 import { NotificationMessage } from './sdk/messages/NotificationMessage';
-import { DecorationMessage } from './sdk/messages/DecorationMessage';
+import { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 import { LogLevel } from './sdk/logging/LogLevel';
 import { ReadyMessage } from './sdk/messages/ReadyMessage';
 
@@ -26,7 +26,7 @@ import { EventOrigin } from './sdk/logging/EventOrigin';
 import { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 import { utils } from './utils';
 import { ConfigureMessage } from './sdk/messages/ConfigureMessage';
-import { DecorationType } from './sdk/messages/DecorationType';
+import { DecorationUpdateType } from './sdk/messages/DecorationUpdateType';
 import { NavigationDestination } from './sdk/messages/NavigationDestination';
 import { NavigationMessage } from './sdk/messages/NavigationMessage';
 import { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
@@ -45,10 +45,21 @@ import { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectT
 import { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
 import { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
 
+export * from './configuration/ConfigurationItem';
+export * from './configuration/ConfigurationItemOption';
+export * from './configuration/ConfigurationItemType';
+export * from './configuration/ConfigurationValue';
+
+export * from './context/keys/AccountContextKeys';
+export * from './context/keys/AllContextKeys';
+export * from './context/keys/ClientContextKeys';
+export * from './context/keys/OpportunityContextKeys';
+export * from './context/keys/ProspectContextKeys';
+export * from './context/keys/UserContextKeys';
+
 export * from './context/host/AccountContext';
 export * from './context/host/ContextParam';
 export * from './context/host/CustomContext';
-
 export * from './context/host/ExternalInfoContext';
 export * from './context/host/ExternalInfoProvider';
 export * from './context/host/ExternalInfoUtils';
@@ -58,14 +69,22 @@ export * from './context/host/UserContext';
 export * from './context/LoadingContext';
 export * from './context/OutreachContext';
 
-export * from './sdk/messages/Message';
-export * from './sdk/messages/MessageType';
+export * from './sdk/logging/Event';
+export * from './sdk/logging/EventOrigin';
+export * from './sdk/logging/EventType';
+export * from './sdk/logging/LogLevel';
+export { ILogger } from './sdk/logging/ILogger';
+
+export * from './sdk/messages/ConfigureMessage';
 export * from './sdk/messages/ConnectTokenMessage';
 export * from './sdk/messages/DecorationMessage';
-export * from './sdk/messages/DecorationType';
+export * from './sdk/messages/DecorationUpdateType';
+export * from './sdk/messages/EnvironmentInfo';
 export * from './sdk/messages/EnvironmentMessage';
 export * from './sdk/messages/InitMessage';
 export * from './sdk/messages/LoadInfoMessage';
+export * from './sdk/messages/Message';
+export * from './sdk/messages/MessageType';
 export * from './sdk/messages/NavigationDestination';
 export * from './sdk/messages/NavigationMessage';
 export * from './sdk/messages/NotificationMessage';
@@ -73,26 +92,12 @@ export * from './sdk/messages/NotificationType';
 export * from './sdk/messages/ReadyMessage';
 
 export * from './sdk/Constants';
-export * from './sdk/logging/Event';
-export * from './sdk/logging/EventOrigin';
-export * from './sdk/logging/EventType';
-export * from './sdk/logging/LogLevel';
-export { ILogger } from './sdk/logging/ILogger';
-
-export * from './utils';
-
 export * from './sdk/Locale';
-export * from './sdk/messages/EnvironmentInfo';
 export * from './sdk/RuntimeContext';
 export * from './sdk/Theme';
 export * from './sdk/Validator';
 
-export * from './context/keys/AccountContextKeys';
-export * from './context/keys/AllContextKeys';
-export * from './context/keys/ClientContextKeys';
-export * from './context/keys/OpportunityContextKeys';
-export * from './context/keys/ProspectContextKeys';
-export * from './context/keys/UserContextKeys';
+export * from './utils';
 
 export * from './manifest/Application';
 export * from './manifest/ManifestApi';
@@ -102,19 +107,24 @@ export * from './manifest/api/Scopes';
 
 export * from './manifest/store/Category';
 export * from './manifest/store/LocalizedString';
+export * from './manifest/store/Media';
 export * from './manifest/store/StoreType';
-
 
 export * from './manifest/extensions/Extension';
 export * from './manifest/extensions/ExtensionType';
+
+export * from './manifest/extensions/shell/ShellExtension';
+export * from './manifest/extensions/shell/DecorationStyle';
 export * from './manifest/extensions/shell/ShellExtensionHost';
 export * from './manifest/extensions/shell/ShellExtensionType';
 export * from './manifest/extensions/shell/types/ApplicationShellExtension';
+
 export * from './manifest/extensions/tabs/TabExtension';
 export * from './manifest/extensions/tabs/TabExtensionType';
 export * from './manifest/extensions/tabs/types/AccountTabExtension';
 export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export * from './manifest/extensions/tabs/types/ProspectTabExtension';
+
 export * from './manifest/extensions/tiles/TileExtensionType';
 export * from './manifest/extensions/tiles/TileExtension';
 
@@ -299,14 +309,17 @@ class ExtensibilitySdk {
    * about a certain even happening in addon.
    *
    * @param {string} value The new decoration value being requested to be shown by the host
-   * @param {DecorationType} [type='text'] Type of decoration update (text by default)
+   * @param {DecorationUpdateType} [type=DecorationUpdateType.TEXT] Type of decoration update (text by default)
    * @memberof ExtensibilitySdk
    */
-  public decorate = async (value: string, type: DecorationType = 'text') => {
+  public decorate = async (
+    value: string,
+    type: DecorationUpdateType = DecorationUpdateType.TEXT
+  ) => {
     await this.verifySdkInitialized();
 
-    const message = new DecorationMessage();
-    message.decorationText = value;
+    const message = new DecorationUpdateMessage();
+    message.value = value;
     message.decorationType = type;
 
     this.sendMessage(message, true);

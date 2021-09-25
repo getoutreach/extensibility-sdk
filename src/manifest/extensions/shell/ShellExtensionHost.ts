@@ -1,4 +1,5 @@
 import { ExtensionHost } from '../ExtensionHost';
+import { DecorationStyle } from './DecorationStyle';
 
 /**
  * Section defining the addon creator hosting property.
@@ -30,8 +31,9 @@ export class ShellExtensionHost extends ExtensionHost {
    *  - simple - a dot will be shown in case of badge decoration message with count > 0
    *  - full - a badge with counter will be shown.
    *
-   * @type {('none' | 'simple' | 'full')}
+   * @see https://github.com/getoutreach/clientxtsdk/blob/master/docs/manifest.md#decoration
+   * @type {DecorationStyle}
    * @memberof ShellExtensionHost
    */
-  public decoration: 'none' | 'simple' | 'full' = 'none';
+  public decoration: DecorationStyle = DecorationStyle.NONE;
 }
