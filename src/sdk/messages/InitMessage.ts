@@ -6,6 +6,7 @@ import { UrlParam } from '../../context/host/UrlParam';
 import { ContextParam } from '../../context/host/ContextParam';
 import { ConfigurationValue } from '../../configuration/ConfigurationValue';
 import { Application, Extension } from '../..';
+import { ManifestV1 } from '../../legacy/ManifestV1';
 
 export class InitMessage extends Message {
   /**
@@ -91,4 +92,14 @@ export class InitMessage extends Message {
    * @memberof InitMessage
    */
   userIdentifier: string;
+
+  /**
+   * Legacy property needed for backward compatibility
+   * support for addons still using v1 addon centric SDK.
+   *
+   * @type {ManifestV1}
+   * @memberof InitMessage
+   * @deprecated This property will be removed once all the addons are migrated to v2 sdk
+   */
+  manifest?: ManifestV1;
 }

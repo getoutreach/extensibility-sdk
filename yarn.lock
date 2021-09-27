@@ -558,6 +558,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@outreach/client-addon-sdk@^0.1.66":
+  version "0.1.66"
+  resolved "https://registry.npmjs.org/@outreach/client-addon-sdk/-/client-addon-sdk-0.1.66.tgz#6735d63f9a6452cc64f091a8b972c223def3c363"
+  integrity sha512-X7INNqa88SM4WgRYFbcDJM6iTF7Jy9X45Z82jFE88bTmorXhP6W7WfwKlqx7Ai6d4N1xnRuVsCqAFNu6XDIWAw==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"
