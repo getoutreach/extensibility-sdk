@@ -45,88 +45,90 @@ import { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectT
 import { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
 import { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
 
-export * from './configuration/ConfigurationItem';
-export * from './configuration/ConfigurationItemOption';
-export * from './configuration/ConfigurationItemType';
-export * from './configuration/ConfigurationValue';
+export { ConfigurationItem } from './configuration/ConfigurationItem';
+export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
+export { ConfigurationItemType } from './configuration/ConfigurationItemType';
+export { ConfigurationValue } from './configuration/ConfigurationValue';
 
-export * from './context/keys/AccountContextKeys';
-export * from './context/keys/AllContextKeys';
-export * from './context/keys/ClientContextKeys';
-export * from './context/keys/OpportunityContextKeys';
-export * from './context/keys/ProspectContextKeys';
-export * from './context/keys/UserContextKeys';
+export { AccountContextKeys } from './context/keys/AccountContextKeys';
+export { AllContextKeys } from './context/keys/AllContextKeys';
+export { ClientContextKeys } from './context/keys/ClientContextKeys';
+export { OpportunityContextKeys } from './context/keys/OpportunityContextKeys';
+export { ProspectContextKeys } from './context/keys/ProspectContextKeys';
+export { UserContextKeys } from './context/keys/UserContextKeys';
 
-export * from './context/host/AccountContext';
-export * from './context/host/ContextParam';
-export * from './context/host/CustomContext';
-export * from './context/host/ExternalInfoContext';
-export * from './context/host/ExternalInfoProvider';
-export * from './context/host/ExternalInfoUtils';
-export * from './context/host/OpportunityContext';
-export * from './context/host/UserContext';
+export { AccountContext } from './context/host/AccountContext';
+export { ContextParam } from './context/host/ContextParam';
+export { CustomContext } from './context/host/CustomContext';
+export { ExternalInfoContext } from './context/host/ExternalInfoContext';
+export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
+export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
+export { OpportunityContext } from './context/host/OpportunityContext';
+export { UserContext } from './context/host/UserContext';
 
-export * from './context/LoadingContext';
-export * from './context/OutreachContext';
+export { LoadingContext } from './context/LoadingContext';
+export { OutreachContext } from './context/OutreachContext';
 
-export * from './sdk/logging/Event';
-export * from './sdk/logging/EventOrigin';
-export * from './sdk/logging/EventType';
-export * from './sdk/logging/LogLevel';
+export { Event } from './sdk/logging/Event';
+export { EventOrigin } from './sdk/logging/EventOrigin';
+export { EventType } from './sdk/logging/EventType';
+export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export * from './sdk/messages/ConfigureMessage';
-export * from './sdk/messages/ConnectTokenMessage';
-export * from './sdk/messages/DecorationMessage';
-export * from './sdk/messages/DecorationUpdateType';
-export * from './sdk/messages/EnvironmentInfo';
-export * from './sdk/messages/EnvironmentMessage';
-export * from './sdk/messages/InitMessage';
-export * from './sdk/messages/LoadInfoMessage';
-export * from './sdk/messages/Message';
-export * from './sdk/messages/MessageType';
-export * from './sdk/messages/NavigationDestination';
-export * from './sdk/messages/NavigationMessage';
-export * from './sdk/messages/NotificationMessage';
-export * from './sdk/messages/NotificationType';
-export * from './sdk/messages/ReadyMessage';
+export { ConfigureMessage } from './sdk/messages/ConfigureMessage';
+export { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
+export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
+export { DecorationUpdateType } from './sdk/messages/DecorationUpdateType';
+export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
+export { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
+export { InitMessage } from './sdk/messages/InitMessage';
+export { LoadInfoMessage } from './sdk/messages/LoadInfoMessage';
+export { Message } from './sdk/messages/Message';
+export { MessageType } from './sdk/messages/MessageType';
+export { NavigationDestination } from './sdk/messages/NavigationDestination';
+export { NavigationMessage } from './sdk/messages/NavigationMessage';
+export { NotificationMessage } from './sdk/messages/NotificationMessage';
+export { NotificationType } from './sdk/messages/NotificationType';
+export { ReadyMessage } from './sdk/messages/ReadyMessage';
 
-export * from './sdk/Constants';
-export * from './sdk/Locale';
-export * from './sdk/RuntimeContext';
-export * from './sdk/Theme';
-export * from './sdk/Validator';
+export { Constants } from './sdk/Constants';
+export { Locale } from './sdk/Locale';
+export { RuntimeContext } from './sdk/RuntimeContext';
+export { Theme } from './sdk/Theme';
+export { validate } from './sdk/Validator';
 
-export * from './utils';
+export { utils } from './utils';
 
-export * from './manifest/Application';
-export * from './manifest/ManifestApi';
-export * from './manifest/ManifestAuthor';
-export * from './manifest/ManifestStore';
-export * from './manifest/api/Scopes';
+export { Application } from './manifest/Application';
+export { ManifestApi } from './manifest/ManifestApi';
+export { ManifestAuthor } from './manifest/ManifestAuthor';
+export { ManifestStore } from './manifest/ManifestStore';
+export { Scopes } from './manifest/api/Scopes';
 
-export * from './manifest/store/Category';
-export * from './manifest/store/LocalizedString';
-export * from './manifest/store/Media';
-export * from './manifest/store/StoreType';
+export { Category } from './manifest/store/Category';
+export { LocalizedString } from './manifest/store/LocalizedString';
+export { ManifestMedia } from './manifest/store/Media';
+export { StoreType } from './manifest/store/StoreType';
 
-export * from './manifest/extensions/Extension';
-export * from './manifest/extensions/ExtensionType';
+export { Extension } from './manifest/extensions/Extension';
+export { ExtensionType } from './manifest/extensions/ExtensionType';
 
-export * from './manifest/extensions/shell/ShellExtension';
-export * from './manifest/extensions/shell/DecorationStyle';
-export * from './manifest/extensions/shell/ShellExtensionHost';
-export * from './manifest/extensions/shell/ShellExtensionType';
-export * from './manifest/extensions/shell/types/ApplicationShellExtension';
+export { ShellExtension } from './manifest/extensions/shell/ShellExtension';
+export { DecorationStyle } from './manifest/extensions/shell/DecorationStyle';
+export { ShellExtensionHost } from './manifest/extensions/shell/ShellExtensionHost';
+export { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
+export { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
 
-export * from './manifest/extensions/tabs/TabExtension';
-export * from './manifest/extensions/tabs/TabExtensionType';
-export * from './manifest/extensions/tabs/types/AccountTabExtension';
-export * from './manifest/extensions/tabs/types/OpportunityTabExtension';
-export * from './manifest/extensions/tabs/types/ProspectTabExtension';
+export { TabExtension } from './manifest/extensions/tabs/TabExtension';
+export { TabExtensionType } from './manifest/extensions/tabs/TabExtensionType';
+export { AccountTabExtension } from './manifest/extensions/tabs/types/AccountTabExtension';
+export { OpportunityTabExtension } from './manifest/extensions/tabs/types/OpportunityTabExtension';
+export { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
 
-export * from './manifest/extensions/tiles/TileExtensionType';
-export * from './manifest/extensions/tiles/TileExtension';
+export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';
+export { TileExtension } from './manifest/extensions/tiles/TileExtension';
+
+export { Translator } from './legacy/Translator';
 
 class Task<T> {
   public promise: Promise<T>;
