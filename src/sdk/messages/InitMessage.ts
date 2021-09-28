@@ -101,5 +101,5 @@ export class InitMessage extends Message {
    * @memberof InitMessage
    * @deprecated This property will be removed once all the addons are migrated to v2 sdk
    */
-  manifest?: ManifestV1;
+  manifest?: ManifestV1 | null;
 }

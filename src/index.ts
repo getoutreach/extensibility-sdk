@@ -128,7 +128,7 @@ export { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectT
 export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';
 export { TileExtension } from './manifest/extensions/tiles/TileExtension';
 
-export { Translator } from './legacy/Translator';
+export { ManifestTranslator } from './legacy/ManifestTranslator';
 
 class Task<T> {
   public promise: Promise<T>;

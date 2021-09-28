@@ -1,7 +1,9 @@
+import { ClientContextKeys, UserContextKeys } from '..';
 import { AccountContextKeys } from '../context/keys/AccountContextKeys';
 import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
 import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
 import { Application } from '../manifest/Application';
+import { ExtensionHost } from '../manifest/extensions/ExtensionHost';
 import { DecorationStyle } from '../manifest/extensions/shell/DecorationStyle';
 import { ShellExtensionHost } from '../manifest/extensions/shell/ShellExtensionHost';
 import { ShellExtensionType } from '../manifest/extensions/shell/ShellExtensionType';
@@ -16,7 +18,7 @@ import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
 
-export class Translator {
+export class ManifestTranslator {
   public static getAddonManifest(
     app: Application,
     ext: TabExtension | ApplicationShellExtension
@@ -146,14 +148,11 @@ export class Translator {
       configuration: firstExt.configuration,
     };
 
+    let extension: ApplicationShellExtension | TabExtension;
     appManifests.forEach((ext) => {
       if (ext.host.type === 'left-side-menu') {
-        const extension = new ApplicationShellExtension();
-        extension.title = ext.title;
-        extension.identifier = ext.identifier;
+        extension = new ApplicationShellExtension();
         extension.host = new ShellExtensionHost();
-        extension.host.icon = ext.host.icon;
-        extension.host.url = ext.host.url;
         extension.host.notificationsUrl = ext.host.notificationsUrl;
         extension.host.decoration = DecorationStyle.FULL;
 
@@ -170,9 +169,21 @@ export class Translator {
               break;
           }
         }
-        app.extensions.push(extension);
+
+        extension.context = ext.context.map((ctx) => {
+          const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
+          if (userKey) {
+            return UserContextKeys[userKey];
+          }
+
+          const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
+          if (clientKey) {
+            return ClientContextKeys[clientKey];
+          }
+
+          return 'NAN' as any;
+        });
       } else {
-        let extension: TabExtension;
         switch (ext.host.type) {
           case 'tab-account':
             extension = new AccountTabExtension();
@@ -186,27 +197,57 @@ export class Translator {
           default:
             throw new Error('Unknown v1 host type:' + ext.host.type);
         }
-        extension.identifier = ext.identifier;
-
-        extension.title = ext.title;
+        extension.host = new ExtensionHost();
         extension.description = ext.description;
-
-        extension.host = new ShellExtensionHost();
-        extension.host.icon = ext.host.icon;
-        extension.host.url = ext.host.url;
         extension.fullWidth = ext.host.environment?.fullWidth || false;
 
-        extension.context = ext.context.map(
-          (ctx) =>
-            AccountContextKeys[ctx as keyof typeof AccountContextKeys] ||
-            ProspectContextKeys[ctx as keyof typeof ProspectContextKeys] ||
-            OpportunityContextKeys[ctx as keyof typeof OpportunityContextKeys]
-        );
-        extension.version = ext.version;
-        app.extensions.push(extension);
+        extension.context = ext.context.map((ctx) => {
+          const accountKey = this.getEnumKeyByEnumValue(
+            AccountContextKeys,
+            ctx
+          );
+          if (accountKey) {
+            return AccountContextKeys[accountKey];
+          }
+
+          const prospectKey = this.getEnumKeyByEnumValue(
+            ProspectContextKeys,
+            ctx
+          );
+          if (prospectKey) {
+            return ProspectContextKeys[prospectKey];
+          }
+
+          const opportunityKey = this.getEnumKeyByEnumValue(
+            OpportunityContextKeys,
+            ctx
+          );
+          if (opportunityKey) {
+            return OpportunityContextKeys[opportunityKey];
+          }
+
+          return 'NAN' as any;
+        });
       }
+
+      extension.identifier = ext.identifier;
+      extension.title = ext.title;
+      extension.host.icon = ext.host.icon;
+      extension.host.url = ext.host.url;
+
+      extension.version = ext.version;
+
+      app.extensions.push(extension);
     });
 
     return app;
+  }
+
+  private static getEnumKeyByEnumValue<T extends { [index: string]: string }>(
+    myEnum: T,
+    enumValue: string
+  ): keyof T | null {
+    const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue);
+    return keys.length > 0 ? keys[0] : null;
   }
 }

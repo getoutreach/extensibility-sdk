@@ -12,6 +12,15 @@ export class DecorationUpdateMessage extends Message {
   }
 
   /**
+   * Text of the addon decoration to be shown to Outreach user
+   *
+   * @type {string}
+   * @memberof DecorationMessage
+   * @deprecated Property added to support backward compatiilty of the v1 sdk
+   */
+  public decorationText?: string;
+
+  /**
    * Text of the extension decoration to be shown to Outreach user
    * Also it can contain a badge value or a new icon to be shown.
    *
