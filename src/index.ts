@@ -158,16 +158,6 @@ class ExtensibilitySdk {
   };
 
   /**
-   * Init handler being invoked when addon initialized is completed
-   * and addon receives from the Outreach host initialization context
-   *
-   * @deprecated Since version 0.10. Will be removed in version 1.0. Use instead await sdk.init()
-   *
-   * @memberof ExtensibilitySdk
-   */
-  public onInit: (context: OutreachContext) => void;
-
-  /**
    * Load handler is being invoked after the addon is fully loaded,
    * and it provides to addon creator performance information on addon loading.
    * Default implementation would show a toast if addon loading times were longer than 2 seconds.
@@ -220,17 +210,6 @@ class ExtensibilitySdk {
    * @memberof ExtensibilitySdk
    */
   constructor() {
-    this.onInit = (context: OutreachContext) => {
-      logger.current.log({
-        origin: EventOrigin.HOST,
-        type: EventType.MESSAGE,
-        messageType: MessageType.INIT,
-        level: LogLevel.Info,
-        message: '[CXT] addon.onInit received initialization context',
-        context: [`context: ${JSON.stringify(context, null, 2)}`],
-      });
-    };
-
     this.onMessage = (message: Message) => {
       logger.current.log({
         origin: EventOrigin.HOST,
@@ -628,7 +607,6 @@ class ExtensibilitySdk {
         const initMessage = addonMessage as InitMessage;
         const context = this.preprocessInitMessage(initMessage);
         this.resolveInitPromise(context);
-        this.onInit(context);
         break;
       }
       case MessageType.CONNECT_AUTH_TOKEN:

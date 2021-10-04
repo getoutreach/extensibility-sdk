@@ -226,6 +226,16 @@ export class ManifestTranslator {
             return OpportunityContextKeys[opportunityKey];
           }
 
+          const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
+          if (userKey) {
+            return UserContextKeys[userKey];
+          }
+
+          const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
+          if (clientKey) {
+            return ClientContextKeys[clientKey];
+          }
+
           return 'NAN' as any;
         });
       }
