@@ -197,6 +197,9 @@ export class ManifestTranslator {
           default:
             throw new Error('Unknown v1 host type:' + ext.host.type);
         }
+        extension.title = ext.title;
+        extension.description = ext.description;
+        extension.identifier = ext.identifier;
         extension.host = new ExtensionHost();
         extension.description = ext.description;
         extension.fullWidth = ext.host.environment?.fullWidth || false;

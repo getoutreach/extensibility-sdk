@@ -713,7 +713,7 @@ class ExtensibilitySdk {
     return outreachContext;
   };
 
-  public hydrateApplication = (app: Application) => {
+  public hydrateApplication = (app: Application): Application => {
     const application = new Application();
     if (app.api) {
       application.api = Object.assign(new ManifestApi(), app.api);
