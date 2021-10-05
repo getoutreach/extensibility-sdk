@@ -14,7 +14,7 @@ Table of content:
     - [identifier](#identifier)
     - [locales](#locales)
     - [medias](#medias)
-    - [store](#store)
+    - [type](#type)
     - [title](#title)
     - [version](#version)
   - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
