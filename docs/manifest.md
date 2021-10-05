@@ -92,7 +92,7 @@ Here is the sample manifest file of the hello world application having two exten
         "type": "video"
       }
     ],
-    "store": "private",
+    "type": "private",
     "title": {
       "en": "Some title (en)"
     },
@@ -182,7 +182,7 @@ A collection of one or more culture locales (e.g. 'en') supported by the applica
 
 A collection of media files (images and videos) will be shown to users in the Outreach application store, informing them what the application does and how it looks and works.
 
-### store
+### type
 
 Defines the store in which the application will be served:
 
