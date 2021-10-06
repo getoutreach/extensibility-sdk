@@ -7,6 +7,11 @@
  */
 export enum ShellExtensionType {
   /**
+   * Action extension - action icon toolbar on the page top right
+   */
+  ACTION = 'shell-action',
+
+  /**
    * Application extension (a.k.a 'left side menu addon')
    */
   APPLICATION = 'shell-application',

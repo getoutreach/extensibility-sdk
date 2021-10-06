@@ -5,7 +5,7 @@ export class ApplicationShellExtension extends ShellExtension {
   /**
    * Application tab extension type is 'Application'
    *
-   * @type {TabExtensionType}
+   * @type {ShellExtensionType}
    * @memberof ApplicationShellExtension
    */
   public readonly type: ShellExtensionType.APPLICATION =
