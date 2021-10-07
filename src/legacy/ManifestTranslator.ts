@@ -13,7 +13,6 @@ import { TabExtensionType } from '../manifest/extensions/tabs/TabExtensionType';
 import { AccountTabExtension } from '../manifest/extensions/tabs/types/AccountTabExtension';
 import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/OpportunityTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
-import { Category } from '../manifest/store/Category';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
@@ -123,20 +122,17 @@ export class ManifestTranslator {
     const app: Application = {
       store: {
         author: {
-          company: firstExt.author.company,
+          company: firstExt.author.company || 'N/A',
           email: 'no@email.com',
           privacyUrl: firstExt.author.privacyUrl,
           termsOfUseUrl: firstExt.author.termsOfUseUrl,
           websiteUrl: firstExt.author.websiteUrl,
         },
-        categories:
-          firstExt.categories?.map(
-            (ctg) => Category[ctg as keyof typeof Category]
-          ) || [],
+        categories: [],
         description: firstExt.description,
         icon: firstExt.host.icon,
         identifier: firstExt.identifier,
-        medias: firstExt.medias,
+        medias: [],
         locales: [Locale.ENGLISH],
         headline: firstExt.title,
         title: firstExt.title,
@@ -253,7 +249,6 @@ export class ManifestTranslator {
 
       app.extensions.push(extension);
     });
-
     return app;
   }
 

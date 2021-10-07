@@ -15,15 +15,15 @@ export interface ManifestV1 {
     url: string;
     icon: string;
     environment: ManifestHostEnvironment;
-    notificationsUrl: string;
+    notificationsUrl?: string;
   };
   author: {
-    company: string;
+    company?: string;
     websiteUrl: string;
     privacyUrl: string;
     termsOfUseUrl: string;
   };
-  categories: string[];
+  categories?: string[];
 
   context: string[];
 

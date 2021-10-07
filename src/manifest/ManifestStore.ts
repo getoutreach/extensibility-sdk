@@ -39,7 +39,7 @@ export class ManifestStore {
    * @type {Category[]}
    * @memberof ManifestStore
    */
-  public categories?: Category[] = [];
+  public categories: Category[] = [];
 
   /**
    * A localized addon description is shown in the addon store to
@@ -77,7 +77,7 @@ export class ManifestStore {
    * @type {ManifestMedia}
    * @memberof ManifestStore
    */
-  public medias?: ManifestMedia[] = [];
+  public medias: ManifestMedia[] = [];
 
   /**
    * Type of addon: public, private or personal.
