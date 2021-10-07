@@ -1,10 +1,13 @@
-import { ClientContextKeys, UserContextKeys } from '..';
+import { CompanionShellExtension, ToolShellExtension } from '..';
 import { AccountContextKeys } from '../context/keys/AccountContextKeys';
+import { ClientContextKeys } from '../context/keys/ClientContextKeys';
 import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
 import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
+import { UserContextKeys } from '../context/keys/UserContextKeys';
 import { Application } from '../manifest/Application';
 import { ExtensionHost } from '../manifest/extensions/ExtensionHost';
 import { DecorationStyle } from '../manifest/extensions/shell/DecorationStyle';
+import { ShellExtension } from '../manifest/extensions/shell/ShellExtension';
 import { ShellExtensionHost } from '../manifest/extensions/shell/ShellExtensionHost';
 import { ShellExtensionType } from '../manifest/extensions/shell/ShellExtensionType';
 import { ApplicationShellExtension } from '../manifest/extensions/shell/types/ApplicationShellExtension';
@@ -13,6 +16,8 @@ import { TabExtensionType } from '../manifest/extensions/tabs/TabExtensionType';
 import { AccountTabExtension } from '../manifest/extensions/tabs/types/AccountTabExtension';
 import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/OpportunityTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
+import { ManifestAuthor } from '../manifest/ManifestAuthor';
+import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
@@ -119,138 +124,166 @@ export class ManifestTranslator {
       storeType = StoreType.PUBLIC;
     }
 
-    const app: Application = {
-      store: {
-        author: {
-          company: firstExt.author.company || 'N/A',
-          email: 'no@email.com',
-          privacyUrl: firstExt.author.privacyUrl,
-          termsOfUseUrl: firstExt.author.termsOfUseUrl,
-          websiteUrl: firstExt.author.websiteUrl,
-        },
-        categories: [],
-        description: firstExt.description,
-        icon: firstExt.host.icon,
-        identifier: firstExt.identifier,
-        medias: [],
-        locales: [Locale.ENGLISH],
-        headline: firstExt.title,
-        title: firstExt.title,
-        version: firstExt.version,
-        type: storeType,
-      },
-      extensions: [],
-      api: firstExt.api,
-      configuration: firstExt.configuration,
-    };
+    const app: Application = new Application();
+    app.store = new ManifestStore();
+    app.store.author = new ManifestAuthor();
+    app.store.author.company = firstExt.author.company || 'N/A';
+    app.store.author.email = 'no@email.com';
+    app.store.author.privacyUrl = firstExt.author.privacyUrl;
+    app.store.author.termsOfUseUrl = firstExt.author.termsOfUseUrl;
+    app.store.author.websiteUrl = firstExt.author.websiteUrl;
 
-    appManifests.forEach((ext) => {
-      let extension: ApplicationShellExtension | TabExtension;
+    app.store.categories = [];
 
-      if (ext.host.type === 'left-side-menu') {
-        extension = new ApplicationShellExtension();
-        extension.host = new ShellExtensionHost();
-        extension.host.notificationsUrl = ext.host.notificationsUrl;
-        extension.host.decoration = DecorationStyle.FULL;
+    app.store.description = firstExt.description;
+    app.store.icon = firstExt.host.icon;
+    app.store.identifier = firstExt.identifier;
+    app.store.locales = [Locale.ENGLISH];
+    app.store.medias = [];
+    app.store.headline = firstExt.title;
+    app.store.title = firstExt.title;
+    app.store.version = firstExt.version;
+    app.store.type = storeType;
 
-        if (ext.host.environment) {
-          switch (ext.host.environment.decoration) {
-            case 'none':
-              extension.host.decoration = DecorationStyle.NONE;
-              break;
-            case 'simple':
-              extension.host.decoration = DecorationStyle.SIMPLE;
-              break;
-            case 'full':
-              extension.host.decoration = DecorationStyle.FULL;
-              break;
-          }
-        }
+    app.extensions = [];
+    app.api = firstExt.api;
+    app.configuration = firstExt.configuration;
 
-        extension.context = ext.context.map((ctx) => {
-          const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
-          if (userKey) {
-            return UserContextKeys[userKey];
-          }
+    const extensions = appManifests.map((ext) => {
+      let extension: ShellExtension | TabExtension;
 
-          const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
-          if (clientKey) {
-            return ClientContextKeys[clientKey];
-          }
-
-          return 'NAN' as any;
-        });
-      } else {
-        switch (ext.host.type) {
-          case 'tab-account':
-            extension = new AccountTabExtension();
-            break;
-          case 'tab-opportunity':
-            extension = new OpportunityTabExtension();
-            break;
-          case 'tab-prospect':
-            extension = new ProspectTabExtension();
-            break;
-          default:
-            throw new Error('Unknown v1 host type:' + ext.host.type);
-        }
-        extension.title = ext.title;
-        extension.description = ext.description;
-        extension.identifier = ext.identifier;
-        extension.host = new ExtensionHost();
-        extension.description = ext.description;
-        extension.fullWidth = ext.host.environment?.fullWidth || false;
-
-        extension.context = ext.context.map((ctx) => {
-          const accountKey = this.getEnumKeyByEnumValue(
-            AccountContextKeys,
-            ctx
-          );
-          if (accountKey) {
-            return AccountContextKeys[accountKey];
-          }
-
-          const prospectKey = this.getEnumKeyByEnumValue(
-            ProspectContextKeys,
-            ctx
-          );
-          if (prospectKey) {
-            return ProspectContextKeys[prospectKey];
-          }
-
-          const opportunityKey = this.getEnumKeyByEnumValue(
-            OpportunityContextKeys,
-            ctx
-          );
-          if (opportunityKey) {
-            return OpportunityContextKeys[opportunityKey];
-          }
-
-          const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
-          if (userKey) {
-            return UserContextKeys[userKey];
-          }
-
-          const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
-          if (clientKey) {
-            return ClientContextKeys[clientKey];
-          }
-
-          return 'NAN' as any;
-        });
+      switch (ext.host.type) {
+        case 'left-side-menu':
+        case 'shell-companion':
+        case 'shell-tool':
+          extension = this.processShellExtensions(ext);
+          break;
+        case 'tab-account':
+        case 'tab-opportunity':
+        case 'tab-prospect':
+          extension = this.processTabExtensions(ext);
+          break;
       }
 
       extension.identifier = ext.identifier;
       extension.title = ext.title;
       extension.host.icon = ext.host.icon;
       extension.host.url = ext.host.url;
-
       extension.version = ext.version;
 
-      app.extensions.push(extension);
+      return extension;
     });
+
+    app.extensions = extensions;
     return app;
   }
+
+  private static processTabExtensions = (ext: ManifestV1): TabExtension => {
+    let extension: TabExtension;
+    switch (ext.host.type) {
+      case TabExtensionType.ACCOUNT:
+        extension = new AccountTabExtension();
+        break;
+      case TabExtensionType.OPPORTUNITY:
+        extension = new OpportunityTabExtension();
+        break;
+      case TabExtensionType.PROSPECT:
+        extension = new ProspectTabExtension();
+        break;
+      default:
+        throw new Error('Unknown v1 host type:' + ext.host.type);
+    }
+    extension.title = ext.title;
+    extension.description = ext.description;
+    extension.identifier = ext.identifier;
+    extension.host = new ExtensionHost();
+    extension.description = ext.description;
+    extension.fullWidth = ext.host.environment?.fullWidth || false;
+
+    extension.context = ext.context.map((ctx) => {
+      const accountKey = this.getEnumKeyByEnumValue(AccountContextKeys, ctx);
+      if (accountKey) {
+        return AccountContextKeys[accountKey];
+      }
+
+      const prospectKey = this.getEnumKeyByEnumValue(ProspectContextKeys, ctx);
+      if (prospectKey) {
+        return ProspectContextKeys[prospectKey];
+      }
+
+      const opportunityKey = this.getEnumKeyByEnumValue(
+        OpportunityContextKeys,
+        ctx
+      );
+      if (opportunityKey) {
+        return OpportunityContextKeys[opportunityKey];
+      }
+
+      const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
+      if (userKey) {
+        return UserContextKeys[userKey];
+      }
+
+      const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
+      if (clientKey) {
+        return ClientContextKeys[clientKey];
+      }
+
+      return 'NAN' as any;
+    });
+    return extension;
+  };
+
+  private static processShellExtensions = (ext: ManifestV1): ShellExtension => {
+    let extension: ShellExtension;
+
+    switch (ext.host.type) {
+      case 'left-side-menu':
+        extension = new ApplicationShellExtension();
+        break;
+      case 'shell-companion':
+        extension = new CompanionShellExtension();
+        break;
+      case 'shell-tool':
+        extension = new ToolShellExtension();
+        break;
+      default:
+        throw new Error('Unsupported shell extension type:' + ext.host.type);
+    }
+
+    extension.host = new ShellExtensionHost();
+    extension.host.notificationsUrl = ext.host.notificationsUrl;
+    extension.host.decoration = DecorationStyle.FULL;
+
+    if (ext.host.environment) {
+      switch (ext.host.environment.decoration) {
+        case 'none':
+          extension.host.decoration = DecorationStyle.NONE;
+          break;
+        case 'simple':
+          extension.host.decoration = DecorationStyle.SIMPLE;
+          break;
+        case 'full':
+          extension.host.decoration = DecorationStyle.FULL;
+          break;
+      }
+    }
+
+    extension.context = ext.context.map((ctx) => {
+      const userKey = this.getEnumKeyByEnumValue(UserContextKeys, ctx);
+      if (userKey) {
+        return UserContextKeys[userKey];
+      }
+
+      const clientKey = this.getEnumKeyByEnumValue(ClientContextKeys, ctx);
+      if (clientKey) {
+        return ClientContextKeys[clientKey];
+      }
+
+      return 'NAN' as any;
+    });
+    return extension;
+  };
 
   private static getEnumKeyByEnumValue<T extends { [index: string]: string }>(
     myEnum: T,

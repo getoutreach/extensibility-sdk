@@ -44,6 +44,9 @@ import { OpportunityTabExtension } from './manifest/extensions/tabs/types/Opport
 import { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
 import { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
 import { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
+import { CompanionShellExtension } from './manifest/extensions/shell/types/CompanionShellExtension';
+import { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
+import { ActionShellExtension } from './manifest/extensions/shell/types/ActionShellExtension';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -741,6 +744,12 @@ class ExtensibilitySdk {
           return Object.assign(new ProspectTabExtension(), ext);
         case ShellExtensionType.APPLICATION:
           return Object.assign(new ApplicationShellExtension(), ext);
+        case ShellExtensionType.COMPANION:
+          return Object.assign(new CompanionShellExtension(), ext);
+        case ShellExtensionType.TOOL:
+          return Object.assign(new ToolShellExtension(), ext);
+        case ShellExtensionType.ACTION:
+          return Object.assign(new ActionShellExtension(), ext);
         default:
           throw new Error("Can't hydrate extension " + JSON.stringify(ext));
       }

@@ -11,7 +11,14 @@ export interface ManifestV1 {
   title: LocalizedString;
   description: LocalizedString;
   host: {
-    type: 'tab-opportunity' | 'tab-prospect' | 'tab-account' | 'left-side-menu';
+    type:
+      | 'tab-opportunity'
+      | 'tab-prospect'
+      | 'tab-account'
+      | 'left-side-menu'
+      | 'shell-companion'
+      | 'shell-tool'
+      | 'shell-action';
     url: string;
     icon: string;
     environment: ManifestHostEnvironment;

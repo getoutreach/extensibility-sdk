@@ -126,10 +126,12 @@ describe('manifest tests', () => {
   describe('categories', () => {
     test('no categories section is not acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      delete manifest.store.categories;
+      manifest.store.categories = [];
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Categories section is missing');
+      expect(issues[0]).toBe(
+        'There are no categories selected for addon. Value: '
+      );
     });
     test('empty categories section is not acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
@@ -145,7 +147,7 @@ describe('manifest tests', () => {
   describe('medias', () => {
     test('no medias section is acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      delete manifest.store.medias;
+      manifest.store.medias = [];
       var issues = validate(manifest);
       expect(issues.length).toBe(0);
     });
