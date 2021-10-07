@@ -117,7 +117,11 @@ export { ShellExtension } from './manifest/extensions/shell/ShellExtension';
 export { DecorationStyle } from './manifest/extensions/shell/DecorationStyle';
 export { ShellExtensionHost } from './manifest/extensions/shell/ShellExtensionHost';
 export { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
+export { ActionShellExtension } from './manifest/extensions/shell/types/ActionShellExtension';
 export { ApplicationShellExtension } from './manifest/extensions/shell/types/ApplicationShellExtension';
+export { CompanionShellExtension } from './manifest/extensions/shell/types/CompanionShellExtension';
+export { SidekickShellExtension } from './manifest/extensions/shell/types/SidekickShellExtension';
+export { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
 
 export { TabExtension } from './manifest/extensions/tabs/TabExtension';
 export { TabExtensionType } from './manifest/extensions/tabs/TabExtensionType';

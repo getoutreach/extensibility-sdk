@@ -148,8 +148,9 @@ export class ManifestTranslator {
       configuration: firstExt.configuration,
     };
 
-    let extension: ApplicationShellExtension | TabExtension;
     appManifests.forEach((ext) => {
+      let extension: ApplicationShellExtension | TabExtension;
+
       if (ext.host.type === 'left-side-menu') {
         extension = new ApplicationShellExtension();
         extension.host = new ShellExtensionHost();

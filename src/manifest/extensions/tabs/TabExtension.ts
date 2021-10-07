@@ -83,7 +83,7 @@ export class TabExtension extends Extension implements IHostableExtension {
         });
       });
 
-      //2. complete the tokenize url with contextual data of host url and notifications url
+      // 2. complete the tokenize url with contextual data of host url and notifications url
       this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
     } catch (e) {
       logger.current.log({
