@@ -9,21 +9,21 @@ import { DecorationStyle } from '../src';
 
 describe('ShellExtension init tests', () => {
   test('init will tokenize host url', () => {
-    const tabExtension = getValidShellApplicationExtension();
-    tabExtension.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
-    tabExtension.init(getOutreachContext());
+    const shellExt = getValidShellApplicationExtension();
+    shellExt.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
+    shellExt.init(getOutreachContext());
 
-    expect(tabExtension.host.url).toBe(
+    expect(shellExt.host.url).toBe(
       'https://app-host.com/opp-id-123?usr=usr-id-123'
     );
   });
 
   test('init will tokenize notification url', () => {
-    const tabExtension = getValidShellApplicationExtension();
-    tabExtension.host.notificationsUrl =
+    const shellExt = getValidShellApplicationExtension();
+    shellExt.host.notificationsUrl =
       'https://app-host.com/{opp.id}?usr={usr.id}';
-    tabExtension.init(getOutreachContext());
-    expect(tabExtension.host.notificationsUrl).toBe(
+    shellExt.init(getOutreachContext());
+    expect(shellExt.host.notificationsUrl).toBe(
       'https://app-host.com/opp-id-123?usr=usr-id-123'
     );
   });
@@ -31,40 +31,40 @@ describe('ShellExtension init tests', () => {
 
 describe('ShellExension validate tests', () => {
   test('title is optional', () => {
-    const tabExtension = getValidShellApplicationExtension();
-    delete tabExtension.title;
-    var issues = tabExtension.validate();
+    const shellExt = getValidShellApplicationExtension();
+    delete shellExt.title;
+    var issues = shellExt.validate();
     expect(issues.length).toBe(0);
   });
 
   describe('host', () => {
     test('host has to be defined', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      delete (tabExtension as any).host;
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      delete (shellExt as any).host;
+      var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host section is missing.');
     });
 
     test('host.url - only url should be acceptable', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      tabExtension.host.url = 'BANANAS';
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      shellExt.host.url = 'BANANAS';
+      var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host url is invalid. Value: BANANAS');
     });
 
     test('host.url - tokenized url should be acceptable', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      tabExtension.host.url = 'https://tokenizedurl.com/?uid={usr.id}';
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      shellExt.host.url = 'https://tokenizedurl.com/?uid={usr.id}';
+      var issues = shellExt.validate();
       expect(issues.length).toBe(0);
     });
 
     test('host.icon - only url should be acceptable', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      tabExtension.host.icon = 'bananas';
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      shellExt.host.icon = 'bananas';
+      var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
         'Host icon definition is invalid url. Value: bananas'
@@ -72,25 +72,24 @@ describe('ShellExension validate tests', () => {
     });
 
     test('only valid type should be acceptable', () => {
-      const tabExtension =
-        getValidShellApplicationExtension() as ShellExtension;
-      tabExtension.type = 'BANANAS' as any;
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension() as ShellExtension;
+      shellExt.type = 'BANANAS' as any;
+      var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host type  is invalid. Value: BANANAS');
     });
 
     test('host.notificationUrl - is optional property', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      delete tabExtension.host.notificationsUrl;
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      delete shellExt.host.notificationsUrl;
+      var issues = shellExt.validate();
       expect(issues.length).toBe(0);
     });
 
     test('host.notificationUrl - only url should be acceptable', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      tabExtension.host.notificationsUrl = 'bananas';
-      var issues = tabExtension.validate();
+      const shellExt = getValidShellApplicationExtension();
+      shellExt.host.notificationsUrl = 'bananas';
+      var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
         'Notifications url definition is invalid url. Value: bananas'
@@ -100,8 +99,8 @@ describe('ShellExension validate tests', () => {
 
   describe('context', () => {
     test('only valid application contexts should be acceptable for applicatition tab', () => {
-      const tabExtension = getValidShellApplicationExtension();
-      tabExtension.context = [
+      const shellExt = getValidShellApplicationExtension();
+      shellExt.context = [
         'bananas',
         UserContextKeys.ID,
         OpportunityContextKeys.ID,
@@ -109,7 +108,7 @@ describe('ShellExension validate tests', () => {
         'apples',
       ] as any;
 
-      var issues = tabExtension.validate();
+      var issues = shellExt.validate();
 
       expect(issues.length).toBe(3);
       expect(issues[0]).toBe(

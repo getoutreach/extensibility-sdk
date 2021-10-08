@@ -1,4 +1,8 @@
-import { CompanionShellExtension, ToolShellExtension } from '..';
+import {
+  ActionShellExtension,
+  CompanionShellExtension,
+  ToolShellExtension,
+} from '..';
 import { AccountContextKeys } from '../context/keys/AccountContextKeys';
 import { ClientContextKeys } from '../context/keys/ClientContextKeys';
 import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
@@ -25,13 +29,16 @@ import { ManifestV1 } from './ManifestV1';
 export class ManifestTranslator {
   public static getAddonManifest(
     app: Application,
-    ext: TabExtension | ApplicationShellExtension
+    ext: TabExtension | ShellExtension
   ): ManifestV1 | null {
     let manifestType:
       | 'tab-opportunity'
       | 'tab-prospect'
       | 'tab-account'
       | 'left-side-menu'
+      | 'shell-companion'
+      | 'shell-tool'
+      | 'shell-action'
       | null = null;
 
     switch (ext.type) {
@@ -46,6 +53,15 @@ export class ManifestTranslator {
         break;
       case TabExtensionType.OPPORTUNITY:
         manifestType = 'tab-opportunity';
+        break;
+      case ShellExtensionType.COMPANION:
+        manifestType = 'shell-companion';
+        break;
+      case ShellExtensionType.TOOL:
+        manifestType = 'shell-tool';
+        break;
+      case ShellExtensionType.ACTION:
+        manifestType = 'shell-action';
         break;
     }
 
@@ -90,7 +106,7 @@ export class ManifestTranslator {
         notificationsUrl: appExt ? ext.host.notificationsUrl || '' : '',
         type: manifestType,
         environment: {
-          fullWidth: tabExt ? ext.fullWidth : true,
+          fullWidth: tabExt,
           decoration: appExt ? ext.host.decoration : 'none',
         },
       },
@@ -156,6 +172,7 @@ export class ManifestTranslator {
         case 'left-side-menu':
         case 'shell-companion':
         case 'shell-tool':
+        case 'shell-action':
           extension = this.processShellExtensions(ext);
           break;
         case 'tab-account':
@@ -163,6 +180,8 @@ export class ManifestTranslator {
         case 'tab-prospect':
           extension = this.processTabExtensions(ext);
           break;
+        default:
+          throw new Error('Unsupported type:' + ext.host.type);
       }
 
       extension.identifier = ext.identifier;
@@ -246,6 +265,9 @@ export class ManifestTranslator {
         break;
       case 'shell-tool':
         extension = new ToolShellExtension();
+        break;
+      case 'shell-action':
+        extension = new ActionShellExtension();
         break;
       default:
         throw new Error('Unsupported shell extension type:' + ext.host.type);
