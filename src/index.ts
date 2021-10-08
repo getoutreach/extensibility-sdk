@@ -47,6 +47,8 @@ import { ApplicationShellExtension } from './manifest/extensions/shell/types/App
 import { CompanionShellExtension } from './manifest/extensions/shell/types/CompanionShellExtension';
 import { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
 import { ActionShellExtension } from './manifest/extensions/shell/types/ActionShellExtension';
+import { FloatShellExtension } from './manifest/extensions/shell/types/FloatShellExtension';
+import { ButtonShellExtension } from './manifest/extensions/shell/types/ButtonShellExtension';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -750,6 +752,10 @@ class ExtensibilitySdk {
           return Object.assign(new ToolShellExtension(), ext);
         case ShellExtensionType.ACTION:
           return Object.assign(new ActionShellExtension(), ext);
+        case ShellExtensionType.FLOAT:
+          return Object.assign(new FloatShellExtension(), ext);
+        case ShellExtensionType.BUTTON:
+          return Object.assign(new ButtonShellExtension(), ext);
         default:
           throw new Error("Can't hydrate extension " + JSON.stringify(ext));
       }

@@ -25,6 +25,8 @@ import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
+import { ButtonShellExtension } from '../manifest/extensions/shell/types/ButtonShellExtension';
+import { FloatShellExtension } from '../manifest/extensions/shell/types/FloatShellExtension';
 
 export class ManifestTranslator {
   public static getAddonManifest(
@@ -39,6 +41,8 @@ export class ManifestTranslator {
       | 'shell-companion'
       | 'shell-tool'
       | 'shell-action'
+      | 'shell-button'
+      | 'shell-float'
       | null = null;
 
     switch (ext.type) {
@@ -62,6 +66,12 @@ export class ManifestTranslator {
         break;
       case ShellExtensionType.ACTION:
         manifestType = 'shell-action';
+        break;
+      case ShellExtensionType.BUTTON:
+        manifestType = 'shell-button';
+        break;
+      case ShellExtensionType.FLOAT:
+        manifestType = 'shell-float';
         break;
     }
 
@@ -173,6 +183,8 @@ export class ManifestTranslator {
         case 'shell-companion':
         case 'shell-tool':
         case 'shell-action':
+        case 'shell-button':
+        case 'shell-float':
           extension = this.processShellExtensions(ext);
           break;
         case 'tab-account':
@@ -268,6 +280,12 @@ export class ManifestTranslator {
         break;
       case 'shell-action':
         extension = new ActionShellExtension();
+        break;
+      case 'shell-button':
+        extension = new ButtonShellExtension();
+        break;
+      case 'shell-float':
+        extension = new FloatShellExtension();
         break;
       default:
         throw new Error('Unsupported shell extension type:' + ext.host.type);

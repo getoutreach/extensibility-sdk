@@ -18,7 +18,9 @@ export interface ManifestV1 {
       | 'left-side-menu'
       | 'shell-companion'
       | 'shell-tool'
-      | 'shell-action';
+      | 'shell-action'
+      | 'shell-button'
+      | 'shell-float';
     url: string;
     icon: string;
     environment: ManifestHostEnvironment;
