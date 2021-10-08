@@ -19,6 +19,7 @@ import { TabExtension } from '../manifest/extensions/tabs/TabExtension';
 import { TabExtensionType } from '../manifest/extensions/tabs/TabExtensionType';
 import { AccountTabExtension } from '../manifest/extensions/tabs/types/AccountTabExtension';
 import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/OpportunityTabExtension';
+import { ProspectActionTabExtension } from '../manifest/extensions/tabs/types/ProspectActionTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
@@ -178,6 +179,7 @@ export class ManifestTranslator {
         case 'tab-account':
         case 'tab-opportunity':
         case 'tab-prospect':
+        case 'tab-prospect-action':
           extension = this.processTabExtensions(ext);
           break;
         default:
@@ -208,6 +210,9 @@ export class ManifestTranslator {
         break;
       case TabExtensionType.PROSPECT:
         extension = new ProspectTabExtension();
+        break;
+      case TabExtensionType.PROSPECT_ACTION:
+        extension = new ProspectActionTabExtension();
         break;
       default:
         throw new Error('Unknown v1 host type:' + ext.host.type);
@@ -269,6 +274,7 @@ export class ManifestTranslator {
       case 'shell-action':
         extension = new ActionShellExtension();
         break;
+
       default:
         throw new Error('Unsupported shell extension type:' + ext.host.type);
     }

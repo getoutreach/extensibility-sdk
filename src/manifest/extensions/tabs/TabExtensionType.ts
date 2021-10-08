@@ -25,4 +25,9 @@ export enum TabExtensionType {
    * Sidebar shown on the right side of the tabs
    */
   SIDEBAR = 'tab-sidebar',
+
+  /**
+   * Sidebar action button shown in the tab right sidebar
+   */
+  PROSPECT_ACTION = 'tab-prospect-action',
 }
