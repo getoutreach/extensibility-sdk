@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 /**
  * List of supported addon types.
  * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
@@ -15,6 +16,10 @@ export enum ShellExtensionType {
    * Application extension (a.k.a 'left side menu addon')
    */
   APPLICATION = 'shell-application',
+
+  BUTTON = 'shell-button',
+
+  FLOAT = 'shell-float',
 
   /**
    * Companion extension - a separate sidebar on the right side of the screen.
