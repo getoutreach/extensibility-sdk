@@ -73,6 +73,15 @@ describe('parmeterization tests', () => {
       'https://someurl.com/test?usr.id=uid-123&opp.id=112233'
     );
   });
+
+  test('parametarization preserves fragment', () => {
+    const url =
+      'https://someurl.com/webapp/index_dev.html?hc_reset#/Account/159978';
+    const result = utils.parameterizeUrl(url, queryParams);
+    expect(result).toBe(
+      'https://someurl.com/webapp/index_dev.html?hc_reset&usr.id=uid-123&opp.id=112233#/Account/159978'
+    );
+  });
 });
 
 describe('getUrlDomain tests', () => {

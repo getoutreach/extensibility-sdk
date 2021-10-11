@@ -55,11 +55,11 @@ export class utils {
 
     const hostParams = new URLSearchParams(hostUrl.searchParams);
     params.forEach((param) => hostParams.append(param.key, param.value));
-    const hostParamsString = hostParams.toString();
+    const hostParamsString = hostParams.toString().replace('=&', '&');
 
     return `${utils.getUrlDomain(hostUrl)}${
       hostUrl.pathname
-    }?${hostParamsString}`;
+    }?${hostParamsString}${hostUrl.hash}`;
   };
 
   public static getUrlDomain = (url: URL): string => {
