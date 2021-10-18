@@ -28,11 +28,7 @@
               "format": "email"
             }
           },
-          "required": [
-            "websiteUrl",
-            "company",
-            "email"
-          ]
+          "required": ["websiteUrl", "company", "email"]
         },
         "categories": {
           "type": "array",
@@ -47,9 +43,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "headline": {
           "type": "object",
@@ -58,9 +52,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "description": {
           "type": "object",
@@ -69,9 +61,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "identifier": {
           "type": "string",
@@ -81,11 +71,7 @@
         },
         "store": {
           "type": "string",
-          "enum": [
-            "private",
-            "public",
-            "internal"
-          ]
+          "enum": ["private", "public", "internal"]
         },
         "version": {
           "type": "string",
@@ -112,14 +98,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": [
-                  "image",
-                  "video",
-                  "url",
-                  "options",
-                  "select",
-                  "string"
-                ]
+                "enum": ["image", "video", "url", "options", "select", "string"]
               },
               "websiteUrl": {
                 "type": "string",
@@ -138,14 +117,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": [
-                  "number",
-                  "date",
-                  "url",
-                  "options",
-                  "select",
-                  "string"
-                ]
+                "enum": ["number", "date", "url", "options", "select", "string"]
               },
               "required": {
                 "type": "boolean"
@@ -174,11 +146,7 @@
                 }
               }
             },
-            "required": [
-              "key",
-              "type",
-              "text"
-            ]
+            "required": ["key", "type", "text"]
           }
         }
       },
@@ -233,10 +201,19 @@
             "type": "string",
             "enum": [
               "tab-account",
+              "tab-account-sidebar",
+              "tab-account-action",
               "tab-opportunity",
+              "tab-opportunity-sidebar",
+              "tab-opportunity-action",
               "tab-prospect",
-              "left-side-menu",
-              "application"
+              "tab-prospect-sidebar",
+              "tab-prospect-action",
+              "shell-action",
+              "shell-application",
+              "shell-companion",
+              "shell-knowledge",
+              "shell-tool"
             ]
           },
           "host": {
@@ -251,10 +228,7 @@
                 "format": "uri"
               }
             },
-            "required": [
-              "icon",
-              "url"
-            ]
+            "required": ["icon", "url"]
           },
           "environment": {
             "type": "object",
@@ -274,18 +248,9 @@
             }
           }
         },
-        "required": [
-          "identifier",
-          "type",
-          "version",
-          "host",
-          "environment"
-        ]
+        "required": ["identifier", "type", "version", "host", "environment"]
       }
     }
   },
-  "required": [
-    "app",
-    "ext"
-  ]
+  "required": ["app", "ext"]
 }
