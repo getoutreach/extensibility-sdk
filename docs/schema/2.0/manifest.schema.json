@@ -20,6 +20,10 @@
               "type": "string",
               "format": "uri"
             },
+            "supportUrl": {
+              "type": "string",
+              "format": "uri"
+            },            
             "company": {
               "type": "string"
             },
@@ -28,7 +32,7 @@
               "format": "email"
             }
           },
-          "required": ["websiteUrl", "company", "email"]
+          "required": ["websiteUrl", "privacyUrl", "termsOfUseUrl", "company", "email"]
         },
         "categories": {
           "type": "array",

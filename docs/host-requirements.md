@@ -8,7 +8,7 @@ Table of content:
 
 - [Content Security Policies (CSP)](#content-security-policies-csp)
 - [Valid response codes](#valid-response-codes)
-- [Expected response times](#expected-response-times)
+- [Timeouts](#timeouts)
 
 ## Content Security Policies (CSP)
 
@@ -24,8 +24,10 @@ content-security-policy: frame-ancestor 'self' *.outreach.io
 
 In most cases, the response will contain 200 (OK) status code, but as described in [url parsing](URL-parsing.md) document, it can sometimes result in 404 (NOT FOUND) status code (add-on host has no content to serve for provided Outreach context) and 302 (FOUND) in case additional Outreach needs to make a further request for the add-on to works properly.
 
-Outreach host will treat any other response codes as invalid and not load the add-on in that case.
+The outreach host will treat any other response codes as invalid and not load the add-on in that case.
 
-## Expected response times
+## Timeouts
 
-Every add-on needs to provide a response in no more than 5 seconds to protect the user experience of Outreach users. If the add-on does not produce a valid response in that time, it will not be loaded.
+Every add-on needs to provide a response in no more than 10 seconds to protect the user experience of Outreach users. 
+If the add-on does not produce a valid response in that time, it will not be loaded, and instead, an error screen will be shown to the end-user
+![alt text](assets/timeout-error.png "Timeout error screen")

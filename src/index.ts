@@ -248,19 +248,6 @@ class ExtensibilitySdk {
   }
 
   /**
-   * Informs the interested parties that sdk is initialized and
-   * ready to receive messages from host and other participants.
-   *
-   * @memberof ExtensibilitySdk
-   * @deprecated Since version 0.10. Will be removed in version 1.0. Use instead await sdk.init()
-   */
-  public ready() {
-    console.warn('Ready function is depricated. Use instead await sdk.init()');
-
-    this.init();
-  }
-
-  /**
    * Informs the host that addon needs to be reinitialized with
    * fresh init context in order to operate properly
    * @memberof ExtensibilitySdk

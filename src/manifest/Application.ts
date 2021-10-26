@@ -60,4 +60,15 @@ export class Application {
    * @memberof Application
    */
   public store: ManifestStore;
+
+  /**
+   * An optional property defining if the application is created without using the extensibility SDK
+   * by manually parsing of the iframe URL containing the context value parameters.
+   *
+   * If omitted in manifest, the default value is false.
+   *
+   * @type {boolean}
+   * @memberof Application
+   */
+  public notUsingSdk?: boolean;
 }

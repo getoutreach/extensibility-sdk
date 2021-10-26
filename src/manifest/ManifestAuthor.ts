@@ -6,7 +6,7 @@
  */
 export class ManifestAuthor {
   /**
-   * Name of the company publishing addon.
+   * Name of the company publishing application.
    *
    * @type {string}
    * @memberof ManifestAuthor
@@ -23,7 +23,7 @@ export class ManifestAuthor {
 
   /**
    *
-   * Website of the addon creator.
+   * Website of the application creator.
    *
    * @type {string}
    * @memberof ManifestAuthor
@@ -31,7 +31,7 @@ export class ManifestAuthor {
   websiteUrl: string;
 
   /**
-   * Url of the addon creator privacy policy.
+   * Url of the application creator privacy policy.
    *
    * @type {string}
    * @memberof ManifestAuthor
@@ -45,4 +45,12 @@ export class ManifestAuthor {
    * @memberof ManifestAuthor
    */
   termsOfUseUrl: string;
+
+  /**
+   * Url of the dedicated application support page
+   *
+   * @type {string}
+   * @memberof ManifestAuthor
+   */
+  supportUrl: string;
 }
