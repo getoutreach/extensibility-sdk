@@ -40,7 +40,7 @@ Table of content:
       - [Host (tab extension)](#host-tab-extension)
         - [url](#url)
         - [icon](#icon)
-      - [type](#type)
+      - [type](#type-1)
       - [notificationsUrl](#notificationsurl)
 
 Manifest is a simple JSON file that the application developer uploads to Outreach and which contains all of the data needed for Outreach to host the application in an iframe.
@@ -64,6 +64,7 @@ Here is the sample manifest file of the hello world application having two exten
       "company": "Acme ltd",
       "email": "author@someurl.com",
       "privacyUrl": "https://someurl.com/privacy",
+      "supportUrl": "https://someurl.com/support",
       "termsOfUseUrl": "https://someurl.com/tos",
       "websiteUrl": "https://someurl.com/"
     },
@@ -159,7 +160,7 @@ A manifest can be validated using the [online tool](https://www.jsonschemavalida
 
 ### author
 
-This section contains information to be presented to a user of the application in the marketplace and on the consent screen: application creator company name, website URL, privacy policy document URL, and terms of use document URL.
+This section contains information to be presented to a user of the application in the marketplace and on the consent screen: application creator company name, website URL, support URL, privacy policy document URL, and terms of use document URL.
 
 ### categories
 

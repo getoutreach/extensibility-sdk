@@ -1,4 +1,6 @@
-# Query parameters parsing
+# URL parsing integration
+
+## Retrieving the contextual values from the url
 
 Any time when the Outreach loads an application, it will set as iframe source an URL created out of:
 
@@ -16,4 +18,32 @@ That's how the resulting URL which Outreach will set as a source of iframe will 
     https://addon-host.com/something?locale=en&uid=a1234&opp.id=123456
 ```
 
-When the application loading request comes, the application has to parse out of request query parameter values and based on them to return some of the next responses as described in [url parsing section](url-parsing.md)
+When the application loading request comes, the application has to parse out of request query parameter values and, based on them to return some of the next responses as described in [url parsing section](url-parsing.md)
+
+## Timeout handling
+
+As mentioned in [hosting requirements](host-requirements.md#timeouts), the Outreach application will show an error screen if the application doesn't respond in 10 seconds with a READY message.
+
+![alt text](assets/timeout-error.png "Timeout error screen")
+
+Usually, suppose the application is implemented based on manual URL parsing. In that case, it doesn't reference this SDK, and thus that READY message event is not sent, which leads to an error screen even if the application is working fine.
+
+There are two ways to tackle this if the application code can be modified:
+
+1. reference the SDK and await sdk.init(), which will send a READY message without referencing the SDK,
+2. manually send the event by implementing this code
+
+```javascript
+const addonHostOrigin = ‘https://app-hosting-domain.com;
+window.parent.postMessage({type: ‘cxt:sdk:ready’, version: 2}, addonHostOrigin)
+```
+
+In the case when modifications to the application page are not possible or practical, an URL parsing only application manifest has to be explicitly marked as "not utilizing the SDK," so the Outreach host will skip the timeout check.
+
+```json
+{
+  ...
+  notUsingSdk: false
+  ...
+}
+```

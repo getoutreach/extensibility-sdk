@@ -3,7 +3,7 @@ import { ILogger } from './ILogger';
 
 export default class logger {
   /**
-   * Loger instance used for publishing SDK event informations
+   * Logger instance used for publishing SDK event information
    * @type {ILogger}
    * @memberof Logger
    */
