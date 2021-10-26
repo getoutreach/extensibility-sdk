@@ -117,6 +117,7 @@ export class ManifestTranslator {
       version: app.store.version,
       api: app.api,
       medias: app.store.medias,
+      notUsingSdk: app.notUsingSdk,
     };
 
     return manifestV1;
@@ -142,6 +143,7 @@ export class ManifestTranslator {
     }
 
     const app: Application = new Application();
+    app.notUsingSdk = firstExt.notUsingSdk;
     app.store = new ManifestStore();
     app.store.author = new ManifestAuthor();
     app.store.author.company = firstExt.author.company || 'N/A';

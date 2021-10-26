@@ -41,4 +41,6 @@ export interface ManifestV1 {
   configuration: ConfigurationItem[];
 
   medias?: ManifestMedia[];
+
+  notUsingSdk?: boolean;
 }

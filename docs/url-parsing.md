@@ -40,7 +40,7 @@ window.parent.postMessage({type: ‘cxt:sdk:ready’, version: 2}, addonHostOrig
 
 Only in the extreme case when modifications to the application page are not possible and recomended solutions are not possible, application creator can update manifest with information that application is "not using the SDK," so the Outreach host will skip the timeout check. This is not recomended, as Outreach host will not have any information on application QoS and it would have to be approved as an exception during the application review process.
 
-```json
+```javascript
 {
   ...
   notUsingSdk: false
