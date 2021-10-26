@@ -28,7 +28,7 @@ As mentioned in [hosting requirements](host-requirements.md#timeouts), the Outre
 
 Usually, suppose the application is implemented based on manual URL parsing. In that case, it doesn't reference this SDK, and thus that READY message event is not sent, which leads to an error screen even if the application is working fine.
 
-There are two ways to tackle this if the application code can be modified:
+There are two recommended solutions to tackle this if the application code can be modified:
 
 1. reference the SDK and await sdk.init(), which will send a READY message without referencing the SDK,
 2. manually send the event by implementing this code
@@ -38,12 +38,12 @@ const addonHostOrigin = ‘https://app-hosting-domain.com;
 window.parent.postMessage({type: ‘cxt:sdk:ready’, version: 2}, addonHostOrigin)
 ```
 
-In the case when modifications to the application page are not possible or practical, an URL parsing only application manifest has to be explicitly marked as "not utilizing the SDK," so the Outreach host will skip the timeout check.
+Only in the extreme case when modifications to the application page are not possible and recomended solutions are not possible, application creator can update manifest with information that application is "not using the SDK," so the Outreach host will skip the timeout check. This is not recomended, as Outreach host will not have any information on application QoS and it would have to be approved as an exception during the application review process.
 
 ```json
 {
   ...
   notUsingSdk: false
   ...
-}
+} 
 ```
