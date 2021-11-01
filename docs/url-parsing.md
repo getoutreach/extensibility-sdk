@@ -26,7 +26,7 @@ As mentioned in [hosting requirements](host-requirements.md#timeouts), the Outre
 
 ![alt text](assets/timeout-error.png "Timeout error screen")
 
-Usually, suppose the application is implemented based on manual URL parsing. In that case, it doesn't reference this SDK, and thus that READY message event is not sent, which leads to an error screen even if the application is working fine.
+A lot of  the applications are implemented based on manual URL parsing. In that case, they doesn't reference the SDK, and thus the READY message event is not sent, which leads to an error screen even if the application is working fine.
 
 There are two recommended solutions to tackle this if the application code can be modified:
 
