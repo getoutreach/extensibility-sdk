@@ -288,6 +288,7 @@ const getNewValidApplicationManifest = (): Application => {
       email: 'author@someurl.com',
       company: 'Acme ltd',
       privacyUrl: 'https://someurl.com/privacy',
+      supportUrl: 'https://someurl.com/support',
       termsOfUseUrl: 'https://someurl.com/tos',
       websiteUrl: 'https://someurl.com/',
     },
