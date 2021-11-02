@@ -43,7 +43,7 @@ Only in the extreme case when modifications to the application page are not poss
 ```javascript
 {
   ...
-  notUsingSdk: false
+  notUsingSdk: true
   ...
 } 
 ```
