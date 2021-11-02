@@ -31,8 +31,8 @@ export abstract class Extension {
    * Definition of addon host
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
-   * @type {TabManifestHost}
-   * @memberof TabExtension
+   * @type {ExtensionHost}
+   * @memberof Extension
    */
   public host: ExtensionHost;
 

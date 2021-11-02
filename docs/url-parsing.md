@@ -26,7 +26,7 @@ As mentioned in [hosting requirements](host-requirements.md#timeouts), the Outre
 
 ![alt text](assets/timeout-error.png "Timeout error screen")
 
-A lot of  the applications are implemented based on manual URL parsing. In that case, they doesn't reference the SDK, and thus the READY message event is not sent, which leads to an error screen even if the application is working fine.
+A lot of the applications are implemented based on manual URL parsing. In that case, they don't reference the SDK, and thus the READY message event is not sent, which leads to an error screen even if the application is working fine.
 
 There are two recommended solutions to tackle this if the application code can be modified:
 
@@ -38,12 +38,12 @@ const addonHostOrigin = ‘https://app-hosting-domain.com;
 window.parent.postMessage({type: ‘cxt:sdk:ready’, version: 2}, addonHostOrigin)
 ```
 
-Only in the extreme case when modifications to the application page are not possible and recomended solutions are not possible, application creator can update manifest with information that application is "not using the SDK," so the Outreach host will skip the timeout check. This is not recomended, as Outreach host will not have any information on application QoS and it would have to be approved as an exception during the application review process.
+When the recommended solutions are not possible, the application creator can update the manifest with information that the application is "not using the SDK" and that the Outreach host will disable the timeout check. With this solution, the Outreach host will not have any information on application QoS, and it would have to be approved as an exception during the application review process.
 
 ```javascript
 {
   ...
-  notUsingSdk: true
+  disableTimeoutMonitoring: true
   ...
 } 
 ```
