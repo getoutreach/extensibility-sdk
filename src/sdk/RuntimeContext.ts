@@ -43,7 +43,19 @@ export class RuntimeContext {
   public sessionId: string;
 
   public theme: Theme = Theme.LIGHT;
-
+  /**
+   * Random value determining Outreach client id
+   *
+   * @type {string}
+   * @memberof RuntimeContext
+   */
+  public clientId!: string;
+  /**
+   * An outreach user guid identifier.
+   *
+   * @type {string}
+   * @memberof RuntimeContext
+   */
   public userIdentifier!: string;
 }
 
