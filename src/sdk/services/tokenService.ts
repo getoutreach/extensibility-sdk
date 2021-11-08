@@ -83,13 +83,13 @@ class TokenService {
     try {
       const r = await fetch(runtime.application.api.token, {
         method: 'POST',
-        // TODO: nimal, 8.10.2020 - xt-74 token endpoint authentication
         credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           userId: runtime.userIdentifier,
+          clientId: runtime.clientId,
         }),
       });
 
