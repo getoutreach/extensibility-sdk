@@ -12,7 +12,7 @@ Table of content:
     - [categories](#categories)
     - [description](#description)
     - [headline](#headline)
-    - [icon](#icon-of-application)
+    - [iconUrl](#icon-of-application)
     - [identifier](#identifier)
     - [locales](#locales)
     - [medias](#medias)
@@ -77,19 +77,19 @@ Here is the sample manifest file of the hello world application having two exten
     "headline": {
       "en": "Some short description (en)"
     },
-    "icon": "https://someurl.com/image.png",
+    "iconUrl": "https://someurl.com/image.png",
     "identifier": "app-identifier",
     "locales": [
       "en"
     ],
     "medias": [
       {
-        "uri": "https://someurl.com/image.png",
+        "url": "https://someurl.com/image.png",
         "title": "Our awesome extension",
         "type": "image"
       },
       {
-        "uri": "https://youtube.com/some_video",
+        "url": "https://youtube.com/some_video",
         "title": "Our awesome animation",
         "type": "video"
       }
@@ -198,7 +198,7 @@ Unique identifier of the application as defined by the application creator. The 
 
 ### icon (of application)
 
-Application icon shown in the Outreach Marketplace.
+URL of the Application icon shown in the Outreach Marketplace.
 
 ### locales
 

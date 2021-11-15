@@ -66,7 +66,7 @@ export class ManifestStore {
    * @type {string}
    * @memberof ManifestStore
    */
-  public icon: string;
+  public iconUrl: string;
 
   /**
    * Collection of zero or more manifest media file used in extension marketplace

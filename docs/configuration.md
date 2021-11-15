@@ -90,7 +90,7 @@ Type of the configuration value data defining the type of UI component used to c
 - string - regular input control
 - number - input type="number"
 - date - input type="date"
-- uri - input type="url"
+- url - input type="url"
 - options - multi-select control producing an array of option values
 - select - single select control selecting one of the possible configs
 

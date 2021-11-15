@@ -174,7 +174,7 @@ describe('manifest tests', () => {
         ];
         var issues = validate(manifest);
         expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Uri value is missing');
+        expect(issues[0]).toBe('Url value is missing');
       });
 
       test('Uri not a valid url', () => {
@@ -183,13 +183,13 @@ describe('manifest tests', () => {
           {
             title: 'Some title',
             type: 'image',
-            uri: 'not-a-valid-url',
+            url: 'not-a-valid-url',
           },
         ];
         var issues = validate(manifest);
         expect(issues.length).toBe(1);
         expect(issues[0]).toBe(
-          'Uri value is not a valid url. Value: not-a-valid-url'
+          'Url value is not a valid url. Value: not-a-valid-url'
         );
       });
 
@@ -199,7 +199,7 @@ describe('manifest tests', () => {
           {
             index: 0,
             type: 'image',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -214,7 +214,7 @@ describe('manifest tests', () => {
           {
             index: 0,
             title: 'Some title',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -230,7 +230,7 @@ describe('manifest tests', () => {
             index: 0,
             title: 'Some title',
             type: 'invalid-type',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -295,12 +295,12 @@ const getNewValidApplicationManifest = (): Application => {
     categories: [Category.ACCOUNT_BASED_MARKETING],
     medias: [
       {
-        uri: 'https://someurl.com/image.png',
+        url: 'https://someurl.com/image.png',
         title: 'Our awesome extension',
         type: 'image',
       },
       {
-        uri: 'https://youtube.com/some_video',
+        url: 'https://youtube.com/some_video',
         title: 'Our awesome animation',
         type: 'video',
       },
@@ -312,7 +312,7 @@ const getNewValidApplicationManifest = (): Application => {
       en: 'Some description (en)',
     },
     identifier: 'app-identifier',
-    icon: 'https://someurl.com/icon',
+    iconUrl: 'https://someurl.com/icon',
     locales: [Locale.ENGLISH],
     type: StoreType.PRIVATE,
     title: {
