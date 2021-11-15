@@ -25,10 +25,10 @@ export const validate = (application: Application): string[] => {
         }
       });
     }
-    if (!utils.urlValidation(application.api.token)) {
+    if (!utils.urlValidation(application.api.tokenUrl)) {
       issues.push(
         'Manifest Api section needs to have a valid token endpoint url. Value: ' +
-          application.api.token
+          application.api.tokenUrl
       );
     }
 
@@ -36,17 +36,17 @@ export const validate = (application: Application): string[] => {
       issues.push('Manifest Api section needs to have applicationId value.');
     }
 
-    if (!utils.urlValidation(application.api.redirectUri)) {
+    if (!utils.urlValidation(application.api.redirectUrl)) {
       issues.push(
         'Manifest Api section needs to have a valid redirect url. Value: ' +
-          application.api.redirectUri
+          application.api.redirectUrl
       );
     }
 
-    if (!utils.urlValidation(application.api.connect)) {
+    if (!utils.urlValidation(application.api.connectUrl)) {
       issues.push(
         'Manifest Api section needs to have a valid connect endpoint url. Value: ' +
-          application.api.connect
+          application.api.connectUrl
       );
     }
   }
@@ -105,12 +105,12 @@ export const validate = (application: Application): string[] => {
       );
     } else {
       application.store.medias.forEach((media) => {
-        if (!media.uri) {
-          issues.push('Uri value is missing');
+        if (!media.url) {
+          issues.push('Url value is missing');
         } else {
-          const validUrl = utils.urlValidation(media.uri);
+          const validUrl = utils.urlValidation(media.url);
           if (!validUrl) {
-            issues.push('Uri value is not a valid url. Value: ' + media.uri);
+            issues.push('Url value is not a valid url. Value: ' + media.url);
           }
         }
 

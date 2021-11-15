@@ -137,8 +137,16 @@
     "api": {
       "type": "object",
       "properties": {
-        "token": {
+        "applicationId": {
           "type": "string"
+        },
+        "connectUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "redirectUrl": {
+          "type": "string",
+          "format": "uri"
         },
         "scopes": {
           "type": "array",
@@ -146,15 +154,9 @@
             "type": "string"
           }
         },
-        "applicationId": {
-          "type": "string"
-        },
-        "redirectUri": {
+        "tokenUrl": {
           "type": "string",
           "format": "uri"
-        },
-        "connect": {
-          "type": "string"
         }
       }
     },

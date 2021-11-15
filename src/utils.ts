@@ -117,8 +117,8 @@ export class utils {
 
     // connect endpoint is posting a message with token to addon so it is valid origin
     // see: https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#connect-endpoint
-    const connectUri = new URL(runtime.application.api.connect);
-    const connectOrigin = utils.getUrlDomain(connectUri);
+    const connectUrl = new URL(runtime.application.api.connectUrl);
+    const connectOrigin = utils.getUrlDomain(connectUrl);
     const connectMessage = origin === connectOrigin;
     if (!connectMessage) {
       logger.current.log({

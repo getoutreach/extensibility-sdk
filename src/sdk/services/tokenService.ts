@@ -81,7 +81,7 @@ class TokenService {
     }
 
     try {
-      const r = await fetch(runtime.application.api.token, {
+      const r = await fetch(runtime.application.api.tokenUrl, {
         method: 'POST',
         credentials: 'omit',
         headers: {

@@ -129,10 +129,10 @@ describe('Manifest translator tests', () => {
 const v1Manifests = [
   {
     api: {
-      token: 'https://cxt-demo.azurewebsites.net/token',
+      tokenUrl: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read', 'prospects.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
-      redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
+      connectUrl: 'https://cxt-demo.azurewebsites.net/connect',
+      redirectUrl: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },
     host: {
@@ -171,10 +171,10 @@ const v1Manifests = [
   } as ManifestV1,
   {
     api: {
-      token: 'https://cxt-demo.azurewebsites.net/token',
+      tokenUrl: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
-      redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
+      connectUrl: 'https://cxt-demo.azurewebsites.net/connect',
+      redirectUrl: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },
     host: {
@@ -206,10 +206,10 @@ const v1Manifests = [
   } as ManifestV1,
   {
     api: {
-      token: 'https://cxt-demo.azurewebsites.net/token',
+      tokenUrl: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read', 'opportunities.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
-      redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
+      connectUrl: 'https://cxt-demo.azurewebsites.net/connect',
+      redirectUrl: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },
     host: {

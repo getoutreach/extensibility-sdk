@@ -89,9 +89,9 @@ describe('manifest tests', () => {
       );
     });
 
-    test('redirectUri should be valid URL', () => {
+    test('redirectUrl should be valid URL', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.api!.redirectUri = 'bananas';
+      manifest.api!.redirectUrl = 'bananas';
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -102,7 +102,7 @@ describe('manifest tests', () => {
 
     test('token endpoint should be valid URL', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.api!.token = 'bananas';
+      manifest.api!.tokenUrl = 'bananas';
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -113,7 +113,7 @@ describe('manifest tests', () => {
 
     test('connect endpoint should be valid URL', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      manifest.api!.connect = 'bananas';
+      manifest.api!.connectUrl = 'bananas';
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -163,7 +163,7 @@ describe('manifest tests', () => {
     });
 
     describe('Invalid media file info is not acceptable', () => {
-      test('No uri', () => {
+      test('No url', () => {
         const manifest: Application = getNewValidApplicationManifest();
         manifest.store.medias = [
           {
@@ -174,22 +174,22 @@ describe('manifest tests', () => {
         ];
         var issues = validate(manifest);
         expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Uri value is missing');
+        expect(issues[0]).toBe('Url value is missing');
       });
 
-      test('Uri not a valid url', () => {
+      test('Url not a valid url', () => {
         const manifest: Application = getNewValidApplicationManifest();
         manifest.store.medias = [
           {
             title: 'Some title',
             type: 'image',
-            uri: 'not-a-valid-url',
+            url: 'not-a-valid-url',
           },
         ];
         var issues = validate(manifest);
         expect(issues.length).toBe(1);
         expect(issues[0]).toBe(
-          'Uri value is not a valid url. Value: not-a-valid-url'
+          'Url value is not a valid url. Value: not-a-valid-url'
         );
       });
 
@@ -199,7 +199,7 @@ describe('manifest tests', () => {
           {
             index: 0,
             type: 'image',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -214,7 +214,7 @@ describe('manifest tests', () => {
           {
             index: 0,
             title: 'Some title',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -230,7 +230,7 @@ describe('manifest tests', () => {
             index: 0,
             title: 'Some title',
             type: 'invalid-type',
-            uri: 'https://www.site.com/image.png',
+            url: 'https://www.site.com/image.png',
           } as any,
         ];
         var issues = validate(manifest);
@@ -295,12 +295,12 @@ const getNewValidApplicationManifest = (): Application => {
     categories: [Category.ACCOUNT_BASED_MARKETING],
     medias: [
       {
-        uri: 'https://someurl.com/image.png',
+        url: 'https://someurl.com/image.png',
         title: 'Our awesome extension',
         type: 'image',
       },
       {
-        uri: 'https://youtube.com/some_video',
+        url: 'https://youtube.com/some_video',
         title: 'Our awesome animation',
         type: 'video',
       },
@@ -324,7 +324,7 @@ const getNewValidApplicationManifest = (): Application => {
   application.api = {
     scopes: [Scopes.ACCOUNTS_ALL, Scopes.CALLS_ALL],
     applicationId: 'AbCd123456qW',
-    redirectUri: 'https://addon-host.com/hello-world',
+    redirectUrl: 'https://addon-host.com/hello-world',
     token: 'https://someurl.com/token',
     connect: 'https://someurl.com/connect',
   };

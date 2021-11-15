@@ -27,8 +27,8 @@ class OAuthService {
   private getOAuthAuthorizeUrl = (api: ManifestApi) => {
     const host = this.getOAuthHost();
     const scopes = encodeURIComponent(api.scopes.join(' '));
-    const redirectUri = encodeURIComponent(api.redirectUri);
-    return `${host}/oauth/authorize?client_id=${api.applicationId}&redirect_uri=${redirectUri}&response_type=code&scope=${scopes}`;
+    const redirectUrl = encodeURIComponent(api.redirectUrl);
+    return `${host}/oauth/authorize?client_id=${api.applicationId}&redirect_uri=${redirectUrl}&response_type=code&scope=${scopes}`;
   };
 
   private showPopup = (url: string, width: number, height: number) => {

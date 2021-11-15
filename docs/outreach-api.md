@@ -27,7 +27,7 @@ To enable obtaining that token, Outreach API supports OAuth flow where the Outre
 
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#initial-authentication-flow) will start.
 
-A request to the endpoint defined in [redirectUri](outreach-api.md#redirectUri) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with [Outreach application](manifest.md#applicationId), and Outreach OAuth app secret so a proper Outreach API access token and refresh tokens could be obtained.
+A request to the endpoint defined in [redirectUrl](outreach-api.md#redirectUrl) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with [Outreach application](manifest.md#applicationId), and Outreach OAuth app secret so a proper Outreach API access token and refresh tokens could be obtained.
 
 The add-on host will cache the retrieved tokens, so the next time user needs to obtain a new Outreach API access token, it doesn't have to go again through the consent flow.
 
@@ -43,8 +43,8 @@ As you can tell from the sequence diagram, there are a few steps "Add-on host AP
 2. If no token available, addon renders a "Login with Outreach" button and in click handler of that button invokes **sdk.authorize()** function
    - It will create a "cxt-sdk-user-{userId}" cookie which will contain clientId value needed in next authorization step
    - ClientId value is a random number value stored in browser local storage 
-   - Addon opens popup using the Outreach [API authentication URL](https://api.outreach.io/api/v2/docs#authentication). Constructing of this url relies on manifest.api section configuration: [applicationId](manifest.md#applicationid), [redirectUri](manifest.md#redirecturi) and [scopes](manifest.md#scopes) values.
-   - When user clicks **Authorize** button on [Outreach consent screen](assets/api-consent.png), Outreach will redirect to  **/authorize** endpoint on ([manifest.api.redirectUri](manifest.md#redirecturi)) address with a short living authorization code passed as query param.
+   - Addon opens popup using the Outreach [API authentication URL](https://api.outreach.io/api/v2/docs#authentication). Constructing of this url relies on manifest.api section configuration: [applicationId](manifest.md#applicationid), [redirectUrl](manifest.md#redirecturl) and [scopes](manifest.md#scopes) values.
+   - When user clicks **Authorize** button on [Outreach consent screen](assets/api-consent.png), Outreach will redirect to  **/authorize** endpoint on ([manifest.api.redirectli](manifest.md#redirecturl)) address with a short living authorization code passed as query param.
 
 3. Host **authorize endpoint** will then:
    - read the session context from request cookie "cxt-sdk-user": clientId.
@@ -88,11 +88,11 @@ With that add-on OAuth application created, you will have:
 
 - application identifier
 - application secret
-- redirect URI
+- redirect URL
 
-_The redirect URI can be the same as the add-on host URL defined in the manifest or a dedicated URL._
+_The redirect URL can be the same as the add-on host URL defined in the manifest or a dedicated URL._
 
-In order to get more info on your OAuth app settings or change a redirectUri value, don't hesitate to get in touch with the Outreach support team at cxt-sdk@outreach.io
+In order to get more info on your OAuth app settings or change a redirectUrl value, don't hesitate to get in touch with the Outreach support team at cxt-sdk@outreach.io
 
 ## Token endpoint
 
@@ -118,7 +118,7 @@ curl https://api.outreach.io/oauth/token
   -X POST
   -d client_id=<Application_Identifier>
   -d client_secret=<Application_Secret>
-  -d redirect_uri=<Application_Redirect_URI>
+  -d redirect_uri=<Application_Redirect_URL>
   -d grant_type=refresh_token
   -d refresh_token=<Refresh_Token>
 ```
@@ -156,7 +156,7 @@ The Outreach user will see an OAuth popup where he will be asked to approve acce
 
 ![alt text](assets/api-consent.png "API consent screen")
 
-Once a user consents on this screen by clicking **Authorize**, Outreach will request the address defined in the [manifest api.redirectUri](manifest.md#redirectUri) with a single additional parameter **"code"**. This parameter will contain a short-lived authorization token that should be parsed out of the query parameter and used to obtain the access and refresh tokens.
+Once a user consents on this screen by clicking **Authorize**, Outreach will request the address defined in the [manifest api.redirectUrl](manifest.md#redirectUrl) with a single additional parameter **"code"**. This parameter will contain a short-lived authorization token that should be parsed out of the query parameter and used to obtain the access and refresh tokens.
 
 ## Authorization endpoint
 
@@ -171,7 +171,7 @@ curl https://api.outreach.io/oauth/token
   -X POST
   -d client_id=<Application_Identifier>
   -d client_secret=<Application_Secret>
-  -d redirect_uri=<Application_Redirect_URI>
+  -d redirect_uri=<Application_Redirect_URL>
   -d grant_type=authorization_code
   -d code=<Authorization_Code>
   ```
@@ -195,7 +195,7 @@ When the add-on host has obtained this data, it needs to store access and refres
 
 The add-on host needs to know the Outreach user for whom these tokens should be cached to be used later to implement the caching.
 
-Considering that [manifest api.redirectUri](manifest.md#redirectUri) can not contain state parameters, Outreach addons SDK stores  {userId, clientId} values in **"cxt-sdk-user-v2"** cookie at the start of sdk.authorize() implementation. The values are stored as a JSON string so once read from the cookie they need to be parsed to JSON object.
+Considering that [manifest api.redirectUrl](manifest.md#redirectUrl) can not contain state parameters, Outreach addons SDK stores  {userId, clientId} values in **"cxt-sdk-user-v2"** cookie at the start of sdk.authorize() implementation. The values are stored as a JSON string so once read from the cookie they need to be parsed to JSON object.
 
 The add-on host implementing the caching should use BOTH the cookie clientId and userId values in determining the cache key to be used for storing retrieved refresh and access tokens.
 
@@ -224,10 +224,10 @@ Now when the add-on host obtains the access token and cached the refresh token, 
 To do that, the add-on host has to respond to the original request, with a [302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code with the [Location header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location) with the value of [manifest api connect endpoint](./manifest.md#connect)
 
  ``` http
- {MANIFEST.API.CONNECT} + "&token=<ACCESS_TOKEN>&expiresAt=<EXPIRES_AT>"
+ {MANIFEST.API.CONNECT_URL} + "&token=<ACCESS_TOKEN>&expiresAt=<EXPIRES_AT>"
 ```
 
-- MANIFEST.API.CONNECT - it is the connect endpoint URL.
+- MANIFEST.API.CONNECT_URL - it is the connect endpoint URL.
 - ACCESS_TOKEN - it is the value of the access token retrieved from the Outreach API
 - EXPIRES_AT - it is the value of expiration of the access token retrieved from Outreach API
 

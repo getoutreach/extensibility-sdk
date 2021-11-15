@@ -19,13 +19,13 @@ export class ManifestApi {
     applicationId: string;
 
     /**
-     * Outreach OAuth App redirect uri on which the Authorization endpoint is implemented.
+     * Outreach OAuth App redirect url on which the Authorization endpoint is implemented.
      *
-     * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#redirecturi
+     * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#redirecturl
      * @type {string}
      * @memberof ManifestApi
      */
-    redirectUri: string;
+    redirectUrl: string;
 
     /**
      * The list of scopes will be used for Outreach API authentication
@@ -39,17 +39,17 @@ export class ManifestApi {
     scopes: Scopes[];
 
     /**
-     * Address of the endpoint, which will return support refresh token flow.
+     * URL of the endpoint, which will return support refresh token flow.
      *
      * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#token
      * @type {string}
      * @memberof Api
      */
-    token: string;
+    tokenUrl: string;
 
     /**
      *
-     * Address of the connect endpoint, which will contain a page
+     * URL of the connect endpoint, which will contain a page
      * posting authentication token info back to addon page which
      * had opened the popup.
      *
@@ -57,5 +57,5 @@ export class ManifestApi {
      * @type {string}
      * @memberof Api
      */
-    connect: string;
+    connectUrl: string;
 }

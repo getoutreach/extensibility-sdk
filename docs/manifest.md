@@ -12,7 +12,7 @@ Table of content:
     - [categories](#categories)
     - [description](#description)
     - [headline](#headline)
-    - [icon](#icon-of-application)
+    - [iconUrl](#icon-of-application)
     - [identifier](#identifier)
     - [locales](#locales)
     - [medias](#medias)
@@ -20,10 +20,10 @@ Table of content:
     - [version](#version)
   - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
     - [applicationId](#applicationid)
-    - [redirectUri](#redirecturi)
+    - [redirectUrl](#redirecturl)
     - [scopes](#scopes)
-    - [token](#token)
-    - [connect](#connect)
+    - [tokenUrl](#tokenUrl)
+    - [connectUrl](#connectUrl)
   - [Configuration section ("configuration")](#configuration-section-configuration)
   - [Extensions section ("extensions")](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
@@ -77,19 +77,19 @@ Here is the sample manifest file of the hello world application having two exten
     "headline": {
       "en": "Some short description (en)"
     },
-    "icon": "https://someurl.com/image.png",
+    "iconUrl": "https://someurl.com/image.png",
     "identifier": "app-identifier",
     "locales": [
       "en"
     ],
     "medias": [
       {
-        "uri": "https://someurl.com/image.png",
+        "url": "https://someurl.com/image.png",
         "title": "Our awesome extension",
         "type": "image"
       },
       {
-        "uri": "https://youtube.com/some_video",
+        "url": "https://youtube.com/some_video",
         "title": "Our awesome animation",
         "type": "video"
       }
@@ -105,9 +105,9 @@ Here is the sample manifest file of the hello world application having two exten
       "calls.all"
     ],
     "applicationId": "AbCd123456qW",
-    "redirectUri": "https://application-host.com/hello-world",
-    "token": "https://someurl.com/token",
-    "connect": "https://someurl.com/connect"
+    "redirectUrl": "https://application-host.com/hello-world",
+    "tokenUrl": "https://someurl.com/token",
+    "connectUrl": "https://someurl.com/connect"
   },
   "configuration": [
     {
@@ -198,7 +198,7 @@ Unique identifier of the application as defined by the application creator. The 
 
 ### icon (of application)
 
-Application icon shown in the Outreach Marketplace.
+URL of the Application icon shown in the Outreach Marketplace.
 
 ### locales
 
@@ -225,7 +225,7 @@ If the application doesn't need access to outreach API, this section can be omit
 
 This is the value used for [API authentication flow](https://api.outreach.io/api/v2/docs#authentication)as client_id value.
 
-### redirectUri
+### redirectUrl
 
 This URL is defined in Outreach OAuth settings, which the authorization form will use to redirect once the user consent with granting access to Outreach API in his name. This URL can be the same as the [host url](#url) or a separate URL, but in both cases, it has to be implemented in a way matching [Outreach API access requirements](outreach-api.md).
 
@@ -239,14 +239,14 @@ On the first [SDK authentication](sdk.md#authentication) Outreach, the user is a
 
 ![alt text](assets/api-consent.png 'API consent screen')
 
-### token
+### tokenUrl
 
 This value contains URL of the [token endpoint](outreach-api.md#token-endpoint)
 
-### connect
+### connectUrl
 
 This value contains URL of the [token endpoint](outreach-api.md#connect-endpoint).
-Note: The domain of the connect Uri has to be the same as the domain of the [host.url](#url)
+Note: The domain of the connect Url has to be the same as the domain of the [host.url](#url)
 
 ## Configuration section (configuration)
 

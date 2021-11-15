@@ -8,12 +8,12 @@
  */
 export class ManifestMedia {
   /**
-   * Uri of the media file.
+   * Url of the media file.
    *
    * @type {string}
    * @memberof ManifestMedia
    */
-  public uri: string;
+  public url: string;
 
   /**
    * Title of the media file (used as alt tag value)
