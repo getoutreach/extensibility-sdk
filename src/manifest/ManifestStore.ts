@@ -7,7 +7,7 @@ import { Locale } from '../sdk/Locale';
 
 export class ManifestStore {
   /**
-   * Unique application identifier of the addon
+   * Unique application identifier
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#identifier
    * @type {string}
