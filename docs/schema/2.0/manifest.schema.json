@@ -8,15 +8,14 @@
         "author": {
           "type": "object",
           "properties": {
-            "websiteUrl": {
+            "company": {
+              "type": "string"
+            },
+            "email": {
               "type": "string",
-              "format": "uri"
+              "format": "email"
             },
             "privacyUrl": {
-              "type": "string",
-              "format": "uri"
-            },
-            "termsOfUseUrl": {
               "type": "string",
               "format": "uri"
             },
@@ -24,12 +23,13 @@
               "type": "string",
               "format": "uri"
             },
-            "company": {
-              "type": "string"
-            },
-            "email": {
+            "termsOfUseUrl": {
               "type": "string",
-              "format": "email"
+              "format": "uri"
+            },
+            "websiteUrl": {
+              "type": "string",
+              "format": "uri"
             }
           },
           "required": ["websiteUrl", "privacyUrl", "termsOfUseUrl", "company", "email"]
@@ -38,9 +38,25 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "enum": [
+            "account_based_marketing",
+            "chat",
+            "conversation_intelligence",
+            "crm",
+            "direct_mail",
+            "inbox",
+            "integration_platform",
+            "marketing",
+            "privacy_security",
+            "sales_assets_management",
+            "sales_intelligence_data",
+            "sales_productivity",
+            "video",
+            "voice"
+          ]
         },
-        "title": {
+        "description": {
           "type": "object",
           "properties": {
             "en": {
@@ -58,33 +74,15 @@
           },
           "required": ["en"]
         },
-        "description": {
-          "type": "object",
-          "properties": {
-            "en": {
-              "type": "string"
-            }
-          },
-          "required": ["en"]
+        "icon": {
+          "type": "string",
+          "format": "uri"
         },
         "identifier": {
           "type": "string",
           "minLength": 6,
           "maxLength": 128,
           "pattern": "^[a-zA-Z0-9._-]+$"
-        },
-        "store": {
-          "type": "string",
-          "enum": ["private", "public", "internal"]
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^[0-9]+\\.[0-9]+$",
-          "maxLength": 64
-        },
-        "icon": {
-          "type": "string",
-          "format": "uri"
         },
         "locales": {
           "type": "array",
@@ -102,7 +100,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["image", "video", "url", "options", "select", "string"]
+                "enum": ["image", "video"]
               },
               "websiteUrl": {
                 "type": "string",
@@ -111,55 +109,28 @@
             }
           }
         },
-        "configuration": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "key": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string",
-                "enum": ["number", "date", "url", "options", "select", "string"]
-              },
-              "required": {
-                "type": "boolean"
-              },
-              "urlInclude": {
-                "type": "boolean"
-              },
-              "text": {
-                "type": "object",
-                "properties": {
-                  "en": {
-                    "type": "string"
-                  }
-                }
-              },
-              "defaultValue": {
-                "type": "string"
-              },
-              "validator": {
-                "type": "string"
-              },
-              "options": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "required": ["key", "type", "text"]
-          }
+        "title": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          },
+          "required": ["en"]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+$",
+          "maxLength": 64
         }
       },
       "required": [
-        "title",
+        "author",
         "headline",
         "description",
         "icon",
-        "author",
+        "identifier",
+        "title",
         "version"
       ]
     },
@@ -187,7 +158,49 @@
         }
       }
     },
-    "ext": {
+    "configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["number", "date", "url", "options", "select", "string"]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "urlInclude": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            }
+          },
+          "defaultValue": {
+            "type": "string"
+          },
+          "validator": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["key", "type", "text"]
+      }
+    },
+    "extensions": {
       "type": "array",
       "items": {
         "type": "object",
@@ -204,20 +217,10 @@
           "type": {
             "type": "string",
             "enum": [
+              "application",
               "tab-account",
-              "tab-account-sidebar",
-              "tab-account-action",
               "tab-opportunity",
-              "tab-opportunity-sidebar",
-              "tab-opportunity-action",
-              "tab-prospect",
-              "tab-prospect-sidebar",
-              "tab-prospect-action",
-              "shell-action",
-              "shell-application",
-              "shell-companion",
-              "shell-knowledge",
-              "shell-tool"
+              "tab-prospect"
             ]
           },
           "host": {
@@ -256,5 +259,5 @@
       }
     }
   },
-  "required": ["app", "ext"]
+  "required": ["store", "extensions"]
 }

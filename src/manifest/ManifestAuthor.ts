@@ -14,7 +14,7 @@ export class ManifestAuthor {
   company: string;
 
   /**
-   * E-mail address for contacts.
+   * E-mail address for contacting applications support team.
    *
    * @type {string}
    * @memberof ManifestAuthor
@@ -39,7 +39,7 @@ export class ManifestAuthor {
   privacyUrl: string;
 
   /**
-   * Terms of use policy url.
+   * Url of the application terms of use policy.
    *
    * @type {string}
    * @memberof ManifestAuthor
