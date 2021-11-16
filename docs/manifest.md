@@ -11,10 +11,11 @@ Table of content:
     - [author](#author)
     - [categories](#categories)
     - [description](#description)
+    - [headline](#headline)
+    - [icon](#icon-of-application)
     - [identifier](#identifier)
     - [locales](#locales)
     - [medias](#medias)
-    - [type](#type)
     - [title](#title)
     - [version](#version)
   - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
@@ -23,8 +24,8 @@ Table of content:
     - [scopes](#scopes)
     - [token](#token)
     - [connect](#connect)
-  - [Configuration section ("config")](#configuration-section-config)
-  - [Extensions section ("ext")](#extensions-section-ext)
+  - [Configuration section ("configuration")](#configuration-section-configuration)
+  - [Extensions section ("extensions")](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
       - [identifer (extension)](#identifer-extension)
       - [version (extension)](#version-extension)
@@ -39,19 +40,18 @@ Table of content:
         - [decoration (tab extension)](#decoration-tab-extension)
       - [Host (tab extension)](#host-tab-extension)
         - [url](#url)
-        - [icon](#icon)
-      - [type](#type-1)
+        - [icon](#icon-of-extension)
+      - [type](#type)
       - [notificationsUrl](#notificationsurl)
 
 Manifest is a simple JSON file that the application developer uploads to Outreach and which contains all of the data needed for Outreach to host the application in an iframe.
 
 All of the manifest properties are grouped in a few groups:
 
-- **App section** (name, description, author info, etc.)
+- **Store section** (title, description, author info, etc.)
 - **Api section** - optional (what scopes application needs for accessing Outreach API)
-- **Configuration section** - optional (what values we should collect from an Outreach user installing the application.
-
-- **Extensions section** - configuration definition of one or more extensions that are part of this application manifest package.
+- **Configuration section** - optional (what values we should collect from an Outreach user installing the application)
+- **Extensions section** - definition of one or more extensions that are part of this application
 
 ## Sample manifest
 
@@ -71,12 +71,13 @@ Here is the sample manifest file of the hello world application having two exten
     "categories": [
       "account_based_marketing"
     ],
-    "headline": {
-      "en": "Some short description (en)"
-    },
     "description": {
       "en": "Some description (en)"
     },
+    "headline": {
+      "en": "Some short description (en)"
+    },
+    "icon": "https://someurl.com/image.png",
     "identifier": "app-identifier",
     "locales": [
       "en"
@@ -93,12 +94,10 @@ Here is the sample manifest file of the hello world application having two exten
         "type": "video"
       }
     ],
-    "type": "private",
     "title": {
       "en": "Some title (en)"
     },
-    "version": "0.10",
-    "icon": "https://someurl.com/image.png"
+    "version": "0.10"
   },
   "api": {
     "scopes": [
@@ -110,7 +109,18 @@ Here is the sample manifest file of the hello world application having two exten
     "token": "https://someurl.com/token",
     "connect": "https://someurl.com/connect"
   },
-  "ext": [
+  "configuration": [
+    {
+      "key": "apikey",
+      "text": {
+        "en": "Enter API Access Key"
+      },
+      "type": "string",
+      "required": true,
+      "urlInclude": true
+    }
+  ],
+  "extensions": [
     {
       "context": [
         "usr.id"
@@ -152,28 +162,43 @@ Here is the sample manifest file of the hello world application having two exten
 ## Manifest JSON schema
 
 Internally we validate each submitted manifest using the following schema
-[Manifest JSON schema v1.0](schema/1.0/manifest.schema.json)
+[Manifest JSON schema v2.0](schema/2.0/manifest.schema.json)
 
 A manifest can be validated using the [online tool](https://www.jsonschemavalidator.net/)
 
-## Store section properties ("store")
+## Store section properties (store)
 
 ### author
 
-This section contains information to be presented to a user of the application in the marketplace and on the consent screen: application creator company name, website URL, support URL, privacy policy document URL, and terms of use document URL.
+This section contains information to be presented to a user of the application in the marketplace and on the consent screen. It contains following string attributes all of which are required:
+* `company` - Name of the company publishing application
+* `email` - E-mail address for contacting applications support team
+* `privacyUrl` - Url of the application creator privacy policy
+* `supportUrl` - Url of the dedicated application support page
+* `termsOfUseUrl` - Url of the application terms of use policy
+* `websiteUrl` - Website of the application creator
 
 ### categories
 
 A collection of one or more categories to which the application belongs.
-It is used to enable Outreach customers to find the best extension fulfilling their needs.
+It is used by Outreach users to list relevant applications in the Outreach Marketplace.
+Supported values are listed in [Category.ts](../src/manifest/store/Category.ts)
 
 ### description
 
-A localized application description is shown in the application store to explain what it does and why someone wants to install it.
+A localized application description is shown in the Outreach Marketplace at application details page to explain what it does and why someone wants to install it.
+
+### headline
+
+A localized application headline is shown in the Outreach Marketplace together with title and icon at the application list/tiles page as well as at application details page.
 
 ### identifier
 
 Unique identifier of the application as defined by the application creator. The identifier may contain uppercase or lowercase letters ('A' through 'Z'), numbers, underscores ('_'), hyphens('-') and dots('.'). The minimum length is 6 characters a the maximum is 128.
+
+### icon (of application)
+
+Application icon shown in the Outreach Marketplace.
 
 ### locales
 
@@ -181,27 +206,11 @@ A collection of one or more culture locales (e.g. 'en') supported by the applica
 
 ### medias
 
-A collection of media files (images and videos) will be shown to users in the Outreach application store, informing them what the application does and how it looks and works.
-
-### type
-
-Defines the store in which the application will be served:
-
-- **Public**
-
-  The application is going to be available in the application store to all of the Outreach users.
-
-- **Internal**
-
-The application is going to be available only for users of the organization that created the application.
-
-- **Private**
-
-  The application is going to be available only to developers who are working on the application.
+A collection of media files (images and videos) shown in the Outreach Marketplace.
 
 ### title
 
-The localized application title is shown in the application store and Outreach app as a tab tile.
+The localized application title shown in the Outreach Marketplace.
 
 ### version
 
@@ -239,7 +248,7 @@ This value contains URL of the [token endpoint](outreach-api.md#token-endpoint)
 This value contains URL of the [token endpoint](outreach-api.md#connect-endpoint).
 Note: The domain of the connect Uri has to be the same as the domain of the [host.url](#url)
 
-## Configuration section ("config")
+## Configuration section (configuration)
 
 This section is optional.
 
@@ -249,7 +258,7 @@ In this section, the application creator defines what information should collect
 
 To learn more about configuration section, go to [manifest configuration page](configuration.md)
 
-## Extensions section ("ext")
+## Extensions section (extensions)
 
 This section contains one or more extensions belonging to the Outreach application.
 
@@ -281,7 +290,7 @@ It is a string array of predefined Outreach properties describing attributes of 
 
 e.g. ["opp.id", "acc.id"]
 
-Outreach Users will be asked to consent to share this information before the application is installed from the application store. For example, suppose the admin installs an application for other users. In that case, the admin is consenting to share the defined context properties for all the org users he is installing it for.
+Outreach Users will be asked to consent to share this information before the application is installed from the Outreach Marketplace. For example, suppose the admin installs an application for other users. In that case, the admin is consenting to share the defined context properties for all the org users he is installing it for.
 
 To learn more about the list of all of the supported context properties, go to [context property page](context.md).
 
@@ -403,21 +412,22 @@ will become during the runtime
 http://somesite.com/something/456?oid=123
 ```
 
-##### icon
+#### icon (of extension)
 
-base64 string represents the icon shown in the application store and (if possible) in the Outreach client.
+base64 string that represents the icon shown in the Outreach client.
 
 #### type
 
 The Outreach application supports different types of tab extensions, which can be loaded in different parts of the application.
 Type property defines what the type of tab extension is and where it should be loaded.
 
-WSDK supported application types (as defined in [TabExtensionType.ts](../src/manifest/extensions/tabs/TabExtensionType.ts)) are:
+SDK supported application types (as defined in [ShellExtensionType.ts](../src/manifest/extensions/shell/ShellExtensionType.ts), [TabExtensionType.ts](../src/manifest/extensions/tabs/TabExtensionType.ts) and [TileExtensionType.ts](../src/manifest/extensions/tiles/TileExtensionType.ts)) are:
 
-- **application** (application extension a.k.a 'left side menu addon')
-- **tab-account** (account details tab extension)
-- **tab-opportunity** (opportunity details tab extension)
-- **tab-prospect** (prospect details tab extension)
+- `shell-application` (application extension a.k.a 'left side menu addon')
+- `tab-account` (account details tab extension)
+- `tab-opportunity` (opportunity details tab extension)
+- `tab-prospect` (prospect details tab extension)
+- documentation for other supported types is to be added later
 
 Application tab extension example
 
