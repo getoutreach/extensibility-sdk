@@ -161,7 +161,7 @@ export class ManifestTranslator {
     app.store.categories = [];
 
     app.store.description = firstExt.description;
-    app.store.icon = firstExt.host.icon;
+    app.store.iconUrl = '';
     app.store.identifier = firstExt.identifier;
     app.store.locales = [Locale.ENGLISH];
     app.store.medias = [];

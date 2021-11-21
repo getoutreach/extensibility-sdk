@@ -105,12 +105,12 @@ export const validate = (application: Application): string[] => {
       );
     } else {
       application.store.medias.forEach((media) => {
-        if (!media.uri) {
-          issues.push('Uri value is missing');
+        if (!media.url) {
+          issues.push('Url value is missing');
         } else {
-          const validUrl = utils.urlValidation(media.uri);
+          const validUrl = utils.urlValidation(media.url);
           if (!validUrl) {
-            issues.push('Uri value is not a valid url. Value: ' + media.uri);
+            issues.push('Url value is not a valid url. Value: ' + media.url);
           }
         }
 
@@ -144,12 +144,12 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (!application.store.icon) {
+  if (!application.store.iconUrl) {
     issues.push('Application icon is missing.');
   } else {
-    if (!utils.urlValidation(application.store.icon)) {
+    if (!utils.urlValidation(application.store.iconUrl)) {
       issues.push(
-        'Application icon url is invalid url. Value: ' + application.store.icon
+        'Application icon url is invalid url. Value: ' + application.store.iconUrl
       );
     }
   }

@@ -34,7 +34,7 @@ describe('Manifest translator tests', () => {
     expect(result!.store.categories.length).toBe(0);
     expect(result!.store.description).toEqual(v1Manifests[0].description);
     expect(result!.store.headline).toBe(v1Manifests[0].title);
-    expect(result!.store.icon).toBe(v1Manifests[0].host.icon);
+    expect(result!.store.iconUrl).toBe('');
 
     expect(result!.store.identifier).toBe(v1Manifests[0].identifier);
     expect(result!.store.locales).toEqual([Locale.ENGLISH]);
