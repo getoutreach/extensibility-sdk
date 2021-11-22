@@ -7,13 +7,13 @@ Table of content:
 - [Manifest file](#manifest-file)
   - [Sample manifest](#sample-manifest)
   - [Manifest JSON schema](#manifest-json-schema)
-  - [Store section properties ("store")](#store-section-properties-store)
+  - [Store section properties (store)](#store-section-properties-store)
     - [author](#author)
     - [categories](#categories)
     - [description](#description)
     - [headline](#headline)
-    - [iconUrl](#icon-of-application)
     - [identifier](#identifier)
+    - [icon (of application)](#icon-of-application)
     - [locales](#locales)
     - [medias](#medias)
     - [title](#title)
@@ -22,10 +22,9 @@ Table of content:
     - [applicationId](#applicationid)
     - [redirectUri](#redirecturi)
     - [scopes](#scopes)
-    - [token](#token)
     - [connect](#connect)
-  - [Configuration section ("configuration")](#configuration-section-configuration)
-  - [Extensions section ("extensions")](#extensions-section-extensions)
+  - [Configuration section (configuration)](#configuration-section-configuration)
+  - [Extensions section (extensions)](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
       - [identifer (extension)](#identifer-extension)
       - [version (extension)](#version-extension)
@@ -40,7 +39,7 @@ Table of content:
         - [decoration (tab extension)](#decoration-tab-extension)
       - [Host (tab extension)](#host-tab-extension)
         - [url](#url)
-        - [icon](#icon-of-extension)
+      - [icon (of extension)](#icon-of-extension)
       - [type](#type)
       - [notificationsUrl](#notificationsurl)
 
@@ -106,7 +105,6 @@ Here is the sample manifest file of the hello world application having two exten
     ],
     "applicationId": "AbCd123456qW",
     "redirectUri": "https://application-host.com/hello-world",
-    "token": "https://someurl.com/token",
     "connect": "https://someurl.com/connect"
   },
   "configuration": [
@@ -171,12 +169,13 @@ A manifest can be validated using the [online tool](https://www.jsonschemavalida
 ### author
 
 This section contains information to be presented to a user of the application in the marketplace and on the consent screen. It contains following string attributes all of which are required:
-* `company` - Name of the company publishing application
-* `email` - E-mail address for contacting applications support team
-* `privacyUrl` - Url of the application creator privacy policy
-* `supportUrl` - Url of the dedicated application support page
-* `termsOfUseUrl` - Url of the application terms of use policy
-* `websiteUrl` - Website of the application creator
+
+- `company` - Name of the company publishing application
+- `email` - E-mail address for contacting applications support team
+- `privacyUrl` - Url of the application creator privacy policy
+- `supportUrl` - Url of the dedicated application support page
+- `termsOfUseUrl` - Url of the application terms of use policy
+- `websiteUrl` - Website of the application creator
 
 ### categories
 
@@ -237,11 +236,7 @@ A complete list of all of the API scopes can be found on [API Scopes page](scope
 
 On the first [SDK authentication](sdk.md#authentication) Outreach, the user is asked to consent to grant requested scopes to the application
 
-![alt text](assets/api-consent.png 'API consent screen')
-
-### token
-
-This value contains URL of the [token endpoint](outreach-api.md#token-endpoint)
+![alt text](assets/api-consent.png 'API consent screen')s
 
 ### connect
 

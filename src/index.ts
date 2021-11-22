@@ -157,7 +157,9 @@ class ExtensibilitySdk {
    * Setting of the cookie cxt-sdk-user
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/main/docs/outreach-api.md#caching-the-tokens
-   * @memberof ExtensibilitySdk
+   * @memberof ExtensibilitySdkW
+   * @deprecated Usage of SDK cookie is deprecated and it will be removed in future releases.
+   *
    */
   public cookie = {
     name: Constants.AUTH_USER_STATE_COOKIE_NAME,
@@ -493,6 +495,7 @@ class ExtensibilitySdk {
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#token-endpoint
    *
    * @memberof ExtensibilitySdk
+   * @deprecated This usage of function is deprecated and it will be removed in future release.
    */
   public getToken = async (skipCache?: boolean): Promise<string | null> => {
     await this.verifySdkInitialized();
