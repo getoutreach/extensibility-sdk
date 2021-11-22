@@ -652,7 +652,6 @@ class ExtensibilitySdk {
     runtime.locale = initMessage.locale;
     runtime.sessionId = initMessage.sessionId;
     runtime.theme = initMessage.theme;
-    runtime.clientId = initMessage.clientId;
     runtime.userIdentifier = initMessage.userIdentifier;
 
     const outreachContext = new OutreachContext();
