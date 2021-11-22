@@ -461,11 +461,7 @@ class ExtensibilitySdk {
         // start the OAuth consent flow by recording user identifier
         // addon host server will need server will need
         // to read in its OAuth implementation
-        const cookiePayload = JSON.stringify({
-          userId: runtime.userIdentifier,
-          clientId: runtime.clientId,
-        });
-        const cookieContent = `${this.cookie.name}=${cookiePayload};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
+        const cookieContent = `${this.cookie.name}=${runtime.userIdentifier};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
 
         // user identifier goes to cookie to enable addon oauth server
         // linking the outreach user with the addon external identity.
