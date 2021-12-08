@@ -94,19 +94,6 @@ export class InitMessage extends Message {
   userIdentifier: string;
 
   /**
-   * Unique random id assigned to this client used in OAuth scenarios to enable
-   * addon host caching of security info.
-   *
-   * Note: random value is stored in local storage so there could be multiple
-   * client ids matching the same Outreach user.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/main/docs/outreach-api.md#oauth-sequence-diagram
-   * @type {string}
-   * @memberof InitMessage
-   */
-  clientId: string;
-
-  /**
    * Legacy property needed for backward compatibility
    * support for addons still using v1 addon centric SDK.
    *

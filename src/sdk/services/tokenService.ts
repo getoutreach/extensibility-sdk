@@ -7,7 +7,18 @@ import { EventType } from '../logging/EventType';
 import { LogLevel } from '../logging/LogLevel';
 import logger from '../logging/Logger';
 
+/**
+ *
+ *
+ * @deprecated Usage of this service is deprecated and it will be removed in future reelase.
+ * @class TokenService
+ */
 class TokenService {
+  /**
+   *
+   * @deprecated Usage of this service is deprecated and it will be removed in future reelase.
+   * @memberof TokenService
+   */
   public fetchTokenAsync = async (): Promise<string | null> => {
     if (!runtime.application.api) {
       throw new Error(
@@ -28,6 +39,12 @@ class TokenService {
     return null;
   };
 
+  /**
+   *
+   * @deprecated Usage of this service is deprecated and it will be removed in future reelase.
+   * @memberof TokenService
+   *
+   */
   public getCachedTokenAsync = (): Promise<string | null> => {
     if (!runtime.application.api) {
       throw new Error(
@@ -64,6 +81,14 @@ class TokenService {
     return Promise.resolve(null);
   };
 
+  /**
+   *
+   *
+   * @param {Token} token
+   * @memberof TokenService
+   * @deprecated Usage of this service is deprecated and it will be removed in future reelase.
+   *
+   */
   public cacheToken = (token: Token) => {
     logger.current.log({
       origin: EventOrigin.ADDON,
@@ -89,7 +114,6 @@ class TokenService {
         },
         body: JSON.stringify({
           userId: runtime.userIdentifier,
-          clientId: runtime.clientId,
         }),
       });
 

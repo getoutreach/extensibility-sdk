@@ -21,5 +21,5 @@ export class Constants {
    * @static
    * @memberof Constants
    */
-  public static AUTH_USER_STATE_COOKIE_NAME = 'cxt-sdk-user-v2';
+  public static AUTH_USER_STATE_COOKIE_NAME = 'cxt-sdk-user';
 }

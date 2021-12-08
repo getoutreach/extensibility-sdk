@@ -158,7 +158,9 @@ class ExtensibilitySdk {
    * Setting of the cookie cxt-sdk-user
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/main/docs/outreach-api.md#caching-the-tokens
-   * @memberof ExtensibilitySdk
+   * @memberof ExtensibilitySdkW
+   * @deprecated Usage of SDK cookie is deprecated and it will be removed in future releases.
+   *
    */
   public cookie = {
     name: Constants.AUTH_USER_STATE_COOKIE_NAME,
@@ -460,11 +462,7 @@ class ExtensibilitySdk {
         // start the OAuth consent flow by recording user identifier
         // addon host server will need server will need
         // to read in its OAuth implementation
-        const cookiePayload = JSON.stringify({
-          userId: runtime.userIdentifier,
-          clientId: runtime.clientId,
-        });
-        const cookieContent = `${this.cookie.name}=${cookiePayload};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
+        const cookieContent = `${this.cookie.name}=${runtime.userIdentifier};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
 
         // user identifier goes to cookie to enable addon oauth server
         // linking the outreach user with the addon external identity.
@@ -494,6 +492,7 @@ class ExtensibilitySdk {
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#token-endpoint
    *
    * @memberof ExtensibilitySdk
+   * @deprecated This usage of function is deprecated and it will be removed in future release.
    */
   public getToken = async (skipCache?: boolean): Promise<string | null> => {
     await this.verifySdkInitialized();
@@ -654,7 +653,6 @@ class ExtensibilitySdk {
     runtime.locale = initMessage.locale;
     runtime.sessionId = initMessage.sessionId;
     runtime.theme = initMessage.theme;
-    runtime.clientId = initMessage.clientId;
     runtime.userIdentifier = initMessage.userIdentifier;
 
     const outreachContext = new OutreachContext();

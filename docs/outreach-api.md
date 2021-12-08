@@ -6,14 +6,13 @@
 - [Prerequisites](#prerequisites)
   - [Define required scopes](#define-required-scopes)
   - [Setup Outreach OAuth application](#setup-outreach-oauth-application)
-- [Token endpoint](#token-endpoint)
 - [Outreach API consent](#outreach-api-consent)
 - [Authorization endpoint](#authorization-endpoint)
   - [Obtain access and refresh token](#obtain-access-and-refresh-token)
   - [Caching the tokens](#caching-the-tokens)
-    - [Customizing the sdk user cookie](#customizing-the-sdk-user-cookie)
-  - [Passing back access token](#passing-back-access-token)
-  - [Connect endpoint](#connect-endpoint)
+  - [Refreshing the access token](#refreshing-the-access-token)
+  - [Closing the authentication loop](#closing-the-authentication-loop)
+- [Connect endpoint](#connect-endpoint)
 
 Suppose an add-on needs to make an impersonalized call to Outreach API  in the current Outreach user context. In that case, the add-on creator needs to implement a public authentication host server accessible on the internet with a few required endpoints.
 
@@ -27,9 +26,9 @@ To enable obtaining that token, Outreach API supports OAuth flow where the Outre
 
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#initial-authentication-flow) will start.
 
-A request to the endpoint defined in [redirectUri](outreach-api.md#redirectUri) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with [Outreach application](manifest.md#applicationId), and Outreach OAuth app secret so a proper Outreach API access token and refresh tokens could be obtained.
+A request to the authorisation endpoint defined in [redirectUri](outreach-api.md#redirectUri) will be made with a **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with [Outreach application](manifest.md#applicationId), and Outreach OAuth app secret so a proper Outreach API access token and refresh tokens could be obtained.
 
-The add-on host will cache the retrieved tokens, so the next time user needs to obtain a new Outreach API access token, it doesn't have to go again through the consent flow.
+The add-on host can use an access token to access Outreach API in the name of the current add-on user. It can also cache the retrieved tokens and use them in the future to refresh expired access tokens, so the next time user needs to obtain a new Outreach API access token, it doesn't have to go again through the consent flow.
 
 ## OAuth sequence diagram
 
@@ -37,30 +36,24 @@ The add-on host will cache the retrieved tokens, so the next time user needs to 
 
 As you can tell from the sequence diagram, there are a few steps "Add-on host API" needs to implement to support Outreach API access:
 
-1. When the add-on loads, the add-on will call **sdk.getToken()** to see if there is an Outreach API access token available from the previous session
-   - Check the browser local storage for a valid token
-   - Call the  [token endpoint](#token-endpoint) with the current user id parameter, which returns the user access token out of a valid cached access token or using the previously obtained refresh token.
-2. If no token available, addon renders a "Login with Outreach" button and in click handler of that button invokes **sdk.authorize()** function
-   - It will create a "cxt-sdk-user-{userId}" cookie which will contain clientId value needed in next authorization step
-   - ClientId value is a random number value stored in browser local storage 
+1. Addon renders a "Login with Outreach" button and in click handler of that button invokes **sdk.authorize()** function
    - Addon opens popup using the Outreach [API authentication URL](https://api.outreach.io/api/v2/docs#authentication). Constructing of this url relies on manifest.api section configuration: [applicationId](manifest.md#applicationid), [redirectUri](manifest.md#redirecturi) and [scopes](manifest.md#scopes) values.
    - When user clicks **Authorize** button on [Outreach consent screen](assets/api-consent.png), Outreach will redirect to  **/authorize** endpoint on ([manifest.api.redirectUri](manifest.md#redirecturi)) address with a short living authorization code passed as query param.
 
-3. Host **authorize endpoint** will then:
-   - read the session context from request cookie "cxt-sdk-user": clientId.
+2. Add-on host **authorize endpoint** will then:
    - use received authorization code with Outreach app id and the secret to obtaining Outreach API access and refresh token
-   - cache the retrieved tokens using a cache key with session userId value read from the cookie.
-   - redirect to connect endpoint with access token and expiration passed as a query parameter
+   - cache the retrieved tokens using a cache key with add-on specific identity value so it can be later retrieved for a given add-on user..
+   - redirect to connect endpoint with &result=ok parameter
   
-4. Host **connect endpoint** then:
-   - Read the token value and expiration from query params
-   - Sends POST message to the add-on window, which opens the popup
+3. Host **connect endpoint** then:
+   - Sends POST message to the add-on window with result parameter, which opens the popup
    - Close itself
 
-5. Post message is then:
+4. Post message is then:
    - received on add-on page by SDK
-   - token is locally cached in local storage
-   - sdk.authorize() promise is resolved with the access token value
+   - sdk.authorize() promise is:
+      - resolved if the result is ok
+      - rejected if the result is fail
 
 ## Prerequisites
 
@@ -94,77 +87,29 @@ _The redirect URI can be the same as the add-on host URL defined in the manifest
 
 In order to get more info on your OAuth app settings or change a redirectUri value, don't hesitate to get in touch with the Outreach support team at cxt-sdk@outreach.io
 
-## Token endpoint
-
-The token endpoint's primary purpose is to provide an access token for the user after he consented to grant required permissions to add-on.
-
-To do that token endpoint:
-
-- Maintains a local cache of the user tokens
-- Refreshes an expired access token
-
-When a POST request comes to this endpoint in its body will contain the userId value, which will be used to determine the caching key (as described in [caching the tokens](#caching-the-tokens) section).
-
-In case the add-on host does not have any cached token information, it can not obtain an access token, and it will return **404 (NOT FOUND)** status code.
-
-In case retrieved cached **access token** is still valid, the token endpoint will return the 200 OK results with a payload containing {token, expiresAt} values.
-
-In case the retrieved access token has expired, the connect endpoint will use the cached refresh token to obtain a new version of the application token as described in [Outreach API documentation](https://api.outreach.io/api/v2/docs#authentication).
-
-Request (with a refresh token, application id, and secret)
-
-```http
-curl https://api.outreach.io/oauth/token
-  -X POST
-  -d client_id=<Application_Identifier>
-  -d client_secret=<Application_Secret>
-  -d redirect_uri=<Application_Redirect_URI>
-  -d grant_type=refresh_token
-  -d refresh_token=<Refresh_Token>
-```
-
-Response
-
-```json
-{
-  "access_token": <Access_Token>,
-  "token_type": "bearer",
-  "expires_in": 7200,
-  "refresh_token": <Refresh_Token>,
-  "scope": <Scope1+Scope2+Scope3>,
-  "created_at": 1503308300
-}
-
-```
-
-Once a new Outreach API access token is received, the add-on host will:
-
-- update the cached information (as described in [cache the tokens](#caching-the-tokens) section)
-- return the **200 (OK)** result with a payload containing token and expiration values.
-
 ## Outreach API consent
 
-When an add-on needs to perform the first call to an Outreach API, it needs to obtain consent from an Outreach user for the add-on to access Outreach API in that user's name.
-
-That is being done by simply calling the [authorize()](../src/index.ts#L209)
+In order to collect authorization consent from users granting impersonated access rights using predefined scopes, the add-on creator needs to simply call the [authorize()](../src/index.ts#L209) function.
 
 ```javascript
-var token = await addonSdk.authorize();
+ await addonSdk.authorize();
 ```
 
-The Outreach user will see an OAuth popup where he will be asked to approve access with [scopes defined in manifest](manifest.md#scopes).
+In the case of Outreach **user never before provided such a consent**,  he will see an OAuth popup where he will be asked to approve impersonated API access with [scopes defined in manifest](manifest.md#scopes).
 
 ![alt text](assets/api-consent.png "API consent screen")
 
-Once a user consents on this screen by clicking **Authorize**, Outreach will request the address defined in the [manifest api.redirectUri](manifest.md#redirectUri) with a single additional parameter **"code"**. This parameter will contain a short-lived authorization token that should be parsed out of the query parameter and used to obtain the access and refresh tokens.
+Once a user consents on this screen by clicking **Authorize**, Outreach will make a request to the authorization endpoint URL address defined in the [manifest api.redirectUri](manifest.md#redirectUri) with a single additional parameter **"code"**. This parameter will contain a short-lived authorization token that should be parsed out of the query parameter and used to obtain the access and refresh tokens.
+
+In case of Outreach **user already previously provided consent**, the popup authentication window will be loaded and quickly closed without the need for the user to consent again, and the same request to authorization endpoint defined in [manifest api.redirectUri](manifest.md#redirectUri) will be made with the **code** parameter.
 
 ## Authorization endpoint
 
 ### Obtain access and refresh token
 
-As described in [Outreach API documentation](https://api.outreach.io/api/v2/docs#authentication), the add-on host uses authorization code together with [application id and the application secret](#setup-outreach-OAuth-application) to obtain access and refresh tokens
+As described in [Outreach API documentation](https://api.outreach.io/api/v2/docs#authentication), the add-on host uses short-lived authorization code together with [application id and the application secret](#setup-outreach-OAuth-application) to obtain access and refresh tokens.
 
-**Request**
+**request**
 
 ```http
 curl https://api.outreach.io/oauth/token
@@ -191,49 +136,55 @@ curl https://api.outreach.io/oauth/token
 
 ### Caching the tokens
 
-When the add-on host has obtained this data, it needs to store access and refresh the tokens of this user. Later, when the user loads the add-on again, it could generate a new access token through the [token endpoint](#token-endpoint) implementation.
+When the add-on host has obtained this data, the add-on host needs to store the retrieved access and refresh tokens of this add-on user. Later, when the user loads the add-on again, if the access token expires, the stored refresh token could be used to generate a new access token without the need for requesting user consent again through the OAuth popup.
 
-The add-on host needs to know the Outreach user for whom these tokens should be cached to be used later to implement the caching.
+The token info should be cached using an add-on-specific identity of the add-on user, so in later sessions, it can be retrieved for a given add-on user.
 
-Considering that [manifest api.redirectUri](manifest.md#redirectUri) can not contain state parameters, Outreach addons SDK stores  {userId, clientId} values in **"cxt-sdk-user-v2"** cookie at the start of sdk.authorize() implementation. The values are stored as a JSON string so once read from the cookie they need to be parsed to JSON object.
+### Refreshing the access token
 
-The add-on host implementing the caching should use BOTH the cookie clientId and userId values in determining the cache key to be used for storing retrieved refresh and access tokens.
+In case the access token has expired, the add-on host will use the cached refresh token to obtain a new version of the application token as described in [Outreach API documentation](https://api.outreach.io/api/v2/docs#authentication).
 
+Request (with a refresh token, application id, and secret)
 
-#### Customizing the sdk user cookie
-
-The cxt-sdk-user cookie works because it is created on the domain where the add-on is stored (e.g., "addon.some-host.com") through standard browser behavior, is sent to the api if the api endpoint is hosted on the same domain.
-Sometimes, the API is hosted in a different domain (e.g., "api.some-host.com"), and cookies sent on the add-on domain will not be sent so that the OAuth flow will fail to [cache credentials](#caching-the-tokens).
-
-CXT sdk exposes a way to customize the domain to be used for context cookie to accommodate this - make sure cookie domain is set to api domain before starting authorization.
-
-``` javascript
-
-sdk.cookie.domain ='.some-host.com';
-var token = await sdk.authenticate();
+```http
+curl https://api.outreach.io/oauth/token
+  -X POST
+  -d client_id=<Application_Identifier>
+  -d client_secret=<Application_Secret>
+  -d redirect_uri=<Application_Redirect_URI>
+  -d grant_type=refresh_token
+  -d refresh_token=<Refresh_Token>
 ```
 
-In this example, both app.some-host.com and api.some-host.com have access to user cookies through the defined domain.
+Response
 
-(You can also change the cookie name (default: 'cxt-sdk-user') and max-age of the cookie (default: 1 hour)
+```json
+{
+  "access_token": <Access_Token>,
+  "token_type": "bearer",
+  "expires_in": 7200,
+  "refresh_token": <Refresh_Token>,
+  "scope": <Scope1+Scope2+Scope3>,
+  "created_at": 1503308300
+}
+```
 
-### Passing back access token
+### Closing the authentication loop
 
-Now when the add-on host obtains the access token and cached the refresh token, it needs to send the token back to the add-on, so the add-on can perform Outreach API calls using that token.
+Now when the add-on host obtained and cached the access token and cached the refresh token, it needs to send the information to the SDK running in the add-on host page so a authorize () promise can be resolved.
 
 To do that, the add-on host has to respond to the original request, with a [302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code with the [Location header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location) with the value of [manifest api connect endpoint](./manifest.md#connect)
 
  ``` http
- {MANIFEST.API.CONNECT} + "&token=<ACCESS_TOKEN>&expiresAt=<EXPIRES_AT>"
+ {MANIFEST.API.CONNECT} + "&result=ok"
 ```
 
 - MANIFEST.API.CONNECT - it is the connect endpoint URL.
-- ACCESS_TOKEN - it is the value of the access token retrieved from the Outreach API
-- EXPIRES_AT - it is the value of expiration of the access token retrieved from Outreach API
+- result parameter can have values: ok and fail used to inform SDK if auth consent process succeeded or failed.
 
-### Connect endpoint
+## Connect endpoint
 
-Connect endpoint is a specific HTML page with a small javascript implementation posting the tokens to the add-on page, which opens the popup and then closes itself.
+Connect endpoint is a simple and specific HTML page with a small javascript implementation posting the result value to the add-on page, which then closes the popup window.
 
 Here is [mvc core sample implementation](https://github.com/getoutreach/clientxtdocs/blob/master/samples/hello-world/aspnetcore/Views/Connect/Index.cshtml) from our documentation repo (samples in other languages also available)
 
@@ -262,8 +213,6 @@ Here is [mvc core sample implementation](https://github.com/getoutreach/clientxt
 
       window.close();
     </script>
-
-
 </body >
 </html >
 ```
