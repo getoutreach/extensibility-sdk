@@ -47,6 +47,6 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@outreach/extensibility-sdk-context-keys": "^0.1.4"
+    "@outreach/extensibility-sdk-context-keys": "^0.1.5"
   }
 }
