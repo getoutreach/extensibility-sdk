@@ -1,4 +1,4 @@
-import { ProspectContextKeys } from '../keys/ProspectContextKeys';
+import { ProspectContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { ContextParam } from './ContextParam';
 import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { ProspectContext } from './ProspectContext';

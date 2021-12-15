@@ -1,8 +1,7 @@
 import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 import { OpportunityContext } from '../src/context/host/OpportunityContext';
 import { UserContext } from '../src/context/host/UserContext';
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { OpportunityContextKeys, UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { OutreachContext } from '../src/context/OutreachContext';
 import { ShellExtension } from '../src/manifest/extensions/shell/ShellExtension';
 import { DecorationStyle } from '../src';

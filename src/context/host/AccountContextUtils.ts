@@ -1,4 +1,4 @@
-import { AccountContextKeys } from '../keys/AccountContextKeys';
+import { AccountContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { ContextParam } from './ContextParam';
 import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { AccountContext } from './AccountContext';

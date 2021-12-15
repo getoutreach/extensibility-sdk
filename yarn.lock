@@ -558,6 +558,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@outreach/extensibility-sdk-context-keys@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@outreach/extensibility-sdk-context-keys/-/extensibility-sdk-context-keys-0.1.4.tgz#6e1dd4ae2bece8e3914e9e42673ec61588f86795"
+  integrity sha512-jp16CPn3Jdq1+XnQj8hkhnhN9Tw5OkzeA2owdMhOS781RON9XNi8m2BQoMjgu8doOertkv05OqYcxxhXV/TmLQ==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"

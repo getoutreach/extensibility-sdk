@@ -1,8 +1,6 @@
 import { OpportunityContext } from '../src/context/host/OpportunityContext';
 import { UserContext } from '../src/context/host/UserContext';
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { ProspectContextKeys } from '../src/context/keys/ProspectContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { OpportunityContextKeys, ProspectContextKeys, UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { OutreachContext } from '../src/context/OutreachContext';
 import { TabExtension } from '../src/manifest/extensions/tabs/TabExtension';
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';

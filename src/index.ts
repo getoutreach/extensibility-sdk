@@ -54,12 +54,12 @@ export { ConfigurationItemOption } from './configuration/ConfigurationItemOption
 export { ConfigurationItemType } from './configuration/ConfigurationItemType';
 export { ConfigurationValue } from './configuration/ConfigurationValue';
 
-export { AccountContextKeys } from './context/keys/AccountContextKeys';
-export { AllContextKeys } from './context/keys/AllContextKeys';
-export { ClientContextKeys } from './context/keys/ClientContextKeys';
-export { OpportunityContextKeys } from './context/keys/OpportunityContextKeys';
-export { ProspectContextKeys } from './context/keys/ProspectContextKeys';
-export { UserContextKeys } from './context/keys/UserContextKeys';
+export { AccountContextKeys } from '@outreach/extensibility-sdk-context-keys';
+export { AllContextKeys } from '@outreach/extensibility-sdk-context-keys';
+export { ClientContextKeys } from '@outreach/extensibility-sdk-context-keys';
+export { OpportunityContextKeys } from '@outreach/extensibility-sdk-context-keys';
+export { ProspectContextKeys } from '@outreach/extensibility-sdk-context-keys';
+export { UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 
 export { AccountContext } from './context/host/AccountContext';
 export { ContextParam } from './context/host/ContextParam';

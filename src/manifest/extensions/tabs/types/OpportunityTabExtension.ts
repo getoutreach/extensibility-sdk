@@ -1,6 +1,4 @@
-import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
-import { OpportunityContextKeys } from '../../../../context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
+import { ClientContextKeys, OpportunityContextKeys, UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { TabExtension } from '../TabExtension';
 import { TabExtensionType } from '../TabExtensionType';
 

@@ -9,8 +9,7 @@ import { Scopes } from '../src/manifest/api/Scopes';
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
 
 import { Locale } from '../src/sdk/Locale';
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { OpportunityContextKeys, UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 import { DecorationStyle } from '../src';
 

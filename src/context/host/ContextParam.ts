@@ -1,4 +1,4 @@
-import { AllContextKeys } from '../keys/AllContextKeys';
+import { AllContextKeys } from '@outreach/extensibility-sdk-context-keys';
 
 export class ContextParam {
   /**

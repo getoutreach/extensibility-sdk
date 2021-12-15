@@ -1,4 +1,4 @@
-import { OpportunityContextKeys } from '../keys/OpportunityContextKeys';
+import { OpportunityContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { ContextParam } from './ContextParam';
 import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { OpportunityContext } from './OpportunityContext';

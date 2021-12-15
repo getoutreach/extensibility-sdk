@@ -6,7 +6,7 @@ import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
-import { AllContextKeys } from '../../../context/keys/AllContextKeys';
+import { AllContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import logger from '../../../sdk/logging/Logger';
 import { IHostableExtension } from '../IHostableExtension';
 import { LocalizedString } from '../../store/LocalizedString';

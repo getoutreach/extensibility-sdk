@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { UserContextKeys } from '../keys/UserContextKeys';
+import { UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { ContextParam } from './ContextParam';
 import { Context } from './CustomContext';
 

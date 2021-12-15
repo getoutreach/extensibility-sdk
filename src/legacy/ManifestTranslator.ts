@@ -3,11 +3,13 @@ import {
   CompanionShellExtension,
   ToolShellExtension,
 } from '..';
-import { AccountContextKeys } from '../context/keys/AccountContextKeys';
-import { ClientContextKeys } from '../context/keys/ClientContextKeys';
-import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
-import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
-import { UserContextKeys } from '../context/keys/UserContextKeys';
+import {
+  AccountContextKeys,
+  ClientContextKeys,
+  OpportunityContextKeys,
+  ProspectContextKeys,
+  UserContextKeys
+} from '@outreach/extensibility-sdk-context-keys';
 import { Application } from '../manifest/Application';
 import { ExtensionHost } from '../manifest/extensions/ExtensionHost';
 import { DecorationStyle } from '../manifest/extensions/shell/DecorationStyle';

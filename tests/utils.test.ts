@@ -1,6 +1,6 @@
 import { ContextParam } from '../src/context/host/ContextParam';
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { OpportunityContextKeys } from '@outreach/extensibility-sdk-context-keys';
+import { UserContextKeys } from '@outreach/extensibility-sdk-context-keys';
 import { utils } from '../src/utils';
 
 const usrIdParam = { key: UserContextKeys.ID, value: 'uid-123' };
