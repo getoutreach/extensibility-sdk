@@ -24,7 +24,7 @@ _In case you would like to have additional contextual properties, please contact
 
 If an application needs contextual information about the current account Outreach user is looking at, it will need to add to manifest one or more account properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in [SDK](../src/store/keys/AccountContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in [SDK](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/AccountContextKeys.ts) next properties:
 
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.desc** A custom description of the account.
@@ -38,7 +38,7 @@ Our end goal is to provide contextual access to any of the properties available 
 
 If an application needs contextual information about the current opportunity the Outreach user is looking at, it will need to add to manifest one or more opportunity properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#opportunity), but at the moment, we support in [SDK](../src/store/keys/OpportunityContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#opportunity), but at the moment, we support in [SDK](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/OpportunityContextKeys.ts) next properties:
 
 - **opp.amnt** The amount the opportunity is worth.
 - **opp.desc** A description of the opportunity.
@@ -55,7 +55,7 @@ Our end goal is to provide contextual access to any of the properties available 
 
 If an application needs contextual information about the current prospect Outreach user is looking at, it will need to add to manifest one or more prospect properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in [SDK](../src/store/keys/ProspectContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in [SDK](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ProspectContextKeys.ts) next properties:
 
 - **pro.avail** The date and time the prospect is available to contact again.
 - **pro.comp** The name of the prospect company. If associated with an account, this is the name of the account. (e.g. Acme International).
@@ -71,7 +71,7 @@ Our end goal is to provide contextual access to any of the properties available 
 
 If an application needs contextual information about the current Outreach user, it will need to add to manifest one or more user properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in [SDK](../src/store/keys/UserContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in [SDK](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/UserContextKeys.ts) next properties:
 
 - **usr.email** The email address of the user.
 - **usr.fname** The first name of the user.

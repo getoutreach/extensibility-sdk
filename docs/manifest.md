@@ -295,8 +295,8 @@ There are four types of tab extensions, and each one of them can use only an ava
 
 As defined in [ApplicationTabExtension.ts](../src/manifest/extensions/tabs/ApplicationTabExtension.ts) this type of tab extensions can use:
 
-- [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
-- [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
+- [UserContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/UserContextKeys.ts)
+- [ClientContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ClientContextKeys.ts)
 
 The reason for that is that the application tab extension is hosted on the left side menu and has no context information about any current account/prospect/opportunity, so it can use only context information about the current user and client context.
 
@@ -304,9 +304,9 @@ The reason for that is that the application tab extension is hosted on the left 
 
 As defined in [AccountTabExtension.ts](../src/manifest/extensions/tabs/AccountTabExtension.ts) this type of tab extensions can use:
 
-- [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
-- [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
-- [AccountContextKeys.ts](../src/context/keys/AccountContextKeys.ts)
+- [UserContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/UserContextKeys.ts)
+- [ClientContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ClientContextKeys.ts)
+- [AccountContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/AccountContextKeys.ts)
 
 Account tab extension is running in the context of the account Outreach user is looking at, so in addition to general contextual properties, it can also use [account context properties](../src/context/host/AccountContext.ts).
 
@@ -314,9 +314,9 @@ Account tab extension is running in the context of the account Outreach user is 
 
 As defined in ProspectTabExtension.ts](../src/manifest/extensions/tabs/ProspectTabExtension.ts) this type of tab extensions can use:
 
-- [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
-- [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
-- [ProspectContextKeys.ts](../src/context/keys/ProspectContextKeys.ts)
+- [UserContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/UserContextKeys.ts)
+- [ClientContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ClientContextKeys.ts)
+- [ProspectContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ProspectContextKeys.ts)
 
 Prospect tab extension is running in the context of the account Outreach user is looking at, so in addition to general contextual properties, it can also use [prospect context properties](../src/context/host/ProspectContext.ts).
 
@@ -324,9 +324,9 @@ Prospect tab extension is running in the context of the account Outreach user is
 
 As defined in OpportunityTabExtension.ts](../src/manifest/extensions/tabs/OpportunityTabExtension.ts) this type of tab extensions can use:
 
-- [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
-- [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
-- [OpportunityContextKeys.ts](../src/context/keys/OpportunityContextKeys.ts)
+- [UserContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/UserContextKeys.ts)
+- [ClientContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/ClientContextKeys.ts)
+- [OpportunityContextKeys.ts](https://github.com/getoutreach/extensibility-sdk-context-keys/blob/master/src/context/keys/OpportunityContextKeys.ts)
 
 Prospect tab extension is running in the context of the account Outreach user is looking at, so in addition to general contextual properties, it can also use [opportunity context properties](../src/context/host/OpportunityContext.ts).
 
