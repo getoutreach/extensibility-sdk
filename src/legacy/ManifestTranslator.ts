@@ -102,7 +102,7 @@ export class ManifestTranslator {
       description: app.store.description,
       host: {
         icon: ext.host.icon,
-        url: ext.host.url,
+        url: ext.host.url!,
         notificationsUrl:
           ext.host instanceof ShellExtensionHost
             ? ext.host.notificationsUrl || ''

@@ -8,9 +8,9 @@
  */
 export enum TileExtensionType {
   /**
-   * Application extension (a.k.a 'left side menu addon')
+   * Home/360  dashboard tile extension
    */
-  APPLICATION = 'tile-application',
+  HOME = 'tile-home',
 
   /**
    * Account overview intelligent tile extension

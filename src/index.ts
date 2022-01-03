@@ -135,7 +135,10 @@ export { OpportunityTabExtension } from './manifest/extensions/tabs/types/Opport
 export { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
 
 export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';
-export { TileExtension } from './manifest/extensions/tiles/TileExtension';
+export { HomeTileExtension } from './manifest/extensions/tiles/types/HomeTileExtension';
+export { AccountTileExtension } from './manifest/extensions/tiles/types/AccountTileExtension';
+export { OpportunityTileExtension } from './manifest/extensions/tiles/types/OpportunityTileExtension';
+export { ProspectTileExtension } from './manifest/extensions/tiles/types/ProspectTileExtension';
 
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 

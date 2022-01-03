@@ -7,14 +7,13 @@ import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
 import logger from '../../../sdk/logging/Logger';
-import { IHostableExtension } from '../IHostableExtension';
 import { LocalizedString } from '../../store/LocalizedString';
 import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { ShellExtensionType } from './ShellExtensionType';
 import { ExtensionType } from '../ExtensionType';
 
-export class ShellExtension extends Extension implements IHostableExtension {
+export class ShellExtension extends Extension {
   /**
    * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
    * to be sent during the initialization process.
@@ -31,7 +30,7 @@ export class ShellExtension extends Extension implements IHostableExtension {
    * Definition of addon host
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
-   * @type {ManifestHost}
+   * @type {ShellExtensionHost}
    * @memberof TabExtension
    */
   public host: ShellExtensionHost;
@@ -65,7 +64,7 @@ export class ShellExtension extends Extension implements IHostableExtension {
 
     try {
       // 1. copy url search parameters to context urlParams
-      const url = new URL(this.host.url);
+      const url = new URL(this.host.url!);
       const searchParams = new URLSearchParams(url.search);
       searchParams.forEach((value, key) => {
         modified = true;
@@ -76,7 +75,7 @@ export class ShellExtension extends Extension implements IHostableExtension {
       });
 
       // 2. complete the tokenize url with contextual data of host url and notifications url
-      this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
+      this.host.url = utils.tokenizeUrl(this.host.url!, context.toParams()).url;
       if (this.host.notificationsUrl) {
         this.host.notificationsUrl = utils.tokenizeUrl(
           this.host.notificationsUrl,
@@ -109,14 +108,18 @@ export class ShellExtension extends Extension implements IHostableExtension {
     if (!this.host) {
       issues.push('Host section is missing.');
     } else {
+      if (!this.host.url) {
+        issues.push('Host url definition is missing.');
+      } else {
+        if (!utils.hostUrlValidation(this.host.url, this.context)) {
+          issues.push('Host url is invalid. Value: ' + this.host.url);
+        }
+      }
+
       if (!utils.urlValidation(this.host.icon)) {
         issues.push(
           'Host icon definition is invalid url. Value: ' + this.host.icon
         );
-      }
-
-      if (!utils.hostUrlValidation(this.host.url, this.context)) {
-        issues.push('Host url is invalid. Value: ' + this.host.url);
       }
 
       if (

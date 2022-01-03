@@ -8,10 +8,9 @@ import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
 import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
-import { IHostableExtension } from '../IHostableExtension';
 import { LocalizedString } from '../../store/LocalizedString';
 
-export class TabExtension extends Extension implements IHostableExtension {
+export class TabExtension extends Extension {
   /**
    * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
    * to be sent during the initialization process.
@@ -73,7 +72,7 @@ export class TabExtension extends Extension implements IHostableExtension {
 
     try {
       // 1. copy url search parameters to context urlParams
-      const url = new URL(this.host.url);
+      const url = new URL(this.host.url!);
       const searchParams = new URLSearchParams(url.search);
       searchParams.forEach((value, key) => {
         modified = true;
@@ -84,7 +83,7 @@ export class TabExtension extends Extension implements IHostableExtension {
       });
 
       // 2. complete the tokenize url with contextual data of host url and notifications url
-      this.host.url = utils.tokenizeUrl(this.host.url, context.toParams()).url;
+      this.host.url = utils.tokenizeUrl(this.host.url!, context.toParams()).url;
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
@@ -117,8 +116,12 @@ export class TabExtension extends Extension implements IHostableExtension {
         );
       }
 
-      if (!utils.hostUrlValidation(this.host.url, this.context)) {
-        issues.push('Host url is invalid. Value: ' + this.host.url);
+      if (!this.host.url) {
+        issues.push('Host url definition is missing.');
+      } else {
+        if (!utils.hostUrlValidation(this.host.url, this.context)) {
+          issues.push('Host url is invalid. Value: ' + this.host.url);
+        }
       }
 
       if (

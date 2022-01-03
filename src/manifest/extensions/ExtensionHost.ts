@@ -13,7 +13,7 @@ export class ExtensionHost {
    * @type {string}
    * @memberof ExtensionHost
    */
-  url: string;
+  url?: string;
 
   /**
    * Base64 string represents the icon to be shown in the addon store
