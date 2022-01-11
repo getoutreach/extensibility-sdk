@@ -32,7 +32,13 @@
               "format": "uri"
             }
           },
-          "required": ["websiteUrl", "privacyUrl", "termsOfUseUrl", "company", "email"]
+          "required": [
+            "websiteUrl",
+            "privacyUrl",
+            "termsOfUseUrl",
+            "company",
+            "email"
+          ]
         },
         "categories": {
           "type": "array",
@@ -232,7 +238,7 @@
               "tab-prospect",
               "tab-prospect-action",
               "tab-prospect-sidebar",
-              "tile-application",
+              "tile-home",
               "tile-account",
               "tile-opportunity",
               "tile-prospect"
@@ -245,12 +251,20 @@
                 "type": "string",
                 "format": "uri"
               },
+              "component": {
+                "type": "string",
+                "format": "uri"
+              },
+              "template": {
+                "type": "string",
+                "format": "uri"
+              },
               "icon": {
                 "type": "string",
                 "format": "uri"
               }
             },
-            "required": ["icon", "url"]
+            "required": ["icon"]
           },
           "environment": {
             "type": "object",
