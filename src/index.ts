@@ -134,6 +134,7 @@ export { AccountTabExtension } from './manifest/extensions/tabs/types/AccountTab
 export { OpportunityTabExtension } from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
 
+export { TileExtension } from './manifest/extensions/tiles/TileExtension';
 export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';
 export { HomeTileExtension } from './manifest/extensions/tiles/types/HomeTileExtension';
 export { AccountTileExtension } from './manifest/extensions/tiles/types/AccountTileExtension';

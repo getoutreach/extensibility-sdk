@@ -10,6 +10,7 @@ import logger from '../../../sdk/logging/Logger';
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
+import { LocalizedString } from '../../..';
 
 export class TileExtension extends Extension {
   /**
@@ -31,6 +32,15 @@ export class TileExtension extends Extension {
    * @memberof TileExtension
    */
   public context: AllContextKeys[];
+
+  /**
+   * Optional title value of the tile shown in the tile tilebar.
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TileExtension
+   */
+  public title?: LocalizedString;
 
   /**
    * Definition of tile extension hosting.
@@ -67,10 +77,8 @@ export class TileExtension extends Extension {
       }
 
       if (!this.host.url) {
-        if (!this.host.template && !this.host.component) {
-          issues.push(
-            'Host definition is missing url/template/component value.'
-          );
+        if (!this.host.template) {
+          issues.push('Host definition is missing url/template value.');
         }
       } else {
         if (!utils.hostUrlValidation(this.host.url, this.context)) {

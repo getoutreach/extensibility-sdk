@@ -44,15 +44,6 @@ describe('TileExension validate tests', () => {
       expect(issues.length).toBe(0);
     });
 
-    test('host.url - missing is acceptable if component is there', () => {
-      const tileExtension = getValidProspectTileExtension();
-      delete tileExtension.host.url;
-      tileExtension.host.component = '@outreach/extensibility-components';
-
-      var issues = tileExtension.validate();
-      expect(issues.length).toBe(0);
-    });
-
     test('host.url - missing is acceptable if template is there', () => {
       const tileExtension = getValidProspectTileExtension();
       delete tileExtension.host.url;
@@ -66,13 +57,10 @@ describe('TileExension validate tests', () => {
       const tileExtension = getValidProspectTileExtension();
       delete tileExtension.host.url;
       delete tileExtension.host.template;
-      delete tileExtension.host.component;
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Host definition is missing url/template/component value.'
-      );
+      expect(issues[0]).toBe('Host definition is missing url/template value.');
     });
 
     test('host.icon - only url should be acceptable', () => {
@@ -122,7 +110,7 @@ describe('TileExension validate tests', () => {
   describe('settings', () => {
     test('are optional', () => {
       const tileExtension = getValidProspectTileExtension();
-      delete tileExtension.settings
+      delete tileExtension.settings;
     });
   });
 });
