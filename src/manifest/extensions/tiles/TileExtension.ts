@@ -77,8 +77,10 @@ export class TileExtension extends Extension {
       }
 
       if (!this.host.url) {
-        if (!this.host.template) {
-          issues.push('Host definition is missing url/template value.');
+        if (!this.host.template && !this.host.component) {
+          issues.push(
+            'Host definition is missing url/template/component value.'
+          );
         }
       } else {
         if (!utils.hostUrlValidation(this.host.url, this.context)) {

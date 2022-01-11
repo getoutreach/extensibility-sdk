@@ -70,7 +70,9 @@ describe('TileExension validate tests', () => {
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Host definition is missing url/template value.');
+      expect(issues[0]).toBe(
+        'Host definition is missing url/template/component value.'
+      );
     });
 
     test('host.icon - only url should be acceptable', () => {
