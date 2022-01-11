@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Type of decoration update being requested
  *    text - The text update is requested
