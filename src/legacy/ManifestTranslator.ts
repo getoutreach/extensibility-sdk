@@ -1,6 +1,14 @@
 import {
+  AccountTileExtension,
   ActionShellExtension,
+  AllContextKeys,
   CompanionShellExtension,
+  ConfigurationItem,
+  HomeTileExtension,
+  ManifestApi,
+  OpportunityTileExtension,
+  ProspectTileExtension,
+  TileExtensionType,
   ToolShellExtension,
 } from '..';
 import { AccountContextKeys } from '../context/keys/AccountContextKeys';
@@ -207,6 +215,121 @@ export class ManifestTranslator {
     return app;
   }
 
+  public static getContextEnumValue(ctx: string): AllContextKeys | null {
+    const accountKey = ManifestTranslator.getEnumKeyByEnumValue(
+      AccountContextKeys,
+      ctx
+    );
+    if (accountKey) {
+      return AccountContextKeys[accountKey];
+    }
+
+    const prospectKey = ManifestTranslator.getEnumKeyByEnumValue(
+      ProspectContextKeys,
+      ctx
+    );
+    if (prospectKey) {
+      return ProspectContextKeys[prospectKey];
+    }
+
+    const opportunityKey = ManifestTranslator.getEnumKeyByEnumValue(
+      OpportunityContextKeys,
+      ctx
+    );
+    if (opportunityKey) {
+      return OpportunityContextKeys[opportunityKey];
+    }
+
+    const userKey = ManifestTranslator.getEnumKeyByEnumValue(
+      UserContextKeys,
+      ctx
+    );
+    if (userKey) {
+      return UserContextKeys[userKey];
+    }
+
+    const clientKey = ManifestTranslator.getEnumKeyByEnumValue(
+      ClientContextKeys,
+      ctx
+    );
+    if (clientKey) {
+      return ClientContextKeys[clientKey];
+    }
+
+    return null;
+  }
+
+  public static getEnumKeyByEnumValue<T extends { [index: string]: string }>(
+    myEnum: T,
+    enumValue: string
+  ): keyof T | null {
+    const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue);
+    return keys.length > 0 ? keys[0] : null;
+  }
+
+  public static mapEnums<T extends { [index: string]: string }>(
+    myEnum: T,
+    enumValues: string[]
+  ): (keyof T)[] {
+    const result: (keyof T)[] = [];
+
+    enumValues.map((mc) => {
+      const enumKey = ManifestTranslator.getEnumKeyByEnumValue(myEnum, mc);
+      if (enumKey) {
+        result.push(myEnum[enumKey]);
+      }
+    });
+    return result;
+  }
+
+  public static hydrate = (app: Application): Application => {
+    const application = new Application();
+    if (app.api) {
+      application.api = Object.assign(new ManifestApi(), app.api);
+    }
+
+    if (app.configuration) {
+      application.configuration = app.configuration.map((item) =>
+        Object.assign(new ConfigurationItem(), item)
+      );
+    }
+
+    application.store = Object.assign(new ManifestStore(), app.store);
+
+    application.extensions = app.extensions.map((ext) => {
+      switch (ext.type) {
+        case TabExtensionType.ACCOUNT:
+          return Object.assign(new AccountTabExtension(), ext);
+        case TabExtensionType.OPPORTUNITY:
+          return Object.assign(new OpportunityTabExtension(), ext);
+        case TabExtensionType.PROSPECT:
+          return Object.assign(new ProspectTabExtension(), ext);
+        case TabExtensionType.PROSPECT_ACTION:
+          return Object.assign(new ProspectActionTabExtension(), ext);
+        case ShellExtensionType.APPLICATION:
+          return Object.assign(new ApplicationShellExtension(), ext);
+        case ShellExtensionType.COMPANION:
+          return Object.assign(new CompanionShellExtension(), ext);
+        case ShellExtensionType.TOOL:
+          return Object.assign(new ToolShellExtension(), ext);
+        case ShellExtensionType.ACTION:
+          return Object.assign(new ActionShellExtension(), ext);
+        case TileExtensionType.HOME:
+          return Object.assign(new HomeTileExtension(), ext);
+        case TileExtensionType.ACCOUNT:
+          return Object.assign(new AccountTileExtension(), ext);
+        case TileExtensionType.PROSPECT:
+          return Object.assign(new ProspectTileExtension(), ext);
+        case TileExtensionType.OPPORTUNITY:
+          return Object.assign(new OpportunityTileExtension(), ext);
+        default:
+          throw new Error("Can't hydrate extension " + JSON.stringify(ext));
+      }
+    });
+
+    return application;
+  };
+
   private static processTabExtensions = (ext: ManifestV1): TabExtension => {
     let extension: TabExtension;
     switch (ext.host.type) {
@@ -232,49 +355,14 @@ export class ManifestTranslator {
     extension.description = ext.description;
     extension.fullWidth = ext.host.environment?.fullWidth || false;
 
-    extension.context = ext.context.map((ctx) => {
-      const accountKey = ManifestTranslator.getEnumKeyByEnumValue(
-        AccountContextKeys,
-        ctx
-      );
-      if (accountKey) {
-        return AccountContextKeys[accountKey];
+    const context: AllContextKeys[] = [];
+    ext.context.forEach((key) => {
+      const enumValue = this.getContextEnumValue(key);
+      if (enumValue) {
+        context.push(enumValue);
       }
-
-      const prospectKey = ManifestTranslator.getEnumKeyByEnumValue(
-        ProspectContextKeys,
-        ctx
-      );
-      if (prospectKey) {
-        return ProspectContextKeys[prospectKey];
-      }
-
-      const opportunityKey = ManifestTranslator.getEnumKeyByEnumValue(
-        OpportunityContextKeys,
-        ctx
-      );
-      if (opportunityKey) {
-        return OpportunityContextKeys[opportunityKey];
-      }
-
-      const userKey = ManifestTranslator.getEnumKeyByEnumValue(
-        UserContextKeys,
-        ctx
-      );
-      if (userKey) {
-        return UserContextKeys[userKey];
-      }
-
-      const clientKey = ManifestTranslator.getEnumKeyByEnumValue(
-        ClientContextKeys,
-        ctx
-      );
-      if (clientKey) {
-        return ClientContextKeys[clientKey];
-      }
-
-      return 'NAN' as any;
     });
+    extension.context = context;
     return extension;
   };
 
@@ -338,12 +426,4 @@ export class ManifestTranslator {
     });
     return extension;
   };
-
-  private static getEnumKeyByEnumValue<T extends { [index: string]: string }>(
-    myEnum: T,
-    enumValue: string
-  ): keyof T | null {
-    const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue);
-    return keys.length > 0 ? keys[0] : null;
-  }
 }

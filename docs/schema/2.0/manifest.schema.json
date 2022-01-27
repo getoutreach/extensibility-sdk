@@ -241,7 +241,8 @@
               "tile-home",
               "tile-account",
               "tile-opportunity",
-              "tile-prospect"
+              "tile-prospect",
+              "tab-reports"
             ]
           },
           "host": {

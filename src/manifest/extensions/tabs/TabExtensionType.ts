@@ -49,4 +49,9 @@ export enum TabExtensionType {
    * Sidebar action button shown in the prospect page tab right sidebar
    */
   PROSPECT_ACTION = 'tab-prospect-action',
+
+  /**
+   * Reports page tab extension
+   */
+  REPORTS = 'tab-reports',
 }
