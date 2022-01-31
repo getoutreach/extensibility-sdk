@@ -15,6 +15,7 @@ export interface ManifestV1 {
       | 'tab-opportunity'
       | 'tab-prospect'
       | 'tab-account'
+      | 'tab-reports'
       | 'tab-sidebar'
       | 'tab-prospect-action'
       | 'left-side-menu'

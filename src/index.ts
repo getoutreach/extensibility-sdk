@@ -120,6 +120,7 @@ export { TabExtensionType } from './manifest/extensions/tabs/TabExtensionType';
 export { AccountTabExtension } from './manifest/extensions/tabs/types/AccountTabExtension';
 export { OpportunityTabExtension } from './manifest/extensions/tabs/types/OpportunityTabExtension';
 export { ProspectTabExtension } from './manifest/extensions/tabs/types/ProspectTabExtension';
+export { ReportsTabExtension } from './manifest/extensions/tabs/types/ReportsTabExtension';
 
 export { TileExtension } from './manifest/extensions/tiles/TileExtension';
 export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';

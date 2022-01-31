@@ -29,6 +29,7 @@ import { AccountTabExtension } from '../manifest/extensions/tabs/types/AccountTa
 import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/OpportunityTabExtension';
 import { ProspectActionTabExtension } from '../manifest/extensions/tabs/types/ProspectActionTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
+import { ReportsTabExtension } from '../manifest/extensions/tabs/types/ReportsTabExtension';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
@@ -196,6 +197,7 @@ export class ManifestTranslator {
         case 'tab-opportunity':
         case 'tab-prospect':
         case 'tab-prospect-action':
+        case 'tab-reports':
           extension = this.processTabExtensions(ext);
           break;
         default:
@@ -300,28 +302,32 @@ export class ManifestTranslator {
       switch (ext.type) {
         case TabExtensionType.ACCOUNT:
           return Object.assign(new AccountTabExtension(), ext);
+        case ShellExtensionType.ACTION:
+          return Object.assign(new ActionShellExtension(), ext);
+        case ShellExtensionType.APPLICATION:
+          return Object.assign(new ApplicationShellExtension(), ext);
+        case ShellExtensionType.COMPANION:
+          return Object.assign(new CompanionShellExtension(), ext);
         case TabExtensionType.OPPORTUNITY:
           return Object.assign(new OpportunityTabExtension(), ext);
         case TabExtensionType.PROSPECT:
           return Object.assign(new ProspectTabExtension(), ext);
         case TabExtensionType.PROSPECT_ACTION:
           return Object.assign(new ProspectActionTabExtension(), ext);
-        case ShellExtensionType.APPLICATION:
-          return Object.assign(new ApplicationShellExtension(), ext);
-        case ShellExtensionType.COMPANION:
-          return Object.assign(new CompanionShellExtension(), ext);
+        case TabExtensionType.REPORTS:
+          return Object.assign(new ReportsTabExtension(), ext);
         case ShellExtensionType.TOOL:
           return Object.assign(new ToolShellExtension(), ext);
-        case ShellExtensionType.ACTION:
-          return Object.assign(new ActionShellExtension(), ext);
-        case TileExtensionType.HOME:
-          return Object.assign(new HomeTileExtension(), ext);
+
         case TileExtensionType.ACCOUNT:
           return Object.assign(new AccountTileExtension(), ext);
-        case TileExtensionType.PROSPECT:
-          return Object.assign(new ProspectTileExtension(), ext);
+        case TileExtensionType.HOME:
+          return Object.assign(new HomeTileExtension(), ext);
         case TileExtensionType.OPPORTUNITY:
           return Object.assign(new OpportunityTileExtension(), ext);
+        case TileExtensionType.PROSPECT:
+          return Object.assign(new ProspectTileExtension(), ext);
+
         default:
           throw new Error("Can't hydrate extension " + JSON.stringify(ext));
       }
@@ -341,6 +347,9 @@ export class ManifestTranslator {
         break;
       case TabExtensionType.PROSPECT:
         extension = new ProspectTabExtension();
+        break;
+      case TabExtensionType.REPORTS:
+        extension = new ReportsTabExtension();
         break;
       case TabExtensionType.PROSPECT_ACTION:
         extension = new ProspectActionTabExtension();
