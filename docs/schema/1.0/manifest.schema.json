@@ -54,7 +54,11 @@
             "tab-opportunity-sidebar",
             "tab-opportunity-action",
             "tab-account-sidebar",
-            "tab-account-action"
+            "tab-account-action",
+            "tile-home",
+            "tile-account",
+            "tile-opportunity",
+            "tile-prospect"
           ]
         },
         "url": {
