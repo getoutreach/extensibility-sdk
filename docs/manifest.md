@@ -30,13 +30,14 @@ Table of content:
       - [version (extension)](#version-extension)
     - [Tab extension properties](#tab-extension-properties)
       - [context (tab extension)](#context-tab-extension)
-        - [Application tab extension](#application-tab-extension)
+        - [Shell application extension](#shell-application-extension)
         - [Account tab extension](#account-tab-extension)
         - [Prospect tab extension](#prospect-tab-extension)
         - [Opportunity tab extension](#opportunity-tab-extension)
+        - [Reports tab extension](#reports-tab-extension)
       - [Environment (tab extension)](#environment-tab-extension)
         - [fullWidth (tab extension)](#fullwidth-tab-extension)
-        - [decoration (tab extension)](#decoration-tab-extension)
+        - [decoration (shell extension)](#decoration-shell-extension)
       - [Host (tab extension)](#host-tab-extension)
         - [url](#url)
       - [icon (of extension)](#icon-of-extension)
@@ -133,7 +134,7 @@ Here is the sample manifest file of the hello world application having two exten
         "url": "http://someurl.com/host/app",
         "notificationsUrl": "https://addon-host.com/notification",
       },
-      "type": "application",
+      "type": "shell-application",
       "version": "0.98"
     },
     {
@@ -258,7 +259,7 @@ To learn more about configuration section, go to [manifest configuration page](c
 This section contains one or more extensions belonging to the Outreach application.
 
 Those extensions can be of various types (tab extensions, tile extensions, etc.).
-Each one of these types can have additional subtypes (e.g., tab extensions can be: app, account, opportunity, or prospect tab extensions).
+Each one of these types can have additional subtypes (e.g., tab extensions can be: reports, account, opportunity, or prospect tab extensions).
 
 The application can contain a bundle of one more extension of any type/subtype.
 
@@ -291,14 +292,14 @@ To learn more about the list of all of the supported context properties, go to [
 
 There are four types of tab extensions, and each one of them can use only an available subset of contextual information.
 
-##### Application tab extension
+##### Shell application extension
 
 As defined in [ApplicationTabExtension.ts](../src/manifest/extensions/tabs/ApplicationTabExtension.ts) this type of tab extensions can use:
 
 - [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
 - [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
 
-The reason for that is that the application tab extension is hosted on the left side menu and has no context information about any current account/prospect/opportunity, so it can use only context information about the current user and client context.
+The reason for that is that the shell application extension is hosted on the left side menu and has no context information about any current account/prospect/opportunity, so it can use only context information about the current user and client context.
 
 ##### Account tab extension
 
@@ -330,6 +331,15 @@ As defined in OpportunityTabExtension.ts](../src/manifest/extensions/tabs/Opport
 
 Prospect tab extension is running in the context of the account Outreach user is looking at, so in addition to general contextual properties, it can also use [opportunity context properties](../src/context/host/OpportunityContext.ts).
 
+##### Reports tab extension
+
+As defined in ReportsTabExtension.ts](../src/manifest/extensions/tabs/ReportsTabExtension.ts) this type of tab extensions can use:
+
+- [UserContextKeys.ts](../src/context/keys/UserContextKeys.ts)
+- [ClientContextKeys.ts](../src/context/keys/ClientContextKeys.ts)
+
+As the extension is not running in context of any specific domain entity, this application is similar to shell extensions as it can't use additional keys.
+
 #### Environment (tab extension)
 
 This is the optional section where the application creator can express expectations the Outreach host environment has to match for the application to function correctly.
@@ -344,7 +354,7 @@ manifest.host.environment = {
 };
 ```
 
-##### decoration (tab extension)
+##### decoration (shell extension)
 
 e.g., to show an application icon badge decoration
 
@@ -422,6 +432,7 @@ SDK supported application types (as defined in [ShellExtensionType.ts](../src/ma
 - `tab-account` (account details tab extension)
 - `tab-opportunity` (opportunity details tab extension)
 - `tab-prospect` (prospect details tab extension)
+- `tab-reports` (reports page tab extension)
 - documentation for other supported types is to be added later
 
 Application tab extension example
@@ -431,6 +442,8 @@ Application tab extension example
 Account tab extension example
 
 ![alt text](assets/account-tab-extension-example.png 'Account tab extension example')
+
+![alt text](assets/tab-reports.jpg "Reports tab extension")
 
 #### notificationsUrl
 

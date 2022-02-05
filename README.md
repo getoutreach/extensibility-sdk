@@ -10,7 +10,7 @@ Table of content
   - [How it works](#how-it-works)
   - [Required steps to build an Outreach application](#required-steps-to-build-an-outreach-application)
   - [What can you make?](#what-can-you-make)
-    - [Application extensions](#application-extensions)
+    - [Shell extensions](#shell-extensions)
     - [Tab extensions](#tab-extensions)
 
 ## How it works
@@ -48,32 +48,32 @@ The extensibility framework supports a few integration methods with different co
 
     Go to [Outreach API access](/docs/outreach-api.md) page to learn more about API access requirements.
 
-_NOTE: This document is an early preview of the client extensibility framework whose primary purpose is to speed up the collaboration and scenario exploration with potential application creators. It will be changing at a rapid pace until the official release of the platform._
-
-*If you have any questions/comments/concerns about the extensibility, please check the [FAQ](/docs/faq.md) or email us at **cxt-sdk@outreach.io.***
+    _If you have any questions/comments/concerns about the extensibility, please check the [FAQ](/docs/faq.md) or email us at **cxt-sdk@outreach.io.**_
 
 ## What can you make?
 
-There are two types of application extensions you can create with the Outreach client sdk: application extension and tab extension.
+There are two application extensions with the Outreach client sdk: shell extensions and tab extensions.
 
-### Application extensions
+### Shell extensions
 
-Application extension is a type of extension where the application creator wants to bring its all app to Outreach.
+A shell extension is a type of extension where the application creator wants to extend the shell of the Outreach application by bringing a more complex, standalone application experience.
 
 ![alt text](docs/assets/app-tab-extension-example.png "Left side menu addon example")
-This type of extension has an icon in the left side menu at the same level as other Outreach icons. Clicking on that icon will load an iframe taking the whole space and showing the extension host page defined in the manifest.
+e.g., the "Shell application" extension has an icon in the left side menu at the same level as other Outreach icons. Clicking on that icon will load an iframe taking the whole space and showing the extension host page defined in the manifest.
 
 Application extension can receive only user and organisation [contextual information](context.md).
 
-Application extension can define a special [notifications endpoint](manifest.md#notificationsurl), which will enable it to implement things as unread notifications badge decoration, show informational toast, etc., even before Outreach user interacted with the addon.
+Application extension can define a special [notifications endpoint](manifest.md#notificationsurl), enabling it to implement things such as unread notifications badge decoration, show informational toast, etc., even before Outreach user interacted with the addon.
 
 ### Tab extensions
 
-Tab extension is an extension that enables you to load your application in a context of a specific account, prospect, or opportunity. Your application is being loaded as an additional tab beside other standard Outreach tabs.
+Tab extension enables you to load your application in a context of a specific account, prospect, or opportunity. Your application is loaded as an additional tab beside other standard Outreach tabs.
 
 ![alt text](docs/assets/account-tab-extension-example.png "Tab addon example")
 
-Tab extension are loaded after the tab is being opened.
+Tab extensions are loaded after the tab is being opened.
 In addition to the organization and user context available to application extension, they can receive current account context (account tab), current prospect context (prospect tab), and current opportunity context (opportunity tab).
 
-Tab extension do not support the notification feature application addons have.
+In addition to account/propsect/opportunity tab extensions we support also "reports tab extension" which allows you to extend Outreach reporting capabilities.
+
+![alt text](docs/assets/tab-reports.jpg "Reports tab extension")
