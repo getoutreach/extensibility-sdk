@@ -14,6 +14,7 @@ import {
 import { AccountContextKeys } from '../context/keys/AccountContextKeys';
 import { ClientContextKeys } from '../context/keys/ClientContextKeys';
 import { OpportunityContextKeys } from '../context/keys/OpportunityContextKeys';
+import { OrganizationContextKeys } from '../context/keys/OrganizationContextKeys';
 import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
 import { UserContextKeys } from '../context/keys/UserContextKeys';
 import { Application } from '../manifest/Application';
@@ -250,6 +251,14 @@ export class ManifestTranslator {
       return UserContextKeys[userKey];
     }
 
+    const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(
+      OrganizationContextKeys,
+      ctx
+    );
+    if (organizationKey) {
+      return OrganizationContextKeys[organizationKey];
+    }
+
     const clientKey = ManifestTranslator.getEnumKeyByEnumValue(
       ClientContextKeys,
       ctx
@@ -421,6 +430,14 @@ export class ManifestTranslator {
       );
       if (userKey) {
         return UserContextKeys[userKey];
+      }
+
+      const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(
+        OrganizationContextKeys,
+        ctx
+      );
+      if (organizationKey) {
+        return OrganizationContextKeys[organizationKey];
       }
 
       const clientKey = ManifestTranslator.getEnumKeyByEnumValue(

@@ -1,4 +1,5 @@
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
+import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { ProspectContextKeys } from '../../../../context/keys/ProspectContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TileExtension } from '../TileExtension';
@@ -20,10 +21,15 @@ export class ProspectTileExtension extends TileExtension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys)[]}
+   * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[]}
    * @memberof ProspectTileExtension
    */
-  public context: (UserContextKeys | ClientContextKeys | ProspectContextKeys)[];
+  public context: (
+    | UserContextKeys
+    | ClientContextKeys
+    | ProspectContextKeys
+    | OrganizationContextKeys
+  )[];
 
   /**
    * Validates the prospect tile extension configuration

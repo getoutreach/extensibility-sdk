@@ -1,5 +1,6 @@
 import { AccountContextKeys } from '../../../../context/keys/AccountContextKeys';
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
+import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TileExtension } from '../TileExtension';
 import { TileExtensionType } from '../TileExtensionType';
@@ -20,10 +21,15 @@ export class HomeTileExtension extends TileExtension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys)[]}
+   * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[]}
    * @memberof HomeTileExtension
    */
-  public context: (UserContextKeys | ClientContextKeys | AccountContextKeys)[];
+  public context: (
+    | UserContextKeys
+    | ClientContextKeys
+    | AccountContextKeys
+    | OrganizationContextKeys
+  )[];
 
   /**
    * Validates the home tile extension configuration
