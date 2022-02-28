@@ -35,6 +35,7 @@ import { LoadingContext } from './context/LoadingContext';
 import { ILogger } from './sdk/logging/ILogger';
 import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 import { ManifestTranslator } from './legacy/ManifestTranslator';
+import { OrganizationContext } from './context/host/OrganizationContext';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -656,6 +657,7 @@ class ExtensibilitySdk {
     const opportunityContext = new OpportunityContext();
     const userContext = new UserContext();
     const prospectContext = new ProspectContext();
+    const organizationContext = new OrganizationContext();
 
     for (let i = 0; i < initMessage.context.length; i++) {
       const param = initMessage.context[i];
@@ -679,6 +681,12 @@ class ExtensibilitySdk {
       handled = userContext.initFrom(param);
       if (handled) {
         outreachContext.user = outreachContext.user || userContext;
+      }
+
+      handled = organizationContext.initFrom(param);
+      if (handled) {
+        outreachContext.organization =
+          outreachContext.organization || organizationContext;
       }
     }
 

@@ -12,6 +12,7 @@ import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { ShellExtensionType } from './ShellExtensionType';
 import { ExtensionType } from '../ExtensionType';
+import { OrganizationContextKeys } from '../../../context/keys/OrganizationContextKeys';
 
 export class ShellExtension extends Extension {
   /**
@@ -21,10 +22,14 @@ export class ShellExtension extends Extension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {TabExtensionType}
+   *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys)[]}
    * @memberof TabExtension
    */
-  public context: (UserContextKeys | ClientContextKeys)[];
+  public context: (
+    | UserContextKeys
+    | ClientContextKeys
+    | OrganizationContextKeys
+  )[];
 
   /**
    * Definition of addon host

@@ -1,5 +1,6 @@
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
 import { OpportunityContextKeys } from '../../../../context/keys/OpportunityContextKeys';
+import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TabExtension } from '../TabExtension';
 import { TabExtensionType } from '../TabExtensionType';
@@ -21,13 +22,14 @@ export class OpportunityTabExtension extends TabExtension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys)}
+   * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)}
    * @memberof OpportunityTabExtension
    */
   public context: (
     | UserContextKeys
     | ClientContextKeys
     | OpportunityContextKeys
+    | OrganizationContextKeys
   )[];
 
   /**

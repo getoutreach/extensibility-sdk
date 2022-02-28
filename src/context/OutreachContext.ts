@@ -6,6 +6,7 @@ import { ProspectContext } from './host/ProspectContext';
 import { HostContext } from './host/HostContext';
 import { ContextParam, Locale, Theme } from '..';
 import { ConfigurationValue } from '../configuration/ConfigurationValue';
+import { OrganizationContext } from './host/OrganizationContext';
 
 export class OutreachContext {
   /**
@@ -55,6 +56,14 @@ export class OutreachContext {
    * @memberof OutreachContext
    */
   public user?: UserContext;
+
+  /**
+   * Outreach user organization information (if any)
+   *
+   * @type {OrganizationContext}
+   * @memberof OutreachContext
+   */
+  public organization?: OrganizationContext;
 
   /**
    * Current Outreach opportunity context information (if any)

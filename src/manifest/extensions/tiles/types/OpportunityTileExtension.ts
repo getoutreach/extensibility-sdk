@@ -1,5 +1,6 @@
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
 import { OpportunityContextKeys } from '../../../../context/keys/OpportunityContextKeys';
+import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TileExtension } from '../TileExtension';
 import { TileExtensionType } from '../TileExtensionType';
@@ -20,13 +21,14 @@ export class OpportunityTileExtension extends TileExtension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys)}
+   * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)}
    * @memberof OpportunityTileExtension
    */
   public context: (
     | UserContextKeys
     | ClientContextKeys
     | OpportunityContextKeys
+    | OrganizationContextKeys
   )[];
 
   /**

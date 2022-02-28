@@ -1,5 +1,6 @@
 import { ProspectContextKeys } from '../../../..';
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
+import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TabExtension } from '../TabExtension';
 import { TabExtensionType } from '../TabExtensionType';
@@ -21,10 +22,15 @@ export class ProspectActionTabExtension extends TabExtension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys)[]}
+   * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[]}
    * @memberof ProspectActionTabExtension
    */
-  public context: (UserContextKeys | ClientContextKeys | ProspectContextKeys)[];
+  public context: (
+    | UserContextKeys
+    | ClientContextKeys
+    | ProspectContextKeys
+    | OrganizationContextKeys
+  )[];
 
   /**
    * Validates the account tab extension configuration
