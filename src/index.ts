@@ -48,6 +48,7 @@ export { ClientContextKeys } from './context/keys/ClientContextKeys';
 export { OpportunityContextKeys } from './context/keys/OpportunityContextKeys';
 export { ProspectContextKeys } from './context/keys/ProspectContextKeys';
 export { UserContextKeys } from './context/keys/UserContextKeys';
+export { OrganizationContextKeys } from './context/keys/OrganizationContextKeys';
 
 export { AccountContext } from './context/host/AccountContext';
 export { ContextParam } from './context/host/ContextParam';
@@ -57,6 +58,7 @@ export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
 export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
 export { OpportunityContext } from './context/host/OpportunityContext';
 export { UserContext } from './context/host/UserContext';
+export { OrganizationContext } from './context/host/OrganizationContext';
 
 export { LoadingContext } from './context/LoadingContext';
 export { OutreachContext } from './context/OutreachContext';
