@@ -38,12 +38,6 @@ const addonHostOrigin = ‘https://app-hosting-domain.com;
 window.parent.postMessage({type: ‘cxt:sdk:ready’, version: 2}, addonHostOrigin)
 ```
 
-When the recommended solutions are not possible, the application creator can update the manifest with information that the application is "not using the SDK" and that the Outreach host will disable the timeout check. With this solution, the Outreach host will not have any information on application QoS, and it would have to be approved as an exception during the application review process.
-
-```javascript
-{
-  ...
-  disableTimeoutMonitoring: true
-  ...
-} 
-```
+Suppose the Outreach application creator would implement one of the above-recommended solutions. In that case, the Outreach host app will have to make an additional request to the addon hosting endpoint.
+This request will have query parameter **?ping=true**, and the Outreach application hosting endpoint should return an empty OK  response (status code: 200) without any processing.
+The addon endpoint should NOT return the 404 status code on a ping request - the app review process will check this.

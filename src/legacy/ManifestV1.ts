@@ -42,14 +42,4 @@ export interface ManifestV1 {
   configuration: ConfigurationItem[];
 
   medias?: ManifestMedia[];
-
-  /**
-   *
-   * @deprecated Use disableTimeoutMonitoring
-   * @type {boolean}
-   * @memberof ManifestV1
-   */
-  notUsingSdk?: boolean;
-
-  disableTimeoutMonitoring?: boolean;
 }

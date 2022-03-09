@@ -132,7 +132,6 @@ export class ManifestTranslator {
       version: app.store.version,
       api: app.api,
       medias: app.store.medias,
-      disableTimeoutMonitoring: app.notUsingSdk || app.disableTimeoutMonitoring,
     };
 
     return manifestV1;
@@ -158,8 +157,6 @@ export class ManifestTranslator {
     }
 
     const app: Application = new Application();
-    app.disableTimeoutMonitoring =
-      firstExt.notUsingSdk || firstExt.disableTimeoutMonitoring;
     app.store = new ManifestStore();
     app.store.author = new ManifestAuthor();
     app.store.author.company = firstExt.author.company || 'N/A';
