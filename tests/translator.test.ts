@@ -106,6 +106,24 @@ describe('Manifest translator tests', () => {
     expect(tabOpportunityExt.title).toBe(v1Manifests[2].title);
     expect(tabOpportunityExt.version).toBe(v1Manifests[2].version);
   });
+
+  describe('disableTimeoutMonitoring', () => {
+    test('if omitted in manifest, it is false', () => {
+      const result = ManifestTranslator.getAppManifest(v1Manifests);
+      expect(result!.disableTimeoutMonitoring).toBeFalsy();
+    });
+
+    test('preserved through translation', () => {
+      v1Manifests[0].disableTimeoutMonitoring = true;
+      const result = ManifestTranslator.getAppManifest(v1Manifests);
+      expect(result!.disableTimeoutMonitoring).toBe(true);
+    });
+    test('it replaces notUsingSdk', () => {
+      v1Manifests[0].notUsingSdk = true;
+      const result = ManifestTranslator.getAppManifest(v1Manifests);
+      expect(result!.disableTimeoutMonitoring).toBe(true);
+    });
+  });
 });
 
 const v1Manifests = [
