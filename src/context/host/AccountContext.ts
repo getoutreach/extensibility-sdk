@@ -21,6 +21,22 @@ export class AccountContext extends CustomContext {
   customId?: string;
 
   /**
+   * The domain of the account company (used in querying)
+   *
+   * @type {string}
+   * @memberof ProspectContext
+   */
+  companyQueryDomain: string;
+
+  /**
+   * The name of the account company (used in querying)
+   *
+   * @type {string}
+   * @memberof ProspectContext
+   */
+  companyQueryName: string;
+
+  /**
    * A custom description of the account.
    *
    * @type {string}
