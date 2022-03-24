@@ -23,6 +23,22 @@ export class ProspectContext extends CustomContext {
   company: string;
 
   /**
+   * The domain of the prospect company (used in querying)
+   *
+   * @type {string}
+   * @memberof ProspectContext
+   */
+  companyQueryDomain: string;
+
+  /**
+   * The name of the prospect company (used in querying)
+   *
+   * @type {string}
+   * @memberof ProspectContext
+   */
+  companyQueryName: string;
+
+  /**
    * The locality of prospect’s company.
    *
    * @type {string}

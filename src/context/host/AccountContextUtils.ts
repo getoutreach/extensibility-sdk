@@ -329,6 +329,13 @@ export const initAccountContext = (
     case AccountContextKeys.CUSTOM_FIELD_100:
       context.customField100 = param.value;
       break;
+    case AccountContextKeys.QUERY_DOMAIN:
+      context.companyQueryDomain = param.value;
+      break;
+    case AccountContextKeys.QUERY_NAME:
+      context.companyQueryName = param.value;
+      break;
+
     default:
       return false;
   }
@@ -1082,6 +1089,20 @@ export const toAccountParams = (context: AccountContext): ContextParam[] => {
     params.push({
       key: AccountContextKeys.CUSTOM_FIELD_100,
       value: context.customField100,
+    });
+  }
+
+  if (context.companyQueryDomain) {
+    params.push({
+      key: AccountContextKeys.QUERY_DOMAIN,
+      value: context.companyQueryDomain,
+    });
+  }
+
+  if (context.companyQueryName) {
+    params.push({
+      key: AccountContextKeys.QUERY_NAME,
+      value: context.companyQueryName,
     });
   }
 

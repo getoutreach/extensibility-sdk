@@ -27,12 +27,15 @@ If an application needs contextual information about the current account Outreac
 Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in [SDK](../src/store/keys/AccountContextKeys.ts) next properties:
 
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
+- **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.desc** A custom description of the account.
 - **acc.id** Account id
 - **acc.loc** The company’s primary geographic region (e.g. "Eastern USA").
 - **acc.name** The name of the company (e.g. "Acme Corporation").
 - **acc.tags** A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
 - **acc.csf1** to **acc.csf120** the value of the (1-100) account's custom field.
+- **acc.qrydomain** Account company name (used in queries)
+- **acc.qryname** Account company name (used in queries)
 
 ## Opportunity contextual information
 
@@ -66,6 +69,8 @@ Our end goal is to provide contextual access to any of the properties available 
 - **pro.tzone** The prospect's current timezone, preferably in the IANA format (e.g., "America/LosAngeles").
 - **pro.title** The title of the prospect.
 - **pro.csf1** to **pro.csf120** the value of the (1-120) prospect's custom field.
+- **pro.qrydomain** Prospect company name (used in queries)
+- **pro.qryname** Prospect company name (used in queries)
 
 ## User contextual information
 

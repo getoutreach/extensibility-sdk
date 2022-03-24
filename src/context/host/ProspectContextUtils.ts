@@ -396,6 +396,12 @@ export const initProspectContext = (
     case ProspectContextKeys.CUSTOM_FIELD_120:
       context.customField120 = param.value;
       break;
+    case ProspectContextKeys.QUERY_DOMAIN:
+      context.companyQueryDomain = param.value;
+      break;
+    case ProspectContextKeys.QUERY_NAME:
+      context.companyQueryName = param.value;
+      break;
     default:
       return false;
   }
@@ -1306,5 +1312,18 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     });
   }
 
+  if (context.companyQueryDomain) {
+    params.push({
+      key: ProspectContextKeys.QUERY_DOMAIN,
+      value: context.companyQueryDomain,
+    });
+  }
+
+  if (context.companyQueryName) {
+    params.push({
+      key: ProspectContextKeys.QUERY_NAME,
+      value: context.companyQueryName,
+    });
+  }
   return params;
 };

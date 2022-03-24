@@ -152,4 +152,14 @@ export enum AccountContextKeys {
   CUSTOM_FIELD_99 = 'acc.csf99',
 
   CUSTOM_FIELD_100 = 'acc.csf100',
+
+  /**
+   * Account company name (used in queries)
+   */
+  QUERY_DOMAIN = 'acc.qrydomain',
+
+  /**
+   * Account company name (used in queries)
+   */
+  QUERY_NAME = 'acc.qryname',
 }

@@ -185,4 +185,14 @@ export enum ProspectContextKeys {
   CUSTOM_FIELD_119 = 'pro.csf119',
 
   CUSTOM_FIELD_120 = 'pro.csf120',
+
+  /**
+   * Prospect company domain (used in queries)
+   */
+  QUERY_DOMAIN = 'pro.qrydomain',
+
+  /**
+   * Prospect company name (used in queries)
+   */
+  QUERY_NAME = 'pro.qryname',
 }
