@@ -28,7 +28,6 @@ Our end goal is to provide contextual access to any of the properties available 
 
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
-external system.
 - **acc.desc** A custom description of the account.
 - **acc.id** Account id
 - **acc.loc** The company’s primary geographic region (e.g. "Eastern USA").
