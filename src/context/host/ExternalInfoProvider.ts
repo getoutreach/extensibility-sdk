@@ -1,3 +1,10 @@
+/**
+ * Enumerates types of the plugin providers.
+ *
+ * @export
+ * @enum {number}
+ * @deprecated Usage of the ExternalInfoProvider is depricated and will be removed in future release
+ */
 /* eslint-disable no-unused-vars */
 export enum ExternalInfoProvider {
   /**

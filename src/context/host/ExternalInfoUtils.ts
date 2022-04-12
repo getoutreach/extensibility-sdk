@@ -1,6 +1,13 @@
 import { ExternalInfoContext } from './ExternalInfoContext';
 import { ExternalInfoProvider } from './ExternalInfoProvider';
 
+/**
+ * Packed format of the extensibility provider
+ *
+ * @export
+ * @interface PackedProvider
+ * @deprecated Usage of PackedProvider is depricated and it will be removed in some of the future releases
+ */
 export interface PackedProvider {
   e: boolean;
   i: string;
@@ -11,6 +18,15 @@ export interface PackedProvider {
   lo?: Date | null;
 }
 
+/**
+ *
+ * Util functions for maniputlating external info format.
+ *
+ * @export
+ * @class ExternalInfoUtils
+ * @deprecated Usage of ExternalInfoUtils is depricated and it will be removed in some of the future releases
+ *
+ */
 export class ExternalInfoUtils {
   /**
    * Packs the contextual provider information to a shorter format
@@ -20,6 +36,7 @@ export class ExternalInfoUtils {
    * @param {ExternalInfoContext[]} contexts
    * @returns {string}
    * @memberof ExternalInfoUtils
+   * @deprecated Usage of ExternalInfoUtils is depricated and it will be removed in some of the future releases
    */
   public static pack = (contexts: ExternalInfoContext[]): string => {
     const packedProviders: PackedProvider[] = [];
@@ -42,6 +59,7 @@ export class ExternalInfoUtils {
    * Unpacks the packed format of the external prospect information
    *
    * @memberof ExternalInfoUtils
+   * @deprecated Usage of ExternalInfoUtils is depricated and it will be removed in some of the future releases
    */
   public static unpack = (packed: string): ExternalInfoContext[] => {
     const providers: ExternalInfoContext[] = [];

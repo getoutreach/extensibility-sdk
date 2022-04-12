@@ -10,9 +10,6 @@ Table of content:
   - [Prospect contextual information](#prospect-contextual-information)
   - [User contextual information](#user-contextual-information)
 - [External contextual information](#external-contextual-information)
-  - [External information payload](#external-information-payload)
-  - [Accessing external information from SDK](#accessing-external-information-from-sdk)
-  - [External information from URL](#external-information-from-url)
 
 Every Outreach application can request one or more contextual values describing the current Outreach user.
 
@@ -29,13 +26,13 @@ Our end goal is to provide contextual access to any of the properties available 
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.desc** A custom description of the account.
+- **acc.domain** Account company domain
 - **acc.id** Account id
 - **acc.loc** The company’s primary geographic region (e.g. "Eastern USA").
 - **acc.name** The name of the company (e.g. "Acme Corporation").
 - **acc.tags** A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
-- **acc.csf1** to **acc.csf120** the value of the (1-100) account's custom field.
-- **acc.qrydomain** Account company name (used in queries)
-- **acc.qryname** Account company name (used in queries)
+- **acc.csf1** to **acc.csf150** the value of the (1-150) account's custom field.
+
 
 ## Opportunity contextual information
 
@@ -52,7 +49,7 @@ Our end goal is to provide contextual access to any of the properties available 
 - **opp.prob** The chances of the opportunity succeeding are represented as a percentage.
 - **opp.tags** Tags associated with the opportunity.
 - **opp.type** The type of opportunity.
-- **opp.csf1** to **opp.csf120** the value of the (1-100) opportunity's custom field.
+- **opp.csf1** to **opp.csf150** the value of the (1-150) opportunity's custom field.
 
 ## Prospect contextual information
 
@@ -61,16 +58,22 @@ If an application needs contextual information about the current prospect Outrea
 Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in [SDK](../src/store/keys/ProspectContextKeys.ts) next properties:
 
 - **pro.avail** The date and time the prospect is available to contact again.
+- **pro.adrcity** City of the prospect
+- **pro.adrcntry** Country of the prospect
+- **pro.adrstate** State of the prospect
+- **pro.adrstreet** Street address of the prospect
+- **pro.adrstreet2** Street address (2nd line) of the prospect
+- **pro.adrzip** Postal code of the prospect.
 - **pro.comp** The name of the prospect company. If associated with an account, this is the name of the account. (e.g. Acme International).
+- **pro.domain** Prospect company name
 - **pro.emails** A list of email addresses associated with the prospect.
 - **pro.loc** The locality of the prospect's company.
 - **pro.id** Prospect id
+- **pro.name** Prospect company name
 - **pro.tags** A list of tag values associated with the account (e.g. ["Interested", "2017 Expo"]).
 - **pro.tzone** The prospect's current timezone, preferably in the IANA format (e.g., "America/LosAngeles").
 - **pro.title** The title of the prospect.
-- **pro.csf1** to **pro.csf120** the value of the (1-120) prospect's custom field.
-- **pro.qrydomain** Prospect company name (used in queries)
-- **pro.qryname** Prospect company name (used in queries)
+- **pro.csf1** to **pro.csf150** the value of the (1-150) prospect's custom field.
 
 ## User contextual information
 
@@ -96,46 +99,13 @@ Once a plugin is installed (Settings/Plugins) and synchronizing data with the ex
 
 We have created SDK support for a set of dedicated manifest keys to enable application creators to receive this external prospect information and use it to link data in their own dataset with the outreach account through the same shared external ID used in both systems.
 
-There are three context keys available for application creators to access current Outreach user info:
+There are six context keys available for application creators to access current Outreach user info:
 
-- **acc.ext** retrieving external account info
-- **pro.ext** retrieving external prospect info
-- **acc.ext** retrieving external opportunity info
+- **acc.extid** retrieving external id of the Outreach account id in the external system.
+- **acc.extprvd** retrieving account provider name (Salesforce, Dynamics, etc.)
 
-Each one of these properties has the same payload format and the same ways of reading it.
+- **pro.extid** retrieving external id of the Outreach prospect id in the external system.
+- **pro.extprvd** retrieving prospect provider name (Salesforce, Dynamics, etc.)
 
-## External information payload
-
-The value of this property is a complex object array, where each one of the array items represents information of one of the plugins. For example, if Outreach user has installed plugins for Salesforce and Dynamics, the array will have two objects with prospect information in each one of these external systems.
-
-This external information object has a few external contextual properties (all of them shown in Outreach prospect page as shown above):
-
-- **enabled** is plugin integration enabled?
-- **id** external prospect id (e.g. 00Q090000030WR6EAM)
-- **name** external prospect name
-- **type** external prospect type (e.g. LEAD)
-- **provider** 1 - Salesforce, 2 - Salesforce (sandbox), 3 - Dynamics
-- **lastInbound** Last date when the prospect data are synced to Outreach from external system
-- **lastOutbound** Last date when the prospect data are synced to the external system from Outreach
-
-As with all the other contextual properties, you can access these values: either through your own parsing of the application hosting URL or using the SDK to do that for you automatically.
-
-## Accessing external information from SDK
-
-This information is a standard part of the [initialization Outreach context](https://github.com/getoutreach/extensibility-sdk/blob/main/docs/sdk.md#outreach-context) external info property
-
-simply read the value of **ctx.prospect.externalInfo** : [ExternalInfoContext](https://github.com/getoutreach/extensibility-sdk/blob/main/src/context/ExternalInfoContext.ts) and it will contain an array of the all the external information prospect has.
-
-## External information from URL
-
-To reduce the length of the URL, external information is packed to the shorter format by using the **pack()** function of [ExternalInfoUtils](https://github.com/getoutreach/extensibility-sdk/blob/main/src/context/ExternalInfoUtils.ts).
-
-The value is JSON serialized form of the contextual array with all the property names being abbreviated. To read the values application creator has to use either **unpack()** function from the ExternalInfoUtils or manually deserialize the array and read the values using abbreviated property names.
-
-- **enabled** -> e
-- **id** -> i
-- **name** -> n
-- **type** -> t
-- **provider** -> p
-- **lastInbound** -> li
-- **lastOutbound** -> lo
+- **opp.extid** retrieving external id of the Outreach opportunity id in the external system.
+- **opp.extprvd** retrieving external opportunity info

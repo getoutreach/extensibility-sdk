@@ -21,20 +21,12 @@ export class AccountContext extends CustomContext {
   customId?: string;
 
   /**
-   * The domain of the account company (used in querying)
+   * The domain of the account company
    *
    * @type {string}
-   * @memberof ProspectContext
+   * @memberof AccountContext
    */
-  companyQueryDomain: string;
-
-  /**
-   * The name of the account company (used in querying)
-   *
-   * @type {string}
-   * @memberof ProspectContext
-   */
-  companyQueryName: string;
+  domain: string;
 
   /**
    * A custom description of the account.
@@ -43,6 +35,22 @@ export class AccountContext extends CustomContext {
    * @memberof AccountContext
    */
   description?: string;
+
+  /**
+   * Identity of the current account in the external system which is linked through installed Outreach plugin.
+   *
+   * @type {string}
+   * @memberof AccountContext
+   */
+  externalProviderId?: string;
+
+  /**
+   * Name of the external system provider which is linked through installed Outreach plugin.
+   *
+   * @type {string}
+   * @memberof AccountContext
+   */
+  externalProviderName?: string;
 
   /**
    * The company’s primary geographic region (e.g. "Eastern USA").
@@ -74,6 +82,7 @@ export class AccountContext extends CustomContext {
    *
    * @type {ExternalInfoContext[]}
    * @memberof AccountContext
+   * @deprecated Usage of externalInfo is depricated. Please use externalProviderId and externalProviderName instead.
    */
   externalInfo: ExternalInfoContext[] = [];
 

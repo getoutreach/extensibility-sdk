@@ -6,6 +6,7 @@ import { ExternalInfoProvider } from './ExternalInfoProvider';
  *
  * @export
  * @class ExternalInfoContext
+ * @deprecated Usage of the external info is depricated and will be removed in future release
  */
 export class ExternalInfoContext {
   /**
