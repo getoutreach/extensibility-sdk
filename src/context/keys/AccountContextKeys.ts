@@ -23,6 +23,21 @@ export enum AccountContextKeys {
   DESCRIPTION = 'acc.desc',
 
   /**
+   * Account company name
+   */
+  DOMAIN = 'acc.domain',
+
+  /**
+   * External provider id
+   */
+  EXTERNAL_ID = 'acc.extid',
+
+  /**
+   * External provider name
+   */
+  EXTERNAL_PROVIDER = 'acc.extprvd',
+
+  /**
    * The company’s primary geographic region (e.g. "Eastern USA").
    */
   LOCALITY = 'acc.loc',
@@ -39,6 +54,7 @@ export enum AccountContextKeys {
 
   /**
    *The account's external information received from the installed plugins (Salesforce, Dynamics etc.)
+   @deprecated Usage of this key is depricated. Please use EXTERNAL_ID or EXTERNAL_NAME.
    */
   EXTERNAL = 'acc.ext',
 
@@ -152,14 +168,59 @@ export enum AccountContextKeys {
   CUSTOM_FIELD_99 = 'acc.csf99',
 
   CUSTOM_FIELD_100 = 'acc.csf100',
+  CUSTOM_FIELD_101 = 'acc.csf101',
+  CUSTOM_FIELD_102 = 'acc.csf102',
+  CUSTOM_FIELD_103 = 'acc.csf103',
+  CUSTOM_FIELD_104 = 'acc.csf104',
+  CUSTOM_FIELD_105 = 'acc.csf105',
+  CUSTOM_FIELD_106 = 'acc.csf106',
+  CUSTOM_FIELD_107 = 'acc.csf107',
+  CUSTOM_FIELD_108 = 'acc.csf108',
+  CUSTOM_FIELD_109 = 'acc.csf109',
 
-  /**
-   * Account company name (used in queries)
-   */
-  QUERY_DOMAIN = 'acc.qrydomain',
+  CUSTOM_FIELD_110 = 'acc.csf110',
+  CUSTOM_FIELD_111 = 'acc.csf111',
+  CUSTOM_FIELD_112 = 'acc.csf112',
+  CUSTOM_FIELD_113 = 'acc.csf113',
+  CUSTOM_FIELD_114 = 'acc.csf114',
+  CUSTOM_FIELD_115 = 'acc.csf115',
+  CUSTOM_FIELD_116 = 'acc.csf116',
+  CUSTOM_FIELD_117 = 'acc.csf117',
+  CUSTOM_FIELD_118 = 'acc.csf118',
+  CUSTOM_FIELD_119 = 'acc.csf119',
 
-  /**
-   * Account company name (used in queries)
-   */
-  QUERY_NAME = 'acc.qryname',
+  CUSTOM_FIELD_120 = 'acc.csf120',
+  CUSTOM_FIELD_121 = 'acc.csf121',
+  CUSTOM_FIELD_122 = 'acc.csf122',
+  CUSTOM_FIELD_123 = 'acc.csf123',
+  CUSTOM_FIELD_124 = 'acc.csf124',
+  CUSTOM_FIELD_125 = 'acc.csf125',
+  CUSTOM_FIELD_126 = 'acc.csf126',
+  CUSTOM_FIELD_127 = 'acc.csf127',
+  CUSTOM_FIELD_128 = 'acc.csf128',
+  CUSTOM_FIELD_129 = 'acc.csf129',
+
+  CUSTOM_FIELD_130 = 'acc.csf130',
+  CUSTOM_FIELD_131 = 'acc.csf131',
+  CUSTOM_FIELD_132 = 'acc.csf132',
+  CUSTOM_FIELD_133 = 'acc.csf133',
+  CUSTOM_FIELD_134 = 'acc.csf134',
+  CUSTOM_FIELD_135 = 'acc.csf135',
+  CUSTOM_FIELD_136 = 'acc.csf136',
+  CUSTOM_FIELD_137 = 'acc.csf137',
+  CUSTOM_FIELD_138 = 'acc.csf138',
+  CUSTOM_FIELD_139 = 'acc.csf139',
+
+  CUSTOM_FIELD_140 = 'acc.csf140',
+  CUSTOM_FIELD_141 = 'acc.csf141',
+  CUSTOM_FIELD_142 = 'acc.csf142',
+  CUSTOM_FIELD_143 = 'acc.csf143',
+  CUSTOM_FIELD_144 = 'acc.csf144',
+  CUSTOM_FIELD_145 = 'acc.csf145',
+  CUSTOM_FIELD_146 = 'acc.csf146',
+  CUSTOM_FIELD_147 = 'acc.csf147',
+  CUSTOM_FIELD_148 = 'acc.csf148',
+  CUSTOM_FIELD_149 = 'acc.csf149',
+
+  CUSTOM_FIELD_150 = 'acc.csf150',
 }

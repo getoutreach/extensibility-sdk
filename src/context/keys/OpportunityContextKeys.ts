@@ -24,6 +24,16 @@ export enum OpportunityContextKeys {
   EXTERNAL_CREATED_AT = 'opp.ecrat',
 
   /**
+   * External provider id
+   */
+  EXTERNAL_ID = 'opp.extid',
+
+  /**
+   * External provider name
+   */
+  EXTERNAL_PROVIDER = 'opp.extprvd',
+
+  /**
    * Opportunity id
    */
   ID = 'opp.id',
@@ -55,6 +65,7 @@ export enum OpportunityContextKeys {
 
   /**
    *The opportunity's external information received from the installed plugins (Salesforce, Dynamics etc.)
+   @deprecated Usage of this key is depricated. Please use EXTERNAL_ID or EXTERNAL_NAME.
    */
   EXTERNAL = 'opp.ext',
 
@@ -168,4 +179,59 @@ export enum OpportunityContextKeys {
   CUSTOM_FIELD_99 = 'opp.csf99',
 
   CUSTOM_FIELD_100 = 'opp.csf100',
+  CUSTOM_FIELD_101 = 'opp.csf101',
+  CUSTOM_FIELD_102 = 'opp.csf102',
+  CUSTOM_FIELD_103 = 'opp.csf103',
+  CUSTOM_FIELD_104 = 'opp.csf104',
+  CUSTOM_FIELD_105 = 'opp.csf105',
+  CUSTOM_FIELD_106 = 'opp.csf106',
+  CUSTOM_FIELD_107 = 'opp.csf107',
+  CUSTOM_FIELD_108 = 'opp.csf108',
+  CUSTOM_FIELD_109 = 'opp.csf109',
+
+  CUSTOM_FIELD_110 = 'opp.csf110',
+  CUSTOM_FIELD_111 = 'opp.csf111',
+  CUSTOM_FIELD_112 = 'opp.csf112',
+  CUSTOM_FIELD_113 = 'opp.csf113',
+  CUSTOM_FIELD_114 = 'opp.csf114',
+  CUSTOM_FIELD_115 = 'opp.csf115',
+  CUSTOM_FIELD_116 = 'opp.csf116',
+  CUSTOM_FIELD_117 = 'opp.csf117',
+  CUSTOM_FIELD_118 = 'opp.csf118',
+  CUSTOM_FIELD_119 = 'opp.csf119',
+
+  CUSTOM_FIELD_120 = 'opp.csf120',
+  CUSTOM_FIELD_121 = 'opp.csf121',
+  CUSTOM_FIELD_122 = 'opp.csf122',
+  CUSTOM_FIELD_123 = 'opp.csf123',
+  CUSTOM_FIELD_124 = 'opp.csf124',
+  CUSTOM_FIELD_125 = 'opp.csf125',
+  CUSTOM_FIELD_126 = 'opp.csf126',
+  CUSTOM_FIELD_127 = 'opp.csf127',
+  CUSTOM_FIELD_128 = 'opp.csf128',
+  CUSTOM_FIELD_129 = 'opp.csf129',
+
+  CUSTOM_FIELD_130 = 'opp.csf130',
+  CUSTOM_FIELD_131 = 'opp.csf131',
+  CUSTOM_FIELD_132 = 'opp.csf132',
+  CUSTOM_FIELD_133 = 'opp.csf133',
+  CUSTOM_FIELD_134 = 'opp.csf134',
+  CUSTOM_FIELD_135 = 'opp.csf135',
+  CUSTOM_FIELD_136 = 'opp.csf136',
+  CUSTOM_FIELD_137 = 'opp.csf137',
+  CUSTOM_FIELD_138 = 'opp.csf138',
+  CUSTOM_FIELD_139 = 'opp.csf139',
+
+  CUSTOM_FIELD_140 = 'opp.csf140',
+  CUSTOM_FIELD_141 = 'opp.csf141',
+  CUSTOM_FIELD_142 = 'opp.csf142',
+  CUSTOM_FIELD_143 = 'opp.csf143',
+  CUSTOM_FIELD_144 = 'opp.csf144',
+  CUSTOM_FIELD_145 = 'opp.csf145',
+  CUSTOM_FIELD_146 = 'opp.csf146',
+  CUSTOM_FIELD_147 = 'opp.csf147',
+  CUSTOM_FIELD_148 = 'opp.csf148',
+  CUSTOM_FIELD_149 = 'opp.csf149',
+
+  CUSTOM_FIELD_150 = 'opp.csf150',
 }

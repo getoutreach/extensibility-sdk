@@ -32,6 +32,22 @@ export class OpportunityContext extends CustomContext {
   externalCreatedAt: Date;
 
   /**
+   * Identity of the current opportunity in the external system which is linked through installed Outreach plugin.
+   *
+   * @type {string}
+   * @memberof OpportunityContext
+   */
+  externalProviderId?: string;
+
+  /**
+   * Name of the external system provider which is linked through installed Outreach plugin.
+   *
+   * @type {string}
+   * @memberof OpportunityContext
+   */
+  externalProviderName?: string;
+
+  /**
    * Unique opportunity identifier.
    *
    * @type {string}
@@ -80,11 +96,12 @@ export class OpportunityContext extends CustomContext {
   tags: string;
 
   /**
-   * Collection of zero or more external provider data current opportunity has in external systems
+   * Collection of zero or more external provider data current account has in external systems
    * which are linked through installed Outreach plugins.
    *
    * @type {ExternalInfoContext[]}
    * @memberof OpportunityContext
+   * @deprecated Usage of externalInfo is depricated. Please use externalProviderId and externalProviderName instead.
    */
   externalInfo: ExternalInfoContext[] = [];
 

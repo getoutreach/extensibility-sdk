@@ -8,6 +8,24 @@ export const initProspectContext = (
   param: ContextParam
 ): boolean => {
   switch (param.key) {
+    case ProspectContextKeys.ADDRESS_CITY:
+      context.addressCity = param.value;
+      break;
+    case ProspectContextKeys.ADDRESS_COUNTRY:
+      context.addressCountry = param.value;
+      break;
+    case ProspectContextKeys.ADDRESS_STATE:
+      context.addressState = param.value;
+      break;
+    case ProspectContextKeys.ADDRESS_STREET:
+      context.addressStreet = param.value;
+      break;
+    case ProspectContextKeys.ADDRESS_STREET2:
+      context.addressStreet2 = param.value;
+      break;
+    case ProspectContextKeys.ADDRESS_ZIP:
+      context.addressZip = param.value;
+      break;
     case ProspectContextKeys.AVAILABLE_AT:
       context.availableAt = new Date(param.value);
       break;
@@ -17,8 +35,14 @@ export const initProspectContext = (
     case ProspectContextKeys.COMPANY_LOCALITY:
       context.companyLocality = param.value;
       break;
+    case ProspectContextKeys.DOMAIN:
+      context.domain = param.value;
+      break;
     case ProspectContextKeys.ID:
       context.id = param.value;
+      break;
+    case ProspectContextKeys.NAME:
+      context.name = param.value;
       break;
     case ProspectContextKeys.TAGS:
       context.tags = param.value;
@@ -35,6 +59,13 @@ export const initProspectContext = (
     case ProspectContextKeys.EXTERNAL:
       context.externalInfo = ExternalInfoUtils.unpack(param.value);
       break;
+    case ProspectContextKeys.EXTERNAL_ID:
+      context.externalProviderId = param.value;
+      break;
+    case ProspectContextKeys.EXTERNAL_PROVIDER:
+      context.externalProviderName = param.value;
+      break;
+
     case ProspectContextKeys.CUSTOM_FIELD_1:
       context.customField1 = param.value;
       break;
@@ -396,11 +427,95 @@ export const initProspectContext = (
     case ProspectContextKeys.CUSTOM_FIELD_120:
       context.customField120 = param.value;
       break;
-    case ProspectContextKeys.QUERY_DOMAIN:
-      context.companyQueryDomain = param.value;
+    case ProspectContextKeys.CUSTOM_FIELD_121:
+      context.customField121 = param.value;
       break;
-    case ProspectContextKeys.QUERY_NAME:
-      context.companyQueryName = param.value;
+    case ProspectContextKeys.CUSTOM_FIELD_122:
+      context.customField122 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_123:
+      context.customField123 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_124:
+      context.customField124 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_125:
+      context.customField125 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_126:
+      context.customField126 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_127:
+      context.customField127 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_128:
+      context.customField128 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_129:
+      context.customField129 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_130:
+      context.customField130 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_131:
+      context.customField131 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_132:
+      context.customField132 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_133:
+      context.customField133 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_134:
+      context.customField134 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_135:
+      context.customField135 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_136:
+      context.customField136 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_137:
+      context.customField137 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_138:
+      context.customField138 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_139:
+      context.customField139 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_140:
+      context.customField140 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_141:
+      context.customField141 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_142:
+      context.customField142 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_143:
+      context.customField143 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_144:
+      context.customField144 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_145:
+      context.customField145 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_146:
+      context.customField146 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_147:
+      context.customField147 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_148:
+      context.customField148 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_149:
+      context.customField149 = param.value;
+      break;
+    case ProspectContextKeys.CUSTOM_FIELD_150:
+      context.customField150 = param.value;
       break;
     default:
       return false;
@@ -410,6 +525,53 @@ export const initProspectContext = (
 
 export const toProspectParams = (context: ProspectContext): ContextParam[] => {
   const params: ContextParam[] = [];
+
+  if (context.addressCity) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_CITY,
+      value: context.addressCity,
+    });
+  }
+
+  if (context.addressCountry) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_COUNTRY,
+      value: context.addressCountry,
+    });
+  }
+  if (context.addressState) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_STATE,
+      value: context.addressState,
+    });
+  }
+  if (context.addressCity) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_CITY,
+      value: context.addressCity,
+    });
+  }
+  if (context.addressStreet) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_STREET,
+      value: context.addressStreet,
+    });
+  }
+
+  if (context.addressStreet2) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_STREET2,
+      value: context.addressStreet2,
+    });
+  }
+
+  if (context.addressZip) {
+    params.push({
+      key: ProspectContextKeys.ADDRESS_ZIP,
+      value: context.addressZip,
+    });
+  }
+
   if (context.availableAt) {
     params.push({
       key: ProspectContextKeys.AVAILABLE_AT,
@@ -430,10 +592,24 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     });
   }
 
+  if (context.domain) {
+    params.push({
+      key: ProspectContextKeys.DOMAIN,
+      value: context.domain,
+    });
+  }
+
   if (context.id) {
     params.push({
       key: ProspectContextKeys.ID,
       value: context.id,
+    });
+  }
+
+  if (context.name) {
+    params.push({
+      key: ProspectContextKeys.NAME,
+      value: context.name,
     });
   }
 
@@ -472,6 +648,19 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     });
   }
 
+  if (context.externalProviderId) {
+    params.push({
+      key: ProspectContextKeys.EXTERNAL_ID,
+      value: context.externalProviderId,
+    });
+  }
+
+  if (context.externalProviderName) {
+    params.push({
+      key: ProspectContextKeys.EXTERNAL_PROVIDER,
+      value: context.externalProviderName,
+    });
+  }
   if (context.customField1) {
     params.push({
       key: ProspectContextKeys.CUSTOM_FIELD_1,
@@ -1312,18 +1501,215 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     });
   }
 
-  if (context.companyQueryDomain) {
+  if (context.customField121) {
     params.push({
-      key: ProspectContextKeys.QUERY_DOMAIN,
-      value: context.companyQueryDomain,
+      key: ProspectContextKeys.CUSTOM_FIELD_121,
+      value: context.customField121,
     });
   }
 
-  if (context.companyQueryName) {
+  if (context.customField122) {
     params.push({
-      key: ProspectContextKeys.QUERY_NAME,
-      value: context.companyQueryName,
+      key: ProspectContextKeys.CUSTOM_FIELD_122,
+      value: context.customField122,
     });
   }
+
+  if (context.customField123) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_123,
+      value: context.customField123,
+    });
+  }
+
+  if (context.customField124) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_124,
+      value: context.customField124,
+    });
+  }
+
+  if (context.customField125) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_125,
+      value: context.customField125,
+    });
+  }
+
+  if (context.customField126) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_126,
+      value: context.customField126,
+    });
+  }
+
+  if (context.customField127) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_127,
+      value: context.customField127,
+    });
+  }
+
+  if (context.customField128) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_128,
+      value: context.customField128,
+    });
+  }
+
+  if (context.customField129) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_129,
+      value: context.customField129,
+    });
+  }
+
+  if (context.customField130) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_130,
+      value: context.customField130,
+    });
+  }
+
+  if (context.customField131) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_131,
+      value: context.customField131,
+    });
+  }
+
+  if (context.customField132) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_132,
+      value: context.customField132,
+    });
+  }
+
+  if (context.customField133) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_133,
+      value: context.customField133,
+    });
+  }
+
+  if (context.customField134) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_134,
+      value: context.customField134,
+    });
+  }
+
+  if (context.customField135) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_135,
+      value: context.customField135,
+    });
+  }
+
+  if (context.customField136) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_136,
+      value: context.customField136,
+    });
+  }
+
+  if (context.customField137) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_137,
+      value: context.customField137,
+    });
+  }
+
+  if (context.customField138) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_138,
+      value: context.customField138,
+    });
+  }
+
+  if (context.customField139) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_139,
+      value: context.customField139,
+    });
+  }
+
+  if (context.customField140) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_140,
+      value: context.customField140,
+    });
+  }
+
+  if (context.customField141) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_141,
+      value: context.customField141,
+    });
+  }
+
+  if (context.customField142) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_142,
+      value: context.customField142,
+    });
+  }
+
+  if (context.customField143) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_143,
+      value: context.customField143,
+    });
+  }
+
+  if (context.customField144) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_144,
+      value: context.customField144,
+    });
+  }
+
+  if (context.customField145) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_145,
+      value: context.customField145,
+    });
+  }
+
+  if (context.customField146) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_146,
+      value: context.customField146,
+    });
+  }
+
+  if (context.customField147) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_147,
+      value: context.customField147,
+    });
+  }
+
+  if (context.customField148) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_148,
+      value: context.customField148,
+    });
+  }
+
+  if (context.customField149) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_149,
+      value: context.customField149,
+    });
+  }
+
+  if (context.customField150) {
+    params.push({
+      key: ProspectContextKeys.CUSTOM_FIELD_150,
+      value: context.customField150,
+    });
+  }
+
   return params;
 };

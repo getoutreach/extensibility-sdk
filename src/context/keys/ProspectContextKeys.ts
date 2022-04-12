@@ -13,6 +13,36 @@ export enum ProspectContextKeys {
   AVAILABLE_AT = 'pro.avail',
 
   /**
+   * City of the prospect
+   */
+  ADDRESS_CITY = 'pro.adrcity',
+
+  /**
+   * Country of the prospect
+   */
+  ADDRESS_COUNTRY = 'pro.adrcntry',
+
+  /**
+   * State of the prospect
+   */
+  ADDRESS_STATE = 'pro.adrstate',
+
+  /**
+   * Street address of the prospect
+   */
+  ADDRESS_STREET = 'pro.adrstreet',
+
+  /**
+   * Street address (2nd line) of the prospect
+   */
+  ADDRESS_STREET2 = 'pro.adrstreet2',
+
+  /**
+   * Postal code of prospect
+   */
+  ADDRESS_ZIP = 'pro.adrzip',
+
+  /**
    * The name of the company the prospect works at.
    * If associated with an account, this is the name of the account. (e.g. Acme International).
    */
@@ -24,9 +54,24 @@ export enum ProspectContextKeys {
   COMPANY_LOCALITY = 'pro.loc',
 
   /**
+   * Prospect domain
+   */
+  DOMAIN = 'pro.domain',
+
+  /**
    * Collection of prospect emails
    */
   EMAILS = 'pro.emails',
+
+  /**
+   * External provider id
+   */
+  EXTERNAL_ID = 'pro.extid',
+
+  /**
+   * External provider name
+   */
+  EXTERNAL_PROVIDER = 'pro.extprvd',
 
   /**
    * Prospect id
@@ -37,6 +82,11 @@ export enum ProspectContextKeys {
    * A list of tag values associated with the account (e.g. ["Interested", "2017 Expo"]).
    */
   TAGS = 'pro.tags',
+
+  /**
+   * Prospect name
+   */
+  NAME = 'pro.name',
 
   /**
    * The prospect’s current timezone, preferably in the IANA format (e.g. "America/LosAngeles").
@@ -50,6 +100,7 @@ export enum ProspectContextKeys {
 
   /**
    *The prospect's external information received from the installed plugins (Salesforce, Dynamics etc.)
+   * @deprecated Usage of this key is depricated. Please use EXTERNAL_ID or EXTERNAL_NAME.
    */
   EXTERNAL = 'pro.ext',
 
@@ -185,14 +236,37 @@ export enum ProspectContextKeys {
   CUSTOM_FIELD_119 = 'pro.csf119',
 
   CUSTOM_FIELD_120 = 'pro.csf120',
+  CUSTOM_FIELD_121 = 'pro.csf121',
+  CUSTOM_FIELD_122 = 'pro.csf122',
+  CUSTOM_FIELD_123 = 'pro.csf123',
+  CUSTOM_FIELD_124 = 'pro.csf124',
+  CUSTOM_FIELD_125 = 'pro.csf125',
+  CUSTOM_FIELD_126 = 'pro.csf126',
+  CUSTOM_FIELD_127 = 'pro.csf127',
+  CUSTOM_FIELD_128 = 'pro.csf128',
+  CUSTOM_FIELD_129 = 'pro.csf129',
 
-  /**
-   * Prospect company domain (used in queries)
-   */
-  QUERY_DOMAIN = 'pro.qrydomain',
+  CUSTOM_FIELD_130 = 'pro.csf130',
+  CUSTOM_FIELD_131 = 'pro.csf131',
+  CUSTOM_FIELD_132 = 'pro.csf132',
+  CUSTOM_FIELD_133 = 'pro.csf133',
+  CUSTOM_FIELD_134 = 'pro.csf134',
+  CUSTOM_FIELD_135 = 'pro.csf135',
+  CUSTOM_FIELD_136 = 'pro.csf136',
+  CUSTOM_FIELD_137 = 'pro.csf137',
+  CUSTOM_FIELD_138 = 'pro.csf138',
+  CUSTOM_FIELD_139 = 'pro.csf139',
 
-  /**
-   * Prospect company name (used in queries)
-   */
-  QUERY_NAME = 'pro.qryname',
+  CUSTOM_FIELD_140 = 'pro.csf140',
+  CUSTOM_FIELD_141 = 'pro.csf141',
+  CUSTOM_FIELD_142 = 'pro.csf142',
+  CUSTOM_FIELD_143 = 'pro.csf143',
+  CUSTOM_FIELD_144 = 'pro.csf144',
+  CUSTOM_FIELD_145 = 'pro.csf145',
+  CUSTOM_FIELD_146 = 'pro.csf146',
+  CUSTOM_FIELD_147 = 'pro.csf147',
+  CUSTOM_FIELD_148 = 'pro.csf148',
+  CUSTOM_FIELD_149 = 'pro.csf149',
+
+  CUSTOM_FIELD_150 = 'pro.csf150',
 }

@@ -17,6 +17,12 @@ export const initOpportunityContext = (
     case OpportunityContextKeys.EXTERNAL_CREATED_AT:
       context.externalCreatedAt = new Date(param.value);
       break;
+    case OpportunityContextKeys.EXTERNAL_ID:
+      context.externalProviderId = param.value;
+      break;
+    case OpportunityContextKeys.EXTERNAL_PROVIDER:
+      context.externalProviderId = param.value;
+      break;
     case OpportunityContextKeys.EXTERNAL:
       context.externalInfo = ExternalInfoUtils.unpack(param.value);
       break;
@@ -338,6 +344,156 @@ export const initOpportunityContext = (
     case OpportunityContextKeys.CUSTOM_FIELD_100:
       context.customField100 = param.value;
       break;
+    case OpportunityContextKeys.CUSTOM_FIELD_101:
+      context.customField101 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_102:
+      context.customField102 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_103:
+      context.customField103 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_104:
+      context.customField104 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_105:
+      context.customField105 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_106:
+      context.customField106 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_107:
+      context.customField107 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_108:
+      context.customField108 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_109:
+      context.customField109 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_110:
+      context.customField110 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_111:
+      context.customField111 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_112:
+      context.customField112 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_113:
+      context.customField113 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_114:
+      context.customField114 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_115:
+      context.customField115 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_116:
+      context.customField116 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_117:
+      context.customField117 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_118:
+      context.customField118 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_119:
+      context.customField119 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_120:
+      context.customField120 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_121:
+      context.customField121 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_122:
+      context.customField122 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_123:
+      context.customField123 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_124:
+      context.customField124 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_125:
+      context.customField125 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_126:
+      context.customField126 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_127:
+      context.customField127 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_128:
+      context.customField128 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_129:
+      context.customField129 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_130:
+      context.customField130 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_131:
+      context.customField131 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_132:
+      context.customField132 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_133:
+      context.customField133 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_134:
+      context.customField134 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_135:
+      context.customField135 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_136:
+      context.customField136 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_137:
+      context.customField137 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_138:
+      context.customField138 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_139:
+      context.customField139 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_140:
+      context.customField140 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_141:
+      context.customField141 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_142:
+      context.customField142 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_143:
+      context.customField143 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_144:
+      context.customField144 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_145:
+      context.customField145 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_146:
+      context.customField146 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_147:
+      context.customField147 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_148:
+      context.customField148 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_149:
+      context.customField149 = param.value;
+      break;
+    case OpportunityContextKeys.CUSTOM_FIELD_150:
+      context.customField150 = param.value;
+      break;
     default:
       return false;
   }
@@ -366,6 +522,19 @@ export const toOpportunityParams = (
     params.push({
       key: OpportunityContextKeys.EXTERNAL_CREATED_AT,
       value: context.externalCreatedAt.toString(),
+    });
+  }
+  if (context.externalProviderId) {
+    params.push({
+      key: OpportunityContextKeys.EXTERNAL_ID,
+      value: context.externalProviderId,
+    });
+  }
+
+  if (context.externalProviderName) {
+    params.push({
+      key: OpportunityContextKeys.EXTERNAL_PROVIDER,
+      value: context.externalProviderName,
     });
   }
 
@@ -1115,6 +1284,356 @@ export const toOpportunityParams = (
     params.push({
       key: OpportunityContextKeys.CUSTOM_FIELD_100,
       value: context.customField100,
+    });
+  }
+
+  if (context.customField101) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_101,
+      value: context.customField101,
+    });
+  }
+
+  if (context.customField102) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_102,
+      value: context.customField102,
+    });
+  }
+
+  if (context.customField103) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_103,
+      value: context.customField103,
+    });
+  }
+
+  if (context.customField104) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_104,
+      value: context.customField104,
+    });
+  }
+
+  if (context.customField105) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_105,
+      value: context.customField105,
+    });
+  }
+
+  if (context.customField106) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_106,
+      value: context.customField106,
+    });
+  }
+
+  if (context.customField107) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_107,
+      value: context.customField107,
+    });
+  }
+
+  if (context.customField108) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_108,
+      value: context.customField108,
+    });
+  }
+
+  if (context.customField109) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_109,
+      value: context.customField109,
+    });
+  }
+
+  if (context.customField110) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_110,
+      value: context.customField110,
+    });
+  }
+
+  if (context.customField111) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_111,
+      value: context.customField111,
+    });
+  }
+
+  if (context.customField112) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_112,
+      value: context.customField112,
+    });
+  }
+
+  if (context.customField113) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_113,
+      value: context.customField113,
+    });
+  }
+
+  if (context.customField114) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_114,
+      value: context.customField114,
+    });
+  }
+
+  if (context.customField115) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_115,
+      value: context.customField115,
+    });
+  }
+
+  if (context.customField116) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_116,
+      value: context.customField116,
+    });
+  }
+
+  if (context.customField117) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_117,
+      value: context.customField117,
+    });
+  }
+
+  if (context.customField118) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_118,
+      value: context.customField118,
+    });
+  }
+
+  if (context.customField119) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_119,
+      value: context.customField119,
+    });
+  }
+
+  if (context.customField120) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_120,
+      value: context.customField120,
+    });
+  }
+
+  if (context.customField121) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_121,
+      value: context.customField121,
+    });
+  }
+
+  if (context.customField122) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_122,
+      value: context.customField122,
+    });
+  }
+
+  if (context.customField123) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_123,
+      value: context.customField123,
+    });
+  }
+
+  if (context.customField124) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_124,
+      value: context.customField124,
+    });
+  }
+
+  if (context.customField125) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_125,
+      value: context.customField125,
+    });
+  }
+
+  if (context.customField126) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_126,
+      value: context.customField126,
+    });
+  }
+
+  if (context.customField127) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_127,
+      value: context.customField127,
+    });
+  }
+
+  if (context.customField128) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_128,
+      value: context.customField128,
+    });
+  }
+
+  if (context.customField129) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_129,
+      value: context.customField129,
+    });
+  }
+
+  if (context.customField130) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_130,
+      value: context.customField130,
+    });
+  }
+
+  if (context.customField131) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_131,
+      value: context.customField131,
+    });
+  }
+
+  if (context.customField132) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_132,
+      value: context.customField132,
+    });
+  }
+
+  if (context.customField133) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_133,
+      value: context.customField133,
+    });
+  }
+
+  if (context.customField134) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_134,
+      value: context.customField134,
+    });
+  }
+
+  if (context.customField135) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_135,
+      value: context.customField135,
+    });
+  }
+
+  if (context.customField136) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_136,
+      value: context.customField136,
+    });
+  }
+
+  if (context.customField137) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_137,
+      value: context.customField137,
+    });
+  }
+
+  if (context.customField138) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_138,
+      value: context.customField138,
+    });
+  }
+
+  if (context.customField139) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_139,
+      value: context.customField139,
+    });
+  }
+
+  if (context.customField140) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_140,
+      value: context.customField140,
+    });
+  }
+
+  if (context.customField141) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_141,
+      value: context.customField141,
+    });
+  }
+
+  if (context.customField142) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_142,
+      value: context.customField142,
+    });
+  }
+
+  if (context.customField143) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_143,
+      value: context.customField143,
+    });
+  }
+
+  if (context.customField144) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_144,
+      value: context.customField144,
+    });
+  }
+
+  if (context.customField145) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_145,
+      value: context.customField145,
+    });
+  }
+
+  if (context.customField146) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_146,
+      value: context.customField146,
+    });
+  }
+
+  if (context.customField147) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_147,
+      value: context.customField147,
+    });
+  }
+
+  if (context.customField148) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_148,
+      value: context.customField148,
+    });
+  }
+
+  if (context.customField149) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_149,
+      value: context.customField149,
+    });
+  }
+
+  if (context.customField150) {
+    params.push({
+      key: OpportunityContextKeys.CUSTOM_FIELD_150,
+      value: context.customField150,
     });
   }
 
