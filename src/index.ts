@@ -106,7 +106,12 @@ export { ManifestMedia } from './manifest/store/Media';
 export { StoreType } from './manifest/store/StoreType';
 
 export { Extension } from './manifest/extensions/Extension';
-export { ExtensionType } from './manifest/extensions/ExtensionType';
+export {
+  AccountExtensionType,
+  ExtensionType,
+  ProspectExtensionType,
+  OpportunityExtensionType,
+} from './manifest/extensions/ExtensionType';
 export { ExtensionHost } from './manifest/extensions/ExtensionHost';
 
 export { ShellExtension } from './manifest/extensions/shell/ShellExtension';
