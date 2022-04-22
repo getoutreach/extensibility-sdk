@@ -15,7 +15,7 @@ export class ContextParam {
    * @type {string}
    * @memberof ContextParam
    */
-  public value: string;
+  public value: string | null;
 
   /**
    * Creates an instance of ContextParam.
@@ -23,7 +23,7 @@ export class ContextParam {
    * @param {string} value
    * @memberof ContextParam
    */
-  constructor(key: AllContextKeys, value: string) {
+  constructor(key: AllContextKeys, value: string | null) {
     this.key = key;
     this.value = value;
   }
