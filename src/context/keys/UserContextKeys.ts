@@ -7,39 +7,49 @@
  * @enum {number}
  */
 export enum UserContextKeys {
-    /**
-     * The email address of the user.
-     */
-    EMAIL = 'usr.email',
+  /**
+   * The email address of the user.
+   */
+  EMAIL = 'usr.email',
 
-    /**
-     * The first name of the user.
-     */
-    FIRST_NAME = 'usr.fname',
+  /**
+   * The first name of the user.
+   */
+  FIRST_NAME = 'usr.fname',
 
-    /**
-     * User id
-     */
-    ID = 'usr.id',
+  /**
+   * User id
+   */
+  ID = 'usr.id',
 
-    /**
-     * The last name of the user.
-     */
-    LAST_NAME = 'usr.lname',
+  /**
+   * The last name of the user.
+   */
+  LAST_NAME = 'usr.lname',
 
-    /**
-     * The user's job title (e.g. "Staff Accountant").
-     */
-    TITLE = 'usr.tit',
+  /**
+   * The last name of the user.
+   */
+  FULL_NAME = 'usr.name',
 
-    /**
-     * A reader friendly unique identifier of the user.
-     */
-    USERNAME = 'usr.uname',
+  /**
+   * The user's role
+   */
+  ROLE = 'usr.role',
 
-    CUSTOM_FIELD_1 = 'usr.csf1',
-    CUSTOM_FIELD_2 = 'usr.csf2',
-    CUSTOM_FIELD_3 = 'usr.csf3',
-    CUSTOM_FIELD_4 = 'usr.csf4',
-    CUSTOM_FIELD_5 = 'usr.csf5',
+  /**
+   * The user's job title (e.g. "Staff Accountant").
+   */
+  TITLE = 'usr.tit',
+
+  /**
+   * A reader friendly unique identifier of the user.
+   */
+  USERNAME = 'usr.uname',
+
+  CUSTOM_FIELD_1 = 'usr.csf1',
+  CUSTOM_FIELD_2 = 'usr.csf2',
+  CUSTOM_FIELD_3 = 'usr.csf3',
+  CUSTOM_FIELD_4 = 'usr.csf4',
+  CUSTOM_FIELD_5 = 'usr.csf5',
 }

@@ -5,20 +5,12 @@ import { Context } from './CustomContext';
 
 export class UserContext extends Context {
   /**
-   * Unique user identifier
-   *
-   * @type {string}
-   * @memberof UserContext
-   */
-  id?: string;
-
-  /**
    * The email address of the user.
    *
    * @type {string}
    * @memberof UserContext
    */
-  email?: string;
+  email?: string | null;
 
   /**
    * The first name of the user.
@@ -26,15 +18,39 @@ export class UserContext extends Context {
    * @type {string}
    * @memberof UserContext
    */
-  firstName?: string;
+  firstName?: string | null;
 
   /**
-   * The last name of the user.
+   * Unique user identifier
    *
    * @type {string}
    * @memberof UserContext
    */
-  lastName?: string;
+  id: string;
+
+  /**
+   * Last name of the user.
+   *
+   * @type {string}
+   * @memberof UserContext
+   */
+  lastName: string | null;
+
+  /**
+   * Full name of the user.
+   *
+   * @type {string}
+   * @memberof UserContext
+   */
+  name?: string | null;
+
+  /**
+   * Role of the user.
+   *
+   * @type {string}
+   * @memberof UserContext
+   */
+  role?: string | null;
 
   /**
    * The user's job title (e.g. "Staff Accountant").
@@ -42,7 +58,7 @@ export class UserContext extends Context {
    * @type {string}
    * @memberof UserContext
    */
-  title?: string;
+  title: string | null;
 
   /**
    * A reader friendly unique identifier of the user.
@@ -50,13 +66,13 @@ export class UserContext extends Context {
    * @type {string}
    * @memberof UserContext
    */
-  username?: string;
+  username: string | null;
 
-  customField1?: string;
-  customField2?: string;
-  customField3?: string;
-  customField4?: string;
-  customField5?: string;
+  customField1?: string | null;
+  customField2?: string | null;
+  customField3?: string | null;
+  customField4?: string | null;
+  customField5?: string | null;
 
   /**
    * Attempts to initialize the opportunity context with a given parameter.
@@ -72,10 +88,16 @@ export class UserContext extends Context {
         this.firstName = param.value;
         break;
       case UserContextKeys.ID:
-        this.id = param.value;
+        this.id = param.value!;
         break;
       case UserContextKeys.LAST_NAME:
         this.lastName = param.value;
+        break;
+      case UserContextKeys.FULL_NAME:
+        this.name = param.value;
+        break;
+      case UserContextKeys.ROLE:
+        this.role = param.value;
         break;
       case UserContextKeys.TITLE:
         this.title = param.value;
@@ -135,6 +157,19 @@ export class UserContext extends Context {
       });
     }
 
+    if (this.name) {
+      params.push({
+        key: UserContextKeys.FULL_NAME,
+        value: this.name,
+      });
+    }
+
+    if (this.role) {
+      params.push({
+        key: UserContextKeys.ROLE,
+        value: this.role,
+      });
+    }
     if (this.title) {
       params.push({
         key: UserContextKeys.TITLE,

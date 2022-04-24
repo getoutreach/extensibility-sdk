@@ -58,7 +58,6 @@ describe('Manifest translator tests', () => {
       ProspectContextKeys.ID,
       ProspectContextKeys.COMPANY,
       ProspectContextKeys.TITLE,
-      ProspectContextKeys.EXTERNAL,
     ]);
     expect(tabProspectExt.description).toBe(v1Manifests[0].description);
     expect(tabProspectExt.fullWidth).toBe(
@@ -94,7 +93,6 @@ describe('Manifest translator tests', () => {
       UserContextKeys.LAST_NAME,
       OpportunityContextKeys.ID,
       OpportunityContextKeys.NAME,
-      OpportunityContextKeys.EXTERNAL,
     ]);
     expect(tabOpportunityExt.description).toBe(v1Manifests[2].description);
     expect(tabOpportunityExt.fullWidth).toBe(

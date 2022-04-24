@@ -27,7 +27,7 @@ export class utils {
       }
       const key = token[1];
       const tokenParam = params.find((p) => p.key.toString() === key);
-      if (tokenParam) {
+      if (tokenParam && tokenParam.value) {
         url = url.replace(`{${key}}`, tokenParam.value);
         params = params.filter((p) => p !== tokenParam);
       }
@@ -54,7 +54,9 @@ export class utils {
     const hostUrl = new URL(url);
 
     const hostParams = new URLSearchParams(hostUrl.searchParams);
-    params.forEach((param) => hostParams.append(param.key, param.value));
+    params
+      .filter((p) => p.value)
+      .forEach((param) => hostParams.append(param.key, param.value!));
     const hostParamsString = hostParams.toString().replace('=&', '&');
 
     return `${utils.getUrlDomain(hostUrl)}${

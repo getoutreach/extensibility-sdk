@@ -1,17 +1,32 @@
 // eslint-disable-next-line no-unused-vars
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
-import { ExternalInfoContext } from './ExternalInfoContext';
 import { initProspectContext, toProspectParams } from './ProspectContextUtils';
 
 export class ProspectContext extends CustomContext {
   /**
-   * Prospect address - city
+   * The domain of the prospect company
    *
    * @type {string}
    * @memberof ProspectContext
    */
-  addressCity: string;
+  accountDomain?: string | null;
+
+  /**
+   * The name of the prospect company
+   *
+   * @type {string}
+   * @memberof ProspectContext
+   */
+  accountName?: string | null;
+
+  /**
+   * Prospect address - city
+   *
+   * @type {string | null}
+   * @memberof ProspectContext
+   */
+  addressCity?: string | null;
 
   /**
    * Prospect address - country
@@ -19,15 +34,15 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  addressCountry: string;
+  addressCountry?: string | null;
 
   /**
    * Prospect address - state
    *
-   * @type {string}
+   * @type {string | null}
    * @memberof ProspectContext
    */
-  addressState: string;
+  addressState?: string | null;
 
   /**
    * Prospect address - street
@@ -35,7 +50,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  addressStreet: string;
+  addressStreet?: string | null;
 
   /**
    * Prospect address - street2
@@ -43,7 +58,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  addressStreet2: string;
+  addressStreet2?: string | null;
 
   /**
    * Prospect address - zip
@@ -51,7 +66,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  addressZip: string;
+  addressZip?: string | null;
 
   /**
    * The date and time the prospect is available to contact again.
@@ -59,7 +74,7 @@ export class ProspectContext extends CustomContext {
    * @type {Date}
    * @memberof ProspectContext
    */
-  availableAt: Date;
+  availableAt?: Date | null;
 
   /**
    * The name of the company the prospect works at. If associated with an account,
@@ -68,7 +83,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  company: string;
+  company?: string | null;
 
   /**
    * The locality of prospect’s company.
@@ -76,15 +91,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  companyLocality: string;
-
-  /**
-   * The domain of the prospect company
-   *
-   * @type {string}
-   * @memberof ProspectContext
-   */
-  domain: string;
+  companyLocality?: string | null;
 
   /**
    * A list of email addresses associated with the prospect.
@@ -92,7 +99,7 @@ export class ProspectContext extends CustomContext {
    * @type {string[]}
    * @memberof ProspectContext
    */
-  emails: string[];
+  emails?: string[] | null;
 
   /**
    * Identity of the current prospect in the external system which is linked through installed Outreach plugin.
@@ -100,7 +107,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  externalProviderId?: string;
+  externalProviderId?: string | null;
 
   /**
    * Name of the external system provider which is linked through installed Outreach plugin.
@@ -108,7 +115,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  externalProviderName?: string;
+  externalProviderName?: string | null;
 
   /**
    * Unique prospect identifier.
@@ -116,15 +123,7 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  id?: string;
-
-  /**
-   * The name of the prospect company
-   *
-   * @type {string}
-   * @memberof ProspectContext
-   */
-  name: string;
+  id: string;
 
   /**
    * Tags associated with the opportunity.
@@ -132,27 +131,17 @@ export class ProspectContext extends CustomContext {
    * @type {string}
    * @memberof ProspectContext
    */
-  tags: string;
+  tags?: string | null;
 
   /**
    * The prospect’s current timezone, preferably in the IANA format (e.g. "America/LosAngeles").
    */
-  timezone: string;
+  timezone?: string | null;
 
   /**
    * The title of the prospect.
    */
-  title: string;
-
-  /**
-   * Collection of zero or more external provider data current account has in external systems
-   * which are linked through installed Outreach plugins.
-   *
-   * @type {ExternalInfoContext[]}
-   * @memberof ProspectContext
-   * @deprecated Usage of externalInfo is depricated. Please use externalProviderId and externalProviderName instead.
-   */
-  externalInfo: ExternalInfoContext[] = [];
+  title?: string | null;
 
   /**
    * Attempts to initialize the opportunity context with a given parameter.

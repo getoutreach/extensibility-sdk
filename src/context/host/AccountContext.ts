@@ -1,7 +1,6 @@
 import { initAccountContext, toAccountParams } from './AccountContextUtils';
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
-import { ExternalInfoContext } from './ExternalInfoContext';
 
 export class AccountContext extends CustomContext {
   /**
@@ -10,7 +9,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  id?: string;
+  id: string;
 
   /**
    * A custom ID for the account, often referencing an ID in an external system.
@@ -18,7 +17,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  customId?: string;
+  customId?: string | null;
 
   /**
    * The domain of the account company
@@ -26,7 +25,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  domain: string;
+  domain?: string | null;
 
   /**
    * A custom description of the account.
@@ -34,7 +33,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  description?: string;
+  description?: string | null;
 
   /**
    * Identity of the current account in the external system which is linked through installed Outreach plugin.
@@ -42,7 +41,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  externalProviderId?: string;
+  externalProviderId?: string | null;
 
   /**
    * Name of the external system provider which is linked through installed Outreach plugin.
@@ -50,7 +49,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  externalProviderName?: string;
+  externalProviderName?: string | null;
 
   /**
    * The company’s primary geographic region (e.g. "Eastern USA").
@@ -58,7 +57,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  locality?: string;
+  locality?: string | null;
 
   /**
    * The name of the company (e.g. "Acme Corporation").
@@ -66,7 +65,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  name?: string;
+  name?: string | null;
 
   /**
    * A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
@@ -74,17 +73,7 @@ export class AccountContext extends CustomContext {
    * @type {string}
    * @memberof AccountContext
    */
-  tags?: string;
-
-  /**
-   * Collection of zero or more external provider data current account has in external systems
-   * which are linked through installed Outreach plugins.
-   *
-   * @type {ExternalInfoContext[]}
-   * @memberof AccountContext
-   * @deprecated Usage of externalInfo is depricated. Please use externalProviderId and externalProviderName instead.
-   */
-  externalInfo: ExternalInfoContext[] = [];
+  tags?: string | null;
 
   /**
    * Attempts to initialize the account context with a given parameter.

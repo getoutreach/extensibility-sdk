@@ -8,9 +8,14 @@
  */
 export enum ProspectContextKeys {
   /**
-   * The date and time the prospect is available to contact again.
+   * Prospect name
    */
-  AVAILABLE_AT = 'pro.avail',
+  ACCOUNT_NAME = 'pro.accnme',
+
+  /**
+   * Prospect domain
+   */
+  ACCOUNT_DOMAIN = 'pro.accdmn',
 
   /**
    * City of the prospect
@@ -43,6 +48,11 @@ export enum ProspectContextKeys {
   ADDRESS_ZIP = 'pro.adrzip',
 
   /**
+   * The date and time the prospect is available to contact again.
+   */
+  AVAILABLE_AT = 'pro.avail',
+
+  /**
    * The name of the company the prospect works at.
    * If associated with an account, this is the name of the account. (e.g. Acme International).
    */
@@ -52,11 +62,6 @@ export enum ProspectContextKeys {
    * The locality of prospect’s company.
    */
   COMPANY_LOCALITY = 'pro.loc',
-
-  /**
-   * Prospect domain
-   */
-  DOMAIN = 'pro.domain',
 
   /**
    * Collection of prospect emails
@@ -84,11 +89,6 @@ export enum ProspectContextKeys {
   TAGS = 'pro.tags',
 
   /**
-   * Prospect name
-   */
-  NAME = 'pro.name',
-
-  /**
    * The prospect’s current timezone, preferably in the IANA format (e.g. "America/LosAngeles").
    */
   TIMEZONE = 'pro.tzone',
@@ -97,12 +97,6 @@ export enum ProspectContextKeys {
    * The title of the prospect.
    */
   TITLE = 'pro.title',
-
-  /**
-   *The prospect's external information received from the installed plugins (Salesforce, Dynamics etc.)
-   * @deprecated Usage of this key is depricated. Please use EXTERNAL_ID or EXTERNAL_NAME.
-   */
-  EXTERNAL = 'pro.ext',
 
   CUSTOM_FIELD_1 = 'pro.csf1',
   CUSTOM_FIELD_2 = 'pro.csf2',

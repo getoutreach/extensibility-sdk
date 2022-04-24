@@ -53,9 +53,6 @@ export { OrganizationContextKeys } from './context/keys/OrganizationContextKeys'
 export { AccountContext } from './context/host/AccountContext';
 export { ContextParam } from './context/host/ContextParam';
 export { CustomContext } from './context/host/CustomContext';
-export { ExternalInfoContext } from './context/host/ExternalInfoContext';
-export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
-export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
 export { OpportunityContext } from './context/host/OpportunityContext';
 export { UrlParam } from './context/host/UrlParam';
 export { UserContext } from './context/host/UserContext';
@@ -111,6 +108,11 @@ export {
   ExtensionType,
   ProspectExtensionType,
   OpportunityExtensionType,
+  AccountExtension,
+  GeneralExtension,
+  OpportunityExtension,
+  ProspectExtension,
+  AppExtension,
 } from './manifest/extensions/ExtensionType';
 export { ExtensionHost } from './manifest/extensions/ExtensionHost';
 

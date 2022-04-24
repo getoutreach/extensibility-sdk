@@ -1,7 +1,6 @@
 import { AccountContextKeys } from '../keys/AccountContextKeys';
 import { ContextParam } from './ContextParam';
 import { AccountContext } from './AccountContext';
-import { ExternalInfoUtils } from './ExternalInfoUtils';
 
 export const initAccountContext = (
   context: AccountContext,
@@ -17,9 +16,6 @@ export const initAccountContext = (
     case AccountContextKeys.DOMAIN:
       context.domain = param.value;
       break;
-    case AccountContextKeys.EXTERNAL:
-      context.externalInfo = ExternalInfoUtils.unpack(param.value);
-      break;
     case AccountContextKeys.EXTERNAL_ID:
       context.externalProviderId = param.value;
       break;
@@ -27,7 +23,7 @@ export const initAccountContext = (
       context.externalProviderName = param.value;
       break;
     case AccountContextKeys.ID:
-      context.id = param.value;
+      context.id = param.value!;
       break;
     case AccountContextKeys.LOCALITY:
       context.locality = param.value;
@@ -514,13 +510,6 @@ export const toAccountParams = (context: AccountContext): ContextParam[] => {
     params.push({
       key: AccountContextKeys.DOMAIN,
       value: context.domain,
-    });
-  }
-
-  if (context.externalInfo) {
-    params.push({
-      key: AccountContextKeys.EXTERNAL,
-      value: ExternalInfoUtils.pack(context.externalInfo),
     });
   }
 

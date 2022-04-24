@@ -1,6 +1,5 @@
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
-import { ExternalInfoContext } from './ExternalInfoContext';
 import {
   initOpportunityContext,
   toOpportunityParams,
@@ -13,7 +12,7 @@ export class OpportunityContext extends CustomContext {
    * @type {number}
    * @memberof OpportunityContext
    */
-  amount: number;
+  amount?: number | null;
 
   /**
    * A description of the opportunity.
@@ -21,7 +20,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  description?: string;
+  description?: string | null;
 
   /**
    * The date the opportunity was created in the external system.
@@ -29,7 +28,7 @@ export class OpportunityContext extends CustomContext {
    * @type {Date}
    * @memberof OpportunityContext
    */
-  externalCreatedAt: Date;
+  externalCreatedAt?: Date | null;
 
   /**
    * Identity of the current opportunity in the external system which is linked through installed Outreach plugin.
@@ -37,7 +36,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  externalProviderId?: string;
+  externalProviderId?: string | null;
 
   /**
    * Name of the external system provider which is linked through installed Outreach plugin.
@@ -53,7 +52,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  id?: string;
+  id: string;
 
   /**
    * `The next step to take for the opportunity.
@@ -61,7 +60,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  name?: string;
+  name?: string | null;
 
   /**
    * The next step to take for the opportunity.
@@ -69,7 +68,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  nextStep?: string;
+  nextStep?: string | null;
 
   /**
    * The type of opportunity.
@@ -77,7 +76,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  opportunityType?: string;
+  opportunityType?: string | null;
 
   /**
    * The chances of the opportunity succeeding, represented as a percentage.
@@ -85,7 +84,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  probability: string;
+  probability?: string | null;
 
   /**
    * Tags associated with the opportunity.
@@ -93,17 +92,7 @@ export class OpportunityContext extends CustomContext {
    * @type {string}
    * @memberof OpportunityContext
    */
-  tags: string;
-
-  /**
-   * Collection of zero or more external provider data current account has in external systems
-   * which are linked through installed Outreach plugins.
-   *
-   * @type {ExternalInfoContext[]}
-   * @memberof OpportunityContext
-   * @deprecated Usage of externalInfo is depricated. Please use externalProviderId and externalProviderName instead.
-   */
-  externalInfo: ExternalInfoContext[] = [];
+  tags?: string | null;
 
   /**
    * Attempts to initialize the opportunity context with a given parameter.

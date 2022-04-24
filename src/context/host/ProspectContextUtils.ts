@@ -1,6 +1,5 @@
 import { ProspectContextKeys } from '../keys/ProspectContextKeys';
 import { ContextParam } from './ContextParam';
-import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { ProspectContext } from './ProspectContext';
 
 export const initProspectContext = (
@@ -8,6 +7,12 @@ export const initProspectContext = (
   param: ContextParam
 ): boolean => {
   switch (param.key) {
+    case ProspectContextKeys.ACCOUNT_DOMAIN:
+      context.accountDomain = param.value;
+      break;
+    case ProspectContextKeys.ACCOUNT_NAME:
+      context.accountName = param.value;
+      break;
     case ProspectContextKeys.ADDRESS_CITY:
       context.addressCity = param.value;
       break;
@@ -27,7 +32,9 @@ export const initProspectContext = (
       context.addressZip = param.value;
       break;
     case ProspectContextKeys.AVAILABLE_AT:
-      context.availableAt = new Date(param.value);
+      if (param.value) {
+        context.availableAt = new Date(param.value);
+      }
       break;
     case ProspectContextKeys.COMPANY:
       context.company = param.value;
@@ -35,14 +42,8 @@ export const initProspectContext = (
     case ProspectContextKeys.COMPANY_LOCALITY:
       context.companyLocality = param.value;
       break;
-    case ProspectContextKeys.DOMAIN:
-      context.domain = param.value;
-      break;
     case ProspectContextKeys.ID:
-      context.id = param.value;
-      break;
-    case ProspectContextKeys.NAME:
-      context.name = param.value;
+      context.id = param.value!;
       break;
     case ProspectContextKeys.TAGS:
       context.tags = param.value;
@@ -54,10 +55,7 @@ export const initProspectContext = (
       context.title = param.value;
       break;
     case ProspectContextKeys.EMAILS:
-      context.emails = param.value.split(',');
-      break;
-    case ProspectContextKeys.EXTERNAL:
-      context.externalInfo = ExternalInfoUtils.unpack(param.value);
+      context.emails = param.value?.split(',') ?? null;
       break;
     case ProspectContextKeys.EXTERNAL_ID:
       context.externalProviderId = param.value;
@@ -526,6 +524,20 @@ export const initProspectContext = (
 export const toProspectParams = (context: ProspectContext): ContextParam[] => {
   const params: ContextParam[] = [];
 
+  if (context.accountDomain) {
+    params.push({
+      key: ProspectContextKeys.ACCOUNT_DOMAIN,
+      value: context.accountDomain,
+    });
+  }
+
+  if (context.accountName) {
+    params.push({
+      key: ProspectContextKeys.ACCOUNT_NAME,
+      value: context.accountName,
+    });
+  }
+
   if (context.addressCity) {
     params.push({
       key: ProspectContextKeys.ADDRESS_CITY,
@@ -592,24 +604,10 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     });
   }
 
-  if (context.domain) {
-    params.push({
-      key: ProspectContextKeys.DOMAIN,
-      value: context.domain,
-    });
-  }
-
   if (context.id) {
     params.push({
       key: ProspectContextKeys.ID,
       value: context.id,
-    });
-  }
-
-  if (context.name) {
-    params.push({
-      key: ProspectContextKeys.NAME,
-      value: context.name,
     });
   }
 
@@ -638,13 +636,6 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     params.push({
       key: ProspectContextKeys.EMAILS,
       value: context.emails.join(','),
-    });
-  }
-
-  if (context.externalInfo) {
-    params.push({
-      key: ProspectContextKeys.EXTERNAL,
-      value: ExternalInfoUtils.pack(context.externalInfo),
     });
   }
 

@@ -9,6 +9,7 @@ Table of content:
   - [Opportunity contextual information](#opportunity-contextual-information)
   - [Prospect contextual information](#prospect-contextual-information)
   - [User contextual information](#user-contextual-information)
+  - [Organization contextual information](#organization-contextual-information)
 - [External contextual information](#external-contextual-information)
 
 Every Outreach application can request one or more contextual values describing the current Outreach user.
@@ -85,9 +86,24 @@ Our end goal is to provide contextual access to any of the properties available 
 - **usr.fname** The first name of the user.
 - **usr.id** user id.
 - **ust.lname** The last name of the user.
+- **ust.name** The full name of the user.
+- **ust.role** The role of the user.
 - **usr.tit** The user's job title (e.g., "Staff Accountant").
 - **usr.uname** A reader-friendly unique identifier of the user.
 - **usr.csf1** to **usr.csf5** the value of the (1-5) user's custom field.
+
+
+## Organization contextual information
+
+If an application needs contextual information about the current Outreach user organization, it will need to add to manifest one or more user properties.
+
+Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in [SDK](../src/store/keys/OrganizationContextKeys.ts) next properties:
+
+- **org.cur** Default organization currency
+- **org.id** Oranization id
+- **org.logo** Organization logo url
+- **org.name** Organization full name
+- **org.short** Organization short name
 
 # External contextual information
 

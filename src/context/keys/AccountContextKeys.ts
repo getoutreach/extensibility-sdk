@@ -25,7 +25,7 @@ export enum AccountContextKeys {
   /**
    * Account company name
    */
-  DOMAIN = 'acc.domain',
+  DOMAIN = 'acc.dmn',
 
   /**
    * External provider id
@@ -51,12 +51,6 @@ export enum AccountContextKeys {
    * A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
    */
   TAGS = 'acc.tags',
-
-  /**
-   *The account's external information received from the installed plugins (Salesforce, Dynamics etc.)
-   @deprecated Usage of this key is depricated. Please use EXTERNAL_ID or EXTERNAL_NAME.
-   */
-  EXTERNAL = 'acc.ext',
 
   CUSTOM_FIELD_1 = 'acc.csf1',
   CUSTOM_FIELD_2 = 'acc.csf2',

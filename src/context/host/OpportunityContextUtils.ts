@@ -1,6 +1,5 @@
 import { OpportunityContextKeys } from '../keys/OpportunityContextKeys';
 import { ContextParam } from './ContextParam';
-import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { OpportunityContext } from './OpportunityContext';
 
 export const initOpportunityContext = (
@@ -9,13 +8,17 @@ export const initOpportunityContext = (
 ): boolean => {
   switch (param.key) {
     case OpportunityContextKeys.AMOUNT:
-      context.amount = parseInt(param.value);
+      if (param.value) {
+        context.amount = parseInt(param.value);
+      }
       break;
     case OpportunityContextKeys.DESCRIPTION:
       context.description = param.value;
       break;
     case OpportunityContextKeys.EXTERNAL_CREATED_AT:
-      context.externalCreatedAt = new Date(param.value);
+      if (param.value) {
+        context.externalCreatedAt = new Date(param.value);
+      }
       break;
     case OpportunityContextKeys.EXTERNAL_ID:
       context.externalProviderId = param.value;
@@ -23,11 +26,8 @@ export const initOpportunityContext = (
     case OpportunityContextKeys.EXTERNAL_PROVIDER:
       context.externalProviderId = param.value;
       break;
-    case OpportunityContextKeys.EXTERNAL:
-      context.externalInfo = ExternalInfoUtils.unpack(param.value);
-      break;
     case OpportunityContextKeys.ID:
-      context.id = param.value;
+      context.id = param.value!;
       break;
     case OpportunityContextKeys.NAME:
       context.name = param.value;
@@ -535,13 +535,6 @@ export const toOpportunityParams = (
     params.push({
       key: OpportunityContextKeys.EXTERNAL_PROVIDER,
       value: context.externalProviderName,
-    });
-  }
-
-  if (context.externalInfo) {
-    params.push({
-      key: OpportunityContextKeys.EXTERNAL,
-      value: ExternalInfoUtils.pack(context.externalInfo),
     });
   }
 
