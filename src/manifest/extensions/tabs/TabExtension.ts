@@ -43,15 +43,6 @@ export class TabExtension extends Extension {
   public type: TabExtensionType;
 
   /**
-   * Optional property defining the text, which will be shown as the tab title.
-   * If omitted, app.headline manifest value will be used.
-   *
-   * @type {LocalizedString}
-   * @memberof TabExtension
-   */
-  public title?: LocalizedString;
-
-  /**
    * Optional property defining the text, which will be shown as the tab title tooltip.
    * If omitted, app.headline manifest value will be used.
    *

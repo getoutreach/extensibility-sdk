@@ -1,4 +1,5 @@
 import { OutreachContext } from '../../context/OutreachContext';
+import { LocalizedString } from '../store/LocalizedString';
 import { ExtensionHost } from './ExtensionHost';
 import { ExtensionType } from './ExtensionType';
 
@@ -9,23 +10,7 @@ export abstract class Extension {
    * @type {string}
    * @memberof Extension
    */
-  identifier: string;
-
-  /**
-   * Extension version
-   *
-   * @type {string}
-   * @memberof Extension
-   */
-  version: string;
-
-  /**
-   * Type property defines the type of extension
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
-   * @type {ExtensionType}
-   * @memberof Extension
-   */
-  public type: ExtensionType;
+  public identifier: string;
 
   /**
    * Definition of addon host
@@ -37,14 +22,29 @@ export abstract class Extension {
   public host: ExtensionHost;
 
   /**
-   * Every extension has to be able to perform its own validation.
+   * Optional property defining the text, which will be shown as the tab title.
+   * If omitted, app.headline manifest value will be used.
    *
-   * @abstract
-   * @param {Application} application
-   * @return {*}  {string[]}
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public title?: LocalizedString;
+
+  /**
+   * Type property defines the type of extension
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
+   * @type {ExtensionType}
    * @memberof Extension
    */
-  abstract validate(): string[];
+  public type: ExtensionType;
+
+  /**
+   * Extension version
+   *
+   * @type {string}
+   * @memberof Extension
+   */
+  version: string;
 
   /**
    * Enables extension to contribute to building up
@@ -56,4 +56,14 @@ export abstract class Extension {
    * @memberof Extension
    */
   abstract init(context: OutreachContext): boolean;
+
+  /**
+   * Every extension has to be able to perform its own validation.
+   *
+   * @abstract
+   * @param {Application} application
+   * @return {*}  {string[]}
+   * @memberof Extension
+   */
+  abstract validate(): string[];
 }

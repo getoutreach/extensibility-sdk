@@ -7,7 +7,6 @@ import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
 import logger from '../../../sdk/logging/Logger';
-import { LocalizedString } from '../../store/LocalizedString';
 import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { ShellExtensionType } from './ShellExtensionType';
@@ -47,15 +46,6 @@ export class ShellExtension extends Extension {
    * @memberof TabExtension
    */
   public type!: ExtensionType;
-
-  /**
-   * Optional property defining the text, which will be shown as the tab title.
-   * If omitted, app.headline manifest value will be used.
-   *
-   * @type {LocalizedString}
-   * @memberof TabExtension
-   */
-  public title?: LocalizedString;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
