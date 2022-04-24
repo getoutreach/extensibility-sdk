@@ -144,6 +144,10 @@ const v1Manifests = [
     store: 'personal',
     title: {
       en: 'Hello world (OREX)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (OREX)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     author: {
       privacyUrl: 'https://someurl.com/privacy1',
@@ -164,6 +168,10 @@ const v1Manifests = [
     identifier: 'prospect-tab-hello',
     description: {
       en: 'Hello world addon for Outreach prospect',
+      'de-DE': 'German',
+      'en-US': 'Hello world addon for Outreach prospect',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     configuration: [],
   } as ManifestV1,
@@ -187,6 +195,10 @@ const v1Manifests = [
     store: 'personal',
     title: {
       en: 'Hello world (left sidemenu addon)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (left sidemenu addon)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     author: {
       privacyUrl: 'https://someurl.com/privacy',
@@ -198,6 +210,10 @@ const v1Manifests = [
     identifier: 'left-side-menu-hello',
     description: {
       en: 'Hello world addon for Outreach app',
+      'de-DE': 'German',
+      'en-US': 'Hello world addon for Outreach app',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     configuration: [],
     categories: ['account_based_marketing', 'chat'],
@@ -222,6 +238,10 @@ const v1Manifests = [
     store: 'personal',
     title: {
       en: 'Hello world (opportunity addon)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (opportunity addon)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     author: {
       privacyUrl: 'https://someurl.com/privacy',
@@ -241,6 +261,10 @@ const v1Manifests = [
     identifier: 'opportunity-tab-hello',
     description: {
       en: 'Hello world addon for Outreach opportunity',
+      'de-DE': 'German',
+      'en-US': 'Hello world addon for Outreach opportunity',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     configuration: [],
   } as ManifestV1,

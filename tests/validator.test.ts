@@ -307,9 +307,17 @@ const getNewValidApplicationManifest = (): Application => {
     ],
     headline: {
       en: 'Some headline (en)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (left sidemenu addon)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     description: {
       en: 'Some description (en)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (left sidemenu addon)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     identifier: 'app-identifier',
     iconUrl: 'https://someurl.com/icon',
@@ -317,6 +325,10 @@ const getNewValidApplicationManifest = (): Application => {
     type: StoreType.PRIVATE,
     title: {
       en: 'Some title (en)',
+      'de-DE': 'German',
+      'en-US': 'Hello world (left sidemenu addon)',
+      'es-LA': 'Spanish',
+      'fr-FR': 'French',
     },
     version: '0.10',
   };
