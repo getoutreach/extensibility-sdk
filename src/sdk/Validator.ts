@@ -11,6 +11,10 @@ import { StoreType } from '../manifest/store/StoreType';
  */
 export const validate = (application: Application): string[] => {
   const issues: string[] = [];
+  if (!application.identifier) {
+    issues.push('Manifest identifier definition is missing.');
+  }
+
   if (application.api) {
     if (!application.api.scopes) {
       issues.push('Undefined api scopes');
@@ -152,10 +156,6 @@ export const validate = (application: Application): string[] => {
         'Application icon url is invalid url. Value: ' + application.store.iconUrl
       );
     }
-  }
-
-  if (!application.store.identifier) {
-    issues.push('Manifest identifier definition is missing.');
   }
 
   if (!application.store.title) {

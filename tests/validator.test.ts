@@ -283,6 +283,7 @@ const getNewValidApplicationManifest = (): Application => {
   appTabExtension.context = [UserContextKeys.ID];
 
   const application = new Application();
+  application.identifier = 'app-identifier',
   application.store = {
     author: {
       email: 'author@someurl.com',
@@ -319,7 +320,6 @@ const getNewValidApplicationManifest = (): Application => {
       'es-LA': 'Spanish',
       'fr-FR': 'French',
     },
-    identifier: 'app-identifier',
     iconUrl: 'https://someurl.com/icon',
     locales: [Locale.ENGLISH],
     type: StoreType.PRIVATE,
