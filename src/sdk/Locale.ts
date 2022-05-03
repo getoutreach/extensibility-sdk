@@ -17,7 +17,7 @@ export enum Locale {
    */
   FRENCH = 'fr-FR',
   /**
-   * Spanis
+   * Spanish
    */
   SPANISH = 'es-LA',
 }

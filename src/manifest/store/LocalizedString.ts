@@ -1,6 +1,11 @@
-import { Locale } from '../../sdk/Locale';
+export interface LocalizedString {
+  en: string;
 
-export type LocalizedString = {
-  // eslint-disable-next-line no-unused-vars
-  [key in Locale]: string;
-};
+  'en-US'?: string;
+
+  'de-DE'?: string;
+
+  'fr-FR'?: string;
+
+  'es-LA'?: string;
+}
