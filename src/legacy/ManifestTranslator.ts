@@ -331,7 +331,7 @@ export class ManifestTranslator {
 
         case TileExtensionType.ACCOUNT:
           return Object.assign(new AccountTileExtension(), ext);
-        case TileExtensionType.HOME_EMAIL:
+        case TileExtensionType.HOME_EMAILS:
           return Object.assign(new HomeEmailsTileExtension(), ext);
         case TileExtensionType.HOME_TASKS:
           return Object.assign(new HomeTasksTileExtension(), ext);

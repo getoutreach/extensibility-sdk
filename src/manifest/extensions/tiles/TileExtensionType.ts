@@ -10,7 +10,7 @@ export enum TileExtensionType {
   /**
    * Home/360  dashboard tile extension (email)
    */
-  HOME_EMAIL = 'tile-home-email',
+  HOME_EMAILS = 'tile-home-emails',
 
   /**
    * Home/360  dashboard tile extension (tasks)

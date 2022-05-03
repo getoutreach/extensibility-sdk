@@ -11,7 +11,7 @@ export class HomeEmailsTileExtension extends TileExtension {
    * @type {TileExtensionType}
    * @memberof HomeEmailTileExtension
    */
-  public type: TileExtensionType.HOME_EMAIL = TileExtensionType.HOME_EMAIL;
+  public type: TileExtensionType.HOME_EMAILS = TileExtensionType.HOME_EMAILS;
 
   /**
    * In this section, the application author defines a list of predefined context information that
