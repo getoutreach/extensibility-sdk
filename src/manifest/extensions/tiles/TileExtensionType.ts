@@ -1,16 +1,21 @@
 /* eslint-disable no-unused-vars */
 
 /**
- * List of supported inteligent tile extension types.
+ * List of supported intelligent tile extension types.
  * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
  * @export
  * @enum {number}
  */
 export enum TileExtensionType {
   /**
-   * Home/360  dashboard tile extension
+   * Home/360  dashboard tile extension (email)
    */
-  HOME = 'tile-home',
+  HOME_EMAIL = 'tile-home-email',
+
+  /**
+   * Home/360  dashboard tile extension (tasks)
+   */
+  HOME_TASKS = 'tile-home-tasks',
 
   /**
    * Account overview intelligent tile extension

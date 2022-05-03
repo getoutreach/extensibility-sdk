@@ -1,18 +1,17 @@
-import { AccountContextKeys } from '../../../../context/keys/AccountContextKeys';
 import { ClientContextKeys } from '../../../../context/keys/ClientContextKeys';
 import { OrganizationContextKeys } from '../../../../context/keys/OrganizationContextKeys';
 import { UserContextKeys } from '../../../../context/keys/UserContextKeys';
 import { TileExtension } from '../TileExtension';
 import { TileExtensionType } from '../TileExtensionType';
 
-export class HomeTileExtension extends TileExtension {
+export class HomeTasksTileExtension extends TileExtension {
   /**
    * Type property defines what the type of intelligent tile and where it should be loaded.
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
    * @type {TileExtensionType}
-   * @memberof HomeTileExtension
+   * @memberof HomeEmailTileExtension
    */
-  public type: TileExtensionType.HOME = TileExtensionType.HOME;
+  public type: TileExtensionType.HOME_TASKS = TileExtensionType.HOME_TASKS;
 
   /**
    * In this section, the application author defines a list of predefined context information that
@@ -22,12 +21,11 @@ export class HomeTileExtension extends TileExtension {
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
    * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[]}
-   * @memberof HomeTileExtension
+   * @memberof HomeEmailTileExtension
    */
   public context: (
     | UserContextKeys
     | ClientContextKeys
-    | AccountContextKeys
     | OrganizationContextKeys
   )[];
 
@@ -35,7 +33,7 @@ export class HomeTileExtension extends TileExtension {
    * Validates the home tile extension configuration
    *
    * @return {*}  {string[]}
-   * @memberof HomeTileExtension
+   * @memberof HomeEmailTileExtension
    */
   validate(): string[] {
     const issues = super.validate();
@@ -43,12 +41,7 @@ export class HomeTileExtension extends TileExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(AccountContextKeys).includes(
-          context as AccountContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
       ) {
         issues.push(
           'Context key is not one of the valid values for the home tile extension. Key: ' +

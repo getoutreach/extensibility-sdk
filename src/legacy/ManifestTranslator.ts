@@ -4,7 +4,8 @@ import {
   AllContextKeys,
   CompanionShellExtension,
   ConfigurationItem,
-  HomeTileExtension,
+  HomeEmailsTileExtension,
+  HomeTasksTileExtension,
   ManifestApi,
   OpportunityTileExtension,
   ProspectTileExtension,
@@ -330,8 +331,10 @@ export class ManifestTranslator {
 
         case TileExtensionType.ACCOUNT:
           return Object.assign(new AccountTileExtension(), ext);
-        case TileExtensionType.HOME:
-          return Object.assign(new HomeTileExtension(), ext);
+        case TileExtensionType.HOME_EMAIL:
+          return Object.assign(new HomeEmailsTileExtension(), ext);
+        case TileExtensionType.HOME_TASKS:
+          return Object.assign(new HomeTasksTileExtension(), ext);
         case TileExtensionType.OPPORTUNITY:
           return Object.assign(new OpportunityTileExtension(), ext);
         case TileExtensionType.PROSPECT:
