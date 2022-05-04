@@ -161,6 +161,7 @@ export class ManifestTranslator {
     const app: Application = new Application();
     app.disableTimeoutMonitoring =
       firstExt.notUsingSdk || firstExt.disableTimeoutMonitoring;
+    app.identifier = firstExt.identifier;
     app.store = new ManifestStore();
     app.store.author = new ManifestAuthor();
     app.store.author.company = firstExt.author.company || 'N/A';
@@ -173,7 +174,6 @@ export class ManifestTranslator {
 
     app.store.description = firstExt.description;
     app.store.iconUrl = '';
-    app.store.identifier = firstExt.identifier;
     app.store.locales = [Locale.ENGLISH];
     app.store.medias = [];
     app.store.headline = firstExt.title;
@@ -296,6 +296,8 @@ export class ManifestTranslator {
 
   public static hydrate = (app: Application): Application => {
     const application = new Application();
+    application.identifier = app.identifier;
+
     if (app.api) {
       application.api = Object.assign(new ManifestApi(), app.api);
     }

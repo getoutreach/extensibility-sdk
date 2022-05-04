@@ -53,6 +53,15 @@ export class Application {
   public extensions: Extension[] = [];
 
   /**
+   * Unique application identifier
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#identifier
+   * @type {string}
+   * @memberof ManifestStore
+   */
+  public identifier: string = '';
+
+  /**
    * App section contains the data describing Outreach application containing
    * one or more extensions.
    *

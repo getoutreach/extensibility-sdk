@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
   "properties": {
+    "identifier": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z0-9._-]+$"
+    },
     "store": {
       "type": "object",
       "properties": {
@@ -84,12 +90,6 @@
           "type": "string",
           "format": "uri"
         },
-        "identifier": {
-          "type": "string",
-          "minLength": 6,
-          "maxLength": 128,
-          "pattern": "^[a-zA-Z0-9._-]+$"
-        },
         "locales": {
           "type": "array",
           "items": {
@@ -135,7 +135,6 @@
         "headline",
         "description",
         "icon",
-        "identifier",
         "title",
         "version"
       ]
@@ -289,5 +288,5 @@
       }
     }
   },
-  "required": ["store", "extensions"]
+  "required": ["identifier", "store", "extensions"]
 }

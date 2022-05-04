@@ -21,6 +21,8 @@ describe('Manifest translator tests', () => {
 
     expect(result).not.toBeNull();
 
+    expect(result!.identifier).toBe(v1Manifests[0].identifier);
+
     expect(result!.extensions.length).toBe(3);
 
     expect(result!.store.author.company).toBe('N/A');
@@ -36,7 +38,6 @@ describe('Manifest translator tests', () => {
     expect(result!.store.headline).toBe(v1Manifests[0].title);
     expect(result!.store.iconUrl).toBe('');
 
-    expect(result!.store.identifier).toBe(v1Manifests[0].identifier);
     expect(result!.store.locales).toEqual([Locale.ENGLISH]);
     expect(result!.store.medias).toEqual([]);
     expect(result!.store.title).toEqual(v1Manifests[0].title);

@@ -7,15 +7,6 @@ import { Locale } from '../sdk/Locale';
 
 export class ManifestStore {
   /**
-   * Unique application identifier
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#identifier
-   * @type {string}
-   * @memberof ManifestStore
-   */
-  public identifier: string = '';
-
-  /**
    * List of culture locales supported by the extension
    *
    * @type {Locale[]}

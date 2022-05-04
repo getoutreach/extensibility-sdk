@@ -7,12 +7,12 @@ Table of content:
 - [Manifest file](#manifest-file)
   - [Sample manifest](#sample-manifest)
   - [Manifest JSON schema](#manifest-json-schema)
+    - [identifier](#identifier)
   - [Store section properties (store)](#store-section-properties-store)
     - [author](#author)
     - [categories](#categories)
     - [description](#description)
     - [headline](#headline)
-    - [identifier](#identifier)
     - [icon (of application)](#icon-of-application)
     - [locales](#locales)
     - [medias](#medias)
@@ -59,6 +59,7 @@ Here is the sample manifest file of the hello world application having two exten
 
 ```json
 {
+  "identifier": "app-identifier",
   "store": {
     "author": {
       "company": "Acme ltd",
@@ -78,7 +79,6 @@ Here is the sample manifest file of the hello world application having two exten
       "en": "Some short description (en)"
     },
     "iconUrl": "https://someurl.com/image.png",
-    "identifier": "app-identifier",
     "locales": [
       "en"
     ],
@@ -164,6 +164,9 @@ Internally we validate each submitted manifest using the following schema
 [Manifest JSON schema v2.0](schema/2.0/manifest.schema.json)
 
 A manifest can be validated using the [online tool](https://www.jsonschemavalidator.net/)
+### identifier
+
+Unique identifier of the application as defined by the application creator. The identifier may contain uppercase or lowercase letters ('A' through 'Z'), numbers, underscores ('_'), hyphens('-') and dots('.'). The minimum length is 6 characters a the maximum is 128.
 
 ## Store section properties (store)
 
@@ -191,10 +194,6 @@ A localized application description is shown in the Outreach Marketplace at appl
 ### headline
 
 A localized application headline is shown in the Outreach Marketplace together with title and icon at the application list/tiles page as well as at application details page.
-
-### identifier
-
-Unique identifier of the application as defined by the application creator. The identifier may contain uppercase or lowercase letters ('A' through 'Z'), numbers, underscores ('_'), hyphens('-') and dots('.'). The minimum length is 6 characters a the maximum is 128.
 
 ### icon (of application)
 
