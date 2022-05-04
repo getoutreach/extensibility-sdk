@@ -78,6 +78,7 @@ Here is the sample manifest file of the hello world application having two exten
       "en": "Some short description (en)"
     },
     "iconUrl": "https://someurl.com/image.png",
+    "externalInstallationUrl": "https://somestore.com/acme/application",
     "identifier": "app-identifier",
     "locales": [
       "en"
@@ -199,6 +200,11 @@ Unique identifier of the application as defined by the application creator. The 
 ### icon (of application)
 
 URL of the Application icon shown in the Outreach Marketplace.
+
+### external installation Url
+
+URL of the external installation page. This is the optional property and is used only in case when the application should be installed outside
+of Outreach Marketplace
 
 ### locales
 
