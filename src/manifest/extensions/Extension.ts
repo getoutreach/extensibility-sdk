@@ -22,7 +22,7 @@ export abstract class Extension {
   public host: ExtensionHost;
 
   /**
-   * Optional property defining the text, which will be shown as the tab title.
+   * Optional property defining the text, which will be shown as the tab title/in tile selector etc.
    * If omitted, app.headline manifest value will be used.
    *
    * @type {LocalizedString}

@@ -10,6 +10,7 @@ import logger from '../../../sdk/logging/Logger';
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
+import { LocalizedString } from '../../store/LocalizedString';
 
 export class TileExtension extends Extension {
   /**
@@ -31,6 +32,15 @@ export class TileExtension extends Extension {
    * @memberof TileExtension
    */
   public context: AllContextKeys[];
+
+  /**
+   * Optional property defining the text, which will be shown in the tile selector
+   * If omitted, app.headline manifest value will be used.
+   *
+   * @type {LocalizedString}
+   * @memberof TabExtension
+   */
+  public description?: LocalizedString;
 
   /**
    * Definition of tile extension hosting.
