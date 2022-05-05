@@ -78,7 +78,6 @@ Here is the sample manifest file of the hello world application having two exten
       "en": "Some short description (en)"
     },
     "iconUrl": "https://someurl.com/image.png",
-    "externalInstallationUrl": "https://somestore.com/acme/application",
     "identifier": "app-identifier",
     "locales": [
       "en"
@@ -109,6 +108,7 @@ Here is the sample manifest file of the hello world application having two exten
     "redirectUri": "https://application-host.com/hello-world",
     "connect": "https://someurl.com/connect"
   },
+  "externalInstallationUrl": "https://somestore.com/acme/application",
   "configuration": [
     {
       "key": "apikey",
@@ -201,10 +201,6 @@ Unique identifier of the application as defined by the application creator. The 
 
 URL of the Application icon shown in the Outreach Marketplace.
 
-### external installation Url
-
-URL of the external installation page. This is the optional property and is used only in case when the application should be installed outside
-of Outreach Marketplace
 
 ### locales
 
@@ -254,11 +250,17 @@ Note: The domain of the connect Uri has to be the same as the domain of the [hos
 
 This section is optional.
 
-If the application doesn't need a user-specific runtime configuration, this section can be omitted.
+If the application doesn't need a user-specific runtime configuration, this section can be omitted. It is also ignored for applications with externalInstallationUrl specified.
 
 In this section, the application creator defines what information should collect from the user and pass it to the application as a part of the initialization process.
 
 To learn more about configuration section, go to [manifest configuration page](configuration.md)
+
+
+## External installation Url
+
+URL of the external installation page. This is the optional property and is used only in case when the application should be installed outside
+of Outreach Marketplace
 
 ## Extensions section (extensions)
 

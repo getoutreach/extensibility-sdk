@@ -84,10 +84,6 @@
           "type": "string",
           "format": "uri"
         },
-        "externalInstallationUrl": {
-          "type": "string",
-          "format": "uri"
-        },
         "identifier": {
           "type": "string",
           "minLength": 6,
@@ -167,6 +163,10 @@
           "type": "string"
         }
       }
+    },
+    "externalInstallationUrl": {
+      "type": "string",
+      "format": "uri"
     },
     "configuration": {
       "type": "array",
