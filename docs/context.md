@@ -20,9 +20,12 @@ _In case you would like to have additional contextual properties, please contact
 
 ## Account contextual information
 
-If an application needs contextual information about the current account Outreach user is looking at, it will need to add to manifest one or more account properties.
+If an application needs contextual information about the current account Outreach user is looking at, it will need to
+add to manifest one or more account properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in [SDK](../src/store/keys/AccountContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the
+[Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in
+[SDK](../src/context/keys/AccountContextKeys.ts) next properties:
 
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
@@ -34,12 +37,14 @@ Our end goal is to provide contextual access to any of the properties available 
 - **acc.tags** A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
 - **acc.csf1** to **acc.csf150** the value of the (1-150) account's custom field.
 
-
 ## Opportunity contextual information
 
-If an application needs contextual information about the current opportunity the Outreach user is looking at, it will need to add to manifest one or more opportunity properties.
+If an application needs contextual information about the current opportunity the Outreach user is looking at, it will
+need to add to manifest one or more opportunity properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#opportunity), but at the moment, we support in [SDK](../src/store/keys/OpportunityContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the
+[Outreach API](https://api.outreach.io/api/v2/docs#opportunity), but at the moment, we support in
+[SDK](../src/context/keys/OpportunityContextKeys.ts) next properties:
 
 - **opp.amnt** The amount the opportunity is worth.
 - **opp.desc** A description of the opportunity.
@@ -54,9 +59,12 @@ Our end goal is to provide contextual access to any of the properties available 
 
 ## Prospect contextual information
 
-If an application needs contextual information about the current prospect Outreach user is looking at, it will need to add to manifest one or more prospect properties.
+If an application needs contextual information about the current prospect Outreach user is looking at, it will need to
+add to manifest one or more prospect properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in [SDK](../src/store/keys/ProspectContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the
+[Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in
+[SDK](../src/context/keys/ProspectContextKeys.ts) next properties:
 
 - **pro.avail** The date and time the prospect is available to contact again.
 - **pro.adrcity** City of the prospect
@@ -65,7 +73,8 @@ Our end goal is to provide contextual access to any of the properties available 
 - **pro.adrstreet** Street address of the prospect
 - **pro.adrstreet2** Street address (2nd line) of the prospect
 - **pro.adrzip** Postal code of the prospect.
-- **pro.comp** The name of the prospect company. If associated with an account, this is the name of the account. (e.g. Acme International).
+- **pro.comp** The name of the prospect company. If associated with an account, this is the name of the account. (e.g.
+  Acme International).
 - **pro.domain** Prospect company name
 - **pro.emails** A list of email addresses associated with the prospect.
 - **pro.loc** The locality of the prospect's company.
@@ -78,9 +87,12 @@ Our end goal is to provide contextual access to any of the properties available 
 
 ## User contextual information
 
-If an application needs contextual information about the current Outreach user, it will need to add to manifest one or more user properties.
+If an application needs contextual information about the current Outreach user, it will need to add to manifest one or
+more user properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in [SDK](../src/store/keys/UserContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the
+[Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in
+[SDK](../src/context/keys/UserContextKeys.ts) next properties:
 
 - **usr.email** The email address of the user.
 - **usr.fname** The first name of the user.
@@ -92,12 +104,14 @@ Our end goal is to provide contextual access to any of the properties available 
 - **usr.uname** A reader-friendly unique identifier of the user.
 - **usr.csf1** to **usr.csf5** the value of the (1-5) user's custom field.
 
-
 ## Organization contextual information
 
-If an application needs contextual information about the current Outreach user organization, it will need to add to manifest one or more user properties.
+If an application needs contextual information about the current Outreach user organization, it will need to add to
+manifest one or more user properties.
 
-Our end goal is to provide contextual access to any of the properties available through the [Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in [SDK](../src/store/keys/OrganizationContextKeys.ts) next properties:
+Our end goal is to provide contextual access to any of the properties available through the
+[Outreach API](https://api.outreach.io/api/v2/docs#user), but at the moment, we support in
+[SDK](../src/context/keys/OrganizationContextKeys.ts) next properties:
 
 - **org.cur** Default organization currency
 - **org.id** Oranization id
@@ -107,13 +121,17 @@ Our end goal is to provide contextual access to any of the properties available 
 
 # External contextual information
 
-Every Outreach user can have one or more plugins installed and connect Outreach with Salesforce, Dynamics, and other providers of prospect, account, and opportunity data.
+Every Outreach user can have one or more plugins installed and connect Outreach with Salesforce, Dynamics, and other
+providers of prospect, account, and opportunity data.
 
-Once a plugin is installed (Settings/Plugins) and synchronizing data with the external data source prospect page will show a new section with external prospect information.
+Once a plugin is installed (Settings/Plugins) and synchronizing data with the external data source prospect page will
+show a new section with external prospect information.
 
-![alt text](assets/prospect_plugin.png 'Salesforce prospect plugin')
+![Salesforce prospect plugin](assets/prospect_plugin.png)
 
-We have created SDK support for a set of dedicated manifest keys to enable application creators to receive this external prospect information and use it to link data in their own dataset with the outreach account through the same shared external ID used in both systems.
+We have created SDK support for a set of dedicated manifest keys to enable application creators to receive this external
+prospect information and use it to link data in their own dataset with the outreach account through the same shared
+external ID used in both systems.
 
 There are six context keys available for application creators to access current Outreach user info:
 

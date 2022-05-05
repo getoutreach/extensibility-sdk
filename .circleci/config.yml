@@ -25,6 +25,9 @@ jobs:
                 name: Lint SDK
                 command: yarn lint
             - run:
+                name: Lint Markdown docs
+                command: yarn lint-docs
+            - run:
                 name: Build SDK
                 command: yarn build
             - run:
