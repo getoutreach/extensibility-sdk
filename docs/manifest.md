@@ -250,7 +250,7 @@ Note: The domain of the connect Uri has to be the same as the domain of the [hos
 
 This section is optional.
 
-If the application doesn't need a user-specific runtime configuration, this section can be omitted. It is also ignored for applications with externalInstallationUrl specified.
+If the application doesn't need a user-specific runtime configuration, this section can be omitted. It is also ignored for applications with [externalInstallationUrl](#external-installation-url) specified.
 
 In this section, the application creator defines what information should collect from the user and pass it to the application as a part of the initialization process.
 
