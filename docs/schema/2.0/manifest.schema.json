@@ -164,6 +164,10 @@
         }
       }
     },
+    "externalInstallationUrl": {
+      "type": "string",
+      "format": "uri"
+    },
     "configuration": {
       "type": "array",
       "items": {
