@@ -177,6 +177,16 @@ export const validate = (application: Application): string[] => {
     issues.push('Manifest Version definition is missing.');
   }
 
+  if (
+    application.externalInstallationUrl !== undefined &&
+    !utils.urlValidation(application.externalInstallationUrl)
+  ) {
+    issues.push(
+      'Manifest needs to have a valid external installation url. Value: ' +
+        application.externalInstallationUrl
+    );
+  }
+
   application.extensions.forEach((ext) => {
     ext.validate().forEach((extIssue) => issues.push(extIssue));
   });
