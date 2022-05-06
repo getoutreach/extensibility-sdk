@@ -53,6 +53,14 @@ export class Application {
   public extensions: Extension[] = [];
 
   /**
+   * An optional URL to navigate the user to an external page for application installation.
+   *
+   * @type {string}
+   * @memberOf Application
+   */
+  public externalInstallationUrl?: string;
+
+  /**
    * App section contains the data describing Outreach application containing
    * one or more extensions.
    *

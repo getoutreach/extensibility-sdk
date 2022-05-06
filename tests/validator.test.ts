@@ -63,6 +63,32 @@ describe('manifest tests', () => {
     });
   });
 
+  describe('externalInstallationUrl', () => {
+    test('empty url should not be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.externalInstallationUrl = '';
+
+      const issues = validate(manifest);
+
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Manifest needs to have a valid external installation url. Value: '
+      );
+    });
+
+    test('invalid url should not be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.externalInstallationUrl = 'https:/asdf';
+
+      const issues = validate(manifest);
+
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Manifest needs to have a valid external installation url. Value: https:/asdf'
+      );
+    });
+  });
+
   describe('api', () => {
     test('only valid scope should be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
