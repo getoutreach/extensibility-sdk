@@ -1,0 +1,14 @@
+dist/
+build/
+node_modules/
+tmp/
+*.log
+.DS_Store
+coverage/
+ploc/
+*.pem
+*.orig
+*.generated.js
+*.generated.ts
+*.generated.d.ts
+.idea

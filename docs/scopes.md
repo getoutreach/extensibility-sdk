@@ -2,15 +2,23 @@
 
 # Outreach API scopes
 
-If an application needs access to Outreach API it needs to define one or more of [API scopes](https://api.outreach.io/api/v2/docs#authorization) it needs. The Outreach user will then need to consent with the granting impersonalized API access with requested scopes.
+If an application needs access to Outreach API it needs to define one or more of
+[API scopes](https://api.outreach.io/api/v2/docs#authorization) it needs. The Outreach user will then need to consent
+with the granting impersonalized API access with requested scopes.
 
 From [Outreach API](https://api.outreach.io/api/v2/docs#authorization) documentation
 
-> Authorization scopes let you specify exactly what type and level of access your application requires. Your OAuth application’s scopes describe the possible set of values that may be requested, but the specific scopes requested during the authentication process are what will be applied to the resulting access token and used to restrict and permit application access.
+> Authorization scopes let you specify exactly what type and level of access your application requires. Your OAuth
+> application’s scopes describe the possible set of values that may be requested, but the specific scopes requested
+> during the authentication process are what will be applied to the resulting access token and used to restrict and
+> permit application access.
 >
-> Scopes are strings containing two parts: the first part is a pluralized resource name (e.g. prospects); the second part is a token — read, write, delete or all — that describes the level of access permitted. For example, the scopes prospects.read and prospects.all would both grant access to read prospects, while only the latter would permit write and delete access. Scopes are not additive; the prospects.write scope does not grant read access.
+> Scopes are strings containing two parts: the first part is a pluralized resource name (e.g. prospects); the second
+> part is a token — read, write, delete or all — that describes the level of access permitted. For example, the scopes
+> prospects.read and prospects.all would both grant access to read prospects, while only the latter would permit write
+> and delete access. Scopes are not additive; the prospects.write scope does not grant read access.
 
-All of the [SDK scopes](../src/manifest/api/scopes.ts) are resource grouped in:
+All of the [SDK scopes](../src/manifest/api/Scopes.ts) are resource grouped in:
 
 - **audits** (audits all|read)
 - **accounts** (accounts all|read|write|delete)
