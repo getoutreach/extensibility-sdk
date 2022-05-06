@@ -42,38 +42,38 @@ of Outreach user.
 
 The application owner will add a config section into the manifest with three configuration items to achieve this.
 
-```json5
+```jsonc
 // manifest:
 {
-  configuration: [
+  "configuration": [
     {
-      key: 'clientId',
-      text: {
-        en: 'Enter client id',
+      "key": "clientId",
+      "text": {
+        "en": "Enter client id"
       },
-      type: 'string',
-      required: true,
-      urlInclude: true,
+      "type": "string",
+      "required": true,
+      "urlInclude": true
     },
     {
-      key: 'clientKey',
-      text: {
-        en: 'Enter client key',
+      "key": "clientKey",
+      "text": {
+        "en": "Enter client key"
       },
-      type: 'string',
-      required: true,
-      urlInclude: false,
+      "type": "string",
+      "required": true,
+      "urlInclude": false
     },
     {
-      key: 'clientSecret',
-      text: {
-        en: 'Enter client secret',
+      "key": "clientSecret",
+      "text": {
+        "en": "Enter client secret"
       },
-      type: 'string',
-      required: true,
-      urlInclude: false,
-    },
-  ],
+      "type": "string",
+      "required": true,
+      "urlInclude": false
+    }
+  ]
 }
 ```
 
