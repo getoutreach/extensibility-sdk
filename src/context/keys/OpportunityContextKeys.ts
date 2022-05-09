@@ -63,6 +63,12 @@ export enum OpportunityContextKeys {
    */
   TYPE = 'opp.type',
 
+  /**
+   *The opportunity's external information received from the installed plugins (Salesforce, Dynamics etc.)
+   @deprecated Usage of this key is deprecated. Please use EXTERNAL_ID or EXTERNAL_NAME.
+   */
+  EXTERNAL = 'opp.ext',
+
   CUSTOM_FIELD_1 = 'opp.csf1',
   CUSTOM_FIELD_2 = 'opp.csf2',
   CUSTOM_FIELD_3 = 'opp.csf3',

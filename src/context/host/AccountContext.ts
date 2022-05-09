@@ -1,6 +1,7 @@
 import { initAccountContext, toAccountParams } from './AccountContextUtils';
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
+import { ExternalInfoContext } from './ExternalInfoContext';
 
 export class AccountContext extends CustomContext {
   /**
@@ -74,6 +75,16 @@ export class AccountContext extends CustomContext {
    * @memberof AccountContext
    */
   tags?: string | null;
+
+  /**
+   * Collection of zero or more external provider data current account has in external systems
+   * which are linked through installed Outreach plugins.
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof AccountContext
+   * @deprecated Usage of externalInfo is deprecated. Please use externalProviderId and externalProviderName instead.
+   */
+  externalInfo: ExternalInfoContext[] = [];
 
   /**
    * Attempts to initialize the account context with a given parameter.

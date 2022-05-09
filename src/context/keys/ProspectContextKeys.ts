@@ -98,6 +98,12 @@ export enum ProspectContextKeys {
    */
   TITLE = 'pro.title',
 
+  /**
+   *The prospect's external information received from the installed plugins (Salesforce, Dynamics etc.)
+   * @deprecated Usage of this key is deprecated. Please use EXTERNAL_ID or EXTERNAL_NAME.
+   */
+  EXTERNAL = 'pro.ext',
+
   CUSTOM_FIELD_1 = 'pro.csf1',
   CUSTOM_FIELD_2 = 'pro.csf2',
   CUSTOM_FIELD_3 = 'pro.csf3',

@@ -25,9 +25,7 @@ describe('Manifest translator tests', () => {
 
     expect(result!.store.author.company).toBe('N/A');
     expect(result!.store.author.email).toBe('no@email.com');
-    expect(result!.store.author.privacyUrl).toBe(
-      'https://someurl.com/privacy1'
-    );
+    expect(result!.store.author.privacyUrl).toBe('https://someurl.com/privacy1');
     expect(result!.store.author.websiteUrl).toBe('https://someurl.com/1');
     expect(result!.store.author.termsOfUseUrl).toBe('https://someurl.com/tos1');
 
@@ -58,11 +56,10 @@ describe('Manifest translator tests', () => {
       ProspectContextKeys.ID,
       ProspectContextKeys.COMPANY,
       ProspectContextKeys.TITLE,
+      ProspectContextKeys.EXTERNAL,
     ]);
     expect(tabProspectExt.description).toBe(v1Manifests[0].description);
-    expect(tabProspectExt.fullWidth).toBe(
-      v1Manifests[0].host.environment.fullWidth
-    );
+    expect(tabProspectExt.fullWidth).toBe(v1Manifests[0].host.environment.fullWidth);
     expect(tabProspectExt.host.icon).toBe(v1Manifests[0].host.icon);
     expect(tabProspectExt.host.url).toBe(v1Manifests[0].host.url);
     expect(tabProspectExt.identifier).toBe(v1Manifests[0].identifier);
@@ -71,11 +68,7 @@ describe('Manifest translator tests', () => {
 
     expect(result!.extensions[1].type).toBe(ShellExtensionType.APPLICATION);
     const shellAppExt = result!.extensions[1] as ApplicationShellExtension;
-    expect(shellAppExt.context).toEqual([
-      UserContextKeys.ID,
-      UserContextKeys.FIRST_NAME,
-      UserContextKeys.LAST_NAME,
-    ]);
+    expect(shellAppExt.context).toEqual([UserContextKeys.ID, UserContextKeys.FIRST_NAME, UserContextKeys.LAST_NAME]);
     expect(shellAppExt.host.decoration).toBe(DecorationStyle.FULL);
     expect(shellAppExt.host.icon).toBe(v1Manifests[1].host.icon);
     expect(shellAppExt.host.url).toBe(v1Manifests[1].host.url);
@@ -95,9 +88,7 @@ describe('Manifest translator tests', () => {
       OpportunityContextKeys.NAME,
     ]);
     expect(tabOpportunityExt.description).toBe(v1Manifests[2].description);
-    expect(tabOpportunityExt.fullWidth).toBe(
-      v1Manifests[2].host.environment.fullWidth
-    );
+    expect(tabOpportunityExt.fullWidth).toBe(v1Manifests[2].host.environment.fullWidth);
     expect(tabOpportunityExt.host.icon).toBe(v1Manifests[2].host.icon);
     expect(tabOpportunityExt.host.url).toBe(v1Manifests[2].host.url);
     expect(tabOpportunityExt.identifier).toBe(v1Manifests[2].identifier);
@@ -154,16 +145,7 @@ const v1Manifests = [
       websiteUrl: 'https://someurl.com/1',
       termsOfUseUrl: 'https://someurl.com/tos1',
     },
-    context: [
-      'acc.cstmId',
-      'usr.id',
-      'usr.fname',
-      'usr.lname',
-      'pro.id',
-      'pro.comp',
-      'pro.title',
-      'pro.ext',
-    ],
+    context: ['acc.cstmId', 'usr.id', 'usr.fname', 'usr.lname', 'pro.id', 'pro.comp', 'pro.title', 'pro.ext'],
     version: '0.10',
     identifier: 'prospect-tab-hello',
     description: {
@@ -248,15 +230,7 @@ const v1Manifests = [
       websiteUrl: 'https://someurl.com/',
       termsOfUseUrl: 'https://someurl.com/tos',
     },
-    context: [
-      'acc.cstmId',
-      'usr.id',
-      'usr.fname',
-      'usr.lname',
-      'opp.id',
-      'opp.name',
-      'opp.ext',
-    ],
+    context: ['acc.cstmId', 'usr.id', 'usr.fname', 'usr.lname', 'opp.id', 'opp.name'],
     version: '0.10',
     identifier: 'opportunity-tab-hello',
     description: {

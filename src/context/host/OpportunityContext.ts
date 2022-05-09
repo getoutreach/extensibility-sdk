@@ -1,9 +1,7 @@
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
-import {
-  initOpportunityContext,
-  toOpportunityParams,
-} from './OpportunityContextUtils';
+import { ExternalInfoContext } from './ExternalInfoContext';
+import { initOpportunityContext, toOpportunityParams } from './OpportunityContextUtils';
 
 export class OpportunityContext extends CustomContext {
   /**
@@ -93,6 +91,16 @@ export class OpportunityContext extends CustomContext {
    * @memberof OpportunityContext
    */
   tags?: string | null;
+
+  /**
+   * Collection of zero or more external provider data current account has in external systems
+   * which are linked through installed Outreach plugins.
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof AccountContext
+   * @deprecated Usage of externalInfo is deprecated. Please use externalProviderId and externalProviderName instead.
+   */
+  externalInfo: ExternalInfoContext[] = [];
 
   /**
    * Attempts to initialize the opportunity context with a given parameter.

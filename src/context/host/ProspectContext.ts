@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
+import { ExternalInfoContext } from './ExternalInfoContext';
 import { initProspectContext, toProspectParams } from './ProspectContextUtils';
 
 export class ProspectContext extends CustomContext {
@@ -142,6 +143,16 @@ export class ProspectContext extends CustomContext {
    * The title of the prospect.
    */
   title?: string | null;
+
+  /**
+   * Collection of zero or more external provider data current account has in external systems
+   * which are linked through installed Outreach plugins.
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof ProspectContext
+   * @deprecated Usage of externalInfo is deprecated. Please use externalProviderId and externalProviderName instead.
+   */
+  externalInfo: ExternalInfoContext[] = [];
 
   /**
    * Attempts to initialize the opportunity context with a given parameter.
