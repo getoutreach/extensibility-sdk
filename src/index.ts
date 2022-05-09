@@ -37,6 +37,10 @@ import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 import { ManifestTranslator } from './legacy/ManifestTranslator';
 import { OrganizationContext } from './context/host/OrganizationContext';
 
+export { ExternalInfoContext } from './context/host/ExternalInfoContext';
+export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
+export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
+
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
 export { ConfigurationItemType } from './configuration/ConfigurationItemType';
@@ -295,10 +299,7 @@ class ExtensibilitySdk {
    * @param {DecorationUpdateType} [type=DecorationUpdateType.TEXT] Type of decoration update (text by default)
    * @memberof ExtensibilitySdk
    */
-  public decorate = async (
-    value: string,
-    type: DecorationUpdateType = DecorationUpdateType.TEXT
-  ) => {
+  public decorate = async (value: string, type: DecorationUpdateType = DecorationUpdateType.TEXT) => {
     await this.verifySdkInitialized();
 
     const message = new DecorationUpdateMessage();
@@ -346,11 +347,7 @@ class ExtensibilitySdk {
    * @param {{ [key: string]: string}} [params] List of key value parameters to be sent to the navigation destination (if any)
    * @param {NavigationTarget} [target]
    */
-  public navigate = async (
-    destination: NavigationDestination,
-    id?: string,
-    params?: { [key: string]: string }
-  ) => {
+  public navigate = async (destination: NavigationDestination, id?: string, params?: { [key: string]: string }) => {
     await this.verifySdkInitialized();
 
     const message = new NavigationMessage();
@@ -458,23 +455,21 @@ class ExtensibilitySdk {
     await this.verifySdkInitialized();
 
     this.authorizeTask = new Task<string | null>();
-    this.authorizeTask.promise = new Promise<string | null>(
-      (resolve, reject) => {
-        this.authorizeTask!.onfulfilled = resolve;
-        this.authorizeTask!.onrejected = reject;
+    this.authorizeTask.promise = new Promise<string | null>((resolve, reject) => {
+      this.authorizeTask!.onfulfilled = resolve;
+      this.authorizeTask!.onrejected = reject;
 
-        // start the OAuth consent flow by recording user identifier
-        // addon host server will need server will need
-        // to read in its OAuth implementation
-        const cookieContent = `${this.cookie.name}=${runtime.userIdentifier};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
+      // start the OAuth consent flow by recording user identifier
+      // addon host server will need server will need
+      // to read in its OAuth implementation
+      const cookieContent = `${this.cookie.name}=${runtime.userIdentifier};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
 
-        // user identifier goes to cookie to enable addon oauth server
-        // linking the outreach user with the addon external identity.
-        document.cookie = cookieContent;
+      // user identifier goes to cookie to enable addon oauth server
+      // linking the outreach user with the addon external identity.
+      document.cookie = cookieContent;
 
-        authService.openPopup();
-      }
-    );
+      authService.openPopup();
+    });
 
     logger.current.log({
       origin: EventOrigin.ADDON,
@@ -513,10 +508,7 @@ class ExtensibilitySdk {
 
   public sendMessage<T extends Message>(message: T, logged?: boolean) {
     if (!runtime.origin) {
-      console.error(
-        'You can not send messages before SDK is initialized',
-        message
-      );
+      console.error('You can not send messages before SDK is initialized', message);
       return;
     }
     const postMessage = JSON.stringify(message);
@@ -563,8 +555,7 @@ class ExtensibilitySdk {
   private verifySdkInitialized = async () => {
     // check if sdk.init() was called
     if (!this.initTask) {
-      const error =
-        '[CXT] Please initialize SDK by calling sdk.init() before performing any additional calls';
+      const error = '[CXT] Please initialize SDK by calling sdk.init() before performing any additional calls';
       logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
@@ -589,8 +580,7 @@ class ExtensibilitySdk {
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
-        message:
-          '[CXT][AddonSdk]::handleReceivedMessage - ignoring event message as it is not addon message',
+        message: '[CXT][AddonSdk]::handleReceivedMessage - ignoring event message as it is not addon message',
         context: [messageEvent.origin, JSON.stringify(messageEvent.data)],
       });
       return;
@@ -648,9 +638,7 @@ class ExtensibilitySdk {
     }
   };
 
-  private preprocessInitMessage = (
-    initMessage: InitMessage
-  ): OutreachContext => {
+  private preprocessInitMessage = (initMessage: InitMessage): OutreachContext => {
     runtime.application = ManifestTranslator.hydrate(initMessage.application);
     runtime.configuration = initMessage.configuration;
     runtime.extension = initMessage.extension;
@@ -680,8 +668,7 @@ class ExtensibilitySdk {
 
       handled = opportunityContext.initFrom(param);
       if (handled) {
-        outreachContext.opportunity =
-          outreachContext.opportunity || opportunityContext;
+        outreachContext.opportunity = outreachContext.opportunity || opportunityContext;
       }
 
       handled = prospectContext.initFrom(param);
@@ -696,8 +683,7 @@ class ExtensibilitySdk {
 
       handled = organizationContext.initFrom(param);
       if (handled) {
-        outreachContext.organization =
-          outreachContext.organization || organizationContext;
+        outreachContext.organization = outreachContext.organization || organizationContext;
       }
     }
 
@@ -766,11 +752,7 @@ class ExtensibilitySdk {
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
         message: '[CXT][AddonSdk]::getAddonMessage - invalid origin',
-        context: [
-          messageEvent.origin,
-          `host:${hostOrigin}`,
-          `connect:${connectOrigin}`,
-        ],
+        context: [messageEvent.origin, `host:${hostOrigin}`, `connect:${connectOrigin}`],
       });
       return null;
     }
@@ -780,8 +762,7 @@ class ExtensibilitySdk {
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
-        message:
-          '[CXT][AddonSdk]::getAddonMessage - message event data is not a string',
+        message: '[CXT][AddonSdk]::getAddonMessage - message event data is not a string',
         context: [JSON.stringify(messageEvent.data)],
       });
       return null;
@@ -795,8 +776,7 @@ class ExtensibilitySdk {
           origin: EventOrigin.ADDON,
           type: EventType.INTERNAL,
           level: LogLevel.Debug,
-          message:
-            '[CXT][AddonSdk]::getAddonMessage - invalid message data format',
+          message: '[CXT][AddonSdk]::getAddonMessage - invalid message data format',
           context: [messageEvent.data],
         });
 
@@ -815,10 +795,7 @@ class ExtensibilitySdk {
     }
 
     if (!runtime.origin) {
-      const initializedOrigin = this.initializeOrigin(
-        hostMessage,
-        messageEvent
-      );
+      const initializedOrigin = this.initializeOrigin(hostMessage, messageEvent);
       if (!initializedOrigin) {
         logger.current.log({
           origin: EventOrigin.ADDON,
@@ -834,10 +811,7 @@ class ExtensibilitySdk {
     return hostMessage;
   };
 
-  private initializeOrigin = (
-    hostMessage: Message,
-    messageEvent: MessageEvent
-  ) => {
+  private initializeOrigin = (hostMessage: Message, messageEvent: MessageEvent) => {
     if (hostMessage.type !== MessageType.INIT) {
       return null;
     }
