@@ -1,6 +1,8 @@
 import { ContextParam } from '../src/context/host/ContextParam';
 import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
+import { LocalizedString } from '../src/manifest/store/LocalizedString';
+import { Locale } from '../src/sdk/Locale';
 import { utils } from '../src/utils';
 
 const usrIdParam = { key: UserContextKeys.ID, value: 'uid-123' };
@@ -101,5 +103,50 @@ describe('getUrlDomain tests', () => {
     const url = new URL('https://someurl.com:123/test');
     const result = utils.getUrlDomain(url);
     expect(result).toBe('https://someurl.com:123');
+  });
+});
+
+describe('getLocalizedString tests', () => {
+  test('will return exact string when possible', () => {
+    const localizedString: LocalizedString = {
+      en: 'ENGLISH',
+      'fr-FR': 'FRENCH',
+    };
+
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
+      'FRENCH'
+    );
+  });
+
+  test('will return english us string when available even when english is requested as english is deprecated', () => {
+    const localizedString: LocalizedString = {
+      en: 'ENGLISH',
+      'en-US': 'ENGLISH_US',
+    };
+
+    expect(utils.getLocalizedString(localizedString, Locale.ENGLISH)).toBe(
+      'ENGLISH_US'
+    );
+  });
+
+  test('will default to english_US string when exact locale not available', () => {
+    const localizedString: LocalizedString = {
+      en: 'ENGLISH',
+      'en-US': 'ENGLISH_US',
+    };
+
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
+      'ENGLISH_US'
+    );
+  });
+
+  test('will default to english when english us not available', () => {
+    const localizedString: LocalizedString = {
+      en: 'ENGLISH',
+    };
+
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
+      'ENGLISH'
+    );
   });
 });

@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 export enum Locale {
   /**
-   * @deprecated this locale should not be used in new manifest - supported for backward compatibility only.
+   * @deprecated this locale should not be used in new manifest, use en-US instead. (Supported for backward compatibility only.)
+   *
    */
-  LEGACY = 'en',
+  ENGLISH = 'en',
   /**
    * English US culture
    */
-  ENGLISH = 'en-US',
+  ENGLISH_US = 'en-US',
   /**
    * German culture locale (Germany)
    */

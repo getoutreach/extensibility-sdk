@@ -5,6 +5,8 @@ import { EventType } from './sdk/logging/EventType';
 import { LogLevel } from './sdk/logging/LogLevel';
 import logger from './sdk/logging/Logger';
 import { AllContextKeys } from '.';
+import { LocalizedString } from './manifest/store/LocalizedString';
+import { Locale } from './sdk/Locale';
 
 export class utils {
   /**
@@ -187,6 +189,26 @@ export class utils {
     } catch (e) {
       console.warn('Invalid host url:', hostUrl, context, e);
       return false;
+    }
+  };
+
+  public static getLocalizedString = (
+    string: LocalizedString,
+    locale: Locale
+  ) => {
+    const english = string['en-US'] ?? string.en;
+    switch (locale) {
+      case Locale.ENGLISH:
+      case Locale.ENGLISH_US:
+        return english;
+      case Locale.FRENCH:
+        return string['fr-FR'] ?? english;
+      case Locale.GERMAN:
+        return string['de-DE'] ?? english;
+      case Locale.SPANISH:
+        return string['es-LA'] ?? english;
+      default:
+        return english;
     }
   };
 }
