@@ -47,6 +47,8 @@ Our end goal is to provide contextual access to any of the properties available 
 [SDK](../src/context/keys/OpportunityContextKeys.ts) next properties:
 
 - **opp.amnt** The amount the opportunity is worth.
+- **opp.extid** The external provider id.
+- **opp.extprvd** The External provider name.
 - **opp.desc** A description of the opportunity.
 - **opp.ecrat** The date the opportunity was created in the external system.
 - **opp.id** Opportunity id
