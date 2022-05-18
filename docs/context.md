@@ -66,6 +66,8 @@ Our end goal is to provide contextual access to any of the properties available 
 [Outreach API](https://api.outreach.io/api/v2/docs#prospect), but at the moment, we support in
 [SDK](../src/context/keys/ProspectContextKeys.ts) next properties:
 
+- **pro.accnme** Prospect name.
+- **pro.accdmn** Prospect domain.
 - **pro.avail** The date and time the prospect is available to contact again.
 - **pro.adrcity** City of the prospect
 - **pro.adrcntry** Country of the prospect
