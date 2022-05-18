@@ -79,6 +79,8 @@ Our end goal is to provide contextual access to any of the properties available 
   Acme International).
 - **pro.domain** Prospect company name
 - **pro.emails** A list of email addresses associated with the prospect.
+- **pro.extid** Prospect external provider id.
+- **pro.extprvd** Prospect external provider name.
 - **pro.loc** The locality of the prospect's company.
 - **pro.id** Prospect id
 - **pro.name** Prospect company name
