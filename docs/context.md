@@ -27,8 +27,6 @@ Our end goal is to provide contextual access to any of the properties available 
 [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in
 [SDK](../src/context/keys/AccountContextKeys.ts) next properties:
 
-- **acc.extid** The external provider id.
-- **acc.extprvd** The External provider name.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.desc** A custom description of the account.
@@ -49,8 +47,6 @@ Our end goal is to provide contextual access to any of the properties available 
 [SDK](../src/context/keys/OpportunityContextKeys.ts) next properties:
 
 - **opp.amnt** The amount the opportunity is worth.
-- **opp.extid** The external provider id.
-- **opp.extprvd** The External provider name.
 - **opp.desc** A description of the opportunity.
 - **opp.ecrat** The date the opportunity was created in the external system.
 - **opp.id** Opportunity id
@@ -83,8 +79,6 @@ Our end goal is to provide contextual access to any of the properties available 
   Acme International).
 - **pro.domain** Prospect company name
 - **pro.emails** A list of email addresses associated with the prospect.
-- **pro.extid** Prospect external provider id.
-- **pro.extprvd** Prospect external provider name.
 - **pro.loc** The locality of the prospect's company.
 - **pro.id** Prospect id
 - **pro.name** Prospect company name
