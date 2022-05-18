@@ -27,6 +27,8 @@ Our end goal is to provide contextual access to any of the properties available 
 [Outreach API](https://api.outreach.io/api/v2/docs#account), but at the moment we support in
 [SDK](../src/context/keys/AccountContextKeys.ts) next properties:
 
+- **acc.extid** The external provider id.
+- **acc.extprvd** The External provider name.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.cstmId** A custom ID for the account, often referencing an ID in an external system.
 - **acc.desc** A custom description of the account.
