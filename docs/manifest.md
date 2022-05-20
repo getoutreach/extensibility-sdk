@@ -5,46 +5,46 @@
 Table of content:
 
 - [Manifest file](#manifest-file)
-    - [Sample manifest](#sample-manifest)
-    - [Manifest JSON schema](#manifest-json-schema)
-    - [Store section properties (store)](#store-section-properties-store)
-        - [author](#author)
-        - [categories](#categories)
-        - [description](#description)
-        - [headline](#headline)
-        - [identifier](#identifier)
-        - [icon (of application)](#icon-of-application)
-        - [locales](#locales)
-        - [medias](#medias)
-        - [title](#title)
-        - [version](#version)
-    - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
-        - [applicationId](#applicationid)
-        - [redirectUri](#redirecturi)
-        - [scopes](#scopes)
-        - [connect](#connect)
-        - [client](#client)
-        - [redirectUris](#redirecturis)
-    - [Configuration section (configuration)](#configuration-section-configuration)
-    - [Extensions section (extensions)](#extensions-section-extensions)
-        - [Shared extension properties](#shared-extension-properties)
-            - [identifier (extension)](#identifier-extension)
-            - [version (extension)](#version-extension)
-        - [Tab extension properties](#tab-extension-properties)
-            - [context (tab extension)](#context-tab-extension)
-                - [Shell application extension](#shell-application-extension)
-                - [Account tab extension](#account-tab-extension)
-                - [Prospect tab extension](#prospect-tab-extension)
-                - [Opportunity tab extension](#opportunity-tab-extension)
-                - [Reports tab extension](#reports-tab-extension)
-            - [Environment (tab extension)](#environment-tab-extension)
-                - [fullWidth (tab extension)](#fullwidth-tab-extension)
-                - [decoration (shell extension)](#decoration-shell-extension)
-            - [Host (tab extension)](#host-tab-extension)
-                - [url](#url)
-            - [icon (of extension)](#icon-of-extension)
-            - [type](#type)
-            - [notificationsUrl](#notificationsurl)
+  - [Sample manifest](#sample-manifest)
+  - [Manifest JSON schema](#manifest-json-schema)
+  - [Store section properties (store)](#store-section-properties-store)
+    - [author](#author)
+    - [categories](#categories)
+    - [description](#description)
+    - [headline](#headline)
+    - [identifier](#identifier)
+    - [icon (of application)](#icon-of-application)
+    - [locales](#locales)
+    - [medias](#medias)
+    - [title](#title)
+    - [version](#version)
+  - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
+    - [applicationId](#applicationid)
+    - [redirectUri](#redirecturi)
+    - [scopes](#scopes)
+    - [connect](#connect)
+    - [client](#client)
+    - [redirectUris](#redirecturis)
+  - [Configuration section (configuration)](#configuration-section-configuration)
+  - [Extensions section (extensions)](#extensions-section-extensions)
+    - [Shared extension properties](#shared-extension-properties)
+      - [identifier (extension)](#identifier-extension)
+      - [version (extension)](#version-extension)
+    - [Tab extension properties](#tab-extension-properties)
+      - [context (tab extension)](#context-tab-extension)
+        - [Shell application extension](#shell-application-extension)
+        - [Account tab extension](#account-tab-extension)
+        - [Prospect tab extension](#prospect-tab-extension)
+        - [Opportunity tab extension](#opportunity-tab-extension)
+        - [Reports tab extension](#reports-tab-extension)
+      - [Environment (tab extension)](#environment-tab-extension)
+        - [fullWidth (tab extension)](#fullwidth-tab-extension)
+        - [decoration (shell extension)](#decoration-shell-extension)
+      - [Host (tab extension)](#host-tab-extension)
+        - [url](#url)
+      - [icon (of extension)](#icon-of-extension)
+      - [type](#type)
+      - [notificationsUrl](#notificationsurl)
 
 Manifest is a simple JSON file that the application developer uploads to Outreach and which contains all of the data
 needed for Outreach to host the application in an iframe.
@@ -72,9 +72,7 @@ opportunity tab extension.
       "termsOfUseUrl": "https://someurl.com/tos",
       "websiteUrl": "https://someurl.com/"
     },
-    "categories": [
-      "account_based_marketing"
-    ],
+    "categories": ["account_based_marketing"],
     "description": {
       "en": "Some description (en)"
     },
@@ -83,9 +81,7 @@ opportunity tab extension.
     },
     "iconUrl": "https://someurl.com/image.png",
     "identifier": "app-identifier",
-    "locales": [
-      "en"
-    ],
+    "locales": ["en"],
     "medias": [
       {
         "url": "https://someurl.com/image.png",
@@ -104,16 +100,11 @@ opportunity tab extension.
     "version": "0.10"
   },
   "api": {
-    "scopes": [
-      "accounts.all",
-      "calls.all"
-    ],
+    "scopes": ["accounts.all", "calls.all"],
     "client": {
       "id": "AbCd123456qW"
     },
-    "redirectUris": [
-      "https://application-host.com/hello-world"
-    ]
+    "redirectUris": ["https://application-host.com/hello-world"]
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
   "configuration": [
@@ -129,9 +120,7 @@ opportunity tab extension.
   ],
   "extensions": [
     {
-      "context": [
-        "usr.id"
-      ],
+      "context": ["usr.id"],
       "identifier": "hello-world-app",
       "environment": {
         "fullWidth": false,
@@ -146,10 +135,7 @@ opportunity tab extension.
       "version": "0.98"
     },
     {
-      "context": [
-        "usr.id",
-        "opp.id"
-      ],
+      "context": ["usr.id", "opp.id"],
       "identifier": "hello-world-opportunity",
       "environment": {
         "fullWidth": false,
@@ -260,14 +246,15 @@ has to be the same as the domain of the [host.url](#url)
 
 ### client
 
-The id of a client object is the value used for [API authentication flow](https://api.outreach.io/api/v2/docs#authentication)as client_id
-value.
+The id of a client object is the value used for
+[API authentication flow](https://api.outreach.io/api/v2/docs#authentication)as client_id value.
 
 ### redirectUris
 
-This URLs are defined in Outreach OAuth settings, which the authorization form will use to redirect once the user consent
-with granting access to Outreach API in his name. These URLs can be the same as the [host url](#url) or a separate URL,
-but in both cases, it has to be implemented in a way matching [Outreach API access requirements](outreach-api.md).
+This URLs are defined in Outreach OAuth settings, which the authorization form will use to redirect once the user
+consent with granting access to Outreach API in his name. These URLs can be the same as the [host url](#url) or a
+separate URL, but in both cases, it has to be implemented in a way matching
+[Outreach API access requirements](outreach-api.md).
 
 ## Configuration section (configuration)
 

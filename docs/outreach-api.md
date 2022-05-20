@@ -32,10 +32,10 @@ access rights with the [scopes](scopes.md) defined in the add-on manifest.
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#oauth-sequence-diagram)
 will start.
 
-A request to the authorisation endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a **"code"**
-query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with
-[Outreach application](manifest.md#applicationid), and Outreach OAuth app secret so a proper Outreach API access token
-and refresh tokens could be obtained.
+A request to the authorisation endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a
+**"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization
+token used with [Outreach application](manifest.md#applicationid), and Outreach OAuth app secret so a proper Outreach
+API access token and refresh tokens could be obtained.
 
 The add-on host can use an access token to access Outreach API in the name of the current add-on user. It can also cache
 the retrieved tokens and use them in the future to refresh expired access tokens, so the next time user needs to obtain
@@ -55,8 +55,8 @@ Outreach API access:
      Constructing of this url relies on manifest.api section configuration: [client.id](manifest.md#client),
      [redirectUris](manifest.md#redirecturis) and [scopes](manifest.md#scopes) values.
    - When user clicks **Authorize** button on [Outreach consent screen](assets/api-consent.png), Outreach will redirect
-     to `/authorize` endpoint on one of ([manifest.api.redirectUris](manifest.md#redirecturis)) address with a short living
-     authorization code passed as query param.
+     to `/authorize` endpoint on one of ([manifest.api.redirectUris](manifest.md#redirecturis)) address with a short
+     living authorization code passed as query param.
 
 2. Add-on host **authorize endpoint** will then:
 
@@ -121,18 +121,19 @@ the Outreach support team at cxt-sdk@outreach.io
 ## Outreach API consent
 
 In order to collect authorization consent from users granting impersonated access rights using predefined scopes, the
-add-on creator needs to simply call the [authenticate()](../src/index.ts) function. The function accepts optional `redirectUri` 
-parameter which has to be one of the redirectUris defined in [manifest api.redirectUris](manifest.md#redirecturis). 
-If the parameter is not provided, the first element of the array will be used as `redirectUri`.
+add-on creator needs to simply call the [authenticate()](../src/index.ts) function. The function accepts optional
+`redirectUri` parameter which has to be one of the redirectUris defined in
+[manifest api.redirectUris](manifest.md#redirecturis). If the parameter is not provided, the first element of the array
+will be used as `redirectUri`.
 
 ```javascript
 await addonSdk.authenticate(); // The first element from redirectUris will be used
 // or
-await addonSdk.authenticate("https://application-host.com/hello-world"); // Has to be one of the redirectUris defined in the application manifest
+await addonSdk.authenticate('https://application-host.com/hello-world'); // Has to be one of the redirectUris defined in the application manifest
 ```
 
-In the case of Outreach **user never before provided such a consent**, they will see an OAuth popup where he will be asked
-to approve impersonated API access with [scopes defined in manifest](manifest.md#scopes).
+In the case of Outreach **user never before provided such a consent**, they will see an OAuth popup where he will be
+asked to approve impersonated API access with [scopes defined in manifest](manifest.md#scopes).
 
 ![API consent screen](assets/api-consent.png)
 
