@@ -15,9 +15,7 @@ export const validate = (application: Application): string[] => {
     if (!application.api.scopes) {
       issues.push('Undefined api scopes');
     } else if (!Array.isArray(application.api.scopes)) {
-      issues.push(
-        'Api scopes value is not an array. Value: ' + application.api.scopes
-      );
+      issues.push('Api scopes value is not an array. Value: ' + application.api.scopes);
     } else {
       application.api.scopes.forEach((scope) => {
         if (!Object.values(Scopes).includes(scope as Scopes)) {
@@ -26,28 +24,37 @@ export const validate = (application: Application): string[] => {
       });
     }
     if (!utils.urlValidation(application.api.token)) {
-      issues.push(
-        'Manifest Api section needs to have a valid token endpoint url. Value: ' +
-          application.api.token
-      );
+      issues.push('Manifest Api section needs to have a valid token endpoint url. Value: ' + application.api.token);
     }
 
     if (!application.api.applicationId) {
       issues.push('Manifest Api section needs to have applicationId value.');
     }
 
+    if (!application.api.client) {
+      issues.push('Manifest Api section needs to have client value.');
+    } else if (!application.api.client.id) {
+      issues.push('Manifest Api section needs to have client.id value.');
+    }
+
     if (!utils.urlValidation(application.api.redirectUri)) {
-      issues.push(
-        'Manifest Api section needs to have a valid redirect url. Value: ' +
-          application.api.redirectUri
-      );
+      issues.push('Manifest Api section needs to have a valid redirect url. Value: ' + application.api.redirectUri);
+    }
+
+    if (!application.api.redirectUris) {
+      issues.push('Undefined redirectUris');
+    } else if (!Array.isArray(application.api.redirectUris)) {
+      issues.push('redirectUris value is not an array. Value: ' + application.api.redirectUris);
+    } else {
+      application.api.redirectUris.forEach((redirectUri) => {
+        if (!utils.urlValidation(redirectUri)) {
+          issues.push('Manifest Api section needs to have valid redirect urls. Value: ' + redirectUri);
+        }
+      });
     }
 
     if (!utils.urlValidation(application.api.connect)) {
-      issues.push(
-        'Manifest Api section needs to have a valid connect endpoint url. Value: ' +
-          application.api.connect
-      );
+      issues.push('Manifest Api section needs to have a valid connect endpoint url. Value: ' + application.api.connect);
     }
   }
 
@@ -55,28 +62,16 @@ export const validate = (application: Application): string[] => {
     issues.push('Author section is missing');
   } else {
     if (!utils.emailValidation(application.store.author.email)) {
-      issues.push(
-        'Author e-mail is invalid e-mail. Value: ' +
-          application.store.author.email
-      );
+      issues.push('Author e-mail is invalid e-mail. Value: ' + application.store.author.email);
     }
     if (!utils.urlValidation(application.store.author.websiteUrl)) {
-      issues.push(
-        'Author website url is invalid url. Value: ' +
-          application.store.author.websiteUrl
-      );
+      issues.push('Author website url is invalid url. Value: ' + application.store.author.websiteUrl);
     }
     if (!utils.urlValidation(application.store.author.privacyUrl)) {
-      issues.push(
-        'Author privacy url is invalid url. Value: ' +
-          application.store.author.privacyUrl
-      );
+      issues.push('Author privacy url is invalid url. Value: ' + application.store.author.privacyUrl);
     }
     if (!utils.urlValidation(application.store.author.termsOfUseUrl)) {
-      issues.push(
-        'Author terms of use url is invalid url. Value: ' +
-          application.store.author.termsOfUseUrl
-      );
+      issues.push('Author terms of use url is invalid url. Value: ' + application.store.author.termsOfUseUrl);
     }
   }
 
@@ -84,25 +79,17 @@ export const validate = (application: Application): string[] => {
     issues.push('Categories section is missing');
   } else {
     if (!Array.isArray(application.store.categories)) {
-      issues.push(
-        'Categories is not an array. Value: ' + application.store.categories
-      );
+      issues.push('Categories is not an array. Value: ' + application.store.categories);
     } else {
       if (application.store.categories.length === 0) {
-        issues.push(
-          'There are no categories selected for addon. Value: ' +
-            application.store.categories
-        );
+        issues.push('There are no categories selected for addon. Value: ' + application.store.categories);
       }
     }
   }
 
   if (application.store.medias) {
     if (!Array.isArray(application.store.medias)) {
-      issues.push(
-        'Medias section value is not a valid array. Value: ' +
-          application.store.medias
-      );
+      issues.push('Medias section value is not a valid array. Value: ' + application.store.medias);
     } else {
       application.store.medias.forEach((media) => {
         if (!media.url) {
@@ -148,9 +135,7 @@ export const validate = (application: Application): string[] => {
     issues.push('Application icon is missing.');
   } else {
     if (!utils.urlValidation(application.store.iconUrl)) {
-      issues.push(
-        'Application icon url is invalid url. Value: ' + application.store.iconUrl
-      );
+      issues.push('Application icon url is invalid url. Value: ' + application.store.iconUrl);
     }
   }
 
@@ -166,10 +151,7 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (
-    !application.store.type ||
-    !Object.values(StoreType).includes(application.store.type as StoreType)
-  ) {
+  if (!application.store.type || !Object.values(StoreType).includes(application.store.type as StoreType)) {
     issues.push('Store value is invalid. Value:' + application.store.type);
   }
 
