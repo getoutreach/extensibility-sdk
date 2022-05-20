@@ -34,7 +34,7 @@ will start.
 
 A request to the authorisation endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a
 **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization
-token used with [Outreach application](manifest.md#applicationid), and Outreach OAuth app secret so a proper Outreach
+token used with [Outreach client](manifest.md#client), and Outreach OAuth app secret so a proper Outreach
 API access token and refresh tokens could be obtained.
 
 The add-on host can use an access token to access Outreach API in the name of the current add-on user. It can also cache
