@@ -32,7 +32,7 @@ access rights with the [scopes](scopes.md) defined in the add-on manifest.
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#oauth-sequence-diagram)
 will start.
 
-A request to the authorisation endpoint defined in [redirectUri](manifest.md#redirecturi) will be made with a **"code"**
+A request to the authorisation endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a **"code"**
 query parameter value sent from Outreach authentication server. This code is a short-lived authorization token used with
 [Outreach application](manifest.md#applicationid), and Outreach OAuth app secret so a proper Outreach API access token
 and refresh tokens could be obtained.
@@ -52,10 +52,10 @@ Outreach API access:
    function
 
    - Addon opens popup using the Outreach [API authentication URL](https://api.outreach.io/api/v2/docs#authentication).
-     Constructing of this url relies on manifest.api section configuration: [applicationId](manifest.md#applicationid),
-     [redirectUri](manifest.md#redirecturi) and [scopes](manifest.md#scopes) values.
+     Constructing of this url relies on manifest.api section configuration: [client.id](manifest.md#client),
+     [redirectUris](manifest.md#redirecturis) and [scopes](manifest.md#scopes) values.
    - When user clicks **Authorize** button on [Outreach consent screen](assets/api-consent.png), Outreach will redirect
-     to `/authorize` endpoint on ([manifest.api.redirectUri](manifest.md#redirecturi)) address with a short living
+     to `/authorize` endpoint on one of ([manifest.api.redirectUris](manifest.md#redirecturis)) address with a short living
      authorization code passed as query param.
 
 2. Add-on host **authorize endpoint** will then:
@@ -121,25 +121,29 @@ the Outreach support team at cxt-sdk@outreach.io
 ## Outreach API consent
 
 In order to collect authorization consent from users granting impersonated access rights using predefined scopes, the
-add-on creator needs to simply call the [authenticate()](../src/index.ts) function.
+add-on creator needs to simply call the [authenticate()](../src/index.ts) function. The function accepts optional `redirectUri` 
+parameter which has to be one of the redirectUris defined in [manifest api.redirectUris](manifest.md#redirecturis). 
+If the parameter is not provided, the first element of the array will be used as `redirectUri`.
 
 ```javascript
-await addonSdk.authenticate();
+await addonSdk.authenticate(); // The first element from redirectUris will be used
+// or
+await addonSdk.authenticate("https://application-host.com/hello-world"); // Has to be one of the redirectUris defined in the application manifest
 ```
 
-In the case of Outreach **user never before provided such a consent**, he will see an OAuth popup where he will be asked
+In the case of Outreach **user never before provided such a consent**, they will see an OAuth popup where he will be asked
 to approve impersonated API access with [scopes defined in manifest](manifest.md#scopes).
 
 ![API consent screen](assets/api-consent.png)
 
 Once a user consents on this screen by clicking **Authorize**, Outreach will make a request to the authorization
-endpoint URL address defined in the [manifest api.redirectUri](manifest.md#redirecturi) with a single additional
+endpoint URL address defined in the [manifest api.redirectUris](manifest.md#redirecturis) with a single additional
 parameter **"code"**. This parameter will contain a short-lived authorization token that should be parsed out of the
 query parameter and used to obtain the access and refresh tokens.
 
 In case of Outreach **user already previously provided consent**, the popup authentication window will be loaded and
 quickly closed without the need for the user to consent again, and the same request to authorization endpoint defined in
-[manifest api.redirectUri](manifest.md#redirecturi) will be made with the **code** parameter.
+[manifest api.redirectUris](manifest.md#redirecturis) will be made with the **code** parameter.
 
 ## Authorization endpoint
 

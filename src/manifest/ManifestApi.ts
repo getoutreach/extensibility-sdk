@@ -56,7 +56,6 @@ export class ManifestApi {
    * posting authentication token info back to addon page which
    * had opened the popup.
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#token
    * @type {string}
    * @deprecated Usage of connect endpoint is deprecated and will be removed in upcoming releases.
    * @memberof Api
@@ -67,7 +66,7 @@ export class ManifestApi {
    *
    * Outreach API client data used for authentication
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#apiclient
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#client
    * @type {ManifestApiClient}
    * @memberof ManifestApi
    */
