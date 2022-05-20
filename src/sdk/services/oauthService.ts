@@ -26,20 +26,20 @@ class OAuthService {
     const host = this.getOAuthHost();
     const scopes = encodeURIComponent(api.scopes.join('+'));
     const selectedRedirectUri = encodeURIComponent(this.selectRedirectUri(api, redirectUri));
-    const clientId = api.client.id ?? api.applicationId;
+    const clientId = encodeURIComponent(api.client.id ?? api.applicationId);
     return `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
   };
 
   private selectRedirectUri = (api: ManifestApi, redirectUri?: string) => {
     if (redirectUri === undefined) {
-      if (api.redirectUris.length) {
+      if (api.redirectUris?.length) {
         return api.redirectUris[0];
       }
 
       return api.redirectUri;
     }
 
-    if (api.redirectUris.includes(redirectUri)) {
+    if (api.redirectUris?.includes(redirectUri)) {
       return redirectUri;
     }
 
