@@ -129,7 +129,7 @@ will be used as `redirectUri`.
 ```javascript
 await addonSdk.authenticate(); // The first element from redirectUris will be used
 // or
-await addonSdk.authenticate('https://application-host.com/hello-world'); // Has to be one of the redirectUris defined in the application manifest
+await addonSdk.authenticate('https://application-host.com/hello-world'); // Has to be one of the redirectUris
 ```
 
 In the case of Outreach **user never before provided such a consent**, they will see an OAuth popup where he will be
