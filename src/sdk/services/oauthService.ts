@@ -24,7 +24,7 @@ class OAuthService {
 
   private getOAuthAuthorizeUrl = (api: ManifestApi, redirectUri?: string) => {
     const host = this.getOAuthHost();
-    const scopes = encodeURIComponent(api.scopes.join('+'));
+    const scopes = encodeURIComponent(api.scopes.join(' '));
     const selectedRedirectUri = encodeURIComponent(this.selectRedirectUri(api, redirectUri));
     const clientId = encodeURIComponent(api.client.id ?? api.applicationId);
     return `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
