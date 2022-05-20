@@ -37,7 +37,7 @@ export class ManifestApi {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#scopes
    * @type {Scopes[]}
-   * @memberof Api
+   * @memberof ManifestApi
    */
   scopes: Scopes[];
 
@@ -45,7 +45,7 @@ export class ManifestApi {
    * Address of the endpoint, which will return support refresh token flow.
    *
    * @type {string}
-   * @memberof Api
+   * @memberof ManifestApi
    * @deprecated Usage of token endpoint is deprecated and will be removed in upcoming releases.
    */
   token: string;
@@ -58,7 +58,7 @@ export class ManifestApi {
    *
    * @type {string}
    * @deprecated Usage of connect endpoint is deprecated and will be removed in upcoming releases.
-   * @memberof Api
+   * @memberof ManifestApi
    */
   connect: string;
 
