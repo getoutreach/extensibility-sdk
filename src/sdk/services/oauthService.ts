@@ -2,14 +2,12 @@ import { ManifestApi } from '../../manifest/ManifestApi';
 import runtime from '../RuntimeContext';
 
 class OAuthService {
-  public openPopup = () => {
+  public openPopup = (redirectUri?: string) => {
     if (!runtime.application.api) {
-      throw new Error(
-        "Can't open auth window for addon which has no api configuration in its manifest"
-      );
+      throw new Error("Can't open auth window for addon which has no api configuration in its manifest");
     }
 
-    const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api);
+    const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api, redirectUri);
     this.showPopup(authorizeUrl, 800, 600);
   };
 
@@ -24,11 +22,28 @@ class OAuthService {
     return originUrl.origin.replace(regex[1], 'accounts');
   };
 
-  private getOAuthAuthorizeUrl = (api: ManifestApi) => {
+  private getOAuthAuthorizeUrl = (api: ManifestApi, redirectUri?: string) => {
     const host = this.getOAuthHost();
-    const scopes = encodeURIComponent(api.scopes.join(' '));
-    const redirectUri = encodeURIComponent(api.redirectUri);
-    return `${host}/oauth/authorize?client_id=${api.applicationId}&redirect_uri=${redirectUri}&response_type=code&scope=${scopes}`;
+    const scopes = encodeURIComponent(api.scopes.join(','));
+    const selectedRedirectUri = encodeURIComponent(this.selectRedirectUri(api, redirectUri));
+    const clientId = api.client.id ?? api.applicationId;
+    return `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
+  };
+
+  private selectRedirectUri = (api: ManifestApi, redirectUri?: string) => {
+    if (redirectUri === undefined) {
+      if (api.redirectUris.length) {
+        return api.redirectUris[0];
+      }
+
+      return api.redirectUri;
+    }
+
+    if (api.redirectUris.includes(redirectUri)) {
+      return redirectUri;
+    }
+
+    throw new Error('redirectUri provided is not amongst the api configuration redirectUris');
   };
 
   private showPopup = (url: string, width: number, height: number) => {

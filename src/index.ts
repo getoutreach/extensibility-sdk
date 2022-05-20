@@ -451,7 +451,7 @@ class ExtensibilitySdk {
    * @returns {Promise<string | null>}
    * @memberof ExtensibilitySdk
    */
-  public authenticate = async (): Promise<string | null> => {
+  public authenticate = async (redirectUri?: string): Promise<string | null> => {
     await this.verifySdkInitialized();
 
     this.authorizeTask = new Task<string | null>();
@@ -468,7 +468,7 @@ class ExtensibilitySdk {
       // linking the outreach user with the addon external identity.
       document.cookie = cookieContent;
 
-      authService.openPopup();
+      authService.openPopup(redirectUri);
     });
 
     logger.current.log({
