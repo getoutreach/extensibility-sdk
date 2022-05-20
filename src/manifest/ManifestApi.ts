@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Scopes } from './api/Scopes';
+import { ManifestApiClient } from './ManifestApiClient';
 
 /**
  * Optional section defining parameters needed for accessing Outreach API.
@@ -14,6 +15,7 @@ export class ManifestApi {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#applicationid
    * @type {string}
+   * @deprecated applicationId is deprecated and replaced by client.id
    * @memberof ManifestApi
    */
   applicationId: string;
@@ -23,6 +25,7 @@ export class ManifestApi {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#redirecturi
    * @type {string}
+   * @deprecated redirectUri is deprecated and replaced by redirectUris array
    * @memberof ManifestApi
    */
   redirectUri: string;
@@ -43,7 +46,7 @@ export class ManifestApi {
    *
    * @type {string}
    * @memberof Api
-   * @deprecated Usage of token endpoint is deprecated and it will be removed in upcoming releases.
+   * @deprecated Usage of token endpoint is deprecated and will be removed in upcoming releases.
    */
   token: string;
 
@@ -55,7 +58,27 @@ export class ManifestApi {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#token
    * @type {string}
+   * @deprecated Usage of connect endpoint is deprecated and will be removed in upcoming releases.
    * @memberof Api
    */
   connect: string;
+
+  /**
+   *
+   * Outreach API client data used for authentication
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#apiclient
+   * @type {ManifestApiClient}
+   * @memberof ManifestApi
+   */
+  client: ManifestApiClient;
+
+  /**
+   * Outreach OAuth App redirect uris on which the Authorization endpoint is implemented.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#redirecturis
+   * @type {string}
+   * @memberof ManifestApi
+   */
+  redirectUris: string[];
 }
