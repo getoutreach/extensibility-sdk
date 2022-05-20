@@ -32,6 +32,7 @@ import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/Oppor
 import { ProspectActionTabExtension } from '../manifest/extensions/tabs/types/ProspectActionTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
 import { ReportsTabExtension } from '../manifest/extensions/tabs/types/ReportsTabExtension';
+import { ManifestApiClient } from '../manifest/ManifestApiClient';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
@@ -39,10 +40,7 @@ import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
 
 export class ManifestTranslator {
-  public static getAddonManifest(
-    app: Application,
-    ext: TabExtension | ShellExtension
-  ): ManifestV1 | null {
+  public static getAddonManifest(app: Application, ext: TabExtension | ShellExtension): ManifestV1 | null {
     let manifestType:
       | 'tab-opportunity'
       | 'tab-prospect'
@@ -78,7 +76,10 @@ export class ManifestTranslator {
     }
 
     if (!manifestType) {
-      console.error('Unsupported addon manifest for:', { app, ext });
+      console.error('Unsupported addon manifest for:', {
+        app,
+        ext,
+      });
       return null;
     }
 
@@ -96,7 +97,10 @@ export class ManifestTranslator {
     }
 
     if (!manifestStore) {
-      console.error('Unsupported addon manifest store for:', { app, ext });
+      console.error('Unsupported addon manifest store for:', {
+        app,
+        ext,
+      });
       return null;
     }
 
@@ -114,17 +118,11 @@ export class ManifestTranslator {
       host: {
         icon: ext.host.icon,
         url: ext.host.url!,
-        notificationsUrl:
-          ext.host instanceof ShellExtensionHost
-            ? ext.host.notificationsUrl || ''
-            : '',
+        notificationsUrl: ext.host instanceof ShellExtensionHost ? ext.host.notificationsUrl || '' : '',
         type: manifestType,
         environment: {
           fullWidth: tabExt,
-          decoration:
-            ext.host instanceof ShellExtensionHost
-              ? ext.host.decoration
-              : 'none',
+          decoration: ext.host instanceof ShellExtensionHost ? ext.host.decoration : 'none',
         },
       },
       identifier: ext.identifier,
@@ -159,8 +157,7 @@ export class ManifestTranslator {
     }
 
     const app: Application = new Application();
-    app.disableTimeoutMonitoring =
-      firstExt.notUsingSdk || firstExt.disableTimeoutMonitoring;
+    app.disableTimeoutMonitoring = firstExt.notUsingSdk || firstExt.disableTimeoutMonitoring;
     app.store = new ManifestStore();
     app.store.author = new ManifestAuthor();
     app.store.author.company = firstExt.author.company || 'N/A';
@@ -182,7 +179,17 @@ export class ManifestTranslator {
     app.store.type = storeType;
 
     app.extensions = [];
-    app.api = firstExt.api;
+    if (firstExt.api) {
+      app.api = new ManifestApi();
+      app.api.client = new ManifestApiClient();
+      app.api.scopes = firstExt.api.scopes;
+      app.api.client.id = firstExt.api.applicationId;
+      app.api.redirectUris = [firstExt.api.redirectUri];
+      app.api.applicationId = firstExt.api.applicationId;
+      app.api.redirectUri = firstExt.api.redirectUri;
+      app.api.connect = firstExt.api.connect;
+      app.api.token = firstExt.api.token;
+    }
     app.configuration = firstExt.configuration;
 
     const extensions = appManifests.map((ext) => {
@@ -220,50 +227,32 @@ export class ManifestTranslator {
   }
 
   public static getContextEnumValue(ctx: string): AllContextKeys | null {
-    const accountKey = ManifestTranslator.getEnumKeyByEnumValue(
-      AccountContextKeys,
-      ctx
-    );
+    const accountKey = ManifestTranslator.getEnumKeyByEnumValue(AccountContextKeys, ctx);
     if (accountKey) {
       return AccountContextKeys[accountKey];
     }
 
-    const prospectKey = ManifestTranslator.getEnumKeyByEnumValue(
-      ProspectContextKeys,
-      ctx
-    );
+    const prospectKey = ManifestTranslator.getEnumKeyByEnumValue(ProspectContextKeys, ctx);
     if (prospectKey) {
       return ProspectContextKeys[prospectKey];
     }
 
-    const opportunityKey = ManifestTranslator.getEnumKeyByEnumValue(
-      OpportunityContextKeys,
-      ctx
-    );
+    const opportunityKey = ManifestTranslator.getEnumKeyByEnumValue(OpportunityContextKeys, ctx);
     if (opportunityKey) {
       return OpportunityContextKeys[opportunityKey];
     }
 
-    const userKey = ManifestTranslator.getEnumKeyByEnumValue(
-      UserContextKeys,
-      ctx
-    );
+    const userKey = ManifestTranslator.getEnumKeyByEnumValue(UserContextKeys, ctx);
     if (userKey) {
       return UserContextKeys[userKey];
     }
 
-    const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(
-      OrganizationContextKeys,
-      ctx
-    );
+    const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(OrganizationContextKeys, ctx);
     if (organizationKey) {
       return OrganizationContextKeys[organizationKey];
     }
 
-    const clientKey = ManifestTranslator.getEnumKeyByEnumValue(
-      ClientContextKeys,
-      ctx
-    );
+    const clientKey = ManifestTranslator.getEnumKeyByEnumValue(ClientContextKeys, ctx);
     if (clientKey) {
       return ClientContextKeys[clientKey];
     }
@@ -279,10 +268,7 @@ export class ManifestTranslator {
     return keys.length > 0 ? keys[0] : null;
   }
 
-  public static mapEnums<T extends { [index: string]: string }>(
-    myEnum: T,
-    enumValues: string[]
-  ): (keyof T)[] {
+  public static mapEnums<T extends { [index: string]: string }>(myEnum: T, enumValues: string[]): (keyof T)[] {
     const result: (keyof T)[] = [];
 
     enumValues.map((mc) => {
@@ -301,9 +287,7 @@ export class ManifestTranslator {
     }
 
     if (app.configuration) {
-      application.configuration = app.configuration.map((item) =>
-        Object.assign(new ConfigurationItem(), item)
-      );
+      application.configuration = app.configuration.map((item) => Object.assign(new ConfigurationItem(), item));
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);
@@ -427,26 +411,17 @@ export class ManifestTranslator {
     }
 
     extension.context = ext.context.map((ctx) => {
-      const userKey = ManifestTranslator.getEnumKeyByEnumValue(
-        UserContextKeys,
-        ctx
-      );
+      const userKey = ManifestTranslator.getEnumKeyByEnumValue(UserContextKeys, ctx);
       if (userKey) {
         return UserContextKeys[userKey];
       }
 
-      const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(
-        OrganizationContextKeys,
-        ctx
-      );
+      const organizationKey = ManifestTranslator.getEnumKeyByEnumValue(OrganizationContextKeys, ctx);
       if (organizationKey) {
         return OrganizationContextKeys[organizationKey];
       }
 
-      const clientKey = ManifestTranslator.getEnumKeyByEnumValue(
-        ClientContextKeys,
-        ctx
-      );
+      const clientKey = ManifestTranslator.getEnumKeyByEnumValue(ClientContextKeys, ctx);
       if (clientKey) {
         return ClientContextKeys[clientKey];
       }
