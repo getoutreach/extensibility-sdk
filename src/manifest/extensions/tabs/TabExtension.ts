@@ -102,9 +102,7 @@ export class TabExtension extends Extension {
       issues.push('Host section is missing.');
     } else {
       if (!utils.urlValidation(this.host.icon)) {
-        issues.push(
-          'Host icon definition is invalid url. Value: ' + this.host.icon
-        );
+        issues.push('Host icon definition is invalid url. Value: ' + this.host.icon);
       }
 
       if (!this.host.url) {
@@ -115,10 +113,7 @@ export class TabExtension extends Extension {
         }
       }
 
-      if (
-        !this.type ||
-        !Object.values(TabExtensionType).includes(this.type as TabExtensionType)
-      ) {
+      if (!this.type || !Object.values(TabExtensionType).includes(this.type as TabExtensionType)) {
         issues.push('Host type  is invalid. Value: ' + this.type);
       }
     }

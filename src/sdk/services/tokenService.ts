@@ -21,18 +21,13 @@ class TokenService {
    */
   public fetchTokenAsync = async (): Promise<string | null> => {
     if (!runtime.application.api) {
-      throw new Error(
-        "This addon manifest is not having api definition so token can't be retrieved"
-      );
+      throw new Error("This addon manifest is not having api definition so token can't be retrieved");
     }
 
     // 2. try to refresh a token
     const refreshedToken = await this.getRefreshedTokenAsync();
     if (refreshedToken) {
-      localStorage.setItem(
-        Constants.AUTH_TOKEN_CACHE_KEY,
-        JSON.stringify(refreshedToken)
-      );
+      localStorage.setItem(Constants.AUTH_TOKEN_CACHE_KEY, JSON.stringify(refreshedToken));
       return refreshedToken.value;
     }
 
@@ -47,9 +42,7 @@ class TokenService {
    */
   public getCachedTokenAsync = (): Promise<string | null> => {
     if (!runtime.application.api) {
-      throw new Error(
-        "This addon manifest is not having api definition so token can't be retrieved"
-      );
+      throw new Error("This addon manifest is not having api definition so token can't be retrieved");
     }
     // 1. check the local cache for valid token
     var cachedToken = localStorage.getItem(Constants.AUTH_TOKEN_CACHE_KEY);

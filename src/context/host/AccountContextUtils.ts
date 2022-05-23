@@ -2,10 +2,7 @@ import { AccountContextKeys } from '../keys/AccountContextKeys';
 import { ContextParam } from './ContextParam';
 import { AccountContext } from './AccountContext';
 
-export const initAccountContext = (
-  context: AccountContext,
-  param: ContextParam
-): boolean => {
+export const initAccountContext = (context: AccountContext, param: ContextParam): boolean => {
   switch (param.key) {
     case AccountContextKeys.CUSTOM_ID:
       context.customId = param.value;

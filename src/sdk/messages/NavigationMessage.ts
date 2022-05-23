@@ -12,10 +12,10 @@ import { NavigationDestination } from './NavigationDestination';
  */
 export class NavigationMessage extends Message {
   /**
-     *Creates an instance of InitMessage.
-     * @memberof NavigationMessage
-     */
-  constructor () {
+   *Creates an instance of InitMessage.
+   * @memberof NavigationMessage
+   */
+  constructor() {
     super(MessageType.REQUEST_NAVIGATE);
   }
 

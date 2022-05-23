@@ -1,7 +1,1 @@
-export declare type ConfigurationItemType =
-  | 'string'
-  | 'number'
-  | 'date'
-  | 'url'
-  | 'options'
-  | 'select';
+export declare type ConfigurationItemType = 'string' | 'number' | 'date' | 'url' | 'options' | 'select';

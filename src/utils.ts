@@ -49,21 +49,14 @@ export class utils {
    * @static
    * @memberof utils
    */
-  public static parameterizeUrl = (
-    url: string,
-    params: ContextParam[]
-  ): string => {
+  public static parameterizeUrl = (url: string, params: ContextParam[]): string => {
     const hostUrl = new URL(url);
 
     const hostParams = new URLSearchParams(hostUrl.searchParams);
-    params
-      .filter((p) => p.value)
-      .forEach((param) => hostParams.append(param.key, param.value!));
+    params.filter((p) => p.value).forEach((param) => hostParams.append(param.key, param.value!));
     const hostParamsString = hostParams.toString().replace('=&', '&');
 
-    return `${utils.getUrlDomain(hostUrl)}${
-      hostUrl.pathname
-    }?${hostParamsString}${hostUrl.hash}`;
+    return `${utils.getUrlDomain(hostUrl)}${hostUrl.pathname}?${hostParamsString}${hostUrl.hash}`;
   };
 
   public static getUrlDomain = (url: URL): string => {
@@ -81,9 +74,7 @@ export class utils {
       return false;
     }
     const valid =
-      origin.endsWith('outreach.io') ||
-      origin.endsWith('outreach-staging.com') ||
-      origin.endsWith('outreach-dev.com');
+      origin.endsWith('outreach.io') || origin.endsWith('outreach-staging.com') || origin.endsWith('outreach-dev.com');
 
     if (!valid) {
       logger.current.log({
@@ -129,8 +120,7 @@ export class utils {
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
-        message:
-          '[CXT][AddonSdk]::connectOrigin - invalid connect origin received',
+        message: '[CXT][AddonSdk]::connectOrigin - invalid connect origin received',
         context: [origin, connectOrigin],
       });
       return false;
@@ -175,10 +165,7 @@ export class utils {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  public static hostUrlValidation = (
-    hostUrl: string,
-    context: AllContextKeys[]
-  ): boolean => {
+  public static hostUrlValidation = (hostUrl: string, context: AllContextKeys[]): boolean => {
     const contextParams: ContextParam[] = [];
     context.forEach((key) => contextParams.push({ key, value: 'marker' }));
 
@@ -192,10 +179,7 @@ export class utils {
     }
   };
 
-  public static getLocalizedString = (
-    string: LocalizedString,
-    locale: Locale
-  ) => {
+  public static getLocalizedString = (string: LocalizedString, locale: Locale) => {
     const english = string['en-US'] ?? string.en;
     switch (locale) {
       case Locale.ENGLISH:

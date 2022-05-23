@@ -15,10 +15,7 @@ import { AccountTileExtension } from './tiles/types/AccountTileExtension';
 import { OpportunityTileExtension } from './tiles/types/OpportunityTileExtension';
 import { ProspectTileExtension } from './tiles/types/ProspectTileExtension';
 
-export type ExtensionType =
-  | TabExtensionType
-  | TileExtensionType
-  | ShellExtensionType;
+export type ExtensionType = TabExtensionType | TileExtensionType | ShellExtensionType;
 
 export type ProspectExtensionType =
   | TabExtensionType.PROSPECT
@@ -40,14 +37,9 @@ export type OpportunityExtensionType =
 
 export type AccountExtension = AccountTabExtension | AccountTileExtension;
 
-export type OpportunityExtension =
-  | OpportunityTabExtension
-  | OpportunityTileExtension;
+export type OpportunityExtension = OpportunityTabExtension | OpportunityTileExtension;
 
-export type ProspectExtension =
-  | ProspectTabExtension
-  | ProspectTileExtension
-  | ProspectActionTabExtension;
+export type ProspectExtension = ProspectTabExtension | ProspectTileExtension | ProspectActionTabExtension;
 
 export type AppExtension =
   | ApplicationShellExtension

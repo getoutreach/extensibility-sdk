@@ -12,8 +12,7 @@ export class OpportunityTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof OpportunityTabExtension
    */
-  public readonly type: TabExtensionType.OPPORTUNITY =
-    TabExtensionType.OPPORTUNITY;
+  public readonly type: TabExtensionType.OPPORTUNITY = TabExtensionType.OPPORTUNITY;
 
   /**
    * In this section, the application author defines a list of predefined context information that
@@ -25,12 +24,7 @@ export class OpportunityTabExtension extends TabExtension {
    * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)}
    * @memberof OpportunityTabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | OpportunityContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the opportunity tab extension configuration
@@ -44,17 +38,10 @@ export class OpportunityTabExtension extends TabExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(OpportunityContextKeys).includes(
-          context as OpportunityContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(OpportunityContextKeys).includes(context as OpportunityContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the opportunity tab extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the opportunity tab extension. Key: ' + context);
       }
     });
 

@@ -11,10 +11,10 @@ import { MessageType } from './MessageType';
  */
 export class ConnectTokenMessage extends Message {
   /**
-     *Creates an instance of ConnectTokenMessage.
-     * @memberof ConnectTokenMessage
-     */
-  constructor () {
+   *Creates an instance of ConnectTokenMessage.
+   * @memberof ConnectTokenMessage
+   */
+  constructor() {
     super(MessageType.CONNECT_AUTH_TOKEN);
   }
 

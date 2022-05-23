@@ -13,9 +13,7 @@ describe('Tile extension init tests', () => {
     tileExtension.host.url = 'https://app-host.com/{pro.id}?usr={usr.id}';
     tileExtension.init(getOutreachContext());
 
-    expect(tileExtension.host.url).toBe(
-      'https://app-host.com/pro-id-123?usr=usr-id-123'
-    );
+    expect(tileExtension.host.url).toBe('https://app-host.com/pro-id-123?usr=usr-id-123');
   });
 });
 
@@ -70,9 +68,7 @@ describe('TileExension validate tests', () => {
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Host definition is missing url/template/component value.'
-      );
+      expect(issues[0]).toBe('Host definition is missing url/template/component value.');
     });
 
     test('host.icon - only url should be acceptable', () => {
@@ -80,9 +76,7 @@ describe('TileExension validate tests', () => {
       tileExtension.host.icon = 'bananas';
       var issues = tileExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Host icon definition is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Host icon definition is invalid url. Value: bananas');
     });
 
     test('only valid type should be acceptable', () => {
@@ -97,25 +91,15 @@ describe('TileExension validate tests', () => {
   describe('context', () => {
     test('only valid prospect contexts should be acceptable', () => {
       const tileExtension = getValidProspectTileExtension();
-      tileExtension.context = [
-        'bananas',
-        UserContextKeys.ID,
-        OpportunityContextKeys.ID,
-        ,
-        'apples',
-      ] as any;
+      tileExtension.context = ['bananas', UserContextKeys.ID, OpportunityContextKeys.ID, , 'apples'] as any;
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(3);
       expect(issues[0]).toBe(
         'Context key is not one of the valid values for the prospect tile extension. Key: bananas'
       );
-      expect(issues[1]).toBe(
-        'Context key is not one of the valid values for the prospect tile extension. Key: opp.id'
-      );
-      expect(issues[2]).toBe(
-        'Context key is not one of the valid values for the prospect tile extension. Key: apples'
-      );
+      expect(issues[1]).toBe('Context key is not one of the valid values for the prospect tile extension. Key: opp.id');
+      expect(issues[2]).toBe('Context key is not one of the valid values for the prospect tile extension. Key: apples');
     });
   });
 

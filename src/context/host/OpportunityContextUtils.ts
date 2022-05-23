@@ -2,10 +2,7 @@ import { OpportunityContextKeys } from '../keys/OpportunityContextKeys';
 import { ContextParam } from './ContextParam';
 import { OpportunityContext } from './OpportunityContext';
 
-export const initOpportunityContext = (
-  context: OpportunityContext,
-  param: ContextParam
-): boolean => {
+export const initOpportunityContext = (context: OpportunityContext, param: ContextParam): boolean => {
   switch (param.key) {
     case OpportunityContextKeys.AMOUNT:
       if (param.value) {
@@ -501,9 +498,7 @@ export const initOpportunityContext = (
   return true;
 };
 
-export const toOpportunityParams = (
-  context: OpportunityContext
-): ContextParam[] => {
+export const toOpportunityParams = (context: OpportunityContext): ContextParam[] => {
   const params: ContextParam[] = [];
   if (context.amount) {
     params.push({

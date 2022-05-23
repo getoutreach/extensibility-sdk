@@ -9,7 +9,7 @@ export class NotificationMessage extends Message {
    *Creates an instance of NotificationMessage.
    * @memberof InitMessage
    */
-  constructor () {
+  constructor() {
     super(MessageType.REQUEST_NOTIFY);
   }
 
