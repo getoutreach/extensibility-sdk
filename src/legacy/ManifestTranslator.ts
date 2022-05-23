@@ -32,6 +32,7 @@ import { OpportunityTabExtension } from '../manifest/extensions/tabs/types/Oppor
 import { ProspectActionTabExtension } from '../manifest/extensions/tabs/types/ProspectActionTabExtension';
 import { ProspectTabExtension } from '../manifest/extensions/tabs/types/ProspectTabExtension';
 import { ReportsTabExtension } from '../manifest/extensions/tabs/types/ReportsTabExtension';
+import { ManifestApiClient } from '../manifest/ManifestApiClient';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
@@ -75,7 +76,10 @@ export class ManifestTranslator {
     }
 
     if (!manifestType) {
-      console.error('Unsupported addon manifest for:', { app, ext });
+      console.error('Unsupported addon manifest for:', {
+        app,
+        ext,
+      });
       return null;
     }
 
@@ -93,7 +97,10 @@ export class ManifestTranslator {
     }
 
     if (!manifestStore) {
-      console.error('Unsupported addon manifest store for:', { app, ext });
+      console.error('Unsupported addon manifest store for:', {
+        app,
+        ext,
+      });
       return null;
     }
 
@@ -172,7 +179,17 @@ export class ManifestTranslator {
     app.store.type = storeType;
 
     app.extensions = [];
-    app.api = firstExt.api;
+    if (firstExt.api) {
+      app.api = new ManifestApi();
+      app.api.client = new ManifestApiClient();
+      app.api.scopes = firstExt.api.scopes;
+      app.api.client.id = firstExt.api.applicationId;
+      app.api.redirectUris = [firstExt.api.redirectUri];
+      app.api.applicationId = firstExt.api.applicationId;
+      app.api.redirectUri = firstExt.api.redirectUri;
+      app.api.connect = firstExt.api.connect;
+      app.api.token = firstExt.api.token;
+    }
     app.configuration = firstExt.configuration;
 
     const extensions = appManifests.map((ext) => {

@@ -1,8 +1,8 @@
 import { ConfigurationItem } from '../configuration/ConfigurationItem';
-import { ManifestApi } from '../manifest/ManifestApi';
 import { LocalizedString } from '../manifest/store/LocalizedString';
 import { ManifestMedia } from '../manifest/store/Media';
 import { ManifestHostEnvironment } from './ManifestHostEnvironment';
+import { ManifestV1Api } from './ManifestV1Api';
 
 export interface ManifestV1 {
   version: string;
@@ -37,7 +37,7 @@ export interface ManifestV1 {
 
   context: string[];
 
-  api?: ManifestApi;
+  api?: ManifestV1Api;
 
   configuration: ConfigurationItem[];
 

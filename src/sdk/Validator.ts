@@ -23,16 +23,46 @@ export const validate = (application: Application): string[] => {
         }
       });
     }
-    if (!utils.urlValidation(application.api.token)) {
-      issues.push('Manifest Api section needs to have a valid token endpoint url. Value: ' + application.api.token);
+
+    let clientIdValid = true;
+
+    if (!application.api.client) {
+      issues.push('Manifest Api section needs to have client value.');
+      clientIdValid = false;
+    } else if (!application.api.client.id) {
+      issues.push('Manifest Api section needs to have client.id value.');
+      clientIdValid = false;
     }
 
-    if (!application.api.applicationId) {
+    let redirectUrisValid = true;
+
+    if (!application.api.redirectUris) {
+      issues.push('Undefined redirectUris');
+      redirectUrisValid = false;
+    } else if (!Array.isArray(application.api.redirectUris)) {
+      issues.push('redirectUris value is not an array. Value: ' + application.api.redirectUris);
+      redirectUrisValid = false;
+    } else {
+      application.api.redirectUris.forEach((redirectUri) => {
+        if (!utils.urlValidation(redirectUri)) {
+          issues.push('Manifest Api section needs to have valid redirect urls. Value: ' + redirectUri);
+          redirectUrisValid = false;
+        }
+      });
+    }
+
+    // Validate optional deprecated fields only if they are present
+
+    if (!clientIdValid && !application.api.applicationId) {
       issues.push('Manifest Api section needs to have applicationId value.');
     }
 
-    if (!utils.urlValidation(application.api.redirectUri)) {
+    if (!redirectUrisValid && !utils.urlValidation(application.api.redirectUri)) {
       issues.push('Manifest Api section needs to have a valid redirect url. Value: ' + application.api.redirectUri);
+    }
+
+    if (!utils.urlValidation(application.api.token)) {
+      issues.push('Manifest Api section needs to have a valid token endpoint url. Value: ' + application.api.token);
     }
 
     if (!utils.urlValidation(application.api.connect)) {

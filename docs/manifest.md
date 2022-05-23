@@ -23,6 +23,8 @@ Table of content:
     - [redirectUri](#redirecturi)
     - [scopes](#scopes)
     - [connect](#connect)
+    - [client](#client)
+    - [redirectUris](#redirecturis)
   - [Configuration section (configuration)](#configuration-section-configuration)
   - [Extensions section (extensions)](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
@@ -99,9 +101,10 @@ opportunity tab extension.
   },
   "api": {
     "scopes": ["accounts.all", "calls.all"],
-    "applicationId": "AbCd123456qW",
-    "redirectUri": "https://application-host.com/hello-world",
-    "connect": "https://someurl.com/connect"
+    "client": {
+      "id": "AbCd123456qW"
+    },
+    "redirectUris": ["https://application-host.com/hello-world"]
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
   "configuration": [
@@ -218,14 +221,11 @@ This section is optional. If the application doesn't need access to outreach API
 
 ### applicationId
 
-This is the value used for [API authentication flow](https://api.outreach.io/api/v2/docs#authentication)as client_id
-value.
+This field is deprecated in favor of `client.id`.
 
 ### redirectUri
 
-This URL is defined in Outreach OAuth settings, which the authorization form will use to redirect once the user consent
-with granting access to Outreach API in his name. This URL can be the same as the [host url](#url) or a separate URL,
-but in both cases, it has to be implemented in a way matching [Outreach API access requirements](outreach-api.md).
+This field is deprecated in favor of `redirectUris`.
 
 ### scopes
 
@@ -237,12 +237,24 @@ A complete list of all of the API scopes can be found on [API Scopes page](scope
 On the first [SDK authentication](sdk.md#add-on-authentication) Outreach, the user is asked to consent to grant
 requested scopes to the application
 
-![API consent screen](assets/api-consent.png)s
+![API consent screen](assets/api-consent.png)
 
 ### connect
 
 This value contains URL of the [connect endpoint](outreach-api.md#connect-endpoint). Note: The domain of the connect Uri
 has to be the same as the domain of the [host.url](#url)
+
+### client
+
+The id of a client object is the value used for
+[API authentication flow](https://api.outreach.io/api/v2/docs#authentication)as client_id value.
+
+### redirectUris
+
+This URLs are defined in Outreach OAuth settings, which the authorization form will use to redirect once the user
+consent with granting access to Outreach API in his name. These URLs can be the same as the [host url](#url) or a
+separate URL, but in both cases, it has to be implemented in a way matching
+[Outreach API access requirements](outreach-api.md).
 
 ## Configuration section (configuration)
 

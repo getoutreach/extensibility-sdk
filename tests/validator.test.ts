@@ -71,19 +71,48 @@ describe('manifest tests', () => {
     test('applicationId should be defined', () => {
       const manifest = getNewValidApplicationManifest();
 
+      delete (manifest.api as any).client;
       delete (manifest.api as any).applicationId;
       var issues = validate(manifest);
+      expect(issues.length).toBe(2);
+      expect(issues[1]).toBe('Manifest Api section needs to have applicationId value.');
+    });
+
+    test('client should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+
+      delete (manifest.api as any).client;
+      var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest Api section needs to have applicationId value.');
+      expect(issues[0]).toBe('Manifest Api section needs to have client value.');
+    });
+
+    test('client.id should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+
+      delete (manifest.api as any).client.id;
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Manifest Api section needs to have client.id value.');
     });
 
     test('redirectUri should be valid URL', () => {
       const manifest: Application = getNewValidApplicationManifest();
+      delete (manifest.api as any).redirectUris;
       manifest.api!.redirectUri = 'bananas';
 
       var issues = validate(manifest);
+      expect(issues.length).toBe(2);
+      expect(issues[1]).toBe('Manifest Api section needs to have a valid redirect url. Value: bananas');
+    });
+
+    test('redirectUris should be valid URLs', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.api!.redirectUris = ['bananas'];
+
+      var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest Api section needs to have a valid redirect url. Value: bananas');
+      expect(issues[0]).toBe('Manifest Api section needs to have valid redirect urls. Value: bananas');
     });
 
     test('token endpoint should be valid URL', () => {
@@ -308,6 +337,10 @@ const getNewValidApplicationManifest = (): Application => {
     scopes: [Scopes.ACCOUNTS_ALL, Scopes.CALLS_ALL],
     applicationId: 'AbCd123456qW',
     redirectUri: 'https://addon-host.com/hello-world',
+    redirectUris: ['https://addon-host.com/hello-world'],
+    client: {
+      id: 'AbCd123456qW',
+    },
     token: 'https://someurl.com/token',
     connect: 'https://someurl.com/connect',
   };
