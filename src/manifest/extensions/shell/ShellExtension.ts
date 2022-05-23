@@ -24,11 +24,7 @@ export class ShellExtension extends Extension {
    *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys)[]}
    * @memberof TabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | OrganizationContextKeys)[];
 
   /**
    * Definition of addon host
@@ -72,10 +68,7 @@ export class ShellExtension extends Extension {
       // 2. complete the tokenize url with contextual data of host url and notifications url
       this.host.url = utils.tokenizeUrl(this.host.url!, context.toParams()).url;
       if (this.host.notificationsUrl) {
-        this.host.notificationsUrl = utils.tokenizeUrl(
-          this.host.notificationsUrl,
-          context.toParams()
-        ).url;
+        this.host.notificationsUrl = utils.tokenizeUrl(this.host.notificationsUrl, context.toParams()).url;
       }
     } catch (e) {
       logger.current.log({
@@ -112,28 +105,16 @@ export class ShellExtension extends Extension {
       }
 
       if (!utils.urlValidation(this.host.icon)) {
-        issues.push(
-          'Host icon definition is invalid url. Value: ' + this.host.icon
-        );
+        issues.push('Host icon definition is invalid url. Value: ' + this.host.icon);
       }
 
-      if (
-        !this.type ||
-        !Object.values(ShellExtensionType).includes(
-          this.type as ShellExtensionType
-        )
-      ) {
+      if (!this.type || !Object.values(ShellExtensionType).includes(this.type as ShellExtensionType)) {
         issues.push('Host type  is invalid. Value: ' + this.type);
       }
 
       if (this.host.notificationsUrl) {
-        if (
-          !utils.hostUrlValidation(this.host.notificationsUrl, this.context)
-        ) {
-          issues.push(
-            'Notifications url definition is invalid url. Value: ' +
-              this.host.notificationsUrl
-          );
+        if (!utils.hostUrlValidation(this.host.notificationsUrl, this.context)) {
+          issues.push('Notifications url definition is invalid url. Value: ' + this.host.notificationsUrl);
         }
       }
     }
@@ -147,17 +128,10 @@ export class ShellExtension extends Extension {
 
       this.context.forEach((context) => {
         if (
-          !Object.values(UserContextKeys).includes(
-            context as UserContextKeys
-          ) &&
-          !Object.values(ClientContextKeys).includes(
-            context as ClientContextKeys
-          )
+          !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
+          !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
         ) {
-          issues.push(
-            'Context key is not one of the valid values for the application tab extension. Key: ' +
-              context
-          );
+          issues.push('Context key is not one of the valid values for the application tab extension. Key: ' + context);
         }
       });
     }

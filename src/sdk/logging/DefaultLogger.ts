@@ -13,50 +13,30 @@ export class DefaultLogger implements ILogger {
       case LogLevel.Trace:
         if (this.level <= LogLevel.Trace) {
           // tslint:disable-next-line: no-console
-          console.debug(
-            '[CXT][AddonSdk]::onInfo-trace (default)',
-            event,
-            event.context
-          );
+          console.debug('[CXT][AddonSdk]::onInfo-trace (default)', event, event.context);
         }
         break;
       case LogLevel.Debug:
         if (this.level <= LogLevel.Debug) {
           // tslint:disable-next-line: no-console
-          console.debug(
-            '[CXT][AddonSdk]::onInfo-debug (default)',
-            event,
-            event.context
-          );
+          console.debug('[CXT][AddonSdk]::onInfo-debug (default)', event, event.context);
         }
         break;
       case LogLevel.Info:
         if (this.level <= LogLevel.Info) {
           // tslint:disable-next-line: no-console
-          console.info(
-            '[CXT][AddonSdk]::onInfo-info (default)',
-            event,
-            event.context
-          );
+          console.info('[CXT][AddonSdk]::onInfo-info (default)', event, event.context);
         }
         break;
       case LogLevel.Warning:
         if (this.level <= LogLevel.Warning) {
           // tslint:disable-next-line: no-console
-          console.warn(
-            '[CXT][AddonSdk]::onInfo-warning (default)',
-            event,
-            event.context
-          );
+          console.warn('[CXT][AddonSdk]::onInfo-warning (default)', event, event.context);
         }
         break;
       case LogLevel.Error:
         // tslint:disable-next-line: no-console
-        console.error(
-          '[CXT][AddonSdk]::onInfo-error (default)',
-          event,
-          event.context
-        );
+        console.error('[CXT][AddonSdk]::onInfo-error (default)', event, event.context);
         break;
     }
   };

@@ -24,12 +24,7 @@ export class AccountTileExtension extends TileExtension {
    * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[]}
    * @memberof AccountTileExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | AccountContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the account tile extension configuration
@@ -43,17 +38,10 @@ export class AccountTileExtension extends TileExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(AccountContextKeys).includes(
-          context as AccountContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(AccountContextKeys).includes(context as AccountContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the account tile extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the account tile extension. Key: ' + context);
       }
     });
 

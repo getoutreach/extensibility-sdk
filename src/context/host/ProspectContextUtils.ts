@@ -2,10 +2,7 @@ import { ProspectContextKeys } from '../keys/ProspectContextKeys';
 import { ContextParam } from './ContextParam';
 import { ProspectContext } from './ProspectContext';
 
-export const initProspectContext = (
-  context: ProspectContext,
-  param: ContextParam
-): boolean => {
+export const initProspectContext = (context: ProspectContext, param: ContextParam): boolean => {
   switch (param.key) {
     case ProspectContextKeys.ACCOUNT_DOMAIN:
       context.accountDomain = param.value;

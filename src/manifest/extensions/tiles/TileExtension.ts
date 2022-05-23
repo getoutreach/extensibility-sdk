@@ -71,16 +71,12 @@ export class TileExtension extends Extension {
       issues.push('Host section is missing.');
     } else {
       if (!utils.urlValidation(this.host.icon)) {
-        issues.push(
-          'Host icon definition is invalid url. Value: ' + this.host.icon
-        );
+        issues.push('Host icon definition is invalid url. Value: ' + this.host.icon);
       }
 
       if (!this.host.url) {
         if (!this.host.template && !this.host.component) {
-          issues.push(
-            'Host definition is missing url/template/component value.'
-          );
+          issues.push('Host definition is missing url/template/component value.');
         }
       } else {
         if (!utils.hostUrlValidation(this.host.url, this.context)) {
@@ -88,12 +84,7 @@ export class TileExtension extends Extension {
         }
       }
 
-      if (
-        !this.type ||
-        !Object.values(TileExtensionType).includes(
-          this.type as TileExtensionType
-        )
-      ) {
+      if (!this.type || !Object.values(TileExtensionType).includes(this.type as TileExtensionType)) {
         issues.push('Host type  is invalid. Value: ' + this.type);
       }
     }

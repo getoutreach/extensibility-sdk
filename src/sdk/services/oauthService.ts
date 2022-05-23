@@ -4,9 +4,7 @@ import runtime from '../RuntimeContext';
 class OAuthService {
   public openPopup = () => {
     if (!runtime.application.api) {
-      throw new Error(
-        "Can't open auth window for addon which has no api configuration in its manifest"
-      );
+      throw new Error("Can't open auth window for addon which has no api configuration in its manifest");
     }
 
     const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api);

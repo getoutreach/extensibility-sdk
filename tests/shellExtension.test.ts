@@ -13,19 +13,14 @@ describe('ShellExtension init tests', () => {
     shellExt.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
     shellExt.init(getOutreachContext());
 
-    expect(shellExt.host.url).toBe(
-      'https://app-host.com/opp-id-123?usr=usr-id-123'
-    );
+    expect(shellExt.host.url).toBe('https://app-host.com/opp-id-123?usr=usr-id-123');
   });
 
   test('init will tokenize notification url', () => {
     const shellExt = getValidShellApplicationExtension();
-    shellExt.host.notificationsUrl =
-      'https://app-host.com/{opp.id}?usr={usr.id}';
+    shellExt.host.notificationsUrl = 'https://app-host.com/{opp.id}?usr={usr.id}';
     shellExt.init(getOutreachContext());
-    expect(shellExt.host.notificationsUrl).toBe(
-      'https://app-host.com/opp-id-123?usr=usr-id-123'
-    );
+    expect(shellExt.host.notificationsUrl).toBe('https://app-host.com/opp-id-123?usr=usr-id-123');
   });
 });
 
@@ -66,9 +61,7 @@ describe('ShellExension validate tests', () => {
       shellExt.host.icon = 'bananas';
       var issues = shellExt.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Host icon definition is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Host icon definition is invalid url. Value: bananas');
     });
 
     test('only valid type should be acceptable', () => {
@@ -91,22 +84,14 @@ describe('ShellExension validate tests', () => {
       shellExt.host.notificationsUrl = 'bananas';
       var issues = shellExt.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Notifications url definition is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Notifications url definition is invalid url. Value: bananas');
     });
   });
 
   describe('context', () => {
     test('only valid application contexts should be acceptable for applicatition tab', () => {
       const shellExt = getValidShellApplicationExtension();
-      shellExt.context = [
-        'bananas',
-        UserContextKeys.ID,
-        OpportunityContextKeys.ID,
-        ,
-        'apples',
-      ] as any;
+      shellExt.context = ['bananas', UserContextKeys.ID, OpportunityContextKeys.ID, , 'apples'] as any;
 
       var issues = shellExt.validate();
 

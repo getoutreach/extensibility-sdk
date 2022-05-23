@@ -12,8 +12,7 @@ export class ProspectActionTabExtension extends TabExtension {
    * @type {TabExtensionType}
    * @memberof ProspectActionTabExtension
    */
-  public type: TabExtensionType.PROSPECT_ACTION =
-    TabExtensionType.PROSPECT_ACTION;
+  public type: TabExtensionType.PROSPECT_ACTION = TabExtensionType.PROSPECT_ACTION;
 
   /**
    * In this section, the application author defines a list of predefined context information that prospect tab extension
@@ -25,12 +24,7 @@ export class ProspectActionTabExtension extends TabExtension {
    * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[]}
    * @memberof ProspectActionTabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | ProspectContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the account tab extension configuration
@@ -44,17 +38,10 @@ export class ProspectActionTabExtension extends TabExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(ProspectContextKeys).includes(
-          context as ProspectContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(ProspectContextKeys).includes(context as ProspectContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the account tab extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the account tab extension. Key: ' + context);
       }
     });
 

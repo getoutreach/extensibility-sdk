@@ -8,6 +8,5 @@ export class SidekickShellExtension extends ShellExtension {
    * @type {ShellExtensionType}
    * @memberof SidekickShellExtension
    */
-  public readonly type: ShellExtensionType.SIDEKICK =
-    ShellExtensionType.SIDEKICK;
+  public readonly type: ShellExtensionType.SIDEKICK = ShellExtensionType.SIDEKICK;
 }

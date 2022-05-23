@@ -13,9 +13,7 @@ describe('TabExtension init tests', () => {
     tabExtension.host.url = 'https://app-host.com/{opp.id}?usr={usr.id}';
     tabExtension.init(getOutreachContext());
 
-    expect(tabExtension.host.url).toBe(
-      'https://app-host.com/opp-id-123?usr=usr-id-123'
-    );
+    expect(tabExtension.host.url).toBe('https://app-host.com/opp-id-123?usr=usr-id-123');
   });
 });
 
@@ -62,9 +60,7 @@ describe('TabExension validate tests', () => {
       tabExtension.host.icon = 'bananas';
       var issues = tabExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Host icon definition is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Host icon definition is invalid url. Value: bananas');
     });
 
     test('only valid type should be acceptable', () => {
@@ -79,13 +75,7 @@ describe('TabExension validate tests', () => {
   describe('context', () => {
     test('only valid opportunity contexts should be acceptable', () => {
       const tabExtension = getValidOpportunityTabExtension();
-      tabExtension.context = [
-        'bananas',
-        UserContextKeys.ID,
-        ProspectContextKeys.ID,
-        ,
-        'apples',
-      ] as any;
+      tabExtension.context = ['bananas', UserContextKeys.ID, ProspectContextKeys.ID, , 'apples'] as any;
 
       var issues = tabExtension.validate();
       expect(issues.length).toBe(3);
