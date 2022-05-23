@@ -25,8 +25,6 @@ import { EventType } from './sdk/logging/EventType';
 import { EventOrigin } from './sdk/logging/EventOrigin';
 import { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 import { utils } from './utils';
-import { ConfigureMessage } from './sdk/messages/ConfigureMessage';
-import { DecorationUpdateType } from './sdk/messages/DecorationUpdateType';
 import { NavigationDestination } from './sdk/messages/NavigationDestination';
 import { NavigationMessage } from './sdk/messages/NavigationMessage';
 import { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
@@ -71,10 +69,8 @@ export { EventType } from './sdk/logging/EventType';
 export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export { ConfigureMessage } from './sdk/messages/ConfigureMessage';
 export { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
-export { DecorationUpdateType } from './sdk/messages/DecorationUpdateType';
 export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 export { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
 export { InitMessage } from './sdk/messages/InitMessage';
@@ -296,15 +292,13 @@ class ExtensibilitySdk {
    * about a certain even happening in addon.
    *
    * @param {string} value The new decoration value being requested to be shown by the host
-   * @param {DecorationUpdateType} [type=DecorationUpdateType.TEXT] Type of decoration update (text by default)
    * @memberof ExtensibilitySdk
    */
-  public decorate = async (value: string, type: DecorationUpdateType = DecorationUpdateType.TEXT) => {
+  public decorate = async (value: string) => {
     await this.verifySdkInitialized();
 
     const message = new DecorationUpdateMessage();
     message.value = value;
-    message.decorationType = type;
 
     this.sendMessage(message, true);
 
@@ -315,27 +309,6 @@ class ExtensibilitySdk {
       level: LogLevel.Info,
       message: `[CXT] Addon is sending ${message.type} message to host`,
       context: [`Decoration text: ${value}`],
-    });
-  };
-
-  /**
-   * Sends request to Outreach hosting app to display the configuration form.
-   *
-   * @memberof ExtensibilitySdk
-   */
-  public configure = async () => {
-    await this.verifySdkInitialized();
-
-    const message = new ConfigureMessage();
-    this.sendMessage(message, true);
-
-    logger.current.log({
-      origin: EventOrigin.ADDON,
-      type: EventType.MESSAGE,
-      messageType: message.type,
-      level: LogLevel.Info,
-      message: `[CXT] Addon is sending ${message.type} message to host`,
-      context: [],
     });
   };
 
