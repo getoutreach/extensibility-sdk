@@ -1,10 +1,9 @@
 import { Message } from './Message';
 import { MessageType } from './MessageType';
-import { DecorationUpdateType } from './DecorationUpdateType';
 
 export class DecorationUpdateMessage extends Message {
   /**
-   *Creates an instance of InitMessage.
+   * Creates an instance of DecorationMessage.
    * @memberof DecorationMessage
    */
   constructor() {
@@ -12,28 +11,11 @@ export class DecorationUpdateMessage extends Message {
   }
 
   /**
-   * Text of the addon decoration to be shown to Outreach user
-   *
-   * @type {string}
-   * @memberof DecorationMessage
-   * @deprecated Property added to support backward compatiilty of the v1 sdk
-   */
-  public decorationText?: string;
-
-  /**
-   * Text of the extension decoration to be shown to Outreach user
-   * Also it can contain a badge value or a new icon to be shown.
+   * Extension decoration to be shown to Outreach user
+   * in a form of badge or text decoration
    *
    * @type {string}
    * @memberof DecorationUpdateMessage
    */
   public value: string;
-
-  /**
-   * Type of the addon decoration being updated.
-   *
-   * @type {DecorationUpdateType}
-   * @memberof DecorationUpdateMessage
-   */
-  public decorationType: DecorationUpdateType;
 }

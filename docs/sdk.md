@@ -9,7 +9,7 @@ Table of content
   - [Addon initialization](#addon-initialization)
     - [Logger](#logger)
     - [Load event handler](#load-event-handler)
-    - [Sdk initialization](#sdk-initialization)
+    - [SDK initialization](#sdk-initialization)
       - [Outreach context](#outreach-context)
   - [Additional addon function](#additional-addon-function)
     - [Notify function](#notify-function)
@@ -17,7 +17,7 @@ Table of content
     - [Navigate function](#navigate-function)
     - [Environment function](#environment-function)
   - [Add-on authentication](#add-on-authentication)
-    - [authorize function](#authenticate-function)
+    - [authenticate function](#authenticate-function)
 
 ## Summary
 
@@ -143,31 +143,20 @@ The Outreach host will notify the user in a way consistent with the Outreach app
 
 ### Decorate function
 
-In case when an addon would like to update its decoration of the addon entry point (e.g., Tab title), it will need to
-invoke the Decorate function requesting from an Outreach app to update its entry point decoration.
+In case when an extension would like to update its entry point decoration, it will need to call the Decorate. 
+This will result with an appropriate update based on extension type.
+e.g. Tab title will change in tab extensions,  shell application icon will show a badge etc...
 
-Currently, there are two supported decoration update types: text and badge.
-
-To update the text decoration of addon entry point, you can use one of this calls:
+To update the decoration, just pass the new decoration value
 
 ```javascript
-addonSdk.decorate('Messages (2)');
-
-or;
-
-addonSdk.decorate('Messages (2)', 'text');
+addonSdk.decorate('2');
 ```
 
-To update the badge representation of addon entry point:
+To remove the decoration, just pass an empty string value
 
 ```javascript
-addonSdk.decorate('2', 'badge');
-```
-
-To clear the badge representation of addon entry point:
-
-```javascript
-addonSdk.decorate('', 'badge');
+addonSdk.decorate('');
 ```
 
 ### Navigate function
