@@ -14,7 +14,7 @@ class OAuthService {
   private getOAuthHost = () => {
     const originUrl = new URL(runtime.origin);
 
-    const regex = /https:\/\/(\w+?)\./.exec(originUrl.origin);
+    const regex = /https:\/\/([-\w]+?)\./.exec(originUrl.origin);
     if (!regex) {
       throw new Error('Invalid runtime origin url:' + originUrl.origin);
     }
@@ -85,11 +85,7 @@ class OAuthService {
     const newWindow = window.open(
       url,
       '_blank',
-      `scrollbars=yes,
-       width=${width / systemZoom}, 
-       height=${height / systemZoom}, 
-       top=${top}, 
-       left=${left}`
+      `scrollbars=yes,width=${width / systemZoom},height=${height / systemZoom},top=${top},left=${left}`
     );
     if (newWindow) {
       newWindow.focus();
