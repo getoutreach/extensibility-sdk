@@ -40,11 +40,6 @@ export enum MessageType {
   CONNECT_AUTH_TOKEN = 'cxt:connect:token',
 
   /**
-   * Message sent from client to host displaying configuration form
-   */
-  CONFIGURE = 'cxt:sdk:configure',
-
-  /**
    * Message sent from the addon to host requesting host to navigate its iframe to another Outreach page.
    */
   REQUEST_NAVIGATE = 'cxt:sdk:navigate',

@@ -25,7 +25,6 @@ import { EventType } from './sdk/logging/EventType';
 import { EventOrigin } from './sdk/logging/EventOrigin';
 import { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 import { utils } from './utils';
-import { ConfigureMessage } from './sdk/messages/ConfigureMessage';
 import { NavigationDestination } from './sdk/messages/NavigationDestination';
 import { NavigationMessage } from './sdk/messages/NavigationMessage';
 import { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
@@ -70,7 +69,6 @@ export { EventType } from './sdk/logging/EventType';
 export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export { ConfigureMessage } from './sdk/messages/ConfigureMessage';
 export { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';

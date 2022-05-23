@@ -143,9 +143,9 @@ The Outreach host will notify the user in a way consistent with the Outreach app
 
 ### Decorate function
 
-In case when an extension would like to update its entry point decoration, it will need to call the Decorate. 
-This will result with an appropriate update based on extension type.
-e.g. Tab title will change in tab extensions,  shell application icon will show a badge etc...
+In case when an extension would like to update its entry point decoration, it will need to call the Decorate. This will
+result with an appropriate update based on extension type. e.g. Tab title will change in tab extensions, shell
+application icon will show a badge etc...
 
 To update the decoration, just pass the new decoration value
 
