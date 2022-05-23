@@ -8,6 +8,5 @@ export class ApplicationShellExtension extends ShellExtension {
    * @type {ShellExtensionType}
    * @memberof ApplicationShellExtension
    */
-  public readonly type: ShellExtensionType.APPLICATION =
-    ShellExtensionType.APPLICATION;
+  public readonly type: ShellExtensionType.APPLICATION = ShellExtensionType.APPLICATION;
 }

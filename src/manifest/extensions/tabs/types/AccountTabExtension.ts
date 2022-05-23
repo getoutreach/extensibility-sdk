@@ -24,12 +24,7 @@ export class AccountTabExtension extends TabExtension {
    * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[]}
    * @memberof AccountTabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | AccountContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the account tab extension configuration
@@ -43,17 +38,10 @@ export class AccountTabExtension extends TabExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(AccountContextKeys).includes(
-          context as AccountContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(AccountContextKeys).includes(context as AccountContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the account tab extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the account tab extension. Key: ' + context);
       }
     });
 

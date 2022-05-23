@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 export enum EventOrigin {
-
   /**
    * Event originated from addon.
    */
@@ -9,6 +8,5 @@ export enum EventOrigin {
   /**
    * Event originated from host.
    */
-  HOST = 'host'
-
+  HOST = 'host',
 }

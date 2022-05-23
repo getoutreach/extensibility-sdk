@@ -9,8 +9,7 @@ export class CompanionShellExtension extends ShellExtension {
    * @type {ShellExtensionType}
    * @memberof CompanionShellExtension
    */
-  public readonly type: ShellExtensionType.COMPANION =
-    ShellExtensionType.COMPANION;
+  public readonly type: ShellExtensionType.COMPANION = ShellExtensionType.COMPANION;
 
   /**
    * Optional property defining the text, which will be shown as the tab title tooltip.

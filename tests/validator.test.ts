@@ -29,9 +29,7 @@ describe('manifest tests', () => {
       manifest.store.author.privacyUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Author privacy url is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Author privacy url is invalid url. Value: bananas');
     });
 
     test('termsOfUseUrl should be url', () => {
@@ -39,9 +37,7 @@ describe('manifest tests', () => {
       manifest.store.author.termsOfUseUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Author terms of use url is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Author terms of use url is invalid url. Value: bananas');
     });
 
     test('websiteUrl should be url', () => {
@@ -49,9 +45,7 @@ describe('manifest tests', () => {
       manifest.store.author.websiteUrl = 'bananas';
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Author website url is invalid url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Author website url is invalid url. Value: bananas');
     });
 
     test('email should be email', () => {
@@ -67,11 +61,7 @@ describe('manifest tests', () => {
     test('only valid scope should be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
 
-      manifest.api!.scopes = [
-        'BANANA',
-        Scopes.ACCOUNTS_ALL,
-        Scopes.CALLS_ALL,
-      ] as any;
+      manifest.api!.scopes = ['BANANA', Scopes.ACCOUNTS_ALL, Scopes.CALLS_ALL] as any;
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -84,9 +74,7 @@ describe('manifest tests', () => {
       delete (manifest.api as any).applicationId;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Manifest Api section needs to have applicationId value.'
-      );
+      expect(issues[0]).toBe('Manifest Api section needs to have applicationId value.');
     });
 
     test('redirectUri should be valid URL', () => {
@@ -95,9 +83,7 @@ describe('manifest tests', () => {
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Manifest Api section needs to have a valid redirect url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Manifest Api section needs to have a valid redirect url. Value: bananas');
     });
 
     test('token endpoint should be valid URL', () => {
@@ -106,9 +92,7 @@ describe('manifest tests', () => {
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Manifest Api section needs to have a valid token endpoint url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Manifest Api section needs to have a valid token endpoint url. Value: bananas');
     });
 
     test('connect endpoint should be valid URL', () => {
@@ -117,9 +101,7 @@ describe('manifest tests', () => {
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Manifest Api section needs to have a valid connect endpoint url. Value: bananas'
-      );
+      expect(issues[0]).toBe('Manifest Api section needs to have a valid connect endpoint url. Value: bananas');
     });
   });
 
@@ -129,18 +111,14 @@ describe('manifest tests', () => {
       manifest.store.categories = [];
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'There are no categories selected for addon. Value: '
-      );
+      expect(issues[0]).toBe('There are no categories selected for addon. Value: ');
     });
     test('empty categories section is not acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
       manifest.store.categories = [];
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'There are no categories selected for addon. Value: '
-      );
+      expect(issues[0]).toBe('There are no categories selected for addon. Value: ');
     });
   });
 
@@ -157,9 +135,7 @@ describe('manifest tests', () => {
       manifest.store.medias = 'invalid-media-value' as any;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe(
-        'Medias section value is not a valid array. Value: invalid-media-value'
-      );
+      expect(issues[0]).toBe('Medias section value is not a valid array. Value: invalid-media-value');
     });
 
     describe('Invalid media file info is not acceptable', () => {
@@ -188,9 +164,7 @@ describe('manifest tests', () => {
         ];
         var issues = validate(manifest);
         expect(issues.length).toBe(1);
-        expect(issues[0]).toBe(
-          'Url value is not a valid url. Value: not-a-valid-url'
-        );
+        expect(issues[0]).toBe('Url value is not a valid url. Value: not-a-valid-url');
       });
 
       test('Title is missing', () => {
@@ -267,10 +241,7 @@ const getNewValidApplicationManifest = (): Application => {
     url: 'http://someurl.com/host',
   };
   opportunityTabExtension.version = '0.99';
-  opportunityTabExtension.context = [
-    UserContextKeys.ID,
-    OpportunityContextKeys.ID,
-  ];
+  opportunityTabExtension.context = [UserContextKeys.ID, OpportunityContextKeys.ID];
 
   const appTabExtension = new ApplicationShellExtension();
   appTabExtension.identifier = 'app-tabaddon';

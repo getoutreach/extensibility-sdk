@@ -21,27 +21,21 @@ describe('tokenizer tests', () => {
     test('all params known - routes', () => {
       const url = 'https://someurl.com/{usr.id}/something/{opp.id}';
       const result = utils.tokenizeUrl(url, queryParams);
-      expect(result.url).toEqual(
-        'https://someurl.com/uid-123/something/112233'
-      );
+      expect(result.url).toEqual('https://someurl.com/uid-123/something/112233');
       expect(result.params).toEqual([]);
     });
 
     test('all params known - params', () => {
       const url = 'https://someurl.com/something?oid={opp.id}&uid={usr.id}';
       const result = utils.tokenizeUrl(url, queryParams);
-      expect(result.url).toEqual(
-        'https://someurl.com/something?oid=112233&uid=uid-123'
-      );
+      expect(result.url).toEqual('https://someurl.com/something?oid=112233&uid=uid-123');
       expect(result.params).toEqual([]);
     });
 
     test('all params known - routes and params', () => {
       const url = 'https://someurl.com/{usr.id}/something?oid={opp.id}';
       const result = utils.tokenizeUrl(url, queryParams);
-      expect(result.url).toEqual(
-        'https://someurl.com/uid-123/something?oid=112233'
-      );
+      expect(result.url).toEqual('https://someurl.com/uid-123/something?oid=112233');
       expect(result.params).toEqual([]);
     });
   });
@@ -50,18 +44,14 @@ describe('tokenizer tests', () => {
     test('some params known - routes', () => {
       const url = 'https://someurl.com/{usr.id}/something/{abc.id}';
       const result = utils.tokenizeUrl(url, queryParams);
-      expect(result.url).toEqual(
-        'https://someurl.com/uid-123/something/{abc.id}'
-      );
+      expect(result.url).toEqual('https://someurl.com/uid-123/something/{abc.id}');
       expect(result.params).toEqual([oppIdParam]);
     });
 
     test('some params known - params', () => {
       const url = 'https://someurl.com/something?oid={opp.id}&uid={abc.id}';
       const result = utils.tokenizeUrl(url, queryParams);
-      expect(result.url).toEqual(
-        'https://someurl.com/something?oid=112233&uid={abc.id}'
-      );
+      expect(result.url).toEqual('https://someurl.com/something?oid=112233&uid={abc.id}');
       expect(result.params).toEqual([usrIdParam]);
     });
   });
@@ -71,14 +61,11 @@ describe('parmeterization tests', () => {
   test('all the params are added as url params', () => {
     const url = 'https://someurl.com/test';
     const result = utils.parameterizeUrl(url, queryParams);
-    expect(result).toBe(
-      'https://someurl.com/test?usr.id=uid-123&opp.id=112233'
-    );
+    expect(result).toBe('https://someurl.com/test?usr.id=uid-123&opp.id=112233');
   });
 
   test('parametarization preserves fragment', () => {
-    const url =
-      'https://someurl.com/webapp/index_dev.html?hc_reset#/Account/159978';
+    const url = 'https://someurl.com/webapp/index_dev.html?hc_reset#/Account/159978';
     const result = utils.parameterizeUrl(url, queryParams);
     expect(result).toBe(
       'https://someurl.com/webapp/index_dev.html?hc_reset&usr.id=uid-123&opp.id=112233#/Account/159978'
@@ -113,9 +100,7 @@ describe('getLocalizedString tests', () => {
       'fr-FR': 'FRENCH',
     };
 
-    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
-      'FRENCH'
-    );
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe('FRENCH');
   });
 
   test('will return english us string when available even when english is requested as english is deprecated', () => {
@@ -124,9 +109,7 @@ describe('getLocalizedString tests', () => {
       'en-US': 'ENGLISH_US',
     };
 
-    expect(utils.getLocalizedString(localizedString, Locale.ENGLISH)).toBe(
-      'ENGLISH_US'
-    );
+    expect(utils.getLocalizedString(localizedString, Locale.ENGLISH)).toBe('ENGLISH_US');
   });
 
   test('will default to english_US string when exact locale not available', () => {
@@ -135,9 +118,7 @@ describe('getLocalizedString tests', () => {
       'en-US': 'ENGLISH_US',
     };
 
-    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
-      'ENGLISH_US'
-    );
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe('ENGLISH_US');
   });
 
   test('will default to english when english us not available', () => {
@@ -145,8 +126,6 @@ describe('getLocalizedString tests', () => {
       en: 'ENGLISH',
     };
 
-    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe(
-      'ENGLISH'
-    );
+    expect(utils.getLocalizedString(localizedString, Locale.FRENCH)).toBe('ENGLISH');
   });
 });

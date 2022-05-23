@@ -26,11 +26,7 @@ export class ReportsTabExtension extends TabExtension {
    * @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys)[]}
    * @memberof ReportsTabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the prospect tab extension configuration
@@ -46,10 +42,7 @@ export class ReportsTabExtension extends TabExtension {
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
         !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the reports tab extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the reports tab extension. Key: ' + context);
       }
     });
 

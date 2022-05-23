@@ -24,12 +24,7 @@ export class ProspectTileExtension extends TileExtension {
    * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[]}
    * @memberof ProspectTileExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | ProspectContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the prospect tile extension configuration
@@ -43,17 +38,10 @@ export class ProspectTileExtension extends TileExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(ProspectContextKeys).includes(
-          context as ProspectContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(ProspectContextKeys).includes(context as ProspectContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the prospect tile extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the prospect tile extension. Key: ' + context);
       }
     });
 

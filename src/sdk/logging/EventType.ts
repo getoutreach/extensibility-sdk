@@ -11,5 +11,5 @@ export enum EventType {
    * Message event type is used for events containing information
    * about real communication events between host and addon.
    */
-  MESSAGE = 'message'
+  MESSAGE = 'message',
 }

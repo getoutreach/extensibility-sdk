@@ -23,11 +23,7 @@ export class HomeTasksTileExtension extends TileExtension {
    * @type {(UserContextKeys | ClientContextKeys | AccountContextKeys | OrganizationContextKeys)[]}
    * @memberof HomeEmailTileExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the home tile extension configuration
@@ -43,10 +39,7 @@ export class HomeTasksTileExtension extends TileExtension {
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
         !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the home tile extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the home tile extension. Key: ' + context);
       }
     });
 

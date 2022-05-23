@@ -24,12 +24,7 @@ export class ProspectTabExtension extends TabExtension {
    * @type {(UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[]}
    * @memberof ProspectTabExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | ProspectContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | ProspectContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the prospect tab extension configuration
@@ -43,17 +38,10 @@ export class ProspectTabExtension extends TabExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(ProspectContextKeys).includes(
-          context as ProspectContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(ProspectContextKeys).includes(context as ProspectContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the prospect tab extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the prospect tab extension. Key: ' + context);
       }
     });
 

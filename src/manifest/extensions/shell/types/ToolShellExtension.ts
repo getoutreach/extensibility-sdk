@@ -8,6 +8,5 @@ export class ToolShellExtension extends ShellExtension {
    * @type {ShellExtensionType}
    * @memberof ToolShellExtension
    */
-  public readonly type: ShellExtensionType.TOOL =
-    ShellExtensionType.TOOL;
+  public readonly type: ShellExtensionType.TOOL = ShellExtensionType.TOOL;
 }

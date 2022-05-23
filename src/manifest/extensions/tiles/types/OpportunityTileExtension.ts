@@ -24,12 +24,7 @@ export class OpportunityTileExtension extends TileExtension {
    * @type {(UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)}
    * @memberof OpportunityTileExtension
    */
-  public context: (
-    | UserContextKeys
-    | ClientContextKeys
-    | OpportunityContextKeys
-    | OrganizationContextKeys
-  )[];
+  public context: (UserContextKeys | ClientContextKeys | OpportunityContextKeys | OrganizationContextKeys)[];
 
   /**
    * Validates the opportunity tile extension configuration
@@ -43,17 +38,10 @@ export class OpportunityTileExtension extends TileExtension {
     this.context.forEach((context) => {
       if (
         !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-        !Object.values(ClientContextKeys).includes(
-          context as ClientContextKeys
-        ) &&
-        !Object.values(OpportunityContextKeys).includes(
-          context as OpportunityContextKeys
-        )
+        !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+        !Object.values(OpportunityContextKeys).includes(context as OpportunityContextKeys)
       ) {
-        issues.push(
-          'Context key is not one of the valid values for the opportunity tile extension. Key: ' +
-            context
-        );
+        issues.push('Context key is not one of the valid values for the opportunity tile extension. Key: ' + context);
       }
     });
 
