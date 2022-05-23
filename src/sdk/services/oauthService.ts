@@ -2,12 +2,12 @@ import { ManifestApi } from '../../manifest/ManifestApi';
 import runtime from '../RuntimeContext';
 
 class OAuthService {
-  public openPopup = (redirectUri?: string) => {
+  public openPopup = (redirectUri?: string, state?: string) => {
     if (!runtime.application.api) {
       throw new Error("Can't open auth window for addon which has no api configuration in its manifest");
     }
 
-    const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api, redirectUri);
+    const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api, redirectUri, state);
     this.showPopup(authorizeUrl, 800, 600);
   };
 
@@ -22,12 +22,16 @@ class OAuthService {
     return originUrl.origin.replace(regex[1], 'accounts');
   };
 
-  private getOAuthAuthorizeUrl = (api: ManifestApi, redirectUri?: string) => {
+  private getOAuthAuthorizeUrl = (api: ManifestApi, redirectUri?: string, state?: string) => {
     const host = this.getOAuthHost();
     const scopes = encodeURIComponent(api.scopes.join(' '));
     const selectedRedirectUri = encodeURIComponent(this.selectRedirectUri(api, redirectUri));
     const clientId = encodeURIComponent(api.client.id || api.applicationId || '');
-    return `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
+    let url = `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
+    if (state) {
+      url += `&state=${encodeURIComponent(state)}`;
+    }
+    return url;
   };
 
   private selectRedirectUri = (api: ManifestApi, redirectUri?: string): string => {

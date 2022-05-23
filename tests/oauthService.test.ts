@@ -57,6 +57,16 @@ describe('OAuthService', () => {
     );
   });
 
+  test('appends state parameter when provided', () => {
+    oauthService.openPopup('https://addon-host.com/hello-world2', 'test');
+
+    expect(global.window.open).toBeCalledWith(
+      'https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world2&response_type=code&scope=accounts.all&state=test',
+      '_blank',
+      'scrollbars=yes,width=800,height=600,top=-60,left=-80'
+    );
+  });
+
   test('fails with a redirect uri not from the list', () => {
     expect(() => {
       oauthService.openPopup('https://addon-host.com/hello-world3');
