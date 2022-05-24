@@ -59,25 +59,4 @@ export class ManifestApi {
    * @memberof ManifestApi
    */
   redirectUri: string;
-
-  /**
-   * Address of the endpoint, which will return support refresh token flow.
-   *
-   * @type {string}
-   * @memberof ManifestApi
-   * @deprecated Usage of token endpoint is deprecated and will be removed in upcoming releases.
-   */
-  token: string;
-
-  /**
-   *
-   * Address of the connect endpoint, which will contain a page
-   * posting authentication token info back to addon page which
-   * had opened the popup.
-   *
-   * @type {string}
-   * @deprecated Usage of connect endpoint is deprecated and will be removed in upcoming releases.
-   * @memberof ManifestApi
-   */
-  connect: string;
 }

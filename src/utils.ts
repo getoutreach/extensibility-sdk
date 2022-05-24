@@ -90,45 +90,6 @@ export class utils {
     return true;
   };
 
-  public static validConnectOrigin = (origin: string): boolean => {
-    if (!origin) {
-      return false;
-    }
-
-    if (!runtime.application) {
-      return false;
-    }
-
-    if (!runtime.application.api) {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        level: LogLevel.Trace,
-        message: '[CXT][AddonSdk]::connectOrigin - no manifest api',
-        context: [],
-      });
-      return false;
-    }
-
-    // connect endpoint is posting a message with token to addon so it is valid origin
-    // see: https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#connect-endpoint
-    const connectUri = new URL(runtime.application.api.connect);
-    const connectOrigin = utils.getUrlDomain(connectUri);
-    const connectMessage = origin === connectOrigin;
-    if (!connectMessage) {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        level: LogLevel.Trace,
-        message: '[CXT][AddonSdk]::connectOrigin - invalid connect origin received',
-        context: [origin, connectOrigin],
-      });
-      return false;
-    }
-
-    return true;
-  };
-
   public static objectValues = (data: any) => {
     return Object.keys(data).map((key) => data[key]);
   };

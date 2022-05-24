@@ -124,9 +124,6 @@
         "redirectUri": {
           "type": "string",
           "format": "uri"
-        },
-        "connect": {
-          "type": "string"
         }
       }
     },

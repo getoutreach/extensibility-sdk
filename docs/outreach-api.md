@@ -2,18 +2,20 @@
 
 # Outreach API access support
 
-- [How Outreach API access works](#how-outreach-api-access-works)
-- [OAuth sequence diagram](#oauth-sequence-diagram)
-- [Prerequisites](#prerequisites)
-  - [Define required scopes](#define-required-scopes)
-  - [Setup Outreach OAuth application](#setup-outreach-oauth-application)
-- [Outreach API consent](#outreach-api-consent)
-- [Authorization endpoint](#authorization-endpoint)
-  - [Obtain access and refresh token](#obtain-access-and-refresh-token)
-  - [Caching the tokens](#caching-the-tokens)
-  - [Refreshing the access token](#refreshing-the-access-token)
-  - [Closing the authentication loop](#closing-the-authentication-loop)
-- [Connect endpoint](#connect-endpoint)
+- [Outreach API access support](#outreach-api-access-support)
+  - [How Outreach API access works](#how-outreach-api-access-works)
+  - [OAuth sequence diagram](#oauth-sequence-diagram)
+  - [Prerequisites](#prerequisites)
+    - [Define required scopes](#define-required-scopes)
+    - [Setup Outreach OAuth application](#setup-outreach-oauth-application)
+  - [Outreach API consent](#outreach-api-consent)
+  - [Authorization endpoint](#authorization-endpoint)
+    - [Obtain access and refresh token](#obtain-access-and-refresh-token)
+      - [Request](#request)
+      - [Response](#response)
+    - [Caching the tokens](#caching-the-tokens)
+    - [Refreshing the access token](#refreshing-the-access-token)
+    - [Closing the authentication loop](#closing-the-authentication-loop)
 
 Suppose an add-on needs to make an impersonalized call to Outreach API in the current Outreach user context. In that
 case, the add-on creator needs to implement a public authentication host server accessible on the internet with a few
@@ -32,7 +34,7 @@ access rights with the [scopes](scopes.md) defined in the add-on manifest.
 Once a user consent to that and authorize Outreach API access, [initial authentication flow](#oauth-sequence-diagram)
 will start.
 
-A request to the authorisation endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a
+A request to the authorization endpoint defined in one of [redirectUris](manifest.md#redirecturis) will be made with a
 **"code"** query parameter value sent from Outreach authentication server. This code is a short-lived authorization
 token used with [Outreach client](manifest.md#client), and Outreach OAuth app secret so a proper Outreach API access
 token and refresh tokens could be obtained.
@@ -223,56 +225,19 @@ Response
 ### Closing the authentication loop
 
 Now when the add-on host obtained and cached the access token and cached the refresh token, it needs to send the
-information to the SDK running in the add-on host page so a authorize () promise can be resolved.
+information to the SDK running in the add-on host page so a sdk.authenticate () promise can be resolved.
 
-To do that, the add-on host has to respond to the original request, with a
-[302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code with the
-[Location header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location) with the value of
-[manifest api connect endpoint](manifest.md#connect)
-
-```http
-{MANIFEST.API.CONNECT} + "&result=ok"
-```
-
-- MANIFEST.API.CONNECT - it is the connect endpoint URL.
-- result parameter can have values: ok and fail used to inform SDK if auth consent process succeeded or failed.
-
-## Connect endpoint
-
-Connect endpoint is a simple and specific HTML page with a small javascript implementation posting the result value to
-the add-on page, which then closes the popup window.
-
-Here is
-[mvc core sample implementation](https://github.com/getoutreach/clientxtdocs/blob/master/samples/hello-world/aspnetcore/Views/Connect/Index.cshtml)
-from our documentation repo (samples in other languages also available)
+A standard way to do that is for the add-on host has to respond to the original request with a response containing javascript
+code closing the popup.
 
 ```html
-<html lang="en">
-  <head>
-    <title>Outreach login connect page</title>
-  </head>
+<html>
   <body>
     <script>
-      var url = new URL(window.location.href);
-      var token = '@Model.Token';
-      var expiresAt = '@Model.ExpiresAt';
-      var target = '@Model.AddonHostOrigin';
-
-      var data = JSON.stringify({
-        type: 'cxt:connect:token',
-        token,
-        expiresAt,
-      });
-
-      if (window.opener) {
-        window.opener.postMessage(data, target);
-      }
-
       window.close();
     </script>
   </body>
 </html>
 ```
 
-The whole point of the code is to POST event with type 'cxt:connect:token' to the add-on page (window.opener) so the
-add-on can get the new values.
+Once authorization popup will close, OUtreach application will detect that and resolve the sdk.authorize() promise.

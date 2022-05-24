@@ -30,16 +30,6 @@ export enum MessageType {
   REQUEST_DECORATION_UPDATE = 'cxt:sdk:decorate',
 
   /**
-   * Message received from host containing the new authentication token
-   */
-  REFRESH_AUTH_TOKEN = 'cxt:sdk:token',
-
-  /**
-   * Message received from the OAuth popup window containing new token information.
-   */
-  CONNECT_AUTH_TOKEN = 'cxt:connect:token',
-
-  /**
    * Message sent from the addon to host requesting host to navigate its iframe to another Outreach page.
    */
   REQUEST_NAVIGATE = 'cxt:sdk:navigate',

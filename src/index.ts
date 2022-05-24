@@ -16,14 +16,12 @@ import { ProspectContext } from './context/host/ProspectContext';
 import { UserContext } from './context/host/UserContext';
 
 import runtime, { RuntimeContext } from './sdk/RuntimeContext';
-import tokenService from './sdk/services/tokenService';
 import authService from './sdk/services/oauthService';
 
 import logger from './sdk/logging/Logger';
 import { Constants } from './sdk/Constants';
 import { EventType } from './sdk/logging/EventType';
 import { EventOrigin } from './sdk/logging/EventOrigin';
-import { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 import { utils } from './utils';
 import { NavigationDestination } from './sdk/messages/NavigationDestination';
 import { NavigationMessage } from './sdk/messages/NavigationMessage';
@@ -69,7 +67,6 @@ export { EventType } from './sdk/logging/EventType';
 export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 export { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
@@ -154,7 +151,7 @@ class ExtensibilitySdk {
   private initTimer?: number;
   private initTask?: Task<OutreachContext>;
 
-  private authorizeTask: Task<string | null>;
+  private authenticateTask: Task<string | null>;
 
   public getRuntime = (): RuntimeContext => runtime;
   public activeListener: boolean = false;
@@ -428,10 +425,10 @@ class ExtensibilitySdk {
   public authenticate = async (redirectUri?: string, state?: string): Promise<string | null> => {
     await this.verifySdkInitialized();
 
-    this.authorizeTask = new Task<string | null>();
-    this.authorizeTask.promise = new Promise<string | null>((resolve, reject) => {
-      this.authorizeTask!.onfulfilled = resolve;
-      this.authorizeTask!.onrejected = reject;
+    this.authenticateTask = new Task<string | null>();
+    this.authenticateTask.promise = new Promise<string | null>((resolve, reject) => {
+      this.authenticateTask!.onfulfilled = resolve;
+      this.authenticateTask!.onrejected = reject;
 
       // start the OAuth consent flow by recording user identifier
       // addon host server will need server will need
@@ -448,36 +445,12 @@ class ExtensibilitySdk {
     logger.current.log({
       origin: EventOrigin.ADDON,
       type: EventType.INTERNAL,
-      message: '[CXT][AddonSdk]::authenticate-starting authorize promise',
+      message: '[CXT][AddonSdk]::authenticate-starting authenticate promise',
       level: LogLevel.Debug,
       context: [],
     });
 
-    return this.authorizeTask!.promise;
-  };
-
-  /**
-   *
-   * Tries to obtain valid Outreach API token first by checking the local cache
-   * and then by asking addon host if it can produce a new access token from its own cache
-   * or by using previously obtained refresh token.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#token-endpoint
-   *
-   * @memberof ExtensibilitySdk
-   * @deprecated This usage of function is deprecated and it will be removed in future release.
-   */
-  public getToken = async (skipCache?: boolean): Promise<string | null> => {
-    await this.verifySdkInitialized();
-
-    if (!skipCache) {
-      const cachedToken = await tokenService.getCachedTokenAsync();
-      if (cachedToken) {
-        return cachedToken;
-      }
-    }
-
-    return await tokenService.fetchTokenAsync();
+    return this.authenticateTask!.promise;
   };
 
   public sendMessage<T extends Message>(message: T, logged?: boolean) {
@@ -576,9 +549,6 @@ class ExtensibilitySdk {
         this.resolveInitPromise(context);
         break;
       }
-      case MessageType.CONNECT_AUTH_TOKEN:
-        this.handleRefreshTokenMessage(addonMessage as ConnectTokenMessage);
-        break;
       case MessageType.HOST_LOAD_INFO:
         this.handleLoadInfoMessage(addonMessage as LoadInfoMessage);
         break;
@@ -683,50 +653,19 @@ class ExtensibilitySdk {
     return outreachContext;
   };
 
-  private handleRefreshTokenMessage = (tokenMessage: ConnectTokenMessage) => {
-    tokenService.cacheToken({
-      value: tokenMessage.token,
-      expiresAt: tokenMessage.expiresAt,
-    });
-
-    if (this.authorizeTask) {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        message: '[CXT][AddonSdk]::onReceived-Resolving authorize promise',
-        level: LogLevel.Debug,
-        context: [],
-      });
-      if (tokenMessage.token) {
-        this.authorizeTask.onfulfilled(tokenMessage.token);
-      } else {
-        this.authorizeTask.onrejected('No token value received');
-      }
-    } else {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        message: `[CXT][AddonSdk] ::onReceived - Client event ${tokenMessage.type} received without promise to resolve`,
-        level: LogLevel.Warning,
-        context: [JSON.stringify(tokenMessage)],
-      });
-    }
-  };
-
   private getAddonMessage = (messageEvent: MessageEvent): Message | null => {
     if (!messageEvent) {
       return null;
     }
 
     const hostOrigin = utils.validHostOrigin(messageEvent.origin);
-    const connectOrigin = utils.validConnectOrigin(messageEvent.origin);
-    if (!hostOrigin && !connectOrigin) {
+    if (!hostOrigin) {
       logger.current.log({
         origin: EventOrigin.ADDON,
         type: EventType.INTERNAL,
         level: LogLevel.Trace,
         message: '[CXT][AddonSdk]::getAddonMessage - invalid origin',
-        context: [messageEvent.origin, `host:${hostOrigin}`, `connect:${connectOrigin}`],
+        context: [messageEvent.origin, `host:${hostOrigin}`],
       });
       return null;
     }

@@ -131,7 +131,7 @@ export class ManifestTranslator {
       version: app.store.version,
       api: app.api,
       medias: app.store.medias,
-      disableTimeoutMonitoring: app.notUsingSdk || app.disableTimeoutMonitoring,
+      disableTimeoutMonitoring: app.disableTimeoutMonitoring,
     };
 
     return manifestV1;
@@ -187,8 +187,6 @@ export class ManifestTranslator {
       app.api.redirectUris = [firstExt.api.redirectUri];
       app.api.applicationId = firstExt.api.applicationId;
       app.api.redirectUri = firstExt.api.redirectUri;
-      app.api.connect = firstExt.api.connect;
-      app.api.token = firstExt.api.token;
     }
     app.configuration = firstExt.configuration;
 

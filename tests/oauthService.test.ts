@@ -12,8 +12,6 @@ jest.mock('../src/sdk/RuntimeContext', () => ({
         client: {
           id: 'AbCd123456qW',
         },
-        token: 'https://someurl.com/token',
-        connect: 'https://someurl.com/connect',
       },
     },
   },

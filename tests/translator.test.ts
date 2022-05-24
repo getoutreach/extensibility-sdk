@@ -46,8 +46,6 @@ describe('Manifest translator tests', () => {
     expect(result!.api!.redirectUris).toEqual([v1Manifests[0].api!.redirectUri]);
     expect(result!.api!.redirectUri).toBe(v1Manifests[0].api!.redirectUri);
     expect(result!.api!.applicationId).toBe(v1Manifests[0].api!.applicationId);
-    expect(result!.api!.token).toBe(v1Manifests[0].api!.token);
-    expect(result!.api!.connect).toBe(v1Manifests[0].api!.connect);
 
     expect(result!.configuration).toBe(v1Manifests[0].configuration);
 
@@ -127,7 +125,6 @@ const v1Manifests = [
     api: {
       token: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read', 'prospects.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
       redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },
@@ -168,7 +165,6 @@ const v1Manifests = [
     api: {
       token: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
       redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },
@@ -211,7 +207,6 @@ const v1Manifests = [
     api: {
       token: 'https://cxt-demo.azurewebsites.net/token',
       scopes: ['users.read', 'opportunities.read'],
-      connect: 'https://cxt-demo.azurewebsites.net/connect',
       redirectUri: 'https://cxt-demo.azurewebsites.net/authorize',
       applicationId: 'WHnHrLrl1XEBP3liH1YIzVgrWD2xxVcEdr_zmwLGcQ0',
     },

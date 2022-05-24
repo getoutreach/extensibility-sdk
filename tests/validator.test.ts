@@ -114,24 +114,6 @@ describe('manifest tests', () => {
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Manifest Api section needs to have valid redirect urls. Value: bananas');
     });
-
-    test('token endpoint should be valid URL', () => {
-      const manifest: Application = getNewValidApplicationManifest();
-      manifest.api!.token = 'bananas';
-
-      var issues = validate(manifest);
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest Api section needs to have a valid token endpoint url. Value: bananas');
-    });
-
-    test('connect endpoint should be valid URL', () => {
-      const manifest: Application = getNewValidApplicationManifest();
-      manifest.api!.connect = 'bananas';
-
-      var issues = validate(manifest);
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest Api section needs to have a valid connect endpoint url. Value: bananas');
-    });
   });
 
   describe('categories', () => {
@@ -341,8 +323,6 @@ const getNewValidApplicationManifest = (): Application => {
     client: {
       id: 'AbCd123456qW',
     },
-    token: 'https://someurl.com/token',
-    connect: 'https://someurl.com/connect',
   };
 
   application.extensions = [appTabExtension, opportunityTabExtension];

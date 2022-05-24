@@ -63,9 +63,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "headline": {
           "type": "object",
@@ -74,9 +72,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "iconUrl": {
           "type": "string",
@@ -104,10 +100,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": [
-                  "image",
-                  "video"
-                ]
+                "enum": ["image", "video"]
               },
               "url": {
                 "type": "string",
@@ -123,9 +116,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "en"
-          ]
+          "required": ["en"]
         },
         "version": {
           "type": "string",
@@ -153,9 +144,6 @@
         "redirectUri": {
           "type": "string",
           "format": "uri"
-        },
-        "connect": {
-          "type": "string"
         },
         "redirectUris": {
           "type": "array",
@@ -187,14 +175,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "number",
-              "date",
-              "url",
-              "options",
-              "select",
-              "string"
-            ]
+            "enum": ["number", "date", "url", "options", "select", "string"]
           },
           "required": {
             "type": "boolean"
@@ -223,11 +204,7 @@
             }
           }
         },
-        "required": [
-          "key",
-          "type",
-          "text"
-        ]
+        "required": ["key", "type", "text"]
       }
     },
     "extensions": {
@@ -289,9 +266,7 @@
                 "format": "uri"
               }
             },
-            "required": [
-              "icon"
-            ]
+            "required": ["icon"]
           },
           "environment": {
             "type": "object",
@@ -311,18 +286,9 @@
             }
           }
         },
-        "required": [
-          "identifier",
-          "type",
-          "version",
-          "host",
-          "environment"
-        ]
+        "required": ["identifier", "type", "version", "host", "environment"]
       }
     }
   },
-  "required": [
-    "store",
-    "extensions"
-  ]
+  "required": ["store", "extensions"]
 }

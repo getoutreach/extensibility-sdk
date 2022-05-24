@@ -19,13 +19,11 @@ Table of content:
     - [title](#title)
     - [version](#version)
   - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
-    - [applicationId](#applicationid)
-    - [redirectUri](#redirecturi)
     - [scopes](#scopes)
-    - [connect](#connect)
     - [client](#client)
     - [redirectUris](#redirecturis)
   - [Configuration section (configuration)](#configuration-section-configuration)
+  - [External installation Url](#external-installation-url)
   - [Extensions section (extensions)](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
       - [identifier (extension)](#identifier-extension)
@@ -219,14 +217,6 @@ A version of the application manifest in the format MAJOR.MINOR
 
 This section is optional. If the application doesn't need access to outreach API, this section can be omitted.
 
-### applicationId
-
-This field is deprecated in favor of `client.id`.
-
-### redirectUri
-
-This field is deprecated in favor of `redirectUris`.
-
 ### scopes
 
 In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
@@ -238,11 +228,6 @@ On the first [SDK authentication](sdk.md#add-on-authentication) Outreach, the us
 requested scopes to the application
 
 ![API consent screen](assets/api-consent.png)
-
-### connect
-
-This value contains URL of the [connect endpoint](outreach-api.md#connect-endpoint). Note: The domain of the connect Uri
-has to be the same as the domain of the [host.url](#url)
 
 ### client
 
@@ -400,6 +385,8 @@ manifest.host.environment = {
 };
 ```
 
+Supported values are 'SIMPLE', 'FULL' and 'NONE'.
+
 #### Host (tab extension)
 
 The host section contains the application hosting endpoints and attributes implemented by the application creator.
@@ -425,7 +412,7 @@ In the case of an Outreach user with id 456 looking at opportunity 123, this wil
 ```
 
 In addition to this default behavior, the application creator can customize how the URL is constructed by applying
-simple templatization in addition to this default behavior.
+simple tokenization in addition to this default behavior.
 
 e.g.
 
@@ -441,7 +428,7 @@ http://somesite.com/something/456?opp.id=123
 
 > _NB: as opp.id was not tokenized, it was appended as query parameter following the default naming convention_
 
-The application creator can templatize the name of the query parameters.
+The application creator can tokenize the name of the query parameters.
 
 e.g.
 
@@ -494,7 +481,8 @@ If defined, this endpoint will serve an empty HTML page with SDK on it, and the 
 the need for user interaction. That's how addon can update badge decoration and invite Outreach user to open full addon
 experience as defined in host.url property.
 
-Only appllication addons of AddonType.LeftSideMenu type can only use this property.
+Only application addons of **Application Shell** type can only use this property.
 
 _To see a sample of how to use this in your addon code look at the
 [Beacon addon sample addon](https://github.com/getoutreach/clientxtdocs/blob/master/samples/beacon/src/App.tsx)_
+\

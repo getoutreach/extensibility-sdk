@@ -60,14 +60,6 @@ export const validate = (application: Application): string[] => {
     if (!redirectUrisValid && !utils.urlValidation(application.api.redirectUri)) {
       issues.push('Manifest Api section needs to have a valid redirect url. Value: ' + application.api.redirectUri);
     }
-
-    if (!utils.urlValidation(application.api.token)) {
-      issues.push('Manifest Api section needs to have a valid token endpoint url. Value: ' + application.api.token);
-    }
-
-    if (!utils.urlValidation(application.api.connect)) {
-      issues.push('Manifest Api section needs to have a valid connect endpoint url. Value: ' + application.api.connect);
-    }
   }
 
   if (!application.store.author) {
