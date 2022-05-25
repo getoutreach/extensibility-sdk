@@ -69,7 +69,7 @@ For extensions that show up as a tab on the opportunity detail page following ac
 - `opp.amnt` - the amount the opportunity is worth.
 - `opp.desc` - a description of the opportunity.
 - `opp.ecrat` - the date the opportunity was created in the external system.
-- `opp.extid`
+- `opp.extid` - retrieving external id of the Outreach prospect id in the external system.
 - `opp.extprvd`
 - `opp.id` - opportunity ID.
 - `opp.name` - the name of the opportunity.
