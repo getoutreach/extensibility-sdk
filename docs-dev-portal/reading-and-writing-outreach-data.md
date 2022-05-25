@@ -31,6 +31,7 @@ Carries information about the currently logged-in user.
 - `usr.fname` - The first name of the user
 - `usr.id` - User ID.
 - `usr.lname` - The last name of the user.
+- `usr.name` - The full name of the user.
 - `usr.role`
 - `usr.tit` - The user's job title (e.g., "Staff Accountant").
 - `usr.uname` - A reader-friendly unique identifier of the user.
