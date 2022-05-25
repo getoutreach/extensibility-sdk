@@ -34,7 +34,7 @@ Save your changes to continue.
 2. In "Hosting URL" specify the same URL as in previous step
    ([`my-first-outreach-extension.html`](/examples/dist/my-first-outreach-extension.html)).
 3. Select a couple of scopes for example `pro.accnme` and `pro.accdmn`. This will allow your app to receive the Account
-   name and administrator of the Prospect.
+   name and Account domain.
 
 Save your changes to continue.
 
