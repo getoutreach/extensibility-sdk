@@ -85,7 +85,7 @@ For extensions that show up as a tab on the opportunity detail page following ac
 For extensions that show up as a tab on the prospect detail page following account data can be made available:
 
 - `pro.accnme` - Prospect account name.
-- `pro.accdmn`
+- `pro.accdmn` - Prospect account domain.
 - `pro.adrcity` - city of the prospect.
 - `pro.adrcntry` - country of the prospect.
 - `pro.adrstate` - state of the prospect.
