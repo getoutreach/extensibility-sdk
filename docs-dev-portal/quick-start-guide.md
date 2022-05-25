@@ -3,7 +3,7 @@
 The [examples directory](/examples/dist) contains a sample Outreach app consisting of a
 [shell extension](extension-types.md#shell-extension) and a
 [prospect extension](extension-types.md#prospect-tab-extension). Let's bring this sample app to your Outreach
-organisation. And do not worry, you can't break anything, and you won't disrupt your users as you follow this tutorial.
+organisation. Do not worry, you can't break anything, and you won't disrupt your users as you follow this tutorial.
 
 ### Step 1 - create your app
 
