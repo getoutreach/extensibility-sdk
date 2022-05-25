@@ -70,7 +70,7 @@ For extensions that show up as a tab on the opportunity detail page following ac
 - `opp.desc` - a description of the opportunity.
 - `opp.ecrat` - the date the opportunity was created in the external system.
 - `opp.extid` - retrieving external id of the Outreach prospect id in the external system.
-- `opp.extprvd`
+- `opp.extprvd` - retrieving prospect provider name (Salesforce, Dynamics, etc.)
 - `opp.id` - opportunity ID.
 - `opp.name` - the name of the opportunity.
 - `opp.ntsp` - the next step to take for the opportunity.
