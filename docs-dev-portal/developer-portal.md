@@ -33,7 +33,7 @@ user details, prospect details, etc). For data manipulation you can use the
 
 ## Creating and publishing apps
 
-So you went through the [quick start guide](quick-start-guide.md) and created on or more
+So you went through the [quick start guide](quick-start-guide.md) and created one or more
 [extensions](extension-types.md) in your app. Now it's time to ship your app to end users. To do so open the app for
 editing in Outreach Development Portal and head the "Review and Publish" section which will lead you through the
 publishing process consisting of 3 steps.
