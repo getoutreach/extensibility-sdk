@@ -15,7 +15,7 @@ At this moment the SDK does not provide means of manipulating the Outreach data.
 
 ## Initializing the SDK
 
-Assuming that you have followed the [quick start guide](quick-start-guide.md) you now have a registered app in Outreach
+Assuming that you have followed the [Getting started with Outreach apps](quick-start-guide.md) you now have a registered app in Outreach
 developer portal that has one or more extensions. To properly initialize your extension within the Outreach host
 application do:
 
