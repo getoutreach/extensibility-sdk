@@ -18,6 +18,6 @@ extension will load within an HTML iframe and communicate with Outreach platform
 
 ## Creating your first application
 
-To get up to speed with the platform go through the steps in the [quick start guide](quick-start-guide.md).
+To get up to speed with the platform go through the steps in the [Getting started with Outreach apps](quick-start-guide.md).
 
 If you have any questions/comments/concerns please email us at cxt-sdk@outreach.io
