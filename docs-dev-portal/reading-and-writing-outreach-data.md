@@ -55,8 +55,9 @@ For extensions that show up as a tab on the account detail page following accoun
 - `acc.cstmId` - a custom ID for the account, often referencing an ID in an external system.
 - `acc.desc` - description of the account.
 - `acc.dmn` - account company domain.
-- `acc.extid`
-- `acc.extprvd`
+- `acc.extid` - external ID of the Outreach prospect in the external system as mapped via plugin
+- `acc.extprvd` - prospect provider name (Salesforce, Dynamics, etc.)
+
 - `acc.loc` - the company’s primary geographic region (e.g. "Eastern USA").
 - `acc.name` - the name of the company (e.g. "Acme Corporation").
 - `acc.tags` - a list of tag values associated with the account (e.g. \["Enterprise", "Tier 1"\]).
