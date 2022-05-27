@@ -3,7 +3,7 @@
 You can extend the Outreach platform with custom functionality specific to your organisation. You can also create public
 apps to be used by other organisations in Outreach.
 
-For app developers Outreach offers following tools:
+For app developers Outreach offers the following tools:
 
 - [Outreach Developer Portal](developer-portal.md) - lets you create and manage Outreach applications.
 - [Outreach Extensibility SDK](sdk.md) - lets your extension access a subset of Outreach data.
