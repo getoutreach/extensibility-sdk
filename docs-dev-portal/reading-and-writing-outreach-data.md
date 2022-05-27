@@ -98,8 +98,8 @@ For extensions that show up as a tab on the prospect detail page following accou
   Acme International).
 - `pro.emails` - a list of email addresses associated with the prospect.
 - `pro.loc` - the locality of the prospect's company.
-- `pro.extid`
-- `pro.extprvd`
+- `pro.extid` - external ID of the Outreach prospect in the external system as mapped via plugin
+- `pro.extprvd` - prospect provider name (Salesforce, Dynamics, etc.)
 - `pro.id` - the prospect id.
 - `pro.tags` - list of tag values associated with the account (e.g. ["Interested", "2017 Expo"]).
 - `pro.tzone` - the prospect's current timezone, preferably in the IANA format (e.g., "America/LosAngeles").
