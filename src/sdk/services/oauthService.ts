@@ -4,7 +4,7 @@ import runtime from '../RuntimeContext';
 class OAuthService {
   public openPopup = (redirectUri?: string, state?: string) => {
     if (!runtime.application.api) {
-      throw new Error('Configure API access for this app before calling authorize().');
+      throw new Error('Configure API access for this app before calling authenticate().');
     }
 
     const authorizeUrl = this.getOAuthAuthorizeUrl(runtime.application.api, redirectUri, state);
