@@ -27,7 +27,7 @@ Outreach app is a collection of custom extensions each serving a particular purp
 
 From technical standpoint each extension is a web application created with a technology of your choice (for example
 React) and hosted on your URL. Outreach will embed the contents of that URL when the end-user opens the relevant page
-(e.g. Prospects). The [JavaScript Extensibility SDK](sdk.md) will let you receive selected contextual data (e.g. current
+(e.g. Prospects). The [Outreach Extensibility SDK](sdk.md) will let you receive selected contextual data (e.g. current
 user details, prospect details, etc). For data manipulation you can use the
 [Outreach REST API](https://api.outreach.io/api/v2/docs) from within your extension.
 
