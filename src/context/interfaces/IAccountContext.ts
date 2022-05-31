@@ -6,7 +6,6 @@ export interface IAccountContext extends ICustomContext {
    * Unique account identifier
    *
    * @type {string}
-   * @memberof AccountContext
    */
   id: string;
 
@@ -14,7 +13,6 @@ export interface IAccountContext extends ICustomContext {
    * A custom ID for the account, often referencing an ID in an external system.
    *
    * @type {string}
-   * @memberof AccountContext
    */
   customId?: string | null;
 
@@ -22,7 +20,6 @@ export interface IAccountContext extends ICustomContext {
    * The domain of the account company
    *
    * @type {string}
-   * @memberof AccountContext
    */
   domain?: string | null;
 
@@ -30,7 +27,6 @@ export interface IAccountContext extends ICustomContext {
    * A custom description of the account.
    *
    * @type {string}
-   * @memberof AccountContext
    */
   description?: string | null;
 
@@ -38,7 +34,6 @@ export interface IAccountContext extends ICustomContext {
    * Identity of the current account in the external system which is linked through installed Outreach plugin.
    *
    * @type {string}
-   * @memberof AccountContext
    */
   externalProviderId?: string | null;
 
@@ -46,7 +41,6 @@ export interface IAccountContext extends ICustomContext {
    * Name of the external system provider which is linked through installed Outreach plugin.
    *
    * @type {string}
-   * @memberof AccountContext
    */
   externalProviderName?: string | null;
 
@@ -54,7 +48,6 @@ export interface IAccountContext extends ICustomContext {
    * The company’s primary geographic region (e.g. "Eastern USA").
    *
    * @type {string}
-   * @memberof AccountContext
    */
   locality?: string | null;
 
@@ -62,7 +55,6 @@ export interface IAccountContext extends ICustomContext {
    * The name of the company (e.g. "Acme Corporation").
    *
    * @type {string}
-   * @memberof AccountContext
    */
   name?: string | null;
 
@@ -70,7 +62,6 @@ export interface IAccountContext extends ICustomContext {
    * A list of tag values associated with the account (e.g. ["Enterprise", "Tier 1"]).
    *
    * @type {string}
-   * @memberof AccountContext
    */
   tags?: string | null;
 
@@ -78,8 +69,7 @@ export interface IAccountContext extends ICustomContext {
    * Collection of zero or more external provider data current account has in external systems
    * which are linked through installed Outreach plugins.
    *
-   * @type {ExternalInfoContext[]}
-   * @memberof AccountContext
+   * @type {IExternalInfoContext[]}
    * @deprecated Usage of externalInfo is deprecated. Please use externalProviderId and externalProviderName instead.
    */
   externalInfo: IExternalInfoContext[];

@@ -5,7 +5,6 @@ export interface IOrganizationContext {
    * Unique organization identifier
    *
    * @type {string}
-   * @memberof UserContext
    */
   id?: string;
 
@@ -13,7 +12,6 @@ export interface IOrganizationContext {
    * Organization logo url
    *
    * @type {(string | null)}
-   * @memberof OrganizationContext
    */
   logo?: string | null;
 
@@ -21,15 +19,13 @@ export interface IOrganizationContext {
    * Organization name
    *
    * @type {(string | null)}
-   * @memberof OrganizationContext
    */
   name?: string | null;
 
   /**
-   * Orgnaization short name
+   * Organization short name
    *
    * @type {(string | null)}
-   * @memberof OrganizationContext
    */
   shortname?: string | null;
 }

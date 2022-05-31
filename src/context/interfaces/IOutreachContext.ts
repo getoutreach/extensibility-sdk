@@ -13,7 +13,6 @@ export interface IOutreachContext {
    * Language locale to be used in rendering addon.
    *
    * @type {string}
-   * @memberof OutreachContext
    */
   locale: Locale;
 
@@ -21,7 +20,6 @@ export interface IOutreachContext {
    * A theme addon should be using in rendering.
    *
    * @type {Theme}
-   * @memberof OutreachContext
    */
   theme: Theme;
 
@@ -29,15 +27,13 @@ export interface IOutreachContext {
    * Unique identifier of the Outreach user.
    *
    * @type {string}
-   * @memberof OutreachContext
    */
   userIdentifier?: string;
 
   /**
    * Outreach account context information  (if any)
    *
-   * @type {AccountContext}
-   * @memberof OutreachContext
+   * @type {IAccountContext}
    */
   account?: IAccountContext;
 
@@ -45,7 +41,6 @@ export interface IOutreachContext {
    * Outreach user context information (if any)
    *
    * @type {UserContext}
-   * @memberof OutreachContext
    */
   user?: IUserContext;
 
@@ -53,31 +48,27 @@ export interface IOutreachContext {
    * Outreach user organization information (if any)
    *
    * @type {OrganizationContext}
-   * @memberof OutreachContext
    */
   organization?: IOrganizationContext;
 
   /**
    * Current Outreach opportunity context information (if any)
    *
-   * @type {OpportunityContext}
-   * @memberof OutreachContext
+   * @type {IOpportunityContext}
    */
   opportunity?: IOpportunityContext;
 
   /**
    * Current Outreach prospect context information (if any)
    *
-   * @type {ProspectContext}
-   * @memberof OutreachContext
+   * @type {IProspectContext}
    */
   prospect?: IProspectContext;
 
   /**
    * Context of the addon hosting environment
    *
-   * @type {HostContext}
-   * @memberof OutreachContext
+   * @type {IHostContext}
    */
   host: IHostContext;
 
@@ -85,8 +76,7 @@ export interface IOutreachContext {
    * Optional section containing configuration values
    * provided by user.
    *
-   * @type {ConfigurationValue[]}
-   * @memberof OutreachContext
+   * @type {IConfigurationValue[]}
    */
   config?: IConfigurationValue[];
 }

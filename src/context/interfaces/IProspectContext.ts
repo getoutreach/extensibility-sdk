@@ -6,7 +6,6 @@ export interface IProspectContext extends ICustomContext {
    * The domain of the prospect company
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   accountDomain?: string | null;
 
@@ -14,7 +13,6 @@ export interface IProspectContext extends ICustomContext {
    * The name of the prospect company
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   accountName?: string | null;
 
@@ -22,7 +20,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - city
    *
    * @type {string | null}
-   * @memberof ProspectContext
    */
   addressCity?: string | null;
 
@@ -30,7 +27,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - country
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   addressCountry?: string | null;
 
@@ -38,7 +34,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - state
    *
    * @type {string | null}
-   * @memberof ProspectContext
    */
   addressState?: string | null;
 
@@ -46,7 +41,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - street
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   addressStreet?: string | null;
 
@@ -54,7 +48,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - street2
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   addressStreet2?: string | null;
 
@@ -62,7 +55,6 @@ export interface IProspectContext extends ICustomContext {
    * Prospect address - zip
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   addressZip?: string | null;
 
@@ -70,7 +62,6 @@ export interface IProspectContext extends ICustomContext {
    * The date and time the prospect is available to contact again.
    *
    * @type {Date}
-   * @memberof ProspectContext
    */
   availableAt?: Date | null;
 
@@ -79,7 +70,6 @@ export interface IProspectContext extends ICustomContext {
    * this is the name of the account. (e.g. Acme International).
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   company?: string | null;
 
@@ -87,7 +77,6 @@ export interface IProspectContext extends ICustomContext {
    * The locality of prospect’s company.
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   companyLocality?: string | null;
 
@@ -95,7 +84,6 @@ export interface IProspectContext extends ICustomContext {
    * A list of email addresses associated with the prospect.
    *
    * @type {string[]}
-   * @memberof ProspectContext
    */
   emails?: string[] | null;
 
@@ -103,7 +91,6 @@ export interface IProspectContext extends ICustomContext {
    * Identity of the current prospect in the external system which is linked through installed Outreach plugin.
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   externalProviderId?: string | null;
 
@@ -111,7 +98,6 @@ export interface IProspectContext extends ICustomContext {
    * Name of the external system provider which is linked through installed Outreach plugin.
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   externalProviderName?: string | null;
 
@@ -119,7 +105,6 @@ export interface IProspectContext extends ICustomContext {
    * Unique prospect identifier.
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   id: string;
 
@@ -127,7 +112,6 @@ export interface IProspectContext extends ICustomContext {
    * Tags associated with the opportunity.
    *
    * @type {string}
-   * @memberof ProspectContext
    */
   tags?: string | null;
 
@@ -145,8 +129,7 @@ export interface IProspectContext extends ICustomContext {
    * Collection of zero or more external provider data current account has in external systems
    * which are linked through installed Outreach plugins.
    *
-   * @type {ExternalInfoContext[]}
-   * @memberof ProspectContext
+   * @type {IExternalInfoContext[]}
    * @deprecated Usage of externalInfo is deprecated. Please use externalProviderId and externalProviderName instead.
    */
   externalInfo: IExternalInfoContext[];

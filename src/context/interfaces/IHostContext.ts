@@ -5,8 +5,7 @@ export interface IHostContext {
    * Collection of url parameters addon hosting url used
    * for loading addon
    *
-   * @type UrlParam[]
-   * @memberof HostContext
+   * @type IUrlParam[]
    */
   urlParams: IUrlParam[];
 }

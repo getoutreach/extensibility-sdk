@@ -3,7 +3,6 @@ export interface IUrlParam {
    * Url search parameter key
    *
    * @type {string}
-   * @memberof UrlParam
    */
   key: string;
 
@@ -11,7 +10,6 @@ export interface IUrlParam {
    * Url search parameter value
    *
    * @type {string}
-   * @memberof UrlParam
    */
   value: string;
 }

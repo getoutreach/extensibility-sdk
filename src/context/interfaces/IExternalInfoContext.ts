@@ -4,16 +4,13 @@ import { ExternalInfoProvider } from '../host/ExternalInfoProvider';
  * Definition of the prospect in the external data provider
  * which is linked with Outreach prospect data.
  *
- * @export
- * @class ExternalInfoContext
- * @deprecated Usage of the external info is depricated and will be removed in future release
+ * @deprecated Usage of the external info is deprecated and will be removed in future release
  */
 export interface IExternalInfoContext {
   /**
    *Type of external prospect data provider.
    *
    * @type {ExternalInfoProvider}
-   * @memberof ExternalInfoContext
    */
   provider: ExternalInfoProvider;
 
@@ -21,7 +18,6 @@ export interface IExternalInfoContext {
    * Is external provider plugin integration enabled?
    *
    * @type {boolean}
-   * @memberof ExternalInfoContext
    */
   enabled: boolean;
 
@@ -29,7 +25,6 @@ export interface IExternalInfoContext {
    * External data provider prospect id
    *
    * @type {string}
-   * @memberof ExternalInfoContext
    */
   id: string;
 
@@ -37,7 +32,6 @@ export interface IExternalInfoContext {
    * External data provider prospect name
    *
    * @type {(string | null)}
-   * @memberof ExternalInfoContext
    */
   name?: string | null;
 
@@ -45,7 +39,6 @@ export interface IExternalInfoContext {
    * External data provider type.
    *
    * @type {string}
-   * @memberof ExternalInfoContext
    */
   type: string;
 
@@ -53,7 +46,6 @@ export interface IExternalInfoContext {
    * The date of last data inbound operation.
    *
    * @type {Date}
-   * @memberof ExternalInfoContext
    */
   lastInbound?: Date | null;
 
@@ -61,7 +53,6 @@ export interface IExternalInfoContext {
    * The date of last data outbound operation.
    *
    * @type {(Date | null)}
-   * @memberof ExternalInfoContext
    */
   lastOutbound?: Date | null;
 }

@@ -3,7 +3,6 @@ export interface IUserContext {
    * The email address of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   email?: string | null;
 
@@ -11,7 +10,6 @@ export interface IUserContext {
    * The first name of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   firstName?: string | null;
 
@@ -19,7 +17,6 @@ export interface IUserContext {
    * Unique user identifier
    *
    * @type {string}
-   * @memberof UserContext
    */
   id: string;
 
@@ -27,7 +24,6 @@ export interface IUserContext {
    * Last name of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   lastName: string | null;
 
@@ -35,7 +31,6 @@ export interface IUserContext {
    * Full name of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   name?: string | null;
 
@@ -43,7 +38,6 @@ export interface IUserContext {
    * Role of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   role?: string | null;
 
@@ -51,7 +45,6 @@ export interface IUserContext {
    * The user's job title (e.g. "Staff Accountant").
    *
    * @type {string}
-   * @memberof UserContext
    */
   title: string | null;
 
@@ -59,7 +52,6 @@ export interface IUserContext {
    * A reader friendly unique identifier of the user.
    *
    * @type {string}
-   * @memberof UserContext
    */
   username: string | null;
 
