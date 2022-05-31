@@ -1,11 +1,13 @@
 import { ContextParam } from './ContextParam';
+import { ICustomContext } from '../interfaces/ICustomContext';
 
 export abstract class Context {
   public abstract initFrom(param: ContextParam): boolean;
+
   public abstract toParams(): ContextParam[];
 }
 
-export abstract class CustomContext extends Context {
+export abstract class CustomContext extends Context implements ICustomContext {
   public customField1?: string | null;
   public customField2?: string | null;
   public customField3?: string | null;

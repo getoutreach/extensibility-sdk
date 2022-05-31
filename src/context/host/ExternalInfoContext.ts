@@ -1,4 +1,5 @@
 import { ExternalInfoProvider } from './ExternalInfoProvider';
+import { IExternalInfoContext } from '../interfaces/IExternalInfoContext';
 
 /**
  * Definition of the prospect in the external data provider
@@ -8,7 +9,7 @@ import { ExternalInfoProvider } from './ExternalInfoProvider';
  * @class ExternalInfoContext
  * @deprecated Usage of the external info is depricated and will be removed in future release
  */
-export class ExternalInfoContext {
+export class ExternalInfoContext implements IExternalInfoContext {
   /**
    *Type of external prospect data provider.
    *

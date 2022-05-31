@@ -2,8 +2,9 @@ import { initAccountContext, toAccountParams } from './AccountContextUtils';
 import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
 import { ExternalInfoContext } from './ExternalInfoContext';
+import { IAccountContext } from '../interfaces/IAccountContext';
 
-export class AccountContext extends CustomContext {
+export class AccountContext extends CustomContext implements IAccountContext {
   /**
    * Unique account identifier
    *

@@ -1,8 +1,9 @@
 import { OrganizationContextKeys } from '../keys/OrganizationContextKeys';
 import { ContextParam } from './ContextParam';
 import { Context } from './CustomContext';
+import { IOrganizationContext } from '../interfaces/IOrganizationContext';
 
-export class OrganizationContext extends Context {
+export class OrganizationContext extends Context implements IOrganizationContext {
   currency?: string | null;
 
   /**

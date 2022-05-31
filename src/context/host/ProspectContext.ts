@@ -3,8 +3,9 @@ import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
 import { ExternalInfoContext } from './ExternalInfoContext';
 import { initProspectContext, toProspectParams } from './ProspectContextUtils';
+import { IProspectContext } from '../interfaces/IProspectContext';
 
-export class ProspectContext extends CustomContext {
+export class ProspectContext extends CustomContext implements IProspectContext {
   /**
    * The domain of the prospect company
    *

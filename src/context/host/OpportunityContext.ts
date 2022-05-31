@@ -2,8 +2,9 @@ import { ContextParam } from './ContextParam';
 import { CustomContext } from './CustomContext';
 import { ExternalInfoContext } from './ExternalInfoContext';
 import { initOpportunityContext, toOpportunityParams } from './OpportunityContextUtils';
+import { IOpportunityContext } from '../interfaces/IOpportunityContext';
 
-export class OpportunityContext extends CustomContext {
+export class OpportunityContext extends CustomContext implements IOpportunityContext {
   /**
    * The amount the opportunity is worth.
    *

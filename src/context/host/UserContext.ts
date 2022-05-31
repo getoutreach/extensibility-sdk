@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import { UserContextKeys } from '../keys/UserContextKeys';
 import { ContextParam } from './ContextParam';
-import { Context } from './CustomContext';
+import { IUserContext } from '../interfaces/IUserContext';
 
-export class UserContext extends Context {
+export class UserContext implements IUserContext {
   /**
    * The email address of the user.
    *
@@ -79,7 +79,7 @@ export class UserContext extends Context {
    *
    * @memberof OpportunityContext
    */
-  public initFrom = (param: ContextParam): boolean => {
+  initFrom = (param: ContextParam): boolean => {
     switch (param.key) {
       case UserContextKeys.EMAIL:
         this.email = param.value;

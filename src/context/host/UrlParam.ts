@@ -1,4 +1,6 @@
-export class UrlParam {
+import { IUrlParam } from '../interfaces/IUrlParam';
+
+export class UrlParam implements IUrlParam {
   /**
    * Url search parameter key
    *
