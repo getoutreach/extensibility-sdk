@@ -34,15 +34,11 @@ import { ILogger } from './sdk/logging/ILogger';
 import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 import { ManifestTranslator } from './legacy/ManifestTranslator';
 import { OrganizationContext } from './context/host/OrganizationContext';
-
-export { ExternalInfoContext } from './context/host/ExternalInfoContext';
-export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
-export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
+import { IOutreachContext } from './context/interfaces/IOutreachContext';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
 export { ConfigurationItemType } from './configuration/ConfigurationItemType';
-export { ConfigurationValue } from './configuration/ConfigurationValue';
 
 export { AccountContextKeys } from './context/keys/AccountContextKeys';
 export { AllContextKeys } from './context/keys/AllContextKeys';
@@ -52,13 +48,20 @@ export { ProspectContextKeys } from './context/keys/ProspectContextKeys';
 export { UserContextKeys } from './context/keys/UserContextKeys';
 export { OrganizationContextKeys } from './context/keys/OrganizationContextKeys';
 
-export { AccountContext } from './context/host/AccountContext';
+export { IExternalInfoContext as ExternalInfoContext } from './context/interfaces/IExternalInfoContext';
+export { ExternalInfoProvider } from './context/host/ExternalInfoProvider';
+export { ExternalInfoUtils } from './context/host/ExternalInfoUtils';
+
 export { ContextParam } from './context/host/ContextParam';
-export { CustomContext } from './context/host/CustomContext';
-export { OpportunityContext } from './context/host/OpportunityContext';
-export { UrlParam } from './context/host/UrlParam';
-export { UserContext } from './context/host/UserContext';
-export { OrganizationContext } from './context/host/OrganizationContext';
+export { IAccountContext as AccountContext } from './context/interfaces/IAccountContext';
+export { ICustomContext as CustomContext } from './context/interfaces/ICustomContext';
+export { IOpportunityContext as OpportunityContext } from './context/interfaces/IOpportunityContext';
+export { IUserContext as UserContext } from './context/interfaces/IUserContext';
+export { IOrganizationContext as OrganizationContext } from './context/interfaces/IOrganizationContext';
+export { IProspectContext as ProspectContext } from './context/interfaces/IProspectContext';
+export { IHostContext as HostContext } from './context/interfaces/IHostContext';
+export { IUrlParam as UrlParam } from './context/interfaces/IUrlParam';
+export { IConfigurationValue as ConfigurationValue } from './context/interfaces/IConfigurationValue';
 
 export { LoadingContext } from './context/LoadingContext';
 export { OutreachContext } from './context/OutreachContext';
@@ -152,7 +155,7 @@ class Task<T> {
 
 class ExtensibilitySdk {
   private initTimer?: number;
-  private initTask?: Task<OutreachContext>;
+  private initTask?: Task<IOutreachContext>;
 
   private authorizeTask: Task<string | null>;
 
@@ -348,13 +351,13 @@ class ExtensibilitySdk {
    * @returns {Promise<OutreachContext>}
    * @memberof ExtensibilitySdk
    */
-  public init = async (): Promise<OutreachContext> => {
+  public init = async (): Promise<IOutreachContext> => {
     if (this.initTask) {
       return this.initTask.promise;
     }
 
-    this.initTask = new Task<OutreachContext>();
-    this.initTask.promise = new Promise<OutreachContext>((resolve, reject) => {
+    this.initTask = new Task<IOutreachContext>();
+    this.initTask.promise = new Promise<IOutreachContext>((resolve, reject) => {
       this.initTask!.onfulfilled = resolve;
       this.initTask!.onrejected = reject;
 
@@ -608,7 +611,7 @@ class ExtensibilitySdk {
   private resolveInitPromise = (cxt: OutreachContext) => {
     window.clearTimeout(this.initTimer);
     if (this.initTask) {
-      this.initTask.onfulfilled(cxt);
+      this.initTask.onfulfilled(JSON.parse(JSON.stringify(cxt)));
     }
   };
 
