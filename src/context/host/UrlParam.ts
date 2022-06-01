@@ -1,17 +1,7 @@
-export class UrlParam {
-  /**
-   * Url search parameter key
-   *
-   * @type {string}
-   * @memberof UrlParam
-   */
+import { IUrlParam } from '../interfaces/IUrlParam';
+
+export class UrlParam implements IUrlParam {
   public key: string;
 
-  /**
-   * Url search parameter value
-   *
-   * @type {string}
-   * @memberof UrlParam
-   */
   public value: string;
 }
