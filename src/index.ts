@@ -823,4 +823,4 @@ declare global {
 window.outreach = window.outreach || {};
 window.outreach.extensibilitySdk = new ExtensibilitySdk();
 
-export default window.outreach.extensibilitySdk;
+export default window.outreach!.extensibilitySdk;
