@@ -287,6 +287,26 @@
             "items": {
               "type": "string"
             }
+          },
+          "settings": {
+            "type": "object",
+            "properties": {
+              "recommended": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number"
+                    },
+                    "height": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["width", "height"]
+                }
+              }
+            }
           }
         },
         "required": ["identifier", "type", "version", "host", "environment"]
