@@ -302,7 +302,8 @@
                     "height": {
                       "type": "number"
                     }
-                  }
+                  },
+                  "required": ["width", "height"]
                 }
               }
             }
