@@ -287,28 +287,28 @@
             "items": {
               "type": "string"
             }
-          }
-        },
-        "required": ["identifier", "type", "version", "host", "environment"],
-        "settings": {
-          "type": "object",
-          "properties": {
-            "recommended": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "width": {
-                    "type": "number"
-                  },
-                  "height": {
-                    "type": "number"
+          },
+          "settings": {
+            "type": "object",
+            "properties": {
+              "recommended": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number"
+                    },
+                    "height": {
+                      "type": "number"
+                    }
                   }
                 }
               }
             }
           }
-        }
+        },
+        "required": ["identifier", "type", "version", "host", "environment"]
       }
     }
   },
