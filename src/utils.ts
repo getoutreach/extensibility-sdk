@@ -53,7 +53,7 @@ export class utils {
     const hostUrl = new URL(url);
 
     const hostParams = new URLSearchParams(hostUrl.searchParams);
-    params.filter((p) => p.value).forEach((param) => hostParams.append(param.key, param.value!));
+    params.forEach((param) => hostParams.append(param.key, param.value ?? ''));
     const hostParamsString = hostParams.toString().replace('=&', '&');
 
     return `${utils.getUrlDomain(hostUrl)}${hostUrl.pathname}?${hostParamsString}${hostUrl.hash}`;
