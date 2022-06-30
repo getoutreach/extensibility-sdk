@@ -144,6 +144,7 @@ export { HomeTasksTileExtension } from './manifest/extensions/tiles/types/HomeTa
 export { AccountTileExtension } from './manifest/extensions/tiles/types/AccountTileExtension';
 export { OpportunityTileExtension } from './manifest/extensions/tiles/types/OpportunityTileExtension';
 export { ProspectTileExtension } from './manifest/extensions/tiles/types/ProspectTileExtension';
+export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
