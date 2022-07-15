@@ -1,4 +1,3 @@
-import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import { OutreachContext } from '../../../context/OutreachContext';
 import { utils } from '../../../utils';
 import { Extension } from '../Extension';
@@ -20,18 +19,6 @@ export class TileExtension extends Extension {
    * @memberof TileExtension
    */
   public type: TileExtensionType;
-
-  /**
-   * In this section, the extension author defines a list of predefined context information that tile extension needs
-   * from Outreach host to be sent during the initialization process.
-   * It is a string array of predefined Outreach properties describing attributes of the Outreach user loading the addon.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {AllContextKeys}
-   * @memberof TileExtension
-   */
-  public context: AllContextKeys[];
 
   /**
    * Optional property defining the text, which will be shown in the tile selector

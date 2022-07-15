@@ -6,23 +6,10 @@ import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
 import { LogLevel } from '../../../sdk/logging/LogLevel';
 import { OutreachContext } from '../../../context/OutreachContext';
-import { AllContextKeys } from '../../../context/keys/AllContextKeys';
 import logger from '../../../sdk/logging/Logger';
 import { LocalizedString } from '../../store/LocalizedString';
 
 export class TabExtension extends Extension {
-  /**
-   * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
-   * to be sent during the initialization process.
-   * It is a string array of predefined Outreach properties describing attributes of the Outreach user loading the addon.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   * @type {TabExtensionType}
-   * @memberof TabExtension
-   */
-  public context: AllContextKeys[];
-
   /**
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#environment
    *
