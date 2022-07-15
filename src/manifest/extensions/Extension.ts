@@ -1,9 +1,22 @@
+import { AllContextKeys } from '../../context/keys/AllContextKeys';
 import { OutreachContext } from '../../context/OutreachContext';
 import { LocalizedString } from '../store/LocalizedString';
 import { ExtensionHost } from './ExtensionHost';
 import { ExtensionType } from './ExtensionType';
 
 export abstract class Extension {
+  /**
+   * In this section, the addon author defines a list of predefined context information that addon needs from Outreach
+   * to be sent during the initialization process.
+   * It is a string array of predefined Outreach properties describing attributes of the Outreach user loading the addon.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
+   * @type {AllContextKeys[]}
+   * @memberof Extension
+   */
+  public context: AllContextKeys[];
+
   /**
    * Extension identifier
    *
@@ -26,7 +39,7 @@ export abstract class Extension {
    * If omitted, app.headline manifest value will be used.
    *
    * @type {LocalizedString}
-   * @memberof TabExtension
+   * @memberof Extension
    */
   public title?: LocalizedString;
 
