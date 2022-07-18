@@ -8,7 +8,7 @@ For app developers Outreach offers the following tools:
 - [Outreach Developer Portal](developer-portal.md) - lets you create and manage Outreach applications.
 - [Outreach Extensibility SDK](sdk.md) - lets your extension access a subset of Outreach data.
 - [Outreach REST API](https://api.outreach.io/api/v2/docs) - lets you programmatically manipulate Outreach data in your
-  organisation via [OAuth](oauth.md) authenticated requests.
+  organisation.
 
 ## What is an Outreach application?
 
