@@ -153,6 +153,7 @@ export {
   isEnvironmentMessage,
   isNavigationMessage,
   isNotificationMessage,
+  isReadyMessage,
 } from './sdk/messages/MessageGuards';
 
 class Task<T> {
