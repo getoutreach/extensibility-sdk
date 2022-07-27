@@ -19,6 +19,7 @@ export class ReadyMessage extends Message {
    *
    * @type {number}
    * @memberof ReadyMessage
+   * @deprecated This property is obsolete and will be removed
    */
   public version?: number;
 }

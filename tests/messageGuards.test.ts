@@ -3,6 +3,7 @@ import {
   isEnvironmentMessage,
   isNavigationMessage,
   isNotificationMessage,
+  isReadyMessage,
 } from '../src/sdk/messages/MessageGuards';
 import { MessageType } from '../src/sdk/messages/MessageType';
 
@@ -132,6 +133,24 @@ describe('Message Guard Tests', () => {
       };
 
       expect(isNotificationMessage(msg)).toBe(false);
+    });
+  });
+
+  describe('Ready message', () => {
+    test('Valid message will be accepted', () => {
+      const msg = {
+        type: MessageType.READY,
+      };
+
+      expect(isReadyMessage(msg)).toBe(true);
+    });
+
+    test('Invalid type message will be rejected', () => {
+      const msg = {
+        type: 'NOT VALID',
+      };
+
+      expect(isReadyMessage(msg)).toBe(false);
     });
   });
 });

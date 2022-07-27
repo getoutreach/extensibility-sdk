@@ -3,6 +3,7 @@ import { EnvironmentMessage } from './EnvironmentMessage';
 import { MessageType } from './MessageType';
 import { NavigationMessage } from './NavigationMessage';
 import { NotificationMessage } from './NotificationMessage';
+import { ReadyMessage } from './ReadyMessage';
 
 export const isDecorationMessage = (messageInfo: any): messageInfo is DecorationUpdateMessage => {
   if (!Object.prototype.hasOwnProperty.call(messageInfo, 'type') || typeof messageInfo.type !== 'string') {
@@ -78,6 +79,18 @@ export const isNotificationMessage = (messageInfo: any): messageInfo is Notifica
     !Object.prototype.hasOwnProperty.call(messageInfo, 'notificationType') ||
     typeof messageInfo.notificationType !== 'string'
   ) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isReadyMessage = (messageInfo: any): messageInfo is ReadyMessage => {
+  if (!Object.prototype.hasOwnProperty.call(messageInfo, 'type') || typeof messageInfo.type !== 'string') {
+    return false;
+  }
+
+  if (messageInfo.type !== MessageType.READY) {
     return false;
   }
 
