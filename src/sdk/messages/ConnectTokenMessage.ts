@@ -8,6 +8,7 @@ import { MessageType } from './MessageType';
  * @export
  * @class ConnectTokenMessage
  * @extends {Message}
+ * @deprecated This type of message will be deprecated in upcoming future releases.
  */
 export class ConnectTokenMessage extends Message {
   /**
