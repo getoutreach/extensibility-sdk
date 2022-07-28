@@ -13,6 +13,7 @@ export enum MessageType {
   INIT = 'cxt:sdk:init',
   /**
    * Message sent from client to host requesting host to perform new initialization.
+   * @deprecated This property will be removed in the upcoming release
    */
   // eslint-disable-next-line no-unused-vars
   REQUEST_RELOAD = 'cxt:sdk:reload',
@@ -31,11 +32,13 @@ export enum MessageType {
 
   /**
    * Message received from host containing the new authentication token
+   * @deprecated This is legacy member which will be removed in next major release.
    */
   REFRESH_AUTH_TOKEN = 'cxt:sdk:token',
 
   /**
    * Message received from the OAuth popup window containing new token information.
+   * @deprecated This is legacy member which will be removed in next major release.
    */
   CONNECT_AUTH_TOKEN = 'cxt:connect:token',
 

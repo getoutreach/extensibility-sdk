@@ -148,6 +148,14 @@ export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
+export {
+  isDecorationMessage,
+  isEnvironmentMessage,
+  isNavigationMessage,
+  isNotificationMessage,
+  isReadyMessage,
+} from './sdk/messages/MessageGuards';
+
 class Task<T> {
   public promise: Promise<T>;
   public onfulfilled: (value: T) => void;
