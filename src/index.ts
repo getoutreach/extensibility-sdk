@@ -163,6 +163,17 @@ export {
   isOpportunityTileExtension,
   isProspectTileExtension,
   isTileExtension,
+  isAccountTabExtension,
+  isActionShellExtension,
+  isApplicationShellExtension,
+  isCompanionShellExtension,
+  isKnowledgeShellExtension,
+  isOpportunityTabExtension,
+  isProspectActionExtension,
+  isProspectTabExtension,
+  isReportsTabExtension,
+  isSidekickShellExtension,
+  isToolShellExtension,
 } from './manifest/extensions/ExtensionGuards';
 
 class Task<T> {
