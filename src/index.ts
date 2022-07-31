@@ -156,6 +156,15 @@ export {
   isReadyMessage,
 } from './sdk/messages/MessageGuards';
 
+export {
+  isAccountTileExtension,
+  isHomeEmailTileExtension,
+  isHomeTasksTileExtension,
+  isOpportunityTileExtension,
+  isProspectTileExtension,
+  isTileExtension,
+} from './manifest/extensions/ExtensionGuards';
+
 class Task<T> {
   public promise: Promise<T>;
   public onfulfilled: (value: T) => void;
