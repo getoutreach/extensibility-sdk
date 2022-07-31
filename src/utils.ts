@@ -174,7 +174,6 @@ export class utils {
       const validatedUrl = new URL(url);
       return validatedUrl.toString() === url;
     } catch (e) {
-      console.warn('Invalid host url:', hostUrl, context, e);
       return false;
     }
   };
