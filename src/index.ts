@@ -156,6 +156,26 @@ export {
   isReadyMessage,
 } from './sdk/messages/MessageGuards';
 
+export {
+  isAccountTileExtension,
+  isHomeEmailTileExtension,
+  isHomeTasksTileExtension,
+  isOpportunityTileExtension,
+  isProspectTileExtension,
+  isTileExtension,
+  isAccountTabExtension,
+  isActionShellExtension,
+  isApplicationShellExtension,
+  isCompanionShellExtension,
+  isKnowledgeShellExtension,
+  isOpportunityTabExtension,
+  isProspectActionExtension,
+  isProspectTabExtension,
+  isReportsTabExtension,
+  isSidekickShellExtension,
+  isToolShellExtension,
+} from './manifest/extensions/ExtensionGuards';
+
 class Task<T> {
   public promise: Promise<T>;
   public onfulfilled: (value: T) => void;
