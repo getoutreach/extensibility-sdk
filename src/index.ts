@@ -16,14 +16,11 @@ import { ProspectContext } from './context/host/ProspectContext';
 import { UserContext } from './context/host/UserContext';
 
 import runtime, { RuntimeContext } from './sdk/RuntimeContext';
-import tokenService from './sdk/services/tokenService';
 import authService from './sdk/services/oauthService';
 
 import logger from './sdk/logging/Logger';
-import { Constants } from './sdk/Constants';
 import { EventType } from './sdk/logging/EventType';
 import { EventOrigin } from './sdk/logging/EventOrigin';
-import { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 import { utils } from './utils';
 import { NavigationDestination } from './sdk/messages/NavigationDestination';
 import { NavigationMessage } from './sdk/messages/NavigationMessage';
@@ -72,7 +69,6 @@ export { EventType } from './sdk/logging/EventType';
 export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export { ConnectTokenMessage } from './sdk/messages/ConnectTokenMessage';
 export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 export { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
@@ -86,7 +82,6 @@ export { NotificationMessage } from './sdk/messages/NotificationMessage';
 export { NotificationType } from './sdk/messages/NotificationType';
 export { ReadyMessage } from './sdk/messages/ReadyMessage';
 
-export { Constants } from './sdk/Constants';
 export { Locale } from './sdk/Locale';
 export { RuntimeContext } from './sdk/RuntimeContext';
 export { Theme } from './sdk/Theme';
@@ -190,20 +185,6 @@ class ExtensibilitySdk {
 
   public getRuntime = (): RuntimeContext => runtime;
   public activeListener: boolean = false;
-
-  /**
-   * Setting of the cookie cxt-sdk-user
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/main/docs/outreach-api.md#caching-the-tokens
-   * @memberof ExtensibilitySdkW
-   * @deprecated Usage of SDK cookie is deprecated and it will be removed in future releases.
-   *
-   */
-  public cookie = {
-    name: Constants.AUTH_USER_STATE_COOKIE_NAME,
-    domain: window.location?.host,
-    maxAge: 1 * 60 * 60, // one hour
-  };
 
   /**
    * Load handler is being invoked after the addon is fully loaded,
@@ -464,16 +445,6 @@ class ExtensibilitySdk {
     this.authorizeTask.promise = new Promise<string | null>((resolve, reject) => {
       this.authorizeTask!.onfulfilled = resolve;
       this.authorizeTask!.onrejected = reject;
-
-      // start the OAuth consent flow by recording user identifier
-      // addon host server will need server will need
-      // to read in its OAuth implementation
-      const cookieContent = `${this.cookie.name}=${runtime.userIdentifier};Secure;SameSite=None;Path=/;Domain=${this.cookie.domain};max-age:${this.cookie.maxAge}`;
-
-      // user identifier goes to cookie to enable addon oauth server
-      // linking the outreach user with the addon external identity.
-      document.cookie = cookieContent;
-
       authService.openPopup(redirectUri, state);
     });
 
@@ -486,30 +457,6 @@ class ExtensibilitySdk {
     });
 
     return this.authorizeTask!.promise;
-  };
-
-  /**
-   *
-   * Tries to obtain valid Outreach API token first by checking the local cache
-   * and then by asking addon host if it can produce a new access token from its own cache
-   * or by using previously obtained refresh token.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#token-endpoint
-   *
-   * @memberof ExtensibilitySdk
-   * @deprecated This usage of function is deprecated and it will be removed in future release.
-   */
-  public getToken = async (skipCache?: boolean): Promise<string | null> => {
-    await this.verifySdkInitialized();
-
-    if (!skipCache) {
-      const cachedToken = await tokenService.getCachedTokenAsync();
-      if (cachedToken) {
-        return cachedToken;
-      }
-    }
-
-    return await tokenService.fetchTokenAsync();
   };
 
   public sendMessage<T extends Message>(message: T, logged?: boolean) {
@@ -608,9 +555,6 @@ class ExtensibilitySdk {
         this.resolveInitPromise(context);
         break;
       }
-      case MessageType.CONNECT_AUTH_TOKEN:
-        this.handleRefreshTokenMessage(addonMessage as ConnectTokenMessage);
-        break;
       case MessageType.HOST_LOAD_INFO:
         this.handleLoadInfoMessage(addonMessage as LoadInfoMessage);
         break;
@@ -713,36 +657,6 @@ class ExtensibilitySdk {
     });
 
     return outreachContext;
-  };
-
-  private handleRefreshTokenMessage = (tokenMessage: ConnectTokenMessage) => {
-    tokenService.cacheToken({
-      value: tokenMessage.token,
-      expiresAt: tokenMessage.expiresAt,
-    });
-
-    if (this.authorizeTask) {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        message: '[CXT][AddonSdk]::onReceived-Resolving authorize promise',
-        level: LogLevel.Debug,
-        context: [],
-      });
-      if (tokenMessage.token) {
-        this.authorizeTask.onfulfilled(tokenMessage.token);
-      } else {
-        this.authorizeTask.onrejected('No token value received');
-      }
-    } else {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        message: `[CXT][AddonSdk] ::onReceived - Client event ${tokenMessage.type} received without promise to resolve`,
-        level: LogLevel.Warning,
-        context: [JSON.stringify(tokenMessage)],
-      });
-    }
   };
 
   private getAddonMessage = (messageEvent: MessageEvent): Message | null => {

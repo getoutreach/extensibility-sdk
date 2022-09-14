@@ -39,45 +39,4 @@ export class ManifestApi {
    * @memberof ManifestApi
    */
   redirectUris: string[];
-
-  /**
-   * Outreach OAuth application id
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#applicationid
-   * @type {string}
-   * @deprecated applicationId is deprecated and replaced by client.id
-   * @memberof ManifestApi
-   */
-  applicationId: string;
-
-  /**
-   * Outreach OAuth App redirect uri on which the Authorization endpoint is implemented.
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#redirecturi
-   * @type {string}
-   * @deprecated redirectUri is deprecated and replaced by redirectUris array
-   * @memberof ManifestApi
-   */
-  redirectUri: string;
-
-  /**
-   * Address of the endpoint, which will return support refresh token flow.
-   *
-   * @type {string}
-   * @memberof ManifestApi
-   * @deprecated Usage of token endpoint is deprecated and will be removed in upcoming releases.
-   */
-  token: string;
-
-  /**
-   *
-   * Address of the connect endpoint, which will contain a page
-   * posting authentication token info back to addon page which
-   * had opened the popup.
-   *
-   * @type {string}
-   * @deprecated Usage of connect endpoint is deprecated and will be removed in upcoming releases.
-   * @memberof ManifestApi
-   */
-  connect: string;
 }
