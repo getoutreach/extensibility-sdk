@@ -26,6 +26,14 @@ export class InitMessage extends Message {
   application: Application;
 
   /**
+   * Host domain to be used in the constructing of a OAuth popup URL
+   *
+   * @type {string}
+   * @memberof InitMessage
+   */
+  authorizationHost: string;
+
+  /**
    * Optional section containing configuration values
    * provided by user.
    *

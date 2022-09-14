@@ -590,6 +590,7 @@ class ExtensibilitySdk {
 
   private preprocessInitMessage = (initMessage: InitMessage): OutreachContext => {
     runtime.application = ManifestTranslator.hydrate(initMessage.application);
+    runtime.authorizationHost = initMessage.authorizationHost;
     runtime.configuration = initMessage.configuration;
     runtime.extension = initMessage.extension;
     runtime.locale = initMessage.locale;

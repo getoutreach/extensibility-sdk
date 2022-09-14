@@ -2,18 +2,14 @@ import oauthService from '../src/sdk/services/oauthService';
 
 jest.mock('../src/sdk/RuntimeContext', () => ({
   default: {
-    origin: 'https://addon-host.com/addon',
+    authorizationHost: 'https://accounts.com',
     application: {
       api: {
         scopes: ['accounts.all'],
-        applicationId: 'AbCd123456qW',
-        redirectUri: 'https://addon-host.com/hello-world1',
         redirectUris: ['https://addon-host.com/hello-world1', 'https://addon-host.com/hello-world2'],
         client: {
           id: 'AbCd123456qW',
         },
-        token: 'https://someurl.com/token',
-        connect: 'https://someurl.com/connect',
       },
     },
   },

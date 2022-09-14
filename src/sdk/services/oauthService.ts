@@ -11,23 +11,11 @@ class OAuthService {
     this.showPopup(authorizeUrl, 800, 600);
   };
 
-  private getOAuthHost = () => {
-    const originUrl = new URL(runtime.origin);
-
-    const regex = /https:\/\/([-\w]+?)\./.exec(originUrl.origin);
-    if (!regex) {
-      throw new Error('Invalid runtime origin url:' + originUrl.origin);
-    }
-
-    return originUrl.origin.replace(regex[1], 'accounts');
-  };
-
   private getOAuthAuthorizeUrl = (api: ManifestApi, redirectUri?: string, state?: string) => {
-    const host = this.getOAuthHost();
     const scopes = encodeURIComponent(api.scopes.join(' '));
     const selectedRedirectUri = encodeURIComponent(this.selectRedirectUri(api, redirectUri));
     const clientId = encodeURIComponent(api.client.id || '');
-    let url = `${host}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
+    let url = `${runtime.authorizationHost}/oauth/authorize?client_id=${clientId}&redirect_uri=${selectedRedirectUri}&response_type=code&scope=${scopes}`;
     if (state) {
       url += `&state=${encodeURIComponent(state)}`;
     }
