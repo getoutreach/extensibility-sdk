@@ -53,20 +53,12 @@ export const validate = (application: Application): string[] => {
 
     // Validate optional deprecated fields only if they are present
 
-    if (!clientIdValid && !application.api.applicationId) {
-      issues.push('Manifest Api section needs to have applicationId value.');
+    if (!clientIdValid) {
+      issues.push('Manifest Api section needs to have client.id value.');
     }
 
-    if (!redirectUrisValid && !utils.urlValidation(application.api.redirectUri)) {
-      issues.push('Manifest Api section needs to have a valid redirect url. Value: ' + application.api.redirectUri);
-    }
-
-    if (!utils.urlValidation(application.api.token)) {
-      issues.push('Manifest Api section needs to have a valid token endpoint url. Value: ' + application.api.token);
-    }
-
-    if (!utils.urlValidation(application.api.connect)) {
-      issues.push('Manifest Api section needs to have a valid connect endpoint url. Value: ' + application.api.connect);
+    if (!redirectUrisValid) {
+      issues.push('Manifest Api section needs to have valid redirect urls.');
     }
   }
 

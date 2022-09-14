@@ -110,22 +110,6 @@ export class utils {
       return false;
     }
 
-    // connect endpoint is posting a message with token to addon so it is valid origin
-    // see: https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api.md#connect-endpoint
-    const connectUri = new URL(runtime.application.api.connect);
-    const connectOrigin = utils.getUrlDomain(connectUri);
-    const connectMessage = origin === connectOrigin;
-    if (!connectMessage) {
-      logger.current.log({
-        origin: EventOrigin.ADDON,
-        type: EventType.INTERNAL,
-        level: LogLevel.Trace,
-        message: '[CXT][AddonSdk]::connectOrigin - invalid connect origin received',
-        context: [origin, connectOrigin],
-      });
-      return false;
-    }
-
     return true;
   };
 

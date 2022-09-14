@@ -38,6 +38,7 @@ import { ManifestStore } from '../manifest/ManifestStore';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
+import { ManifestV1Api } from './ManifestV1Api';
 
 export class ManifestTranslator {
   public static getAddonManifest(app: Application, ext: TabExtension | ShellExtension): ManifestV1 | null {
@@ -109,6 +110,20 @@ export class ManifestTranslator {
       ext.type === TabExtensionType.PROSPECT ||
       ext.type === TabExtensionType.OPPORTUNITY;
 
+    const mapApi = (): ManifestV1Api | undefined => {
+      if (!app.api) {
+        return;
+      }
+
+      return {
+        applicationId: app.api.client.id,
+        scopes: app.api.scopes,
+        connect: '',
+        redirectUri: '',
+        token: '',
+      };
+    };
+
     const manifestV1: ManifestV1 = {
       author: app.store.author,
       categories: app.store.categories?.map((p) => p.toString()) || [],
@@ -129,7 +144,7 @@ export class ManifestTranslator {
       store: manifestStore,
       title: app.store.title,
       version: app.store.version,
-      api: app.api,
+      api: mapApi(),
       medias: app.store.medias,
       disableTimeoutMonitoring: app.notUsingSdk || app.disableTimeoutMonitoring,
     };
@@ -185,10 +200,6 @@ export class ManifestTranslator {
       app.api.scopes = firstExt.api.scopes;
       app.api.client.id = firstExt.api.applicationId;
       app.api.redirectUris = [firstExt.api.redirectUri];
-      app.api.applicationId = firstExt.api.applicationId;
-      app.api.redirectUri = firstExt.api.redirectUri;
-      app.api.connect = firstExt.api.connect;
-      app.api.token = firstExt.api.token;
     }
     app.configuration = firstExt.configuration;
 
