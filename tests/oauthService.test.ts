@@ -12,6 +12,7 @@ jest.mock('../src/sdk/RuntimeContext', () => ({
         },
       },
     },
+    userIdentifier: 'user-id',
   },
 }));
 
@@ -36,8 +37,10 @@ describe('OAuthService', () => {
   test('opens new window on auth', () => {
     oauthService.openPopup();
 
+    const state = encodeURIComponent(JSON.stringify({ uid: 'user-id' }));
+
     expect(global.window.open).toBeCalledWith(
-      'https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world1&response_type=code&scope=accounts.all',
+      `https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world1&response_type=code&scope=accounts.all&state=${state}`,
       '_blank',
       'scrollbars=yes,width=800,height=600,top=-60,left=-80'
     );
@@ -45,19 +48,27 @@ describe('OAuthService', () => {
 
   test('opens new window on auth with appropriate redirect uri', () => {
     oauthService.openPopup('https://addon-host.com/hello-world2');
+    const state = encodeURIComponent(JSON.stringify({ uid: 'user-id' }));
 
     expect(global.window.open).toBeCalledWith(
-      'https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world2&response_type=code&scope=accounts.all',
+      `https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world2&response_type=code&scope=accounts.all&state=${state}`,
       '_blank',
       'scrollbars=yes,width=800,height=600,top=-60,left=-80'
     );
   });
 
   test('appends state parameter when provided', () => {
-    oauthService.openPopup('https://addon-host.com/hello-world2', 'test');
+    oauthService.openPopup('https://addon-host.com/hello-world2', { key1: 'value1' });
+
+    const state = encodeURIComponent(
+      JSON.stringify({
+        key1: 'value1',
+        uid: 'user-id',
+      })
+    );
 
     expect(global.window.open).toBeCalledWith(
-      'https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world2&response_type=code&scope=accounts.all&state=test',
+      `https://accounts.com/oauth/authorize?client_id=AbCd123456qW&redirect_uri=https%3A%2F%2Faddon-host.com%2Fhello-world2&response_type=code&scope=accounts.all&state=${state}`,
       '_blank',
       'scrollbars=yes,width=800,height=600,top=-60,left=-80'
     );

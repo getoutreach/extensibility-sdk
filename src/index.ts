@@ -438,7 +438,7 @@ class ExtensibilitySdk {
    * @returns {Promise<string | null>}
    * @memberof ExtensibilitySdk
    */
-  public authenticate = async (redirectUri?: string, state?: string): Promise<string | null> => {
+  public authenticate = async (redirectUri?: string, state?: { [key: string]: string }): Promise<string | null> => {
     await this.verifySdkInitialized();
 
     this.authorizeTask = new Task<string | null>();
