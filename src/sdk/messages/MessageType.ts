@@ -44,4 +44,9 @@ export enum MessageType {
    * Message sent from host to addon containing the diagnostic info on addon loading
    */
   HOST_LOAD_INFO = 'cxt:host:load',
+
+  /**
+   * Message sent from the addon
+   */
+  OAUTH_DIALOG_COMPLETED = 'cxt:auth:complete',
 }

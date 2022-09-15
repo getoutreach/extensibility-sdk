@@ -32,6 +32,7 @@ import { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 import { ManifestTranslator } from './legacy/ManifestTranslator';
 import { OrganizationContext } from './context/host/OrganizationContext';
 import { IOutreachContext } from './context/interfaces/IOutreachContext';
+import { OAuthDialogCompletedMessage } from './sdk/messages/OAuthDialogCompletedMessage';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -81,6 +82,7 @@ export { NavigationMessage } from './sdk/messages/NavigationMessage';
 export { NotificationMessage } from './sdk/messages/NotificationMessage';
 export { NotificationType } from './sdk/messages/NotificationType';
 export { ReadyMessage } from './sdk/messages/ReadyMessage';
+export { OAuthDialogCompletedMessage } from './sdk/messages/OAuthDialogCompletedMessage';
 
 export { Locale } from './sdk/Locale';
 export { RuntimeContext } from './sdk/RuntimeContext';
@@ -526,6 +528,28 @@ class ExtensibilitySdk {
     await this.initTask;
   };
 
+  private handleOAuthCompletedMessage = (oauthMessage: OAuthDialogCompletedMessage) => {
+    if (!this.authorizeTask) {
+      return;
+    }
+
+    logger.current.log({
+      origin: EventOrigin.ADDON,
+      type: EventType.INTERNAL,
+      message: '[CXT][AddonSdk]::onReceived- Resolving authorize promise',
+      level: LogLevel.Debug,
+      context: [JSON.stringify(oauthMessage)],
+    });
+    if (oauthMessage.result === '200') {
+      this.authorizeTask.onfulfilled(oauthMessage.result);
+    } else {
+      this.authorizeTask.onrejected({
+        result: oauthMessage.result,
+        message: oauthMessage.message,
+      });
+    }
+  };
+
   private handleReceivedMessage = (messageEvent: MessageEvent) => {
     const addonMessage = this.getAddonMessage(messageEvent);
     if (!addonMessage) {
@@ -557,6 +581,9 @@ class ExtensibilitySdk {
       }
       case MessageType.HOST_LOAD_INFO:
         this.handleLoadInfoMessage(addonMessage as LoadInfoMessage);
+        break;
+      case MessageType.OAUTH_DIALOG_COMPLETED:
+        this.handleOAuthCompletedMessage(addonMessage as OAuthDialogCompletedMessage);
         break;
       case MessageType.READY:
       case MessageType.REQUEST_DECORATION_UPDATE:
