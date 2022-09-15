@@ -51,6 +51,14 @@ export class RuntimeContext {
    * @memberof RuntimeContext
    */
   public userIdentifier!: string;
+
+  /**
+   * Host domain to be used in the constructing of a OAuth popup URL
+   *
+   * @type {string}
+   * @memberof InitMessage
+   */
+  public authorizationHost: string;
 }
 
 export default new RuntimeContext();

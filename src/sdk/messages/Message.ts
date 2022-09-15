@@ -21,6 +21,7 @@ export class Message implements IMessage {
     this.type = type;
   }
 
+  // eslint-disable-next-line no-undef
   [key: string]: unknown;
 
   /**
