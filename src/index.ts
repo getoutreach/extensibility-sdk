@@ -390,7 +390,7 @@ export class ExtensibilitySdk {
         context: [],
       });
 
-      window.parent.postMessage(postMessage, '*');
+      window.parent?.postMessage(postMessage, '*');
 
       this.initTimer = window.setTimeout(() => {
         const error = '[CXT] Addon initialization failed - timeout error';

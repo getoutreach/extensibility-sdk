@@ -5,12 +5,14 @@ import oauthService from '../src/sdk/services/oauthService';
 describe('sdk tests', () => {
   let sdk: ExtensibilitySdk;
 
-  describe('receiving messages', () => {
+  describe.only('receiving messages', () => {
     var messageHandler: EventListenerOrEventListenerObject;
     let originalEventListener: (event: string, handler: EventListenerOrEventListenerObject) => void;
     let originalOpenPopup: (redirectUri?: string, state?: { [key: string]: string }) => void;
 
-    beforeEach(() => {
+    beforeEach(async () => {
+      window.setTimeout = jest.fn().mockImplementation(() => 123) as any;
+
       originalOpenPopup = oauthService.openPopup;
       oauthService.openPopup = jest.fn();
 
@@ -20,8 +22,6 @@ describe('sdk tests', () => {
           messageHandler = handler;
         }
       };
-
-      sdk = new ExtensibilitySdk();
       runtime.application = {
         api: {
           client: { id: '' },
@@ -30,12 +30,14 @@ describe('sdk tests', () => {
         },
       } as any;
       runtime.origin = 'test.outreach.io';
+      sdk = new ExtensibilitySdk();
       sdk.init();
     });
 
     afterEach(() => {
       window.addEventListener = originalEventListener;
       oauthService.openPopup = originalOpenPopup;
+      jest.restoreAllMocks();
     });
 
     it('will register message event listener', () => {
@@ -48,20 +50,20 @@ describe('sdk tests', () => {
         authPromise = sdk.authenticate();
       });
 
-      it('will resolve auth promise when success', () => {
+      it('will resolve auth promise when success', async () => {
         var message = new OAuthDialogCompletedMessage();
         message.result = '200';
         handleMessage(message);
 
-        expect(authPromise).resolves.toBe('200');
+        await expect(authPromise).resolves.toBe('200');
       });
 
-      it('will reject auth promise when success', () => {
+      it('will reject auth promise when success', async () => {
         var message = new OAuthDialogCompletedMessage();
         message.result = '401';
         handleMessage(message);
 
-        expect(authPromise).rejects.toBe({ message: undefined, result: '401' });
+        await expect(authPromise).rejects.toEqual({ message: undefined, result: '401' });
       });
     });
 
