@@ -179,7 +179,7 @@ class Task<T> {
   public onrejected: (reason: any) => void;
 }
 
-class ExtensibilitySdk {
+export class ExtensibilitySdk {
   private initTimer?: number;
   private initTask?: Task<IOutreachContext>;
 
