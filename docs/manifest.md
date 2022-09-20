@@ -24,7 +24,7 @@ Table of content:
     - [redirectUris](#redirecturis)
   - [Webhooks](#webhooks)
     - [events](#events)
-    - [url](#url)
+    - [url (events)](#url-events)
   - [Configuration section (configuration)](#configuration-section-configuration)
   - [External installation Url](#external-installation-url)
   - [Extensions section (extensions)](#extensions-section-extensions)
@@ -42,7 +42,7 @@ Table of content:
         - [fullWidth (tab extension)](#fullwidth-tab-extension)
         - [decoration (shell extension)](#decoration-shell-extension)
       - [Host (tab extension)](#host-tab-extension)
-        - [url](#url-1)
+        - [url (host)](#url-host)
       - [icon (of extension)](#icon-of-extension)
       - [type](#type)
       - [notificationsUrl](#notificationsurl)
@@ -250,17 +250,17 @@ separate URL, but in both cases, it has to be implemented in a way matching
 
 ## Webhooks
 
-This section is optional. If the application doesn't need to be notified
-when certain application events happen on Outreach side, this section can be omitted.
+This section is optional. If the application doesn't need to be notified when certain application events happen on
+Outreach side, this section can be omitted.
 
 ### events
 
-In the events section, application creator defines one or more events which
-Outreach should inform about when they occur.
+In the events section, application creator defines one or more events which Outreach should inform about when they
+occur.
 
 The list of supported events:
 
-- **"*"**  - all the events will be sent to addon creator
+- **"\*"** - all the events will be sent to addon creator
 - **"install"** - event will be sent when Outreach user installs application.
 - **"uninstall"** - event will be sent when Outreach user uninstalls application.
 - **"setup"** - event will be sent when Outreach user clicks in Marketplace on setup link
@@ -268,12 +268,12 @@ The list of supported events:
 Here are a few examples of the values:
 
 - ["*"] - All of the events will be sent
-- ["install", "uninstall"] -  Only the events related to installing and uninstalling of an app will be sent.
+- ["install", "uninstall"] - Only the events related to installing and uninstalling of an app will be sent.
 
-### url
+### url (events)
 
-This is the endpoint which addon creator wants to be called with the Outreach event information.
-It has to be valid endpoint which is accepting POST request.
+This is the endpoint which addon creator wants to be called with the Outreach event information. It has to be valid
+endpoint which is accepting POST request.
 
 ## Configuration section (configuration)
 
@@ -423,7 +423,7 @@ manifest.host.environment = {
 
 The host section contains the application hosting endpoints and attributes implemented by the application creator.
 
-##### url
+##### url (host)
 
 Address where the application hosting web page is hosted.
 
