@@ -23,6 +23,8 @@ describe('sdk tests', () => {
       window.addEventListener = (event: string, handler: EventListenerOrEventListenerObject): void => {
         if (event === 'message') {
           messageHandler = handler;
+        } else {
+          throw new Error('Event:' + event + ' is not supported.');
         }
       };
 
