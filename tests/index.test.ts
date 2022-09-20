@@ -1,15 +1,16 @@
 import { ExtensibilitySdk, Message, OAuthDialogCompletedMessage } from '../src/index';
-import runtime from '../src/sdk/RuntimeContext';
+import runtime, { RuntimeContext } from '../src/sdk/RuntimeContext';
 import oauthService from '../src/sdk/services/oauthService';
 
 describe('sdk tests', () => {
   let sdk: ExtensibilitySdk;
 
-  describe.only('receiving messages', () => {
+  describe('receiving messages', () => {
     var messageHandler: EventListenerOrEventListenerObject;
     let originalEventListener: (event: string, handler: EventListenerOrEventListenerObject) => void;
     let originalOpenPopup: (redirectUri?: string, state?: { [key: string]: string }) => void;
     let originalTimeout: any;
+    let originalRuntime: RuntimeContext;
 
     beforeEach(async () => {
       originalTimeout = window.setTimeout;
@@ -24,6 +25,8 @@ describe('sdk tests', () => {
           messageHandler = handler;
         }
       };
+
+      originalRuntime = runtime;
       runtime.application = {
         api: {
           client: { id: '' },
@@ -37,6 +40,9 @@ describe('sdk tests', () => {
     });
 
     afterEach(() => {
+      runtime.application = originalRuntime.application;
+      runtime.origin = originalRuntime.origin;
+
       window.setTimeout = originalTimeout;
       window.addEventListener = originalEventListener;
       oauthService.openPopup = originalOpenPopup;
