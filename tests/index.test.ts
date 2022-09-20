@@ -84,7 +84,7 @@ describe('sdk tests', () => {
         origin: 'test.outreach.io',
       };
 
-      if (handlerEventListenerObject(messageHandler)) {
+      if (typeof messageHandler !== 'function') {
         messageHandler.handleEvent(eventMessage);
       } else {
         messageHandler(eventMessage);
@@ -92,9 +92,3 @@ describe('sdk tests', () => {
     };
   });
 });
-
-function handlerEventListenerObject(
-  messageHandler: EventListenerOrEventListenerObject
-): messageHandler is EventListenerObject {
-  return typeof messageHandler !== 'function';
-}
