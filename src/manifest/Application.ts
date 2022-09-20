@@ -3,6 +3,7 @@ import { ConfigurationItem } from '../configuration/ConfigurationItem';
 import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
 import { ManifestStore } from './ManifestStore';
+import { ManifestWebhook } from './ManifestWebhook';
 
 /**
  * Definition of the application manifest file containing all of the information
@@ -62,19 +63,6 @@ export class Application {
   public store: ManifestStore;
 
   /**
-   * An optional property defining if the application is created without using the extensibility SDK
-   * by manually parsing of the iframe URL containing the context value parameters.
-   *
-   * If omitted in manifest, the default value is false.
-   *
-   * @type {boolean}
-   * @memberof Application
-   * @deprecated use disableTimeoutMonitoring instead
-   */
-
-  public notUsingSdk?: boolean;
-
-  /**
    * An optional property defining if the application is created without using the extensibility SDK.
    * This apps are manually parsing of the iframe URL containing the context value parameters and not
    * sending the READY message back to the Outreach host so the timeout can not be monitored due to that.
@@ -86,4 +74,16 @@ export class Application {
    * @memberof Application
    */
   public disableTimeoutMonitoring?: boolean;
+
+  /**
+   * An optional section containing the webhook definition enabling Outreach
+   * to send appropriate event information over webhook
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#webhook
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/webhook.md
+   *
+   * @type {ManifestWebhook}
+   * @memberof Application
+   */
+  public webhook?: ManifestWebhook;
 }

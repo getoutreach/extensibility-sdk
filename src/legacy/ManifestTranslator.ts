@@ -146,7 +146,7 @@ export class ManifestTranslator {
       version: app.store.version,
       api: mapApi(),
       medias: app.store.medias,
-      disableTimeoutMonitoring: app.notUsingSdk || app.disableTimeoutMonitoring,
+      disableTimeoutMonitoring: app.disableTimeoutMonitoring,
     };
 
     return manifestV1;

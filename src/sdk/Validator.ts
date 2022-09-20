@@ -2,6 +2,7 @@ import { utils } from '../utils';
 import { Application } from '../manifest/Application';
 import { Scopes } from '../manifest/api/Scopes';
 import { StoreType } from '../manifest/store/StoreType';
+import { WebHookEvents } from '../manifest/api/WebHookEvents';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -40,6 +41,28 @@ export const validate = (application: Application): string[] => {
           issues.push('Manifest Api section needs to have valid redirect urls. Value: ' + redirectUri);
         }
       });
+    }
+  }
+
+  if (application.webhook) {
+    if (!application.webhook.events) {
+      issues.push('Undefined web hook events');
+    } else if (!Array.isArray(application.webhook.events)) {
+      issues.push('Events value is not an array. Value: ' + application.webhook.events);
+    } else {
+      application.webhook.events.forEach((event) => {
+        if (!Object.values(WebHookEvents).includes(event as WebHookEvents)) {
+          issues.push('Invalid web hook event value. Value: ' + event);
+        }
+      });
+    }
+
+    if (!application.webhook.url) {
+      issues.push('Undefined web hook url.');
+    } else {
+      if (!utils.urlValidation(application.webhook.url)) {
+        issues.push('Manifest Webhook section needs to have valid url. Value: ' + application.webhook.url);
+      }
     }
   }
 

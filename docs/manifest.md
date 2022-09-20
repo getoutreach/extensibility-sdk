@@ -19,13 +19,14 @@ Table of content:
     - [title](#title)
     - [version](#version)
   - [Outreach Oauth API access section ("api")](#outreach-oauth-api-access-section-api)
-    - [applicationId](#applicationid)
-    - [redirectUri](#redirecturi)
     - [scopes](#scopes)
-    - [connect](#connect)
     - [client](#client)
     - [redirectUris](#redirecturis)
+  - [Webhook](#webhook)
+    - [events](#events)
+    - [url (events)](#url-events)
   - [Configuration section (configuration)](#configuration-section-configuration)
+  - [External installation Url](#external-installation-url)
   - [Extensions section (extensions)](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
       - [identifier (extension)](#identifier-extension)
@@ -41,7 +42,7 @@ Table of content:
         - [fullWidth (tab extension)](#fullwidth-tab-extension)
         - [decoration (shell extension)](#decoration-shell-extension)
       - [Host (tab extension)](#host-tab-extension)
-        - [url](#url)
+        - [url (host)](#url-host)
       - [icon (of extension)](#icon-of-extension)
       - [type](#type)
       - [notificationsUrl](#notificationsurl)
@@ -105,6 +106,10 @@ opportunity tab extension.
       "id": "AbCd123456qW"
     },
     "redirectUris": ["https://application-host.com/hello-world"]
+  },
+  "webhook": {
+    "events": ["*"],
+    "url": "https://application-host.com/webhook"
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
   "configuration": [
@@ -219,14 +224,6 @@ A version of the application manifest in the format MAJOR.MINOR
 
 This section is optional. If the application doesn't need access to outreach API, this section can be omitted.
 
-### applicationId
-
-This field is deprecated in favor of `client.id`.
-
-### redirectUri
-
-This field is deprecated in favor of `redirectUris`.
-
 ### scopes
 
 In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
@@ -239,11 +236,6 @@ requested scopes to the application
 
 ![API consent screen](assets/api-consent.png)
 
-### connect
-
-This value contains URL of the [connect endpoint](outreach-api.md#connect-endpoint). Note: The domain of the connect Uri
-has to be the same as the domain of the [host.url](#url)
-
 ### client
 
 The id of a client object is the value used for
@@ -255,6 +247,33 @@ This URLs are defined in Outreach OAuth settings, which the authorization form w
 consent with granting access to Outreach API in his name. These URLs can be the same as the [host url](#url) or a
 separate URL, but in both cases, it has to be implemented in a way matching
 [Outreach API access requirements](outreach-api.md).
+
+## Webhook
+
+This section is optional. If the application doesn't need to be notified when certain application events happen on
+Outreach side, this section can be omitted.
+
+### events
+
+In the events section, application creator defines one or more events which Outreach should inform about when they
+occur.
+
+The list of supported events:
+
+- **"\*"** - all the events will be sent to addon creator
+- **"install"** - event will be sent when Outreach user installs application.
+- **"uninstall"** - event will be sent when Outreach user uninstalls application.
+- **"setup"** - event will be sent when Outreach user clicks in Marketplace on setup link
+
+Here are a few examples of the values:
+
+- ["*"] - All of the events will be sent
+- ["install", "uninstall"] - Only the events related to installing and uninstalling of an app will be sent.
+
+### url (events)
+
+This is the endpoint which addon creator wants to be called with the Outreach event information. It has to be valid
+endpoint which is accepting POST request.
 
 ## Configuration section (configuration)
 
@@ -404,7 +423,7 @@ manifest.host.environment = {
 
 The host section contains the application hosting endpoints and attributes implemented by the application creator.
 
-##### url
+##### url (host)
 
 Address where the application hosting web page is hosted.
 
