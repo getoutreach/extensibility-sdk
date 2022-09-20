@@ -51,10 +51,6 @@ describe('sdk tests', () => {
       jest.restoreAllMocks();
     });
 
-    it('will register message event listener', () => {
-      expect(messageHandler).not.toBeUndefined();
-    });
-
     describe('OAUTH_DIALOG_COMPLETED', () => {
       let authPromise: Promise<string | null>;
       beforeEach(() => {
