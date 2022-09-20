@@ -22,7 +22,7 @@ Table of content:
     - [scopes](#scopes)
     - [client](#client)
     - [redirectUris](#redirecturis)
-  - [Webhooks](#webhooks)
+  - [Webhook](#webhook)
     - [events](#events)
     - [url (events)](#url-events)
   - [Configuration section (configuration)](#configuration-section-configuration)
@@ -107,7 +107,7 @@ opportunity tab extension.
     },
     "redirectUris": ["https://application-host.com/hello-world"]
   },
-  "webhooks": {
+  "webhook": {
     "events": ["*"],
     "url": "https://application-host.com/webhook"
   },
@@ -248,7 +248,7 @@ consent with granting access to Outreach API in his name. These URLs can be the 
 separate URL, but in both cases, it has to be implemented in a way matching
 [Outreach API access requirements](outreach-api.md).
 
-## Webhooks
+## Webhook
 
 This section is optional. If the application doesn't need to be notified when certain application events happen on
 Outreach side, this section can be omitted.

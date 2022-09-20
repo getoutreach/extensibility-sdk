@@ -79,11 +79,11 @@ export class Application {
    * An optional section containing the webhook definition enabling Outreach
    * to send appropriate event information over webhook
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#webhooks
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/webhooks.md
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#webhook
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/webhook.md
    *
    * @type {ManifestWebhook}
    * @memberof Application
    */
-  public webhooks?: ManifestWebhook;
+  public webhook?: ManifestWebhook;
 }

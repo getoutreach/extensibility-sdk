@@ -126,7 +126,7 @@
       },
       "required": ["author", "headline", "description", "icon", "identifier", "title", "version"]
     },
-    "webhooks": {
+    "webhook": {
       "type": "object",
       "properties": {
         "url": {

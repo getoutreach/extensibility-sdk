@@ -44,24 +44,24 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (application.webhooks) {
-    if (!application.webhooks.events) {
+  if (application.webhook) {
+    if (!application.webhook.events) {
       issues.push('Undefined web hook events');
-    } else if (!Array.isArray(application.webhooks.events)) {
-      issues.push('Events value is not an array. Value: ' + application.webhooks.events);
+    } else if (!Array.isArray(application.webhook.events)) {
+      issues.push('Events value is not an array. Value: ' + application.webhook.events);
     } else {
-      application.webhooks.events.forEach((event) => {
+      application.webhook.events.forEach((event) => {
         if (!Object.values(WebHookEvents).includes(event as WebHookEvents)) {
           issues.push('Invalid web hook event value. Value: ' + event);
         }
       });
     }
 
-    if (!application.webhooks.url) {
+    if (!application.webhook.url) {
       issues.push('Undefined web hook url.');
     } else {
-      if (!utils.urlValidation(application.webhooks.url)) {
-        issues.push('Manifest Webhook section needs to have valid url. Value: ' + application.webhooks.url);
+      if (!utils.urlValidation(application.webhook.url)) {
+        issues.push('Manifest Webhook section needs to have valid url. Value: ' + application.webhook.url);
       }
     }
   }

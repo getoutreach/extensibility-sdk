@@ -97,10 +97,10 @@ describe('manifest tests', () => {
     });
   });
 
-  describe('webhooks', () => {
+  describe('webhook', () => {
     test('it can be undefined', () => {
       const manifest: Application = getNewValidApplicationManifest();
-      delete manifest.webhooks;
+      delete manifest.webhook;
       var issues = validate(manifest);
       expect(issues.length).toBe(0);
     });
@@ -108,7 +108,7 @@ describe('manifest tests', () => {
     test('events are mandatory', () => {
       const manifest: Application = getNewValidApplicationManifest();
 
-      manifest.webhooks!.events = undefined as any;
+      manifest.webhook!.events = undefined as any;
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -118,7 +118,7 @@ describe('manifest tests', () => {
     test('only valid events should be acceptable', () => {
       const manifest: Application = getNewValidApplicationManifest();
 
-      manifest.webhooks!.events = ['BANANAS', WebHookEvents.ALL] as any;
+      manifest.webhook!.events = ['BANANAS', WebHookEvents.ALL] as any;
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -128,7 +128,7 @@ describe('manifest tests', () => {
     test('redirect uri is mandatory', () => {
       const manifest: Application = getNewValidApplicationManifest();
 
-      manifest.webhooks!.url = undefined as any;
+      manifest.webhook!.url = undefined as any;
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -137,7 +137,7 @@ describe('manifest tests', () => {
 
     test('webhook uri should be valid url', () => {
       const manifest = getNewValidApplicationManifest();
-      manifest.webhooks!.url = 'BANANAS';
+      manifest.webhook!.url = 'BANANAS';
 
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
@@ -352,7 +352,7 @@ const getNewValidApplicationManifest = (): Application => {
     },
   };
 
-  application.webhooks = {
+  application.webhook = {
     events: [WebHookEvents.ALL],
     url: 'https://addon-host.com/webhook',
   };
