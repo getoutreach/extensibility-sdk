@@ -9,8 +9,10 @@ describe('sdk tests', () => {
     var messageHandler: EventListenerOrEventListenerObject;
     let originalEventListener: (event: string, handler: EventListenerOrEventListenerObject) => void;
     let originalOpenPopup: (redirectUri?: string, state?: { [key: string]: string }) => void;
+    let originalTimeout: any;
 
     beforeEach(async () => {
+      originalTimeout = window.setTimeout;
       window.setTimeout = jest.fn().mockImplementation(() => 123) as any;
 
       originalOpenPopup = oauthService.openPopup;
@@ -35,6 +37,7 @@ describe('sdk tests', () => {
     });
 
     afterEach(() => {
+      window.setTimeout = originalTimeout;
       window.addEventListener = originalEventListener;
       oauthService.openPopup = originalOpenPopup;
       jest.restoreAllMocks();
