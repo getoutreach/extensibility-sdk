@@ -13,6 +13,7 @@ import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKe
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 import { DecorationStyle } from '../src';
+import { WebHookEvents } from '../src/manifest/api/WebHookEvents';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -93,6 +94,54 @@ describe('manifest tests', () => {
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Manifest Api section needs to have valid redirect urls. Value: bananas');
+    });
+  });
+
+  describe('webhooks', () => {
+    test('it can be undefined', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      delete manifest.webhooks;
+      var issues = validate(manifest);
+      expect(issues.length).toBe(0);
+    });
+
+    test('events are mandatory', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+
+      manifest.webhooks!.events = undefined as any;
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined web hook events');
+    });
+
+    test('only valid events should be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+
+      manifest.webhooks!.events = ['BANANAS', WebHookEvents.ALL] as any;
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid web hook event value. Value: BANANAS');
+    });
+
+    test('redirect uri is mandatory', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+
+      manifest.webhooks!.url = undefined as any;
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined web hook url.');
+    });
+
+    test('webhook uri should be valid url', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.webhooks!.url = 'BANANAS';
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Manifest Webhook section needs to have valid url. Value: BANANAS');
     });
   });
 
@@ -301,6 +350,11 @@ const getNewValidApplicationManifest = (): Application => {
     client: {
       id: 'AbCd123456qW',
     },
+  };
+
+  application.webhooks = {
+    events: [WebHookEvents.ALL],
+    url: 'https://addon-host.com/webhook',
   };
 
   application.extensions = [appTabExtension, opportunityTabExtension];
