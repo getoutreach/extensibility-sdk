@@ -126,6 +126,22 @@
       },
       "required": ["author", "headline", "description", "icon", "identifier", "title", "version"]
     },
+    "webhooks": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["*", "install", "uninstall", "setup"]
+          }
+        }
+      }
+    },
     "api": {
       "type": "object",
       "properties": {
