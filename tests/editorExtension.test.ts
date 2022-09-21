@@ -67,7 +67,7 @@ describe('EditorExtension validate tests', () => {
 
     test('invalid height will be rejected', () => {
       const editorExt = getValidShellEditorExtension() as EditorExtension;
-      editorExt.host.height = 'BANANAS' as any;
+      editorExt.settings!.recommended!.height = 'BANANAS' as any;
       var issues = editorExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host height is not a number. Value: BANANAS');
@@ -75,7 +75,7 @@ describe('EditorExtension validate tests', () => {
 
     test('invalid width will be rejected', () => {
       const editorExt = getValidShellEditorExtension() as EditorExtension;
-      editorExt.host.width = 'BANANAS' as any;
+      editorExt.settings!.recommended!.width = 'BANANAS' as any;
       var issues = editorExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host width is not a number. Value: BANANAS');
@@ -83,7 +83,7 @@ describe('EditorExtension validate tests', () => {
 
     test('missing width will be rejected', () => {
       const editorExt = getValidShellEditorExtension() as EditorExtension;
-      delete editorExt.host.width;
+      delete (editorExt.settings?.recommended as any).width;
       var issues = editorExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Both width and height has to be defined - width is missing');
@@ -91,7 +91,7 @@ describe('EditorExtension validate tests', () => {
 
     test('missing height will be rejected', () => {
       const editorExt = getValidShellEditorExtension() as EditorExtension;
-      delete editorExt.host.height;
+      delete (editorExt.settings?.recommended as any).height;
       var issues = editorExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Both width and height has to be defined - height is missing');
@@ -154,12 +154,17 @@ const getValidShellEditorExtension = (): EditorExtension => {
   editorExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
-    height: 800,
-    width: 600,
   };
   editorExtension.version = '0.99';
   editorExtension.context = [UserContextKeys.ID];
+
   editorExtension.regions = [EditorRegion.SEQUENCE, EditorRegion.TASK_FLOW];
+  editorExtension.settings = {
+    recommended: {
+      height: 800,
+      width: 600,
+    },
+  };
 
   return editorExtension;
 };

@@ -1,6 +1,5 @@
 import { utils } from '../../../utils';
 import { Extension } from '../Extension';
-import { EditorExtensionHost } from './EditorExtensionHost';
 
 import { EventOrigin } from '../../../sdk/logging/EventOrigin';
 import { EventType } from '../../../sdk/logging/EventType';
@@ -12,6 +11,8 @@ import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { OrganizationContextKeys } from '../../../context/keys/OrganizationContextKeys';
 import { ShellExtensionType } from '../shell/ShellExtensionType';
 import { EditorRegion } from './EditorRegion';
+import { EditorSettings } from './EditorSettings';
+import { ExtensionHost } from '../ExtensionHost';
 
 export class EditorExtension extends Extension {
   /**
@@ -30,10 +31,10 @@ export class EditorExtension extends Extension {
    * Definition of addon host
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
-   * @type {EditorExtensionHost}
+   * @type {ExtensionHost}
    * @memberof EditorExtension
    */
-  public host: EditorExtensionHost;
+  public host: ExtensionHost;
 
   /**
    * Type property defines the type of tab extension
@@ -53,6 +54,14 @@ export class EditorExtension extends Extension {
    * @memberof EditorExtension
    */
   public regions?: EditorRegion[];
+
+  /**
+   * Optional settings of the editor extension
+   *
+   * @type {EditorSettings}
+   * @memberof EditorExtension
+   */
+  public settings?: EditorSettings;
 
   /**
    * Initialize Outreach context with tab extension contextual information.
@@ -116,21 +125,25 @@ export class EditorExtension extends Extension {
         issues.push('Host icon definition is invalid url. Value: ' + this.host.icon);
       }
 
-      if (this.host.height) {
-        if (typeof this.host.height !== 'number') {
-          issues.push('Host height is not a number. Value: ' + this.host.height);
-        }
+      if (this.settings) {
+        if (this.settings.recommended) {
+          if (this.settings.recommended.height) {
+            if (typeof this.settings.recommended.height !== 'number') {
+              issues.push('Host height is not a number. Value: ' + this.settings.recommended.height);
+            }
 
-        if (!this.host.width) {
-          issues.push('Both width and height has to be defined - width is missing');
-        } else {
-          if (typeof this.host.width !== 'number') {
-            issues.push('Host width is not a number. Value: ' + this.host.width);
+            if (!this.settings.recommended.width) {
+              issues.push('Both width and height has to be defined - width is missing');
+            } else {
+              if (typeof this.settings.recommended.width !== 'number') {
+                issues.push('Host width is not a number. Value: ' + this.settings.recommended.width);
+              }
+            }
+          } else {
+            if (this.settings.recommended.width) {
+              issues.push('Both width and height has to be defined - height is missing');
+            }
           }
-        }
-      } else {
-        if (this.host.width) {
-          issues.push('Both width and height has to be defined - height is missing');
         }
       }
     }
