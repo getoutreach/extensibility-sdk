@@ -22,7 +22,7 @@ export enum ShellExtensionType {
   COMPANION = 'shell-companion',
 
   /**
-   * Help extension - used to extend varios places wher
+   * Help extension - used to extend various places where kno
    */
   KNOWLEDGE = 'shell-knowledge',
 
@@ -37,4 +37,11 @@ export enum ShellExtensionType {
    * To be used for extensions ike chat etc.
    */
   TOOL = 'shell-tool',
+
+  /**
+   * Editor extension is show as a toolbar of icons extending the editor
+   * with a set of 3rd party tools which are loaded in a iframe popup
+   * once editor user clicks on some of the icons.
+   */
+  EDITOR = 'shell-editor',
 }

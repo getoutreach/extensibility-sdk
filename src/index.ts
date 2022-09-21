@@ -143,6 +143,8 @@ export { OpportunityTileExtension } from './manifest/extensions/tiles/types/Oppo
 export { ProspectTileExtension } from './manifest/extensions/tiles/types/ProspectTileExtension';
 export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
+export { EditorExtension } from './manifest/extensions/editor/EditorExtension';
+export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
 export {

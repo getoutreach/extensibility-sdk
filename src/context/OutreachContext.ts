@@ -57,6 +57,10 @@ export class OutreachContext implements IOutreachContext {
       this.user.toParams().forEach((p) => params.push(p));
     }
 
+    if (this.organization) {
+      this.organization.toParams().forEach((p) => params.push(p));
+    }
+
     return params;
   };
 }
