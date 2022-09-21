@@ -1,9 +1,11 @@
+import { EditorExtension } from '../src';
 import {
   isAccountTabExtension,
   isAccountTileExtension,
   isActionShellExtension,
   isApplicationShellExtension,
   isCompanionShellExtension,
+  isEditorShellExtension,
   isHomeEmailTileExtension,
   isHomeTasksTileExtension,
   isKnowledgeShellExtension,
@@ -192,5 +194,15 @@ describe('ExtensionGuards', () => {
   it('will guard tool shell tab from wrong extension', () => {
     const extension = new ApplicationShellExtension();
     expect(isToolShellExtension(extension)).toBe(false);
+  });
+
+  it('will cast the proper tool shell extension', () => {
+    const extension = new EditorExtension();
+    expect(isEditorShellExtension(extension)).toBe(true);
+  });
+
+  it('will guard tool shell tab from wrong extension', () => {
+    const extension = new ApplicationShellExtension();
+    expect(isEditorShellExtension(extension)).toBe(false);
   });
 });
