@@ -53,5 +53,5 @@ export enum MessageType {
   /**
    * Message sent from the addon containing the data to enhance rich text editor content
    */
-  ENHANCE_TEXT_EDITOR = 'ctx:enhance:text-editor',
+  ENHANCE_TEXT_EDITOR = 'cxt:enhance:text-editor',
 }
