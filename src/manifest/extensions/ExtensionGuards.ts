@@ -1,3 +1,4 @@
+import { EditorExtension } from './editor/EditorExtension';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
 import { CompanionShellExtension } from './shell/types/CompanionShellExtension';
@@ -222,6 +223,18 @@ export const isActionShellExtension = (extension: any): extension is KnowledgeSh
   }
 
   if (extension.type !== ShellExtensionType.ACTION) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isEditorShellExtension = (extension: any): extension is EditorExtension => {
+  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
+    return false;
+  }
+
+  if (extension.type !== ShellExtensionType.EDITOR) {
     return false;
   }
 

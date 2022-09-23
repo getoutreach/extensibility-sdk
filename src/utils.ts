@@ -29,6 +29,7 @@ export class utils {
       }
       const key = token[1];
       const tokenParam = params.find((p) => p.key.toString() === key);
+
       if (tokenParam && tokenParam.value) {
         url = url.replace(`{${key}}`, tokenParam.value);
         params = params.filter((p) => p !== tokenParam);
