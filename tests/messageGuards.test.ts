@@ -4,6 +4,7 @@ import {
   isNavigationMessage,
   isNotificationMessage,
   isReadyMessage,
+  isTextEditorEnhancementMessage,
 } from '../src/sdk/messages/MessageGuards';
 import { MessageType } from '../src/sdk/messages/MessageType';
 
@@ -151,6 +152,43 @@ describe('Message Guard Tests', () => {
       };
 
       expect(isReadyMessage(msg)).toBe(false);
+    });
+  });
+
+  describe('EnhanceTextEditor message', () => {
+    test('Valid message will be accepted', () => {
+      const msg = {
+        type: MessageType.ENHANCE_TEXT_EDITOR,
+        html: 'hello',
+      };
+
+      expect(isTextEditorEnhancementMessage(msg)).toBe(true);
+    });
+
+    test('Valid message with optional subject property will be accepted', () => {
+      const msg = {
+        type: MessageType.ENHANCE_TEXT_EDITOR,
+        html: 'hello',
+        subject: 'subject',
+      };
+
+      expect(isTextEditorEnhancementMessage(msg)).toBe(true);
+    });
+
+    test('Message without html property will not be accepted', () => {
+      const msg = {
+        type: MessageType.ENHANCE_TEXT_EDITOR,
+      };
+
+      expect(isTextEditorEnhancementMessage(msg)).toBe(false);
+    });
+
+    test('Message without valid type will not be accepted', () => {
+      const msg = {
+        type: 'FOO',
+      };
+
+      expect(isTextEditorEnhancementMessage(msg)).toBe(false);
     });
   });
 });

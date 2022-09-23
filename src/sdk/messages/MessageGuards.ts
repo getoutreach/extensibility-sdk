@@ -1,4 +1,5 @@
 import { DecorationUpdateMessage } from './DecorationMessage';
+import { EnhanceTextEditorMessage } from './EnhanceTextEditorMessage';
 import { EnvironmentMessage } from './EnvironmentMessage';
 import { MessageType } from './MessageType';
 import { NavigationMessage } from './NavigationMessage';
@@ -91,6 +92,22 @@ export const isReadyMessage = (messageInfo: any): messageInfo is ReadyMessage =>
   }
 
   if (messageInfo.type !== MessageType.READY) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isTextEditorEnhancementMessage = (messageInfo: any): messageInfo is EnhanceTextEditorMessage => {
+  if (!Object.prototype.hasOwnProperty.call(messageInfo, 'type') || typeof messageInfo.type !== 'string') {
+    return false;
+  }
+
+  if (messageInfo.type !== MessageType.ENHANCE_TEXT_EDITOR) {
+    return false;
+  }
+
+  if (!Object.prototype.hasOwnProperty.call(messageInfo, 'html') || typeof messageInfo.html !== 'string') {
     return false;
   }
 

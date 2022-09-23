@@ -49,4 +49,9 @@ export enum MessageType {
    * Message sent from the addon
    */
   OAUTH_DIALOG_COMPLETED = 'cxt:auth:complete',
+
+  /**
+   * Message sent from the addon containing the data to enhance rich text editor content
+   */
+  ENHANCE_TEXT_EDITOR = 'ctx:enhance:text-editor',
 }
