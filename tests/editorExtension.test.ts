@@ -125,13 +125,13 @@ describe('EditorExtension validate tests', () => {
       var issues = editorExt.validate();
       expect(issues.length).toBe(3);
       expect(issues[0]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: bananas'
+        'Context key is not one of the valid values for the application editor extension. Key: bananas'
       );
       expect(issues[1]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: opp.id'
+        'Context key is not one of the valid values for the application editor extension. Key: opp.id'
       );
       expect(issues[2]).toBe(
-        'Context key is not one of the valid values for the application tab extension. Key: apples'
+        'Context key is not one of the valid values for the application editor extension. Key: apples'
       );
     });
   });
