@@ -176,7 +176,7 @@ export class EditorExtension extends Extension {
           !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
           !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
         ) {
-          issues.push('Context key is not one of the valid values for the application tab extension. Key: ' + context);
+          issues.push('Context key is not one of the valid values for the application editor extension. Key: ' + context);
         }
       });
     }
