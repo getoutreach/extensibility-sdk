@@ -1,7 +1,7 @@
 {
   "name": "@outreach/extensibility-sdk",
   "license": "MIT",
-  "version": "0.5.70",
+  "version": "0.6.0",
   "private": false,
   "contributors": [
     "Outreach Client Extensibility Team <cxt-sdk@outreach.io>"
