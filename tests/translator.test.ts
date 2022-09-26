@@ -45,7 +45,7 @@ describe('Manifest translator tests', () => {
     expect(result!.api!.scopes).toBe(v1Manifests[0].api!.scopes);
     expect(result!.api!.redirectUris).toEqual([v1Manifests[0].api!.redirectUri]);
 
-    expect(result!.configuration).toBe(v1Manifests[0].configuration);
+    expect(result!.configuration?.items).toBe(v1Manifests[0].configuration);
 
     expect(result!.extensions.length).toBe(3);
 

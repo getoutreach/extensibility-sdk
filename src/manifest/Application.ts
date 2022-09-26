@@ -31,7 +31,7 @@ export class Application {
   /**
    * An optional section containing configuration information
    * describing what values user needs to provide when interacting
-   * for the first time with addon (loading or installing)
+   * for the first time with addon.
    *
    * All of the configuration values will be sent to Addon using the
    * initialization iframe POST message.
