@@ -127,7 +127,7 @@ export class ManifestTranslator {
     const manifestV1: ManifestV1 = {
       author: app.store.author,
       categories: app.store.categories?.map((p) => p.toString()) || [],
-      configuration: app.configuration || [],
+      configuration: app.configuration?.items ?? [],
       context: ext.context.map((c) => c.toString()),
       description: app.store.description,
       host: {
@@ -201,7 +201,9 @@ export class ManifestTranslator {
       app.api.client.id = firstExt.api.applicationId;
       app.api.redirectUris = [firstExt.api.redirectUri];
     }
-    app.configuration = firstExt.configuration;
+    app.configuration = {
+      items: firstExt.configuration,
+    };
 
     const extensions = appManifests.map((ext) => {
       let extension: ShellExtension | TabExtension;
@@ -297,8 +299,11 @@ export class ManifestTranslator {
       application.api = Object.assign(new ManifestApi(), app.api);
     }
 
-    if (app.configuration) {
-      application.configuration = app.configuration.map((item) => Object.assign(new ConfigurationItem(), item));
+    if (app.configuration && app.configuration.items) {
+      application.configuration = {
+        externalUrl: app.configuration.externalUrl,
+        items: app.configuration.items.map((item) => Object.assign(new ConfigurationItem(), item)),
+      };
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);

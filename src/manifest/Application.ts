@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { ConfigurationItem } from '../configuration/ConfigurationItem';
 import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
+import { ManifestConfiguration } from './ManifestConfiguration';
 import { ManifestStore } from './ManifestStore';
 import { ManifestWebhook } from './ManifestWebhook';
 
@@ -31,7 +31,7 @@ export class Application {
   /**
    * An optional section containing configuration information
    * describing what values user needs to provide when interacting
-   * for the first time with addon (loading or installing)
+   * for the first time with addon.
    *
    * All of the configuration values will be sent to Addon using the
    * initialization iframe POST message.
@@ -40,10 +40,10 @@ export class Application {
    * as the query parameters and can be parsed as such.
    *
    *   *
-   * @type {ConfigurationItem[]}
+   * @type {ManifestConfiguration}
    * @memberof Application
    */
-  public configuration?: ConfigurationItem[];
+  public configuration?: ManifestConfiguration;
 
   /**
    * Collection of one or more extensions being packaged in this application manifest.

@@ -97,7 +97,9 @@ export { Application } from './manifest/Application';
 export { ManifestApi } from './manifest/ManifestApi';
 export { ManifestApiClient } from './manifest/ManifestApiClient';
 export { ManifestAuthor } from './manifest/ManifestAuthor';
+export { ManifestConfiguration } from './manifest/ManifestConfiguration';
 export { ManifestStore } from './manifest/ManifestStore';
+export { ManifestWebhook } from './manifest/ManifestWebhook';
 export { Scopes } from './manifest/api/Scopes';
 
 export { Category } from './manifest/store/Category';
@@ -147,6 +149,7 @@ export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
 export { EditorExtension } from './manifest/extensions/editor/EditorExtension';
 export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
+export { EditorSize } from './manifest/extensions/editor/EditorSize';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
 export {
@@ -159,22 +162,23 @@ export {
 } from './sdk/messages/MessageGuards';
 
 export {
-  isAccountTileExtension,
-  isHomeEmailTileExtension,
-  isHomeTasksTileExtension,
-  isOpportunityTileExtension,
-  isProspectTileExtension,
-  isTileExtension,
   isAccountTabExtension,
+  isAccountTileExtension,
   isActionShellExtension,
   isApplicationShellExtension,
   isCompanionShellExtension,
+  isEditorShellExtension,
+  isHomeEmailTileExtension,
+  isHomeTasksTileExtension,
   isKnowledgeShellExtension,
   isOpportunityTabExtension,
+  isOpportunityTileExtension,
   isProspectActionExtension,
+  isProspectTileExtension,
   isProspectTabExtension,
   isReportsTabExtension,
   isSidekickShellExtension,
+  isTileExtension,
   isToolShellExtension,
 } from './manifest/extensions/ExtensionGuards';
 

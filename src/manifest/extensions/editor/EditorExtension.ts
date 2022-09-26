@@ -10,7 +10,6 @@ import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { OrganizationContextKeys } from '../../../context/keys/OrganizationContextKeys';
 import { ShellExtensionType } from '../shell/ShellExtensionType';
-import { EditorRegion } from './EditorRegion';
 import { EditorSettings } from './EditorSettings';
 import { ExtensionHost } from '../ExtensionHost';
 
@@ -43,17 +42,6 @@ export class EditorExtension extends Extension {
    * @memberof EditorExtension
    */
   public type: ShellExtensionType.EDITOR = ShellExtensionType.EDITOR;
-
-  /**
-   * Optional properties which defines the editor hosting contexts
-   * in which extension should be loaded (eg. only on a sequence and tasks pages)
-   *
-   * If undefined, extension will be loaded in all of the regions.
-   *
-   * @type {EditorRegion[]}
-   * @memberof EditorExtension
-   */
-  public regions?: EditorRegion[];
 
   /**
    * Optional settings of the editor extension
@@ -147,19 +135,6 @@ export class EditorExtension extends Extension {
         }
       }
     }
-
-    if (this.regions) {
-      if (!Array.isArray(this.regions)) {
-        issues.push('Regions is not an array. Value: ' + this.regions);
-      } else {
-        this.regions.forEach((region) => {
-          if (!Object.values(EditorRegion).includes(region as EditorRegion)) {
-            issues.push('Editor region is having invalid value. Value: ' + region);
-          }
-        });
-      }
-    }
-
     if (!this.type || this.type !== ShellExtensionType.EDITOR) {
       issues.push('Host type  is invalid. Value: ' + this.type);
     }
@@ -176,7 +151,9 @@ export class EditorExtension extends Extension {
           !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
           !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
         ) {
-          issues.push('Context key is not one of the valid values for the application editor extension. Key: ' + context);
+          issues.push(
+            'Context key is not one of the valid values for the application editor extension. Key: ' + context
+          );
         }
       });
     }

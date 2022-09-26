@@ -3,7 +3,6 @@ import { EditorExtension } from '../src/manifest/extensions/editor/EditorExtensi
 import { UserContext } from '../src/context/host/UserContext';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { OutreachContext } from '../src/context/OutreachContext';
-import { EditorRegion } from '../src/manifest/extensions/editor/EditorRegion';
 import { OrganizationContext } from '../src/context/host/OrganizationContext';
 import { OpportunityContextKeys } from '../src';
 
@@ -96,25 +95,6 @@ describe('EditorExtension validate tests', () => {
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Both width and height has to be defined - height is missing');
     });
-
-    describe('regions', () => {
-      test('is an array', () => {
-        const editorExt = getValidShellEditorExtension();
-        editorExt.regions = EditorRegion.SEQUENCE as any;
-        var issues = editorExt.validate();
-
-        expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Regions is not an array. Value: sequenceEditor');
-      });
-      test('is rejecting invalid values', () => {
-        const editorExt = getValidShellEditorExtension();
-        editorExt.regions = ['bananas', EditorRegion.SEQUENCE] as any;
-        var issues = editorExt.validate();
-
-        expect(issues.length).toBe(1);
-        expect(issues[0]).toBe('Editor region is having invalid value. Value: bananas');
-      });
-    });
   });
 
   describe('context', () => {
@@ -158,7 +138,6 @@ const getValidShellEditorExtension = (): EditorExtension => {
   editorExtension.version = '0.99';
   editorExtension.context = [UserContextKeys.ID];
 
-  editorExtension.regions = [EditorRegion.SEQUENCE, EditorRegion.TASK_FLOW];
   editorExtension.settings = {
     recommended: {
       height: 800,
