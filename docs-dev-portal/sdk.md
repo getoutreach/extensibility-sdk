@@ -107,6 +107,17 @@ Pops up a traditional Outreach message toast styled as info, warning, or error.
 extensibilitySdk.notify({ type: 'info', text: 'Saved!' });
 ```
 
+### `enhanceTextEditor(html: string, subject?: string)`
+
+For text editor extension. Allows you to place HTML content at the current cursor position in the rich text editor
+and update the subject (optional).
+
+Only works if the application is rendered as part of Text Editor Extension.
+
+```javascript
+extensibilitySdk.enhanceTextEditor("Hello!", "Welcome message");
+```
+
 ### `onLoad()`
 
 If an extension fails to load within 2 seconds a warning message pops up. After 5 seconds error message is shown. You

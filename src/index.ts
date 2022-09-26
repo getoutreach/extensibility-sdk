@@ -33,6 +33,7 @@ import { ManifestTranslator } from './legacy/ManifestTranslator';
 import { OrganizationContext } from './context/host/OrganizationContext';
 import { IOutreachContext } from './context/interfaces/IOutreachContext';
 import { OAuthDialogCompletedMessage } from './sdk/messages/OAuthDialogCompletedMessage';
+import { EnhanceTextEditorMessage } from './sdk/messages/EnhanceTextEditorMessage';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -83,6 +84,7 @@ export { NotificationMessage } from './sdk/messages/NotificationMessage';
 export { NotificationType } from './sdk/messages/NotificationType';
 export { ReadyMessage } from './sdk/messages/ReadyMessage';
 export { OAuthDialogCompletedMessage } from './sdk/messages/OAuthDialogCompletedMessage';
+export { EnhanceTextEditorMessage } from './sdk/messages/EnhanceTextEditorMessage';
 
 export { Locale } from './sdk/Locale';
 export { RuntimeContext } from './sdk/RuntimeContext';
@@ -153,6 +155,7 @@ export {
   isNavigationMessage,
   isNotificationMessage,
   isReadyMessage,
+  isTextEditorEnhancementMessage,
 } from './sdk/messages/MessageGuards';
 
 export {
@@ -461,6 +464,25 @@ export class ExtensibilitySdk {
     });
 
     return this.authorizeTask!.promise;
+  };
+
+  public enhanceTextEditor = async (html: string, subject?: string): Promise<void> => {
+    await this.verifySdkInitialized();
+
+    const message = new EnhanceTextEditorMessage();
+    message.html = html;
+    message.subject = subject;
+
+    this.sendMessage(message, true);
+
+    logger.current.log({
+      origin: EventOrigin.ADDON,
+      type: EventType.MESSAGE,
+      messageType: message.type,
+      level: LogLevel.Info,
+      message: `[CXT] Addon is sending ${message.type} message to host`,
+      context: [JSON.stringify(message), runtime.origin],
+    });
   };
 
   public sendMessage<T extends Message>(message: T, logged?: boolean) {
