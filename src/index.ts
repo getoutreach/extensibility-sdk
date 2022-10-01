@@ -91,7 +91,7 @@ export { RuntimeContext } from './sdk/RuntimeContext';
 export { Theme } from './sdk/Theme';
 export { validate } from './sdk/Validator';
 
-export { utils } from './utils';
+export { hasAppIdProperty, utils } from './utils';
 
 export { Application } from './manifest/Application';
 export { ManifestApi } from './manifest/ManifestApi';
