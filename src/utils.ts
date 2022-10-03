@@ -180,3 +180,7 @@ export class utils {
     }
   };
 }
+
+export const hasAppIdProperty = (props: any): props is { appId: string } => {
+  return Object.prototype.hasOwnProperty.call(props, 'appId') && typeof props.appId === 'string';
+};
