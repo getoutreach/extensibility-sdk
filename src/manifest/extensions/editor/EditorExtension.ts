@@ -9,9 +9,8 @@ import logger from '../../../sdk/logging/Logger';
 import { UserContextKeys } from '../../../context/keys/UserContextKeys';
 import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { OrganizationContextKeys } from '../../../context/keys/OrganizationContextKeys';
-import { ShellExtensionType } from '../shell/ShellExtensionType';
 import { EditorSettings } from './EditorSettings';
-import { ExtensionHost } from '../ExtensionHost';
+import { ContentExtensionType } from './ContentExtensionType';
 
 export class EditorExtension extends Extension {
   /**
@@ -27,21 +26,12 @@ export class EditorExtension extends Extension {
   public context: (UserContextKeys | ClientContextKeys | OrganizationContextKeys)[];
 
   /**
-   * Definition of addon host
-   *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#host
-   * @type {ExtensionHost}
-   * @memberof EditorExtension
-   */
-  public host: ExtensionHost;
-
-  /**
    * Type property defines the type of tab extension
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#type
-   * @type {ShellExtensionType.EDITOR}
+   * @type {ContentExtensionType.EDITOR}
    * @memberof EditorExtension
    */
-  public type: ShellExtensionType.EDITOR = ShellExtensionType.EDITOR;
+  public type: ContentExtensionType = ContentExtensionType.EDITOR;
 
   /**
    * Optional settings of the editor extension
@@ -135,7 +125,7 @@ export class EditorExtension extends Extension {
         }
       }
     }
-    if (!this.type || this.type !== ShellExtensionType.EDITOR) {
+    if (!this.type || this.type !== ContentExtensionType.EDITOR) {
       issues.push('Host type  is invalid. Value: ' + this.type);
     }
 

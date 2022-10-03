@@ -1,3 +1,4 @@
+import { ContentExtensionType } from './editor/ContentExtensionType';
 import { EditorExtension } from './editor/EditorExtension';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
@@ -234,7 +235,7 @@ export const isEditorShellExtension = (extension: any): extension is EditorExten
     return false;
   }
 
-  if (extension.type !== ShellExtensionType.EDITOR) {
+  if (extension.type !== ContentExtensionType.EDITOR) {
     return false;
   }
 

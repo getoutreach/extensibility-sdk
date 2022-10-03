@@ -131,6 +131,8 @@ export { CompanionShellExtension } from './manifest/extensions/shell/types/Compa
 export { SidekickShellExtension } from './manifest/extensions/shell/types/SidekickShellExtension';
 export { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
 
+export { ContentExtensionType } from './manifest/extensions/editor/ContentExtensionType';
+
 export { TabExtension } from './manifest/extensions/tabs/TabExtension';
 export { TabExtensionType } from './manifest/extensions/tabs/TabExtensionType';
 export { AccountTabExtension } from './manifest/extensions/tabs/types/AccountTabExtension';
