@@ -1,3 +1,4 @@
+import { ContentExtensionType } from './editor/ContentExtensionType';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ActionShellExtension } from './shell/types/ActionShellExtension';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
@@ -15,7 +16,7 @@ import { AccountTileExtension } from './tiles/types/AccountTileExtension';
 import { OpportunityTileExtension } from './tiles/types/OpportunityTileExtension';
 import { ProspectTileExtension } from './tiles/types/ProspectTileExtension';
 
-export type ExtensionType = TabExtensionType | TileExtensionType | ShellExtensionType;
+export type ExtensionType = TabExtensionType | TileExtensionType | ShellExtensionType | ContentExtensionType;
 
 export type ProspectExtensionType =
   | TabExtensionType.PROSPECT
