@@ -1,5 +1,6 @@
 import { ProspectContextKeys } from '../keys/ProspectContextKeys';
 import { ContextParam } from './ContextParam';
+import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { ProspectContext } from './ProspectContext';
 
 export const initProspectContext = (context: ProspectContext, param: ContextParam): boolean => {
@@ -511,6 +512,9 @@ export const initProspectContext = (context: ProspectContext, param: ContextPara
       break;
     case ProspectContextKeys.CUSTOM_FIELD_150:
       context.customField150 = param.value;
+      break;
+    case ProspectContextKeys.EXTERNAL:
+      context.externalInfo = param.value ? ExternalInfoUtils.unpack(param.value) : [];
       break;
     default:
       return false;
@@ -1696,6 +1700,13 @@ export const toProspectParams = (context: ProspectContext): ContextParam[] => {
     params.push({
       key: ProspectContextKeys.CUSTOM_FIELD_150,
       value: context.customField150,
+    });
+  }
+
+  if (context.externalInfo) {
+    params.push({
+      key: ProspectContextKeys.EXTERNAL,
+      value: ExternalInfoUtils.pack(context.externalInfo),
     });
   }
 

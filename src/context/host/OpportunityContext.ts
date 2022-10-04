@@ -27,6 +27,13 @@ export class OpportunityContext extends CustomContext implements IOpportunityCon
 
   tags?: string | null;
 
+  /**
+   * A collection of external plugin providers given opportunity has
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof ProspectContext
+   *  @deprecated use externalProviderId and externalProviderName instead
+   */
   externalInfo: ExternalInfoContext[] = [];
 
   /**

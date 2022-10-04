@@ -23,6 +23,13 @@ export class AccountContext extends CustomContext implements IAccountContext {
 
   tags?: string | null;
 
+  /**
+   * A collection of external plugin providers given opportunity has
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof ProspectContext
+   *  @deprecated use externalProviderId and externalProviderName instead
+   */
   externalInfo: ExternalInfoContext[] = [];
 
   /**

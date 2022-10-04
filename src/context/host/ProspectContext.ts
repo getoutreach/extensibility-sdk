@@ -42,6 +42,13 @@ export class ProspectContext extends CustomContext implements IProspectContext {
 
   title?: string | null;
 
+  /**
+   * A collection of external plugin providers given prospect has
+   *
+   * @type {ExternalInfoContext[]}
+   * @memberof ProspectContext
+   *  @deprecated use externalProviderId and externalProviderName instead
+   */
   externalInfo: ExternalInfoContext[] = [];
 
   /**

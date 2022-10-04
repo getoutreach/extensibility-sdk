@@ -1,6 +1,7 @@
 import { AccountContextKeys } from '../keys/AccountContextKeys';
 import { ContextParam } from './ContextParam';
 import { AccountContext } from './AccountContext';
+import { ExternalInfoUtils } from './ExternalInfoUtils';
 
 export const initAccountContext = (context: AccountContext, param: ContextParam): boolean => {
   switch (param.key) {
@@ -480,6 +481,9 @@ export const initAccountContext = (context: AccountContext, param: ContextParam)
       break;
     case AccountContextKeys.CUSTOM_FIELD_150:
       context.customField150 = param.value;
+      break;
+    case AccountContextKeys.EXTERNAL:
+      context.externalInfo = param.value ? ExternalInfoUtils.unpack(param.value) : [];
       break;
     default:
       return false;
@@ -1600,5 +1604,13 @@ export const toAccountParams = (context: AccountContext): ContextParam[] => {
       value: context.customField150,
     });
   }
+
+  if (context.externalInfo) {
+    params.push({
+      key: AccountContextKeys.EXTERNAL,
+      value: ExternalInfoUtils.pack(context.externalInfo),
+    });
+  }
+
   return params;
 };
