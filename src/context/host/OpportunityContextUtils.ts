@@ -1,5 +1,6 @@
 import { OpportunityContextKeys } from '../keys/OpportunityContextKeys';
 import { ContextParam } from './ContextParam';
+import { ExternalInfoUtils } from './ExternalInfoUtils';
 import { OpportunityContext } from './OpportunityContext';
 
 export const initOpportunityContext = (context: OpportunityContext, param: ContextParam): boolean => {
@@ -490,6 +491,9 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
       break;
     case OpportunityContextKeys.CUSTOM_FIELD_150:
       context.customField150 = param.value;
+      break;
+    case OpportunityContextKeys.EXTERNAL:
+      context.externalInfo = param.value ? ExternalInfoUtils.unpack(param.value) : [];
       break;
     default:
       return false;
@@ -1622,6 +1626,13 @@ export const toOpportunityParams = (context: OpportunityContext): ContextParam[]
     params.push({
       key: OpportunityContextKeys.CUSTOM_FIELD_150,
       value: context.customField150,
+    });
+  }
+
+  if (context.externalInfo) {
+    params.push({
+      key: OpportunityContextKeys.EXTERNAL,
+      value: ExternalInfoUtils.pack(context.externalInfo),
     });
   }
 
