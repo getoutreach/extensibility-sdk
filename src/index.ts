@@ -97,7 +97,6 @@ export { Application } from './manifest/Application';
 export { ManifestApi } from './manifest/ManifestApi';
 export { ManifestApiClient } from './manifest/ManifestApiClient';
 export { ManifestAuthor } from './manifest/ManifestAuthor';
-export { ManifestConfiguration } from './manifest/ManifestConfiguration';
 export { ManifestStore } from './manifest/ManifestStore';
 export { ManifestWebhook } from './manifest/ManifestWebhook';
 export { Scopes } from './manifest/api/Scopes';

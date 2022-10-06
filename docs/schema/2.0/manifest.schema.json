@@ -184,6 +184,10 @@
       "type": "string",
       "format": "uri"
     },
+    "externalSetupUrl": {
+      "type": "string",
+      "format": "uri"
+    },
     "configuration": {
       "type": "array",
       "items": {
