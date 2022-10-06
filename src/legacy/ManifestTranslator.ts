@@ -129,7 +129,7 @@ export class ManifestTranslator {
     const manifestV1: ManifestV1 = {
       author: app.store.author,
       categories: app.store.categories?.map((p) => p.toString()) || [],
-      configuration: app.configuration?.items ?? [],
+      configuration: app.configuration ?? [],
       context: ext.context.map((c) => c.toString()),
       description: app.store.description,
       host: {
@@ -202,10 +202,10 @@ export class ManifestTranslator {
       app.api.scopes = firstExt.api.scopes;
       app.api.client.id = firstExt.api.applicationId;
       app.api.redirectUris = [firstExt.api.redirectUri];
+      // not supported in V1 manifest
+      app.api.publicKeys = [];
     }
-    app.configuration = {
-      items: firstExt.configuration,
-    };
+    app.configuration = firstExt.configuration;
 
     const extensions = appManifests.map((ext) => {
       let extension: ShellExtension | TabExtension;
@@ -297,15 +297,17 @@ export class ManifestTranslator {
 
   public static hydrate = (app: Application): Application => {
     const application = new Application();
+
+    application.disableTimeoutMonitoring = app.disableTimeoutMonitoring;
+    application.externalInstallationUrl = app.externalInstallationUrl;
+    application.externalSetupUrl = app.externalSetupUrl;
+
     if (app.api) {
       application.api = Object.assign(new ManifestApi(), app.api);
     }
 
-    if (app.configuration && app.configuration.items) {
-      application.configuration = {
-        externalUrl: app.configuration.externalUrl,
-        items: app.configuration.items.map((item) => Object.assign(new ConfigurationItem(), item)),
-      };
+    if (app.configuration) {
+      application.configuration = app.configuration.map((item) => Object.assign(new ConfigurationItem(), item));
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);

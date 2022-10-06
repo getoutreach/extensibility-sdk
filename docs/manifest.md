@@ -112,6 +112,7 @@ opportunity tab extension.
     "url": "https://application-host.com/webhook"
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
+  "externalSetupUrl": "https://somestore.com/acme/application",
   "configuration": [
     {
       "key": "apikey",

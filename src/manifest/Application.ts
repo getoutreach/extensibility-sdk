@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
+import { ConfigurationItem } from '../configuration/ConfigurationItem';
 import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
-import { ManifestConfiguration } from './ManifestConfiguration';
 import { ManifestStore } from './ManifestStore';
 import { ManifestWebhook } from './ManifestWebhook';
 
@@ -40,10 +40,10 @@ export class Application {
    * as the query parameters and can be parsed as such.
    *
    *   *
-   * @type {ManifestConfiguration}
+   * @type {ConfigurationItem[]}
    * @memberof Application
    */
-  public configuration?: ManifestConfiguration;
+  public configuration?: ConfigurationItem[];
 
   /**
    * Collection of one or more extensions being packaged in this application manifest.
@@ -63,6 +63,18 @@ export class Application {
   public store: ManifestStore;
 
   /**
+   * An optional section containing the webhook definition enabling Outreach
+   * to send appropriate event information over webhook
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#webhook
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/webhook.md
+   *
+   * @type {ManifestWebhook}
+   * @memberof Application
+   */
+  public webhook?: ManifestWebhook;
+
+  /**
    * An optional property defining if the application is created without using the extensibility SDK.
    * This apps are manually parsing of the iframe URL containing the context value parameters and not
    * sending the READY message back to the Outreach host so the timeout can not be monitored due to that.
@@ -76,14 +88,19 @@ export class Application {
   public disableTimeoutMonitoring?: boolean;
 
   /**
-   * An optional section containing the webhook definition enabling Outreach
-   * to send appropriate event information over webhook
+   * An optional property containing the external url to be used for application installation
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#webhook
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/webhook.md
-   *
-   * @type {ManifestWebhook}
+   * @type {string}
    * @memberof Application
    */
-  public webhook?: ManifestWebhook;
+  public externalInstallationUrl?: string;
+
+  /**
+   * An optional property containing the external url hosted by application creator
+   * which will perform application setup and configuration on application host side
+   *
+   * @type {string}
+   * @memberof Application
+   */
+  public externalSetupUrl?: string;
 }
