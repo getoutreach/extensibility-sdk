@@ -42,7 +42,7 @@ export class MailingLinksDataExtension extends DataExtension {
       }
 
       if (!this.type || !Object.values(DataExtensionType).includes(this.type as DataExtensionType)) {
-        issues.push('Host type  is invalid. Value: ' + this.type);
+        issues.push('Host type is invalid. Value: ' + this.type);
       }
     }
 
