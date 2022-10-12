@@ -1,5 +1,4 @@
 import { DataExtensionType } from './data/DataExtensionType';
-import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ActionShellExtension } from './shell/types/ActionShellExtension';
@@ -55,7 +54,5 @@ export type AppExtension =
   | SidekickShellExtension
   | ToolShellExtension
   | ActionShellExtension;
-
-export type DataExtension = MailingLinksDataExtension;
 
 export type GeneralExtension = AppExtension | ReportsTabExtension;

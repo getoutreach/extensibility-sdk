@@ -153,6 +153,8 @@ export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
 export { EditorSize } from './manifest/extensions/editor/EditorSize';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
+export { DataExtension } from './manifest/extensions/data/DataExtension';
+export { DataExtensionType } from './manifest/extensions/data/DataExtensionType';
 export { MailingLinksDataExtension } from './manifest/extensions/data/MailingLinksDataExtension';
 
 export {
@@ -170,6 +172,7 @@ export {
   isActionShellExtension,
   isApplicationShellExtension,
   isCompanionShellExtension,
+  isDataMailingExtension,
   isEditorShellExtension,
   isHomeEmailTileExtension,
   isHomeTasksTileExtension,

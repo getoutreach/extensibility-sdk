@@ -1,3 +1,5 @@
+import { DataExtensionType } from './data/DataExtensionType';
+import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { EditorExtension } from './editor/EditorExtension';
 import { ShellExtensionType } from './shell/ShellExtensionType';
@@ -236,6 +238,18 @@ export const isEditorShellExtension = (extension: any): extension is EditorExten
   }
 
   if (extension.type !== ContentExtensionType.EDITOR) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isDataMailingExtension = (extension: any): extension is MailingLinksDataExtension => {
+  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
+    return false;
+  }
+
+  if (extension.type !== DataExtensionType.MAILING_LINKS) {
     return false;
   }
 

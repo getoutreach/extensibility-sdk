@@ -31,7 +31,7 @@ describe('MailingLinksDataExtension', () => {
       ext.type = 'BANANAS' as any;
       var issues = ext.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Host type  is invalid. Value: BANANAS');
+      expect(issues[0]).toBe('Host type is invalid. Value: BANANAS');
     });
   });
 });
