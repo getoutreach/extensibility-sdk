@@ -137,7 +137,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["*", "install", "uninstall", "setup"]
+            "enum": ["install", "uninstall", "setup"]
           }
         }
       }
@@ -176,6 +176,13 @@
             "id": {
               "type": "string"
             }
+          }
+        },
+        "publicKeys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
           }
         }
       }
@@ -253,7 +260,6 @@
               "shell-knowledge",
               "shell-sidekick",
               "shell-tool",
-              "shell-editor",
               "tab-account",
               "tab-account-action",
               "tab-account-sidebar",
@@ -267,7 +273,10 @@
               "tile-account",
               "tile-opportunity",
               "tile-prospect",
-              "tab-reports"
+              "tab-reports",
+              "content-editor",
+              "data-mailing-links",
+              "data-prospect-events"
             ]
           },
           "host": {
@@ -278,19 +287,25 @@
                 "format": "uri"
               },
               "component": {
-                "type": "string",
-                "format": "uri"
+                "type": "string"
               },
               "template": {
-                "type": "string",
-                "format": "uri"
+                "type": "string"
               },
               "icon": {
                 "type": "string",
                 "format": "uri"
+              },
+              "category": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "event": {
+                "type": "string"
               }
-            },
-            "required": ["icon"]
+            }
           },
           "environment": {
             "type": "object",

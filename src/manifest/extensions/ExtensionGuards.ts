@@ -2,6 +2,7 @@ import { DataExtensionType } from './data/DataExtensionType';
 import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { EditorExtension } from './editor/EditorExtension';
+import { ExtensionType } from './ExtensionType';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
 import { CompanionShellExtension } from './shell/types/CompanionShellExtension';
@@ -254,4 +255,35 @@ export const isDataMailingExtension = (extension: any): extension is MailingLink
   }
 
   return true;
+};
+
+export const isDataProspectEventsExtension = (extension: any): extension is MailingLinksDataExtension => {
+  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
+    return false;
+  }
+
+  if (extension.type !== DataExtensionType.PROSPECT_EVENTS) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isIconExtension = (ext: {
+  type: ExtensionType;
+}): ext is { type: ExtensionType; host: { icon: string } } => {
+  switch (ext.type) {
+    case ShellExtensionType.APPLICATION:
+    case TileExtensionType.ACCOUNT:
+    case TileExtensionType.HOME_EMAILS:
+    case TileExtensionType.HOME_TASKS:
+    case TileExtensionType.PROSPECT:
+    case TileExtensionType.OPPORTUNITY:
+    case TileExtensionType.HOME:
+    case ContentExtensionType.EDITOR:
+    case DataExtensionType.PROSPECT_EVENTS:
+      return true;
+    default:
+      return false;
+  }
 };

@@ -1,4 +1,4 @@
-import { EditorExtension } from '../src';
+import { EditorExtension, MailingLinksDataExtension } from '../src';
 import {
   isAccountTabExtension,
   isAccountTileExtension,
@@ -8,6 +8,7 @@ import {
   isEditorShellExtension,
   isHomeEmailTileExtension,
   isHomeTasksTileExtension,
+  isIconExtension,
   isKnowledgeShellExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,
@@ -204,5 +205,47 @@ describe('ExtensionGuards', () => {
   it('will guard tool shell tab from wrong extension', () => {
     const extension = new ApplicationShellExtension();
     expect(isEditorShellExtension(extension)).toBe(false);
+  });
+
+  describe('isIconExtension', () => {
+    it('will accept app shell extension', () => {
+      const extension = new ApplicationShellExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+    it('will accept content editor extension', () => {
+      const extension = new EditorExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+    it('will accept account tile extension', () => {
+      const extension = new AccountTileExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+    it('will accept prospect tile extension', () => {
+      const extension = new ProspectTileExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+    it('will accept opportunity tile extension', () => {
+      const extension = new OpportunityTileExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+
+    it('will accept home email tile extension', () => {
+      const extension = new HomeEmailsTileExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+    it('will accept home tasks tile extension', () => {
+      const extension = new HomeTasksTileExtension();
+      expect(isIconExtension(extension)).toBe(true);
+    });
+
+    it('will NOT accept account tab extension', () => {
+      const extension = new AccountTabExtension();
+      expect(isIconExtension(extension)).toBe(false);
+    });
+
+    it('will NOT accept mailing links data tab extension', () => {
+      const extension = new MailingLinksDataExtension();
+      expect(isIconExtension(extension)).toBe(false);
+    });
   });
 });

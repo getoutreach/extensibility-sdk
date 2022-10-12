@@ -4,9 +4,10 @@ import { EventOrigin } from './sdk/logging/EventOrigin';
 import { EventType } from './sdk/logging/EventType';
 import { LogLevel } from './sdk/logging/LogLevel';
 import logger from './sdk/logging/Logger';
-import { AllContextKeys } from '.';
 import { LocalizedString } from './manifest/store/LocalizedString';
 import { Locale } from './sdk/Locale';
+
+import { AllContextKeys } from './context/keys/AllContextKeys';
 
 export class utils {
   /**
@@ -183,8 +184,4 @@ export class utils {
 
 export const hasAppIdProperty = (props: any): props is { appId: string } => {
   return Object.prototype.hasOwnProperty.call(props, 'appId') && typeof props.appId === 'string';
-};
-
-export const hasIconProperty = (props: any): props is { icon: string } => {
-  return Object.prototype.hasOwnProperty.call(props, 'icon') && typeof props.icon === 'string';
 };
