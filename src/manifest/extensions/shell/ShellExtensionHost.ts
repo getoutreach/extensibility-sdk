@@ -10,6 +10,16 @@ import { DecorationStyle } from './DecorationStyle';
  */
 export class ShellExtensionHost extends ExtensionHost {
   /**
+   * Base64 string represents the icon to be shown in the addon store
+   * and (if applicable) in the Outreach app.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#icon
+   * @type {string}
+   * @memberof ShellExtensionHost
+   */
+  icon: string;
+
+  /**
    * Optional address of the endpoint serving notification centric version of the addon experience.
    *
    * If defined, this endpoint will serve an empty HTML page with SDK on it, and the Outreach app

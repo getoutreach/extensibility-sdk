@@ -153,6 +153,8 @@ export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
 export { EditorSize } from './manifest/extensions/editor/EditorSize';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
+export { MailingLinksDataExtension } from './manifest/extensions/data/MailingLinksDataExtension';
+
 export {
   isDecorationMessage,
   isEnvironmentMessage,

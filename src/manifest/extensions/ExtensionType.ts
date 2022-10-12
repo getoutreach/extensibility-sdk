@@ -1,3 +1,5 @@
+import { DataExtensionType } from './data/DataExtensionType';
+import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ActionShellExtension } from './shell/types/ActionShellExtension';
@@ -16,7 +18,12 @@ import { AccountTileExtension } from './tiles/types/AccountTileExtension';
 import { OpportunityTileExtension } from './tiles/types/OpportunityTileExtension';
 import { ProspectTileExtension } from './tiles/types/ProspectTileExtension';
 
-export type ExtensionType = TabExtensionType | TileExtensionType | ShellExtensionType | ContentExtensionType;
+export type ExtensionType =
+  | TabExtensionType
+  | TileExtensionType
+  | ShellExtensionType
+  | ContentExtensionType
+  | DataExtensionType;
 
 export type ProspectExtensionType =
   | TabExtensionType.PROSPECT
@@ -48,5 +55,7 @@ export type AppExtension =
   | SidekickShellExtension
   | ToolShellExtension
   | ActionShellExtension;
+
+export type DataExtension = MailingLinksDataExtension;
 
 export type GeneralExtension = AppExtension | ReportsTabExtension;

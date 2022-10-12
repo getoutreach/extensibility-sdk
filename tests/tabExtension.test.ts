@@ -55,14 +55,6 @@ describe('TabExension validate tests', () => {
       expect(issues.length).toBe(0);
     });
 
-    test('host.icon - only url should be acceptable', () => {
-      const tabExtension = getValidOpportunityTabExtension();
-      tabExtension.host.icon = 'bananas';
-      var issues = tabExtension.validate();
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Host icon definition is invalid url. Value: bananas');
-    });
-
     test('only valid type should be acceptable', () => {
       const tabExtension = getValidOpportunityTabExtension() as TabExtension;
       tabExtension.type = 'BANANAS' as any;
@@ -107,7 +99,6 @@ const getValidOpportunityTabExtension = (): OpportunityTabExtension => {
   tabExtension.identifier = 'opportunity-tab-addon';
   tabExtension.fullWidth = false;
   tabExtension.host = {
-    icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
   tabExtension.version = '0.99';
