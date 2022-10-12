@@ -88,10 +88,6 @@ export class TabExtension extends Extension {
     if (!this.host) {
       issues.push('Host section is missing.');
     } else {
-      if (!utils.urlValidation(this.host.icon)) {
-        issues.push('Host icon definition is invalid url. Value: ' + this.host.icon);
-      }
-
       if (!this.host.url) {
         issues.push('Host url definition is missing.');
       } else {

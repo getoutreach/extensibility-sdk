@@ -277,7 +277,6 @@ const getNewValidApplicationManifest = (): Application => {
   opportunityTabExtension.identifier = 'opportunity-tab-addon';
   opportunityTabExtension.fullWidth = false;
   opportunityTabExtension.host = {
-    icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
   opportunityTabExtension.version = '0.99';

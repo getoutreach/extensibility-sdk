@@ -133,7 +133,7 @@ export class ManifestTranslator {
       context: ext.context.map((c) => c.toString()),
       description: app.store.description,
       host: {
-        icon: ext.host.icon,
+        icon: ext.host instanceof ShellExtensionHost ? ext.host.icon : '',
         url: ext.host.url!,
         notificationsUrl: ext.host instanceof ShellExtensionHost ? ext.host.notificationsUrl || '' : '',
         type: manifestType,
@@ -230,9 +230,12 @@ export class ManifestTranslator {
 
       extension.identifier = ext.identifier;
       extension.title = ext.title;
-      extension.host.icon = ext.host.icon;
       extension.host.url = ext.host.url;
       extension.version = ext.version;
+
+      if (extension.host instanceof ShellExtensionHost) {
+        extension.host.icon = ext.host.icon;
+      }
 
       return extension;
     });

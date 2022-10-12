@@ -184,3 +184,7 @@ export class utils {
 export const hasAppIdProperty = (props: any): props is { appId: string } => {
   return Object.prototype.hasOwnProperty.call(props, 'appId') && typeof props.appId === 'string';
 };
+
+export const hasIconProperty = (props: any): props is { icon: string } => {
+  return Object.prototype.hasOwnProperty.call(props, 'icon') && typeof props.icon === 'string';
+};

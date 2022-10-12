@@ -63,7 +63,6 @@ describe('Manifest translator tests', () => {
     ]);
     expect(tabProspectExt.description).toBe(v1Manifests[0].description);
     expect(tabProspectExt.fullWidth).toBe(v1Manifests[0].host.environment.fullWidth);
-    expect(tabProspectExt.host.icon).toBe(v1Manifests[0].host.icon);
     expect(tabProspectExt.host.url).toBe(v1Manifests[0].host.url);
     expect(tabProspectExt.identifier).toBe(v1Manifests[0].identifier);
     expect(tabProspectExt.title).toBe(v1Manifests[0].title);
@@ -92,7 +91,6 @@ describe('Manifest translator tests', () => {
     ]);
     expect(tabOpportunityExt.description).toBe(v1Manifests[2].description);
     expect(tabOpportunityExt.fullWidth).toBe(v1Manifests[2].host.environment.fullWidth);
-    expect(tabOpportunityExt.host.icon).toBe(v1Manifests[2].host.icon);
     expect(tabOpportunityExt.host.url).toBe(v1Manifests[2].host.url);
     expect(tabOpportunityExt.identifier).toBe(v1Manifests[2].identifier);
     expect(tabOpportunityExt.title).toBe(v1Manifests[2].title);

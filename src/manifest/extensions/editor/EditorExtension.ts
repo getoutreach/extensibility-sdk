@@ -11,6 +11,7 @@ import { ClientContextKeys } from '../../../context/keys/ClientContextKeys';
 import { OrganizationContextKeys } from '../../../context/keys/OrganizationContextKeys';
 import { EditorSettings } from './EditorSettings';
 import { ContentExtensionType } from './ContentExtensionType';
+import { EditorExtensionHost } from './EditorExtensionHost';
 
 export class EditorExtension extends Extension {
   /**
@@ -32,6 +33,14 @@ export class EditorExtension extends Extension {
    * @memberof EditorExtension
    */
   public type: ContentExtensionType = ContentExtensionType.EDITOR;
+
+  /**
+   * Editor extension host section definition
+   *
+   * @type {EditorExtensionHost}
+   * @memberof EditorExtension
+   */
+  public host!: EditorExtensionHost;
 
   /**
    * Optional settings of the editor extension
