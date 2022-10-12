@@ -21,4 +21,14 @@ export enum ClientContextKeys {
    * use to reneder itself to
    */
   THEME = 'theme',
+
+  /**
+   * Install ID for Galaxy Apps backwards compatibility
+   */
+  INSTALL_ID = 'installId',
+
+  /**
+   * Context host for Text Editor extension and Galaxy backwards compatibility
+   */
+  CONTEXT_HOST = 'contextHost',
 }
