@@ -106,7 +106,7 @@ Pops up a traditional Outreach message toast styled as info, warning, or error.
 ```javascript
 extensibilitySdk.notify({ type: 'info', text: 'Saved!' });
 ```
-<!---
+<!--
 ### `enhanceTextEditor(html: string, subject?: string)`
 
 For text editor extension. Allows you to place HTML content at the current cursor position in the rich text editor
