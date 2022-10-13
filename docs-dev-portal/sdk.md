@@ -117,7 +117,7 @@ Only works if the application is rendered as part of Text Editor Extension.
 ```javascript
 extensibilitySdk.enhanceTextEditor("Hello!", "Welcome message");
 ```
---->
+-->
 
 ### `onLoad()`
 
