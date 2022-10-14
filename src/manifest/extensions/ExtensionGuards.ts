@@ -107,7 +107,7 @@ export const isActionShellExtension = (extension: { type: ExtensionType }): exte
   return extension.type === ShellExtensionType.ACTION;
 };
 
-export const isEditorShellExtension = (extension: { type: ExtensionType }): extension is EditorExtension => {
+export const isContentEditorExtension = (extension: { type: ExtensionType }): extension is EditorExtension => {
   return extension.type === ContentExtensionType.EDITOR;
 };
 
@@ -131,7 +131,6 @@ export const isIconExtension = (ext: {
     case TileExtensionType.HOME_TASKS:
     case TileExtensionType.PROSPECT:
     case TileExtensionType.OPPORTUNITY:
-    case TileExtensionType.HOME:
     case ContentExtensionType.EDITOR:
     case DataExtensionType.PROSPECT_EVENTS:
       return true;
