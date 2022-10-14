@@ -1,4 +1,3 @@
-import { UnknownContextKeys } from '../../../context/keys/UnknownContextKeys';
 import { utils } from '../../../utils';
 import { DataExtension } from './DataExtension';
 import { DataExtensionType } from './DataExtensionType';
@@ -78,13 +77,11 @@ export class ProspectEventsDataExtension extends DataExtension {
     } else {
       if (!Array.isArray(this.context)) {
         issues.push('Context section is not an array. Value: ' + this.context);
-      }
-
-      this.context.forEach((context) => {
-        if (!Object.values(UnknownContextKeys).includes(context as UnknownContextKeys)) {
-          issues.push('Context key is not one of the valid values for the data extension. Key: ' + context);
+      } else {
+        if (this.context.length > 0) {
+          issues.push('Prospect events data extension context properties are not supported');
         }
-      });
+      }
     }
 
     return issues;

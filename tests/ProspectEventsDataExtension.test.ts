@@ -1,3 +1,4 @@
+import { UserContextKeys } from '../src';
 import { ProspectEventsDataExtension } from '../src/manifest/extensions/data/ProspectEventsDataExtension';
 
 describe('ProspectEventsDataExtension', () => {
@@ -87,6 +88,33 @@ describe('ProspectEventsDataExtension', () => {
         var issues = ext.validate();
         expect(issues.length).toBe(1);
         expect(issues[0]).toBe('Unsupported token: {{unknown}}');
+      });
+    });
+
+    describe('context', () => {
+      test('section is missing', () => {
+        const ext = getValidExtension();
+        delete (ext as any).context;
+        var issues = ext.validate();
+        expect(issues.length).toBe(1);
+        expect(issues[0]).toBe('Context section is missing');
+      });
+
+      test('section is not an array', () => {
+        const ext = getValidExtension();
+        (ext as any).context = 'BANANAS';
+        var issues = ext.validate();
+        expect(issues.length).toBe(1);
+        expect(issues[0]).toBe('Context section is not an array. Value: BANANAS');
+      });
+
+      test('no context properties should be acceptable', () => {
+        const ext = getValidExtension();
+        ext.context = [UserContextKeys.ID] as any;
+
+        var issues = ext.validate();
+        expect(issues.length).toBe(1);
+        expect(issues[0]).toBe('Prospect events data extension context properties are not supported');
       });
     });
   });
