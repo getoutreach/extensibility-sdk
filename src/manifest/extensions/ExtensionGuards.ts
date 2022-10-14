@@ -23,29 +23,29 @@ import { HomeTasksTileExtension } from './tiles/types/HomeTasksTileExtension';
 import { OpportunityTileExtension } from './tiles/types/OpportunityTileExtension';
 import { ProspectTileExtension } from './tiles/types/ProspectTileExtension';
 
-export const isProspectTileExtension = (extension: { type: ExtensionType }): extension is ProspectTileExtension => {
-  return extension.type === TileExtensionType.PROSPECT;
+export const isProspectTileExtension = (extension: any): extension is ProspectTileExtension => {
+  return extension?.type === TileExtensionType.PROSPECT;
 };
 
-export const isAccountTileExtension = (extension: { type: ExtensionType }): extension is AccountTileExtension => {
-  return extension.type === TileExtensionType.ACCOUNT;
+export const isAccountTileExtension = (extension: any): extension is AccountTileExtension => {
+  return extension?.type === TileExtensionType.ACCOUNT;
 };
 
 export const isOpportunityTileExtension = (extension: {
   type: ExtensionType;
 }): extension is OpportunityTileExtension => {
-  return extension.type === TileExtensionType.OPPORTUNITY;
+  return extension?.type === TileExtensionType.OPPORTUNITY;
 };
 
-export const isHomeEmailTileExtension = (extension: { type: ExtensionType }): extension is HomeEmailsTileExtension => {
-  return extension.type === TileExtensionType.HOME_EMAILS;
+export const isHomeEmailTileExtension = (extension: any): extension is HomeEmailsTileExtension => {
+  return extension?.type === TileExtensionType.HOME_EMAILS;
 };
 
-export const isHomeTasksTileExtension = (extension: { type: ExtensionType }): extension is HomeTasksTileExtension => {
-  return extension.type === TileExtensionType.HOME_TASKS;
+export const isHomeTasksTileExtension = (extension: any): extension is HomeTasksTileExtension => {
+  return extension?.type === TileExtensionType.HOME_TASKS;
 };
 
-export const isTileExtension = (extension: { type: ExtensionType }): extension is TileExtension => {
+export const isTileExtension = (extension: any): extension is TileExtension => {
   if (
     extension.type !== TileExtensionType.ACCOUNT &&
     extension.type !== TileExtensionType.PROSPECT &&
@@ -59,66 +59,66 @@ export const isTileExtension = (extension: { type: ExtensionType }): extension i
   return true;
 };
 
-export const isAccountTabExtension = (extension: { type: ExtensionType }): extension is AccountTabExtension => {
-  return extension.type === TabExtensionType.ACCOUNT;
+export const isAccountTabExtension = (extension: any): extension is AccountTabExtension => {
+  return extension?.type === TabExtensionType.ACCOUNT;
 };
 
-export const isOpportunityTabExtension = (extension: { type: ExtensionType }): extension is OpportunityTabExtension => {
-  return extension.type === TabExtensionType.OPPORTUNITY;
+export const isOpportunityTabExtension = (extension: any): extension is OpportunityTabExtension => {
+  return extension?.type === TabExtensionType.OPPORTUNITY;
 };
 
-export const isProspectTabExtension = (extension: { type: ExtensionType }): extension is ProspectTabExtension => {
-  return extension.type === TabExtensionType.PROSPECT;
+export const isProspectTabExtension = (extension: any): extension is ProspectTabExtension => {
+  return extension?.type === TabExtensionType.PROSPECT;
 };
 
-export const isReportsTabExtension = (extension: { type: ExtensionType }): extension is ReportsTabExtension => {
-  return extension.type === TabExtensionType.REPORTS;
+export const isReportsTabExtension = (extension: any): extension is ReportsTabExtension => {
+  return extension?.type === TabExtensionType.REPORTS;
 };
 
 export const isProspectActionExtension = (extension: {
   type: ExtensionType;
 }): extension is ProspectActionTabExtension => {
-  return extension.type === TabExtensionType.PROSPECT_ACTION;
+  return extension?.type === TabExtensionType.PROSPECT_ACTION;
 };
 
 export const isApplicationShellExtension = (extension: {
   type: ExtensionType;
 }): extension is ApplicationShellExtension => {
-  return extension.type === ShellExtensionType.APPLICATION;
+  return extension?.type === ShellExtensionType.APPLICATION;
 };
 
-export const isCompanionShellExtension = (extension: { type: ExtensionType }): extension is CompanionShellExtension => {
-  return extension.type === ShellExtensionType.COMPANION;
+export const isCompanionShellExtension = (extension: any): extension is CompanionShellExtension => {
+  return extension?.type === ShellExtensionType.COMPANION;
 };
 
-export const isSidekickShellExtension = (extension: { type: ExtensionType }): extension is SidekickShellExtension => {
-  return extension.type === ShellExtensionType.SIDEKICK;
+export const isSidekickShellExtension = (extension: any): extension is SidekickShellExtension => {
+  return extension?.type === ShellExtensionType.SIDEKICK;
 };
 
-export const isToolShellExtension = (extension: { type: ExtensionType }): extension is ToolShellExtension => {
-  return extension.type === ShellExtensionType.TOOL;
+export const isToolShellExtension = (extension: any): extension is ToolShellExtension => {
+  return extension?.type === ShellExtensionType.TOOL;
 };
 
-export const isKnowledgeShellExtension = (extension: { type: ExtensionType }): extension is KnowledgeShellExtension => {
-  return extension.type === ShellExtensionType.KNOWLEDGE;
+export const isKnowledgeShellExtension = (extension: any): extension is KnowledgeShellExtension => {
+  return extension?.type === ShellExtensionType.KNOWLEDGE;
 };
 
-export const isActionShellExtension = (extension: { type: ExtensionType }): extension is KnowledgeShellExtension => {
-  return extension.type === ShellExtensionType.ACTION;
+export const isActionShellExtension = (extension: any): extension is KnowledgeShellExtension => {
+  return extension?.type === ShellExtensionType.ACTION;
 };
 
-export const isContentEditorExtension = (extension: { type: ExtensionType }): extension is EditorExtension => {
-  return extension.type === ContentExtensionType.EDITOR;
+export const isContentEditorExtension = (extension: any): extension is EditorExtension => {
+  return extension?.type === ContentExtensionType.EDITOR;
 };
 
-export const isDataMailingExtension = (extension: { type: ExtensionType }): extension is MailingLinksDataExtension => {
-  return extension.type === DataExtensionType.MAILING_LINKS;
+export const isDataMailingExtension = (extension: any): extension is MailingLinksDataExtension => {
+  return extension?.type === DataExtensionType.MAILING_LINKS;
 };
 
 export const isDataProspectEventsExtension = (extension: {
   type: ExtensionType;
 }): extension is MailingLinksDataExtension => {
-  return extension.type === DataExtensionType.PROSPECT_EVENTS;
+  return extension?.type === DataExtensionType.PROSPECT_EVENTS;
 };
 
 export const isIconExtension = (ext: {
