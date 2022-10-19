@@ -9,12 +9,6 @@
 export enum TileExtensionType {
   /**
    * Home/360  dashboard tile extension (email)
-   * @deprecated Obsolete will be removed in future release - use instead HOME_EMAIL or HOME_TASKS
-   */
-  HOME = 'tile-home',
-
-  /**
-   * Home/360  dashboard tile extension (email)
    */
   HOME_EMAILS = 'tile-home-emails',
 

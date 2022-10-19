@@ -1,13 +1,21 @@
-import { EditorExtension } from '../src';
+import {
+  EditorExtension,
+  Extension,
+  ExtensionType,
+  MailingLinksDataExtension,
+  ProspectEventsDataExtension,
+} from '../src';
 import {
   isAccountTabExtension,
   isAccountTileExtension,
   isActionShellExtension,
   isApplicationShellExtension,
   isCompanionShellExtension,
-  isEditorShellExtension,
+  isContentEditorExtension,
+  isDataMailingExtension,
   isHomeEmailTileExtension,
   isHomeTasksTileExtension,
+  isIconExtension,
   isKnowledgeShellExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,
@@ -36,173 +44,57 @@ import { OpportunityTileExtension } from '../src/manifest/extensions/tiles/types
 import { ProspectTileExtension } from '../src/manifest/extensions/tiles/types/ProspectTileExtension';
 
 describe('ExtensionGuards', () => {
-  it('will cast the proper account tile extension', () => {
-    const extension = new AccountTileExtension();
-    expect(isAccountTileExtension(extension)).toBe(true);
-  });
+  describe.each([
+    [new AccountTileExtension(), isAccountTileExtension, true],
+    [new SidekickShellExtension(), isAccountTileExtension, false],
+    [new ActionShellExtension(), isActionShellExtension, true],
+    [new SidekickShellExtension(), isActionShellExtension, false],
+    [new ApplicationShellExtension(), isApplicationShellExtension, true],
+    [new SidekickShellExtension(), isApplicationShellExtension, false],
+    [new CompanionShellExtension(), isCompanionShellExtension, true],
+    [new SidekickShellExtension(), isCompanionShellExtension, false],
+    [new KnowledgeShellExtension(), isKnowledgeShellExtension, true],
+    [new SidekickShellExtension(), isKnowledgeShellExtension, false],
+    [new ToolShellExtension(), isToolShellExtension, true],
+    [new SidekickShellExtension(), isToolShellExtension, false],
+    [new AccountTabExtension(), isAccountTabExtension, true],
+    [new SidekickShellExtension(), isAccountTabExtension, false],
+    [new OpportunityTabExtension(), isOpportunityTabExtension, true],
+    [new SidekickShellExtension(), isOpportunityTabExtension, false],
+    [new ProspectActionTabExtension(), isProspectActionExtension, true],
+    [new SidekickShellExtension(), isProspectActionExtension, false],
+    [new ProspectTabExtension(), isProspectTabExtension, true],
+    [new SidekickShellExtension(), isProspectTabExtension, false],
+    [new ReportsTabExtension(), isReportsTabExtension, true],
+    [new SidekickShellExtension(), isReportsTabExtension, false],
+    [new HomeEmailsTileExtension(), isHomeEmailTileExtension, true],
+    [new SidekickShellExtension(), isHomeEmailTileExtension, false],
+    [new HomeTasksTileExtension(), isHomeTasksTileExtension, true],
+    [new SidekickShellExtension(), isHomeTasksTileExtension, false],
+    [new OpportunityTileExtension(), isOpportunityTileExtension, true],
+    [new SidekickShellExtension(), isOpportunityTileExtension, false],
+    [new ProspectTileExtension(), isProspectTileExtension, true],
+    [new SidekickShellExtension(), isProspectTileExtension, false],
+    [new EditorExtension(), isContentEditorExtension, true],
+    [new SidekickShellExtension(), isContentEditorExtension, false],
+    [new MailingLinksDataExtension(), isDataMailingExtension, true],
+    [new SidekickShellExtension(), isDataMailingExtension, false],
 
-  it('will guard account from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isAccountTileExtension(extension)).toBe(false);
-  });
+    [new ApplicationShellExtension(), isIconExtension, true],
+    [new AccountTileExtension(), isIconExtension, true],
+    [new HomeEmailsTileExtension(), isIconExtension, true],
+    [new HomeTasksTileExtension(), isIconExtension, true],
+    [new ProspectTileExtension(), isIconExtension, true],
+    [new OpportunityTileExtension(), isIconExtension, true],
+    [new EditorExtension(), isIconExtension, true],
+    [new ProspectEventsDataExtension(), isIconExtension, true],
+    [new SidekickShellExtension(), isIconExtension, false],
 
-  it('will cast the proper prospect tile extension', () => {
-    const extension = new ProspectTileExtension();
-    expect(isProspectTileExtension(extension)).toBe(true);
-  });
-
-  it('will guard prospect from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isProspectTileExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper opportunity tile extension', () => {
-    const extension = new OpportunityTileExtension();
-    expect(isOpportunityTileExtension(extension)).toBe(true);
-  });
-
-  it('will guard opportunity from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isOpportunityTileExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper home email tile extension', () => {
-    const extension = new HomeEmailsTileExtension();
-    expect(isHomeEmailTileExtension(extension)).toBe(true);
-  });
-
-  it('will guard home email from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isHomeEmailTileExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper home tasks tile extension', () => {
-    const extension = new HomeTasksTileExtension();
-    expect(isHomeTasksTileExtension(extension)).toBe(true);
-  });
-
-  it('will guard home tasks from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isHomeTasksTileExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper account tab extension', () => {
-    const extension = new AccountTabExtension();
-    expect(isAccountTabExtension(extension)).toBe(true);
-  });
-
-  it('will guard account tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isAccountTabExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper action shell extension', () => {
-    const extension = new ActionShellExtension();
-    expect(isActionShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard action shell from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isActionShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper application shell extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isApplicationShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard application shell from wrong extension', () => {
-    const extension = new ActionShellExtension();
-    expect(isApplicationShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper companion shell extension', () => {
-    const extension = new CompanionShellExtension();
-    expect(isCompanionShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard companion shell from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isCompanionShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper knowledge shell extension', () => {
-    const extension = new KnowledgeShellExtension();
-    expect(isKnowledgeShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard knowledge shell from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isKnowledgeShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper opportunity tab extension', () => {
-    const extension = new OpportunityTabExtension();
-    expect(isOpportunityTabExtension(extension)).toBe(true);
-  });
-
-  it('will guard opportunity tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isOpportunityTabExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper prospect action extension', () => {
-    const extension = new ProspectActionTabExtension();
-    expect(isProspectActionExtension(extension)).toBe(true);
-  });
-
-  it('will guard prospect action from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isProspectActionExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper prospect tab extension', () => {
-    const extension = new ProspectTabExtension();
-    expect(isProspectTabExtension(extension)).toBe(true);
-  });
-
-  it('will guard prospect tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isProspectTabExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper reports tab extension', () => {
-    const extension = new ReportsTabExtension();
-    expect(isReportsTabExtension(extension)).toBe(true);
-  });
-
-  it('will guard reports tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isReportsTabExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper sidekick shell extension', () => {
-    const extension = new SidekickShellExtension();
-    expect(isSidekickShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard sidekick shell from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isSidekickShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper tool shell extension', () => {
-    const extension = new ToolShellExtension();
-    expect(isToolShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard tool shell tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isToolShellExtension(extension)).toBe(false);
-  });
-
-  it('will cast the proper tool shell extension', () => {
-    const extension = new EditorExtension();
-    expect(isEditorShellExtension(extension)).toBe(true);
-  });
-
-  it('will guard tool shell tab from wrong extension', () => {
-    const extension = new ApplicationShellExtension();
-    expect(isEditorShellExtension(extension)).toBe(false);
+    [new SidekickShellExtension(), isSidekickShellExtension, true],
+    [new MailingLinksDataExtension(), isSidekickShellExtension, false],
+  ])('extension %1', (extension: Extension, check: (ext: { type: ExtensionType }) => any, result: boolean) => {
+    it('will resolve casting', () => {
+      expect(check(extension)).toBe(result);
+    });
   });
 });

@@ -91,7 +91,7 @@ export { RuntimeContext } from './sdk/RuntimeContext';
 export { Theme } from './sdk/Theme';
 export { validate } from './sdk/Validator';
 
-export { hasAppIdProperty, hasIconProperty, utils } from './utils';
+export { hasAppIdProperty, utils } from './utils';
 
 export { Application } from './manifest/Application';
 export { ManifestApi } from './manifest/ManifestApi';
@@ -108,15 +108,15 @@ export { StoreType } from './manifest/store/StoreType';
 
 export { Extension } from './manifest/extensions/Extension';
 export {
+  AppExtension,
+  AccountExtension,
   AccountExtensionType,
   ExtensionType,
-  ProspectExtensionType,
-  OpportunityExtensionType,
-  AccountExtension,
   GeneralExtension,
-  OpportunityExtension,
   ProspectExtension,
-  AppExtension,
+  ProspectExtensionType,
+  OpportunityExtension,
+  OpportunityExtensionType,
 } from './manifest/extensions/ExtensionType';
 export { ExtensionHost } from './manifest/extensions/ExtensionHost';
 
@@ -156,6 +156,7 @@ export { ManifestTranslator } from './legacy/ManifestTranslator';
 export { DataExtension } from './manifest/extensions/data/DataExtension';
 export { DataExtensionType } from './manifest/extensions/data/DataExtensionType';
 export { MailingLinksDataExtension } from './manifest/extensions/data/MailingLinksDataExtension';
+export { ProspectEventsDataExtension } from './manifest/extensions/data/ProspectEventsDataExtension';
 
 export {
   isDecorationMessage,
@@ -172,10 +173,12 @@ export {
   isActionShellExtension,
   isApplicationShellExtension,
   isCompanionShellExtension,
+  isContentEditorExtension,
   isDataMailingExtension,
-  isEditorShellExtension,
+  isDataProspectEventsExtension,
   isHomeEmailTileExtension,
   isHomeTasksTileExtension,
+  isIconExtension,
   isKnowledgeShellExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,

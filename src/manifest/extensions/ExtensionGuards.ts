@@ -2,6 +2,7 @@ import { DataExtensionType } from './data/DataExtensionType';
 import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { EditorExtension } from './editor/EditorExtension';
+import { ExtensionType } from './ExtensionType';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
 import { CompanionShellExtension } from './shell/types/CompanionShellExtension';
@@ -23,70 +24,28 @@ import { OpportunityTileExtension } from './tiles/types/OpportunityTileExtension
 import { ProspectTileExtension } from './tiles/types/ProspectTileExtension';
 
 export const isProspectTileExtension = (extension: any): extension is ProspectTileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TileExtensionType.PROSPECT) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TileExtensionType.PROSPECT;
 };
 
 export const isAccountTileExtension = (extension: any): extension is AccountTileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TileExtensionType.ACCOUNT) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TileExtensionType.ACCOUNT;
 };
 
-export const isOpportunityTileExtension = (extension: any): extension is OpportunityTileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TileExtensionType.OPPORTUNITY) {
-    return false;
-  }
-
-  return true;
+export const isOpportunityTileExtension = (extension: {
+  type: ExtensionType;
+}): extension is OpportunityTileExtension => {
+  return extension?.type === TileExtensionType.OPPORTUNITY;
 };
 
 export const isHomeEmailTileExtension = (extension: any): extension is HomeEmailsTileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TileExtensionType.HOME_EMAILS) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TileExtensionType.HOME_EMAILS;
 };
 
 export const isHomeTasksTileExtension = (extension: any): extension is HomeTasksTileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TileExtensionType.HOME_TASKS) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TileExtensionType.HOME_TASKS;
 };
 
 export const isTileExtension = (extension: any): extension is TileExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
   if (
     extension.type !== TileExtensionType.ACCOUNT &&
     extension.type !== TileExtensionType.PROSPECT &&
@@ -101,157 +60,81 @@ export const isTileExtension = (extension: any): extension is TileExtension => {
 };
 
 export const isAccountTabExtension = (extension: any): extension is AccountTabExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TabExtensionType.ACCOUNT) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TabExtensionType.ACCOUNT;
 };
 
 export const isOpportunityTabExtension = (extension: any): extension is OpportunityTabExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TabExtensionType.OPPORTUNITY) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TabExtensionType.OPPORTUNITY;
 };
 
 export const isProspectTabExtension = (extension: any): extension is ProspectTabExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TabExtensionType.PROSPECT) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TabExtensionType.PROSPECT;
 };
 
 export const isReportsTabExtension = (extension: any): extension is ReportsTabExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TabExtensionType.REPORTS) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === TabExtensionType.REPORTS;
 };
 
-export const isProspectActionExtension = (extension: any): extension is ProspectActionTabExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== TabExtensionType.PROSPECT_ACTION) {
-    return false;
-  }
-
-  return true;
+export const isProspectActionExtension = (extension: {
+  type: ExtensionType;
+}): extension is ProspectActionTabExtension => {
+  return extension?.type === TabExtensionType.PROSPECT_ACTION;
 };
 
-export const isApplicationShellExtension = (extension: any): extension is ApplicationShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.APPLICATION) {
-    return false;
-  }
-
-  return true;
+export const isApplicationShellExtension = (extension: {
+  type: ExtensionType;
+}): extension is ApplicationShellExtension => {
+  return extension?.type === ShellExtensionType.APPLICATION;
 };
 
 export const isCompanionShellExtension = (extension: any): extension is CompanionShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.COMPANION) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === ShellExtensionType.COMPANION;
 };
 
 export const isSidekickShellExtension = (extension: any): extension is SidekickShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.SIDEKICK) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === ShellExtensionType.SIDEKICK;
 };
 
 export const isToolShellExtension = (extension: any): extension is ToolShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.TOOL) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === ShellExtensionType.TOOL;
 };
 
 export const isKnowledgeShellExtension = (extension: any): extension is KnowledgeShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.KNOWLEDGE) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === ShellExtensionType.KNOWLEDGE;
 };
 
 export const isActionShellExtension = (extension: any): extension is KnowledgeShellExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ShellExtensionType.ACTION) {
-    return false;
-  }
-
-  return true;
+  return extension?.type === ShellExtensionType.ACTION;
 };
 
-export const isEditorShellExtension = (extension: any): extension is EditorExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
-
-  if (extension.type !== ContentExtensionType.EDITOR) {
-    return false;
-  }
-
-  return true;
+export const isContentEditorExtension = (extension: any): extension is EditorExtension => {
+  return extension?.type === ContentExtensionType.EDITOR;
 };
 
 export const isDataMailingExtension = (extension: any): extension is MailingLinksDataExtension => {
-  if (!Object.prototype.hasOwnProperty.call(extension, 'type') || typeof extension.type !== 'string') {
-    return false;
-  }
+  return extension?.type === DataExtensionType.MAILING_LINKS;
+};
 
-  if (extension.type !== DataExtensionType.MAILING_LINKS) {
-    return false;
-  }
+export const isDataProspectEventsExtension = (extension: {
+  type: ExtensionType;
+}): extension is MailingLinksDataExtension => {
+  return extension?.type === DataExtensionType.PROSPECT_EVENTS;
+};
 
-  return true;
+export const isIconExtension = (ext: {
+  type: ExtensionType;
+}): ext is { type: ExtensionType; host: { icon: string } } => {
+  switch (ext.type) {
+    case ShellExtensionType.APPLICATION:
+    case TileExtensionType.ACCOUNT:
+    case TileExtensionType.HOME_EMAILS:
+    case TileExtensionType.HOME_TASKS:
+    case TileExtensionType.PROSPECT:
+    case TileExtensionType.OPPORTUNITY:
+    case ContentExtensionType.EDITOR:
+    case DataExtensionType.PROSPECT_EVENTS:
+      return true;
+    default:
+      return false;
+  }
 };

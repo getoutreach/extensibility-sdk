@@ -1,7 +1,7 @@
 {
   "name": "@outreach/extensibility-sdk",
   "license": "MIT",
-  "version": "0.6.72",
+  "version": "0.6.80",
   "private": false,
   "contributors": [
     "Outreach Client Extensibility Team <cxt-sdk@outreach.io>"
@@ -20,6 +20,7 @@
     "pretty:fix-docs": "prettier --write docs/**/*.md README.md",
     "pretty:fix": "prettier --write '**/*.{ts,json,md,yml,yaml}'",
     "test": "jest",
+    "test:watch": "jest --watch",
     "deploy": "npm run check && npm run package && npm publish",
     "tag-version": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
   },

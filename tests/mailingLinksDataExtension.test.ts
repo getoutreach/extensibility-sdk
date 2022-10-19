@@ -1,4 +1,4 @@
-import { MailingLinksDataExtension } from '../src';
+import { MailingLinksDataExtension } from '../src/manifest/extensions/data/MailingLinksDataExtension';
 
 describe('MailingLinksDataExtension', () => {
   describe('host', () => {
