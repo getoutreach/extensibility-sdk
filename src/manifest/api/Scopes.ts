@@ -308,6 +308,8 @@ export enum Scopes {
   REFERRAL_PREDICTIONS_READ = 'referralPredictions.read',
   REFERRAL_PREDICTIONS_WRITE = 'referralPredictions.write',
 
+  RESOURCES_ALL = 'resources.all',
+
   RETURN_DATE_PREDICTIONS_ALL = 'returnDatePredictions.all',
   RETURN_DATE_PREDICTIONS_DELETE = 'returnDatePredictions.delete',
   RETURN_DATE_PREDICTIONS_READ = 'returnDatePredictions.read',
