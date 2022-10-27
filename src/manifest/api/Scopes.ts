@@ -112,6 +112,8 @@ export enum Scopes {
   EMAIL_ADDRESSES_READ = 'emailAddresses.read',
   EMAIL_ADDRESSES_WRITE = 'emailAddresses.write',
 
+  EMAIL = 'email',
+
   EVENTS_ALL = 'events.all',
   EVENTS_DELETE = 'events.delete',
   EVENTS_READ = 'events.read',
@@ -266,6 +268,8 @@ export enum Scopes {
   PROFILES_READ = 'profiles.read',
   PROFILES_WRITE = 'profiles.write',
 
+  PROFILE = 'profile',
+
   PROSPECT_OPT_OUTS_ALL = 'prospectOptOuts.all',
   PROSPECT_OPT_OUTS_DELETE = 'prospectOptOuts.delete',
   PROSPECT_OPT_OUTS_READ = 'prospectOptOuts.read',
@@ -325,6 +329,8 @@ export enum Scopes {
   SCHEDULES_DELETE = 'schedules.delete',
   SCHEDULES_READ = 'schedules.read',
   SCHEDULES_WRITE = 'schedules.write',
+
+  SCIM = 'scim',
 
   SEQUENCE_STATE_RECIPIENTS_ALL = 'sequenceStateRecipients.all',
   SEQUENCE_STATE_RECIPIENTS_DELETE = 'sequenceStateRecipients.delete',
