@@ -22,6 +22,8 @@ Outreach app is a collection of custom extensions each serving a particular purp
   the Opportunity detail page.
 - [Account tab extension](extension-types.md#account-tab-extension) - adds a custom tab with your extension to the
   Account detail page.
+- [Text editor extension](extension-types.md#text-editor-extension) - adds a new button in the Rich text editor toolbar,
+  allowing you to open your extension and enhance the text editor content.
 
 > ⓘ It is up to you to choose which and how many extensions you'd like to bundle in your app.
 
@@ -57,7 +59,7 @@ pieces in yellow. Add the necessary metadata and then review and agree to the re
 Now just hit that fat "Publish" button and your app will appear in the Outreach Marketplace! Head there to install your
 app for all org users.
 
-## Maintaining your app.
+## Maintaining your app
 
 Once you have published the app you may need to make changes to it. Any changes made in Developer Portal won't affect
 the live version of your app. To apply your changes to the live app, go through the publishing process again.
