@@ -20,7 +20,7 @@ The text editor extension allows you to enhance the content of any Rich Text edi
 
 The text editor extension allows you to open your extension from the Rich Text Editor.
 
-In the configuration, you need to provide the URL of you application running `extensibility-sdk`, that will be displayed in the iframe.
+In the configuration, you need to provide the URL of your application running `extensibility-sdk`, which will be displayed in the iframe.
 
 You can also submit the icon, which will be displayed in the toolbar. If you don't provide an icon here, the Application icon will be used.
 
@@ -42,7 +42,7 @@ Click on the toolbar option and see your app open in a popup window in over edit
 
 ### Building the extension itself
 
-In our example, we're merely displaying an example domain. What you want to do instead is host a website which uses
+In our example, we're merely displaying an example domain. What you want to do instead is host a website that uses
 our `extensibility-sdk` to communicate with the parent Outreach application.
 
 ### Enhancing the editor content
@@ -50,7 +50,7 @@ our `extensibility-sdk` to communicate with the parent Outreach application.
 After [initializing](sdk.md#initializing-the-sdk) the `extensibility-sdk` client in your application, you will be able
 to call the `extensibilitySdk.enhanceTextEditor` method, with 2 parameters, `html` and `subject`.
 
-After calling this method, the popup will be closed and the string provided as `html` parameter will be inserted at the
+After calling this method, the popup will be closed and the string provided as the `html` parameter will be inserted at the
 current cursor position in the active text editor.
 
-If the text editor supports subject field, you can pass the second parameter `subject` to replace the subject of your message.
+If the text editor supports the subject field, you can pass the second parameter `subject` to replace the subject of your message.
