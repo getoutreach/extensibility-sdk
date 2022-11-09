@@ -12,6 +12,9 @@ import { OrganizationContextKeys } from '../../../context/keys/OrganizationConte
 import { EditorSettings } from './EditorSettings';
 import { ContentExtensionType } from './ContentExtensionType';
 import { EditorExtensionHost } from './EditorExtensionHost';
+import { ProspectContextKeys } from '../../../context/keys/ProspectContextKeys';
+import { OpportunityContextKeys } from '../../../context/keys/OpportunityContextKeys';
+import { AccountContextKeys } from '../../../context/keys/AccountContextKeys';
 
 export class EditorExtension extends Extension {
   /**
@@ -21,10 +24,17 @@ export class EditorExtension extends Extension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys)[]}
+   *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys | ProspectContextKeys | OpportunityContextKeys | AccountContextKeys)[]}
    * @memberof EditorExtension
    */
-  public context: (UserContextKeys | ClientContextKeys | OrganizationContextKeys)[];
+  public context: (
+    | UserContextKeys
+    | ClientContextKeys
+    | OrganizationContextKeys
+    | ProspectContextKeys
+    | OpportunityContextKeys
+    | AccountContextKeys
+  )[];
 
   /**
    * Type property defines the type of tab extension
