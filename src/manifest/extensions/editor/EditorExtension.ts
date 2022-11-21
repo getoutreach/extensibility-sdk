@@ -124,23 +124,25 @@ export class EditorExtension extends Extension {
 
       if (this.settings) {
         if (this.settings.recommended) {
-          if (this.settings.recommended.height) {
-            if (typeof this.settings.recommended.height !== 'number') {
-              issues.push('Host height is not a number. Value: ' + this.settings.recommended.height);
-            }
-
-            if (!this.settings.recommended.width) {
-              issues.push('Both width and height has to be defined - width is missing');
+          this.settings.recommended.forEach(r => {
+            if (r.height) {
+              if (typeof r.height !== 'number') {
+                issues.push('Host height is not a number. Value: ' + r.height);
+              }
+  
+              if (!r.width) {
+                issues.push('Both width and height has to be defined - width is missing');
+              } else {
+                if (typeof r.width !== 'number') {
+                  issues.push('Host width is not a number. Value: ' + r.width);
+                }
+              }
             } else {
-              if (typeof this.settings.recommended.width !== 'number') {
-                issues.push('Host width is not a number. Value: ' + this.settings.recommended.width);
+              if (r.width) {
+                issues.push('Both width and height has to be defined - height is missing');
               }
             }
-          } else {
-            if (this.settings.recommended.width) {
-              issues.push('Both width and height has to be defined - height is missing');
-            }
-          }
+          })
         }
       }
     }
