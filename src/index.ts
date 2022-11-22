@@ -150,6 +150,7 @@ export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
 export { EditorExtension } from './manifest/extensions/editor/EditorExtension';
 export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
+export { EditorExtensionHost} from './manifest/extensions/editor/EditorExtensionHost'
 export { EditorSize } from './manifest/extensions/editor/EditorSize';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 

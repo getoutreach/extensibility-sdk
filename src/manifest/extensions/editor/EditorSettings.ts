@@ -11,8 +11,8 @@ export class EditorSettings {
   /**
    * Recommended size of the iframe popup.
    *
-   * @type {EditorSize}
+   * @type {EditorSize[]}
    * @memberof EditorSettings
    */
-  public recommended?: EditorSize;
+  public recommended?: EditorSize[];
 }
