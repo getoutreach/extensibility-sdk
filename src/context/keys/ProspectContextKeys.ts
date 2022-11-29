@@ -79,9 +79,34 @@ export enum ProspectContextKeys {
   EXTERNAL_PROVIDER = 'pro.extprvd',
 
   /**
+   * Prospect first name
+   */
+  FIRST_NAME = 'pro.fname',
+
+  /**
    * Prospect id
    */
   ID = 'pro.id',
+
+  /**
+   * Prospect last name
+   */
+  LAST_NAME = 'pro.lname',
+
+  /**
+   *Prospect full name
+   */
+  NAME = 'pro.name',
+
+  /**
+   *Prospect personal note 1
+   */
+  PERSONAL_NOTE1 = 'pro.pnote1',
+
+  /**
+   * Prospect personal note 2
+   */
+  PERSONAL_NOTE2 = 'pro.pnote2',
 
   /**
    * A list of tag values associated with the account (e.g. ["Interested", "2017 Expo"]).
@@ -97,6 +122,11 @@ export enum ProspectContextKeys {
    * The title of the prospect.
    */
   TITLE = 'pro.title',
+
+  /**
+   * Twitter url
+   */
+  TWITTER_URL = 'pro.twit',
 
   /**
    *The prospect's external information received from the installed plugins (Salesforce, Dynamics etc.)
