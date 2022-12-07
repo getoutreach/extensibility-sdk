@@ -150,7 +150,7 @@ export { TileSettings } from './manifest/extensions/tiles/TileSettings';
 
 export { EditorExtension } from './manifest/extensions/editor/EditorExtension';
 export { EditorRegion } from './manifest/extensions/editor/EditorRegion';
-export { EditorExtensionHost} from './manifest/extensions/editor/EditorExtensionHost'
+export { EditorExtensionHost } from './manifest/extensions/editor/EditorExtensionHost';
 export { EditorSize } from './manifest/extensions/editor/EditorSize';
 export { ManifestTranslator } from './legacy/ManifestTranslator';
 
@@ -191,6 +191,9 @@ export {
   isTileExtension,
   isToolShellExtension,
 } from './manifest/extensions/ExtensionGuards';
+
+export { IEmailContext as EmailContext } from './context/interfaces/IEmailContext';
+export { EmailContextKeys } from './context/keys/EmailContextKeys';
 
 class Task<T> {
   public promise: Promise<T>;
