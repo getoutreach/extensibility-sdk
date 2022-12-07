@@ -163,7 +163,6 @@ export class EditorExtension extends Extension {
         if (
           !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
           !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
-          !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
           !Object.values(OrganizationContextKeys).includes(context as OrganizationContextKeys) &&
           !Object.values(ProspectContextKeys).includes(context as ProspectContextKeys) &&
           !Object.values(OpportunityContextKeys).includes(context as OpportunityContextKeys) &&
