@@ -22,7 +22,7 @@ export enum EmailContextKeys {
   /**
    * Email cc field entry
    */
-  CC = 'eml.bcc',
+  CC = 'eml.cc',
 
   /**
    * Email subject field entry
