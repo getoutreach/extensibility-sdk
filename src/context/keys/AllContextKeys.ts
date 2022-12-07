@@ -6,6 +6,7 @@ import { ClientContextKeys } from './ClientContextKeys';
 import { ProspectContextKeys } from './ProspectContextKeys';
 import { OrganizationContextKeys } from './OrganizationContextKeys';
 import { UnknownContextKeys } from './UnknownContextKeys';
+import { EmailContextKeys } from './EmailContextKeys';
 
 export type AllContextKeys =
   | UserContextKeys
@@ -14,4 +15,5 @@ export type AllContextKeys =
   | OpportunityContextKeys
   | ClientContextKeys
   | ProspectContextKeys
+  | EmailContextKeys
   | UnknownContextKeys;

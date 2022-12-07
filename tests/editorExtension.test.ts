@@ -103,14 +103,11 @@ describe('EditorExtension validate tests', () => {
       editorExt.context = ['bananas', UserContextKeys.ID, OpportunityContextKeys.ID, 'apples'] as any;
 
       var issues = editorExt.validate();
-      expect(issues.length).toBe(3);
+      expect(issues.length).toBe(2);
       expect(issues[0]).toBe(
         'Context key is not one of the valid values for the application editor extension. Key: bananas'
       );
       expect(issues[1]).toBe(
-        'Context key is not one of the valid values for the application editor extension. Key: opp.id'
-      );
-      expect(issues[2]).toBe(
         'Context key is not one of the valid values for the application editor extension. Key: apples'
       );
     });
@@ -139,11 +136,13 @@ const getValidShellEditorExtension = (): EditorExtension => {
   editorExtension.context = [UserContextKeys.ID];
 
   editorExtension.settings = {
-    recommended: [{
-      height: 800,
-      width: 600,
-    },
-  ]};
+    recommended: [
+      {
+        height: 800,
+        width: 600,
+      },
+    ],
+  };
 
   return editorExtension;
 };

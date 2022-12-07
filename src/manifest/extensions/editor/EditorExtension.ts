@@ -15,6 +15,7 @@ import { EditorExtensionHost } from './EditorExtensionHost';
 import { ProspectContextKeys } from '../../../context/keys/ProspectContextKeys';
 import { OpportunityContextKeys } from '../../../context/keys/OpportunityContextKeys';
 import { AccountContextKeys } from '../../../context/keys/AccountContextKeys';
+import { EmailContextKeys } from '../../../context/keys/EmailContextKeys';
 
 export class EditorExtension extends Extension {
   /**
@@ -24,7 +25,7 @@ export class EditorExtension extends Extension {
    *
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#context
    * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/context.md
-   *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys | ProspectContextKeys | OpportunityContextKeys | AccountContextKeys)[]}
+   *  @type {(UserContextKeys | ClientContextKeys | OrganizationContextKeys | ProspectContextKeys | OpportunityContextKeys | AccountContextKeys | EmailContextKeys)[]}
    * @memberof EditorExtension
    */
   public context: (
@@ -34,6 +35,7 @@ export class EditorExtension extends Extension {
     | ProspectContextKeys
     | OpportunityContextKeys
     | AccountContextKeys
+    | EmailContextKeys
   )[];
 
   /**
@@ -124,12 +126,12 @@ export class EditorExtension extends Extension {
 
       if (this.settings) {
         if (this.settings.recommended) {
-          this.settings.recommended.forEach(r => {
+          this.settings.recommended.forEach((r) => {
             if (r.height) {
               if (typeof r.height !== 'number') {
                 issues.push('Host height is not a number. Value: ' + r.height);
               }
-  
+
               if (!r.width) {
                 issues.push('Both width and height has to be defined - width is missing');
               } else {
@@ -142,7 +144,7 @@ export class EditorExtension extends Extension {
                 issues.push('Both width and height has to be defined - height is missing');
               }
             }
-          })
+          });
         }
       }
     }
@@ -160,7 +162,13 @@ export class EditorExtension extends Extension {
       this.context.forEach((context) => {
         if (
           !Object.values(UserContextKeys).includes(context as UserContextKeys) &&
-          !Object.values(ClientContextKeys).includes(context as ClientContextKeys)
+          !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+          !Object.values(ClientContextKeys).includes(context as ClientContextKeys) &&
+          !Object.values(OrganizationContextKeys).includes(context as OrganizationContextKeys) &&
+          !Object.values(ProspectContextKeys).includes(context as ProspectContextKeys) &&
+          !Object.values(OpportunityContextKeys).includes(context as OpportunityContextKeys) &&
+          !Object.values(AccountContextKeys).includes(context as AccountContextKeys) &&
+          !Object.values(EmailContextKeys).includes(context as EmailContextKeys)
         ) {
           issues.push(
             'Context key is not one of the valid values for the application editor extension. Key: ' + context
