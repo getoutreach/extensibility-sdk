@@ -195,6 +195,7 @@ export enum Scopes {
   USERS_ALL = 'users.all',
   USERS_READ = 'users.read',
   USERS_WRITE = 'users.write',
+  USERS_AGGREGATE = 'users.aggregate',
 
   WEBHOOKS_ALL = 'webhooks.all',
   WEBHOOKS_DELETE = 'webhooks.delete',

@@ -61,6 +61,6 @@ All of the [SDK scopes](../src/manifest/api/Scopes.ts) are resource grouped in:
 - **task priorities** (task priorities read)
 - **teams** (teams all|delete|read|write)
 - **templates** (templates all|delete|read|write)
-- **users** (users all|read|write)
+- **users** (users all|read|write|aggregate)
 - **webhooks** (webhooks all|delete|read|write)
 - **scim** (scim)
