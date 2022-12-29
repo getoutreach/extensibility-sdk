@@ -1,47 +1,57 @@
+import { LogLevel } from '../../sdk/logging/LogLevel';
+import logger from '../../sdk/logging/Logger';
+
 import { IEmailContext } from '../interfaces/IEmailContext';
+import { areRecipients, Recipient } from '../interfaces/Recipient';
 import { EmailContextKeys } from '../keys/EmailContextKeys';
 import { ContextParam } from './ContextParam';
 import { Context } from './CustomContext';
+import { EventType } from '../../sdk/logging/EventType';
+import { EventOrigin } from '../../sdk/logging/EventOrigin';
 
 export class EmailContext extends Context implements IEmailContext {
   /**
    * Email to field value
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  to?: string | null;
+  to?: Recipient[] | null;
 
   /**
    * Email cc field value
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  cc?: string | null;
+  cc?: Recipient[] | null;
 
   /**
    * Email bcc field value
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  bcc?: string | null;
+  bcc?: Recipient[] | null;
 
   /**
    * Subject field value
    *
    * @type {string | null}
+   * @memberof EmailContext
    */
   subject?: string | null;
 
   public initFrom(param: ContextParam): boolean {
     switch (param.key) {
       case EmailContextKeys.TO:
-        this.to = param.value;
+        this.to = this.getRecipients(param.value);
         break;
       case EmailContextKeys.CC:
-        this.cc = param.value!;
+        this.cc = this.getRecipients(param.value);
         break;
       case EmailContextKeys.BCC:
-        this.bcc = param.value;
+        this.bcc = this.getRecipients(param.value);
         break;
       case EmailContextKeys.SUBJECT:
         this.subject = param.value;
@@ -58,21 +68,21 @@ export class EmailContext extends Context implements IEmailContext {
     if (this.to) {
       params.push({
         key: EmailContextKeys.TO,
-        value: this.to,
+        value: JSON.stringify(this.to),
       });
     }
 
     if (this.cc) {
       params.push({
         key: EmailContextKeys.CC,
-        value: this.cc,
+        value: JSON.stringify(this.cc),
       });
     }
 
     if (this.bcc) {
       params.push({
         key: EmailContextKeys.BCC,
-        value: this.bcc,
+        value: JSON.stringify(this.bcc),
       });
     }
 
@@ -85,4 +95,36 @@ export class EmailContext extends Context implements IEmailContext {
 
     return params;
   }
+
+  private getRecipients = (value?: string | null): Recipient[] | null => {
+    if (!value) {
+      return null;
+    }
+
+    try {
+      const recipients = JSON.parse(value);
+      if (!areRecipients(recipients)) {
+        logger.current.log({
+          level: LogLevel.Error,
+          context: value ? [value] : [],
+          type: EventType.INTERNAL,
+          origin: EventOrigin.HOST,
+          message: 'Recipients value is not an array. value: ' + value,
+        });
+
+        return [];
+      }
+
+      return recipients;
+    } catch {
+      logger.current.log({
+        level: LogLevel.Error,
+        context: value ? [value] : [],
+        type: EventType.INTERNAL,
+        origin: EventOrigin.HOST,
+        message: 'Unparsable recipients. value: ' + value,
+      });
+      return null;
+    }
+  };
 }

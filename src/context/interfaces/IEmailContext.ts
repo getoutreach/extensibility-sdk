@@ -1,36 +1,35 @@
-/**
- * Collection of email context values which can be retrieved
- * in the editor extensions loaded in the email popup
- *
- * @export
- * @interface IEmailContext
- */
+import { Recipient } from './Recipient';
+
 export interface IEmailContext {
   /**
-   * Email to field value
+   * List of email TO recipients entered in send email dialog (if any)
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  to?: string | null;
+  to?: Recipient[] | null;
 
   /**
-   * Email cc field value
+   * List of email CC recipients entered in send email dialog (if any)
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  cc?: string | null;
+  cc?: Recipient[] | null;
 
   /**
-   * Email bcc field value
+   *  List of BCC recipients entered in send email dialog (if any)
    *
-   * @type {string | null}
+   * @type {Recipient[]}
+   * @memberof EmailContext
    */
-  bcc?: string | null;
+  bcc?: Recipient[] | null;
 
   /**
-   * Subject field value
+   * Subject of send email dialog (if any)
    *
-   * @type {string | null}
+   * @type {string}
+   * @memberof EmailContext
    */
   subject?: string | null;
 }
