@@ -194,6 +194,7 @@ export {
 
 export { IEmailContext as EmailContext } from './context/interfaces/IEmailContext';
 export { EmailContextKeys } from './context/keys/EmailContextKeys';
+export { areRecipients, isRecipient, Recipient } from './context/interfaces/Recipient';
 
 class Task<T> {
   public promise: Promise<T>;
