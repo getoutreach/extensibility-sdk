@@ -1,7 +1,7 @@
 export interface Recipient {
   email: string;
   name?: string;
-  id?: number;
+  id?: string;
 }
 
 export const areRecipients = (value: any): value is Recipient[] => {
