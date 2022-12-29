@@ -192,7 +192,8 @@ export {
   isToolShellExtension,
 } from './manifest/extensions/ExtensionGuards';
 
-export { EmailContext } from './context/host/EmailContext';
+export { IEmailContext as EmailContext } from './context/interfaces/IEmailContext';
+export { EmailContext as EmailContextImpl } from './context/host/EmailContext';
 export { EmailContextKeys } from './context/keys/EmailContextKeys';
 export { areRecipients, isRecipient, Recipient } from './context/interfaces/Recipient';
 
