@@ -1,7 +1,7 @@
 export interface Recipient {
   email: string;
-  name: string;
-  prospectId: number | null;
+  name?: string;
+  id?: number;
 }
 
 export const areRecipients = (value: any): value is Recipient[] => {
@@ -13,5 +13,5 @@ export const areRecipients = (value: any): value is Recipient[] => {
 };
 
 export const isRecipient = (value: any): value is Recipient => {
-  return !!value?.email && !!value?.name;
+  return !!value?.email;
 };

@@ -7,7 +7,6 @@ describe('recipient', () => {
         isRecipient({
           email: 'not-prospect@email.com',
           name: 'some name',
-          prospectId: null,
         })
       ).toBe(true);
     });
@@ -20,18 +19,16 @@ describe('recipient', () => {
       expect(
         isRecipient({
           name: 'some name',
-          prospectId: null,
         })
       ).toBe(false);
     });
 
-    it('will return true for missing name', () => {
+    it('will return true when missing name', () => {
       expect(
         isRecipient({
           email: 'not-prospect@email.com',
-          prospectId: null,
         })
-      ).toBe(false);
+      ).toBe(true);
     });
   });
 
@@ -46,7 +43,6 @@ describe('recipient', () => {
           {
             email: 'not-prospect@email.com',
             name: 'some name',
-            prospectId: null,
           },
         ])
       ).toBe(true);
@@ -57,7 +53,6 @@ describe('recipient', () => {
         areRecipients({
           email: 'not-prospect@email.com',
           name: 'some name',
-          prospectId: null,
         })
       ).toBe(false);
     });
@@ -76,7 +71,6 @@ describe('recipient', () => {
           },
           {
             name: 'some name',
-            prospectId: null,
           },
         ])
       ).toBe(false);

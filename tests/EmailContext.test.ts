@@ -23,11 +23,11 @@ describe('EmailContext', () => {
 
       expect(emailContext.to?.[0].email).toBe('prospect@mail.com');
       expect(emailContext.to?.[0].name).toBe('John Smith');
-      expect(emailContext.to?.[0].prospectId).toBe(123);
+      expect(emailContext.to?.[0].id).toBe(123);
 
       expect(emailContext.to?.[1].email).toBe('not-prospect@mail.com');
       expect(emailContext.to?.[1].name).toBe('Mike Smith');
-      expect(emailContext.to?.[1].prospectId).toBeNull();
+      expect(emailContext.to?.[1].id).toBeUndefined();
     });
 
     it('will initialize CC param', () => {
@@ -48,11 +48,11 @@ describe('EmailContext', () => {
 
       expect(emailContext.cc?.[0].email).toBe('prospect@mail.com');
       expect(emailContext.cc?.[0].name).toBe('John Smith');
-      expect(emailContext.cc?.[0].prospectId).toBe(123);
+      expect(emailContext.cc?.[0].id).toBe(123);
 
       expect(emailContext.cc?.[1].email).toBe('not-prospect@mail.com');
       expect(emailContext.cc?.[1].name).toBe('Mike Smith');
-      expect(emailContext.cc?.[1].prospectId).toBeNull();
+      expect(emailContext.cc?.[1].id).toBeUndefined();
     });
 
     it('will initialize BCC param', () => {
@@ -74,11 +74,11 @@ describe('EmailContext', () => {
 
       expect(emailContext.bcc?.[0].email).toBe('prospect@mail.com');
       expect(emailContext.bcc?.[0].name).toBe('John Smith');
-      expect(emailContext.bcc?.[0].prospectId).toBe(123);
+      expect(emailContext.bcc?.[0].id).toBe(123);
 
       expect(emailContext.bcc?.[1].email).toBe('not-prospect@mail.com');
       expect(emailContext.bcc?.[1].name).toBe('Mike Smith');
-      expect(emailContext.bcc?.[1].prospectId).toBeNull();
+      expect(emailContext.bcc?.[1].id).toBeUndefined();
     });
 
     it('will initialize subject param', () => {
@@ -144,7 +144,7 @@ describe('EmailContext', () => {
 
 const getTestRecipients = (): Recipient[] => {
   return [
-    { email: 'prospect@mail.com', name: 'John Smith', prospectId: 123 },
-    { email: 'not-prospect@mail.com', name: 'Mike Smith', prospectId: null },
+    { email: 'prospect@mail.com', name: 'John Smith', id: 123 },
+    { email: 'not-prospect@mail.com', name: 'Mike Smith' },
   ];
 };
