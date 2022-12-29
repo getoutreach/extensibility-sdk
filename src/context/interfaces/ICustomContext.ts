@@ -1,4 +1,6 @@
-export interface ICustomContext {
+import { IContext } from './IContext';
+
+export interface ICustomContext extends IContext {
   customField1?: string | null;
   customField2?: string | null;
   customField3?: string | null;
