@@ -186,6 +186,7 @@ export enum Scopes {
   TEAMS_DELETE = 'teams.delete',
   TEAMS_READ = 'teams.read',
   TEAMS_WRITE = 'teams.write',
+  TEAMS_AGGREGATE = 'teams.aggregate',
 
   TEMPLATES_ALL = 'templates.all',
   TEMPLATES_DELETE = 'templates.delete',
