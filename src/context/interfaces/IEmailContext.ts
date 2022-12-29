@@ -1,7 +1,6 @@
-import { IContext } from './IContext';
 import { Recipient } from './Recipient';
 
-export interface IEmailContext extends IContext {
+export interface IEmailContext {
   /**
    * List of email TO recipients entered in send email dialog (if any)
    *
