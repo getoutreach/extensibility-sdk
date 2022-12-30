@@ -9,7 +9,7 @@ export const areRecipients = (value: any): value is Recipient[] => {
     return false;
   }
 
-  return !value.some((v) => !isRecipient(v));
+  return value.every(isRecipient);
 };
 
 export const isRecipient = (value: any): value is Recipient => {
