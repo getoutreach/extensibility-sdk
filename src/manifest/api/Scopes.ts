@@ -34,11 +34,6 @@ export enum Scopes {
   COMPLIANCE_REQUESTS_READ = 'complianceRequests.read',
   COMPLIANCE_REQUESTS_WRITE = 'complianceRequests.write',
 
-  CONTENT_CATEGORY_OWNERSHIPS_ALL = 'contentCategoryOwnerships.all',
-  CONTENT_CATEGORY_OWNERSHIPS_DELETE = 'contentCategoryOwnerships.delete',
-  CONTENT_CATEGORY_OWNERSHIPS_READ = 'contentCategoryOwnerships.read',
-  CONTENT_CATEGORY_OWNERSHIPS_WRITE = 'contentCategoryOwnerships.write',
-
   CONTENT_CATEGORIES_ALL = 'contentCategories.all',
   CONTENT_CATEGORIES_DELETE = 'contentCategories.delete',
   CONTENT_CATEGORIES_READ = 'contentCategories.read',
@@ -48,6 +43,11 @@ export enum Scopes {
   CONTENT_CATEGORY_MEMBERSHIPS_DELETE = 'contentCategoryMemberships.delete',
   CONTENT_CATEGORY_MEMBERSHIPS_READ = 'contentCategoryMemberships.read',
   CONTENT_CATEGORY_MEMBERSHIPS_WRITE = 'contentCategoryMemberships.write',
+
+  CONTENT_CATEGORY_OWNERSHIPS_ALL = 'contentCategoryOwnerships.all',
+  CONTENT_CATEGORY_OWNERSHIPS_DELETE = 'contentCategoryOwnerships.delete',
+  CONTENT_CATEGORY_OWNERSHIPS_READ = 'contentCategoryOwnerships.read',
+  CONTENT_CATEGORY_OWNERSHIPS_WRITE = 'contentCategoryOwnerships.write',
 
   CUSTOM_DUTIES_WRITE = 'customDuties.write',
 
@@ -66,6 +66,10 @@ export enum Scopes {
   FAVORITES_DELETE = 'favorites.delete',
   FAVORITES_READ = 'favorites.read',
   FAVORITES_WRITE = 'favorites.write',
+
+  JOB_ROLES_ALL = 'jobRoles.all',
+  JOB_ROLES_READ = 'jobRoles.read',
+  JOB_ROLES_WRITE = 'jobRoles.write',
 
   MAIL_ALIASES_READ = 'mailAliases.read',
 
@@ -126,15 +130,20 @@ export enum Scopes {
   RECIPIENTS_READ = 'recipients.read',
   RECIPIENTS_WRITE = 'recipients.write',
 
+  RECORD_ACTOR_ASSIGNMENTS_ALL = 'recordActorAssignments.all',
+  RECORD_ACTOR_ASSIGNMENTS_DELETE = 'recordActorAssignments.delete',
+  RECORD_ACTOR_ASSIGNMENTS_READ = 'recordActorAssignments.read',
+  RECORD_ACTOR_ASSIGNMENTS_WRITE = 'recordActorAssignments.write',
+
   ROLES_ALL = 'roles.all',
   ROLES_DELETE = 'roles.delete',
   ROLES_READ = 'roles.read',
   ROLES_WRITE = 'roles.write',
 
-  RULE_SETS_ALL = 'rulesets.all',
-  RULE_SETS_DELETE = 'rulesets.delete',
-  RULE_SETS_READ = 'rulesets.read',
-  RULE_SETS_WRITE = 'rulesets.write',
+  RULESETS_ALL = 'rulesets.all',
+  RULESETS_DELETE = 'rulesets.delete',
+  RULESETS_READ = 'rulesets.read',
+  RULESETS_WRITE = 'rulesets.write',
 
   SEQUENCES_ALL = 'sequences.all',
   SEQUENCES_DELETE = 'sequences.delete',
@@ -177,6 +186,7 @@ export enum Scopes {
   TEAMS_DELETE = 'teams.delete',
   TEAMS_READ = 'teams.read',
   TEAMS_WRITE = 'teams.write',
+  TEAMS_AGGREGATE = 'teams.aggregate',
 
   TEMPLATES_ALL = 'templates.all',
   TEMPLATES_DELETE = 'templates.delete',
@@ -186,9 +196,12 @@ export enum Scopes {
   USERS_ALL = 'users.all',
   USERS_READ = 'users.read',
   USERS_WRITE = 'users.write',
+  USERS_AGGREGATE = 'users.aggregate',
 
   WEBHOOKS_ALL = 'webhooks.all',
   WEBHOOKS_DELETE = 'webhooks.delete',
   WEBHOOKS_READ = 'webhooks.read',
   WEBHOOKS_WRITE = 'webhooks.write',
+
+  SCIM = "scim"
 }
