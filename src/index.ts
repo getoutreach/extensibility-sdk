@@ -193,7 +193,9 @@ export {
 } from './manifest/extensions/ExtensionGuards';
 
 export { IEmailContext as EmailContext } from './context/interfaces/IEmailContext';
+export { EmailContext as EmailContextImpl } from './context/host/EmailContext';
 export { EmailContextKeys } from './context/keys/EmailContextKeys';
+export { areRecipients, isRecipient, Recipient } from './context/interfaces/Recipient';
 
 class Task<T> {
   public promise: Promise<T>;

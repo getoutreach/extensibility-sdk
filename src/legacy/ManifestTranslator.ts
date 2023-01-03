@@ -6,6 +6,7 @@ import {
   ConfigurationItem,
   ContentExtensionType,
   EditorExtension,
+  EmailContextKeys,
   HomeEmailsTileExtension,
   HomeTasksTileExtension,
   ManifestApi,
@@ -273,6 +274,11 @@ export class ManifestTranslator {
     const clientKey = ManifestTranslator.getEnumKeyByEnumValue(ClientContextKeys, ctx);
     if (clientKey) {
       return ClientContextKeys[clientKey];
+    }
+
+    const emailKey = ManifestTranslator.getEnumKeyByEnumValue(EmailContextKeys, ctx);
+    if (emailKey) {
+      return EmailContextKeys[emailKey];
     }
 
     return null;
