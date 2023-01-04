@@ -6,6 +6,12 @@ import { IOrganizationContext } from '../interfaces/IOrganizationContext';
 export class OrganizationContext extends Context implements IOrganizationContext {
   currency?: string | null;
 
+  /**
+   * Unique organization id
+   *
+   * @type {string}
+   * @memberof OrganizationContext
+   */
   id?: string;
 
   logo?: string | null;
