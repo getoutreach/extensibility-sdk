@@ -12,7 +12,15 @@ export class OrganizationContext extends Context implements IOrganizationContext
    * @type {string}
    * @memberof OrganizationContext
    */
-  id?: string;
+  id: string;
+
+  /**
+   * Organization instance id
+   *
+   * @type {string}
+   * @memberof OrganizationContext
+   */
+  instanceId: string;
 
   logo?: string | null;
 
@@ -32,6 +40,9 @@ export class OrganizationContext extends Context implements IOrganizationContext
         break;
       case OrganizationContextKeys.ID:
         this.id = param.value!;
+        break;
+      case OrganizationContextKeys.INSTANCE_ID:
+        this.instanceId = param.value!;
         break;
       case OrganizationContextKeys.LOGO:
         this.logo = param.value;
@@ -62,6 +73,13 @@ export class OrganizationContext extends Context implements IOrganizationContext
       params.push({
         key: OrganizationContextKeys.ID,
         value: this.id,
+      });
+    }
+
+    if (this.instanceId) {
+      params.push({
+        key: OrganizationContextKeys.INSTANCE_ID,
+        value: this.instanceId,
       });
     }
 

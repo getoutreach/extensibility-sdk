@@ -12,6 +12,11 @@ export enum OrganizationContextKeys {
   ID = 'org.id',
 
   /**
+   * Organization instance id
+   */
+  INSTANCE_ID = 'org.instId',
+
+  /**
    * Organization logo url
    */
   LOGO = 'org.logo',

@@ -14,9 +14,19 @@ export interface IUserContext {
   firstName?: string | null;
 
   /**
-   * Unique user identifier
+   *
+   *  A cross org unique identifier of the user
    *
    * @type {string}
+   * @memberof UserContext
+   */
+  globalId: string;
+
+  /**
+   * A user id which is bound to the org of user (in every org it starts from 1...)
+   *
+   * @type {string}
+   * @memberof UserContext
    */
   id: string;
 
