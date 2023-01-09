@@ -1,6 +1,8 @@
 import {
   isDecorationMessage,
   isEnvironmentMessage,
+  isLegacyGalaxyAppCloseMessage,
+  isLegacyGalaxyAppPostMessage,
   isNavigationMessage,
   isNotificationMessage,
   isReadyMessage,
@@ -191,4 +193,64 @@ describe('Message Guard Tests', () => {
       expect(isTextEditorEnhancementMessage(msg)).toBe(false);
     });
   });
+
+  describe('isLegacyGalaxyAppCloseMessage message', () => {
+    test('Valid message will be accepted', () => {
+      const msg = {};
+  
+      expect(isLegacyGalaxyAppCloseMessage(msg)).toBe(true);
+    });
+  
+    test('Invalid type message will be rejected', () => {
+      const msg = {
+        key: 'value',
+      };
+  
+      expect(isLegacyGalaxyAppCloseMessage(msg)).toBe(false);
+    });
+  });
+
+  describe('isLegacyGalaxyAppPostMessage message', () => {
+    test('Valid message with content will be accepted', () => {
+      const msg = {
+        html:  " something"
+      };
+  
+      expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
+    });
+
+    test('Valid message with undefined content will be accepted', () => {
+      const msg = {
+        html:  undefined
+      };
+  
+      expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
+    });
+
+
+    test('Valid message with null content will be accepted', () => {
+      const msg = {
+        html:  null
+      };
+  
+      expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
+    });
+  
+  
+    test(' it will be rejected without html property', () => {
+      const msg = {
+        key: 'value',
+      };
+  
+      expect(isLegacyGalaxyAppPostMessage(msg)).toBe(false);
+    });
+
+
+    test('it will be rejected with empty object', () => {
+      const msg = {};
+      expect(isLegacyGalaxyAppPostMessage(msg)).toBe(false);
+    });
+  });
 });
+
+

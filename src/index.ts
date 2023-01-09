@@ -166,6 +166,8 @@ export {
   isNotificationMessage,
   isReadyMessage,
   isTextEditorEnhancementMessage,
+  isLegacyGalaxyAppCloseMessage,
+  isLegacyGalaxyAppPostMessage,
 } from './sdk/messages/MessageGuards';
 
 export {
