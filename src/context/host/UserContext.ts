@@ -7,8 +7,22 @@ export class UserContext implements IUserContext {
   email?: string | null;
 
   firstName?: string | null;
-
+  /**
+   * A user id which is bound to the org of user (in every org it starts from 1...)
+   *
+   * @type {string}
+   * @memberof UserContext
+   */
   id: string;
+
+  /**
+   *
+   *  A cross org unique identifier of the user
+   *
+   * @type {string}
+   * @memberof UserContext
+   */
+  globalId: string;
 
   lastName: string | null;
 
@@ -41,6 +55,9 @@ export class UserContext implements IUserContext {
         break;
       case UserContextKeys.ID:
         this.id = param.value!;
+        break;
+      case UserContextKeys.GLOBAL_ID:
+        this.globalId = param.value!;
         break;
       case UserContextKeys.LAST_NAME:
         this.lastName = param.value;
@@ -99,6 +116,12 @@ export class UserContext implements IUserContext {
       params.push({
         key: UserContextKeys.ID,
         value: this.id,
+      });
+    }
+    if (this.globalId) {
+      params.push({
+        key: UserContextKeys.GLOBAL_ID,
+        value: this.globalId,
       });
     }
 

@@ -6,7 +6,15 @@ export interface IOrganizationContext {
    *
    * @type {string}
    */
-  id?: string;
+  id: string;
+
+  /**
+   * Organization instance id
+   *
+   * @type {string}
+   * @memberof IOrganizationContext
+   */
+  instanceId: string;
 
   /**
    * Organization logo url

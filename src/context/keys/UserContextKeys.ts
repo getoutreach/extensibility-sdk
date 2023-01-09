@@ -18,7 +18,7 @@ export enum UserContextKeys {
   FIRST_NAME = 'usr.fname',
 
   /**
-   * User id
+   * Organization specific user id (1,2....)
    */
   ID = 'usr.id',
 
@@ -31,6 +31,11 @@ export enum UserContextKeys {
    * The last name of the user.
    */
   FULL_NAME = 'usr.name',
+
+  /**
+   * Global Outreach user id (e.g. eb2b1dc5-ab49-3be5-8cb5-96ef280e261a)
+   */
+  GLOBAL_ID = 'usr.globid',
 
   /**
    * The user's role
