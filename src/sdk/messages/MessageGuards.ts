@@ -113,3 +113,19 @@ export const isTextEditorEnhancementMessage = (messageInfo: any): messageInfo is
 
   return true;
 };
+
+export const isLegacyGalaxyAppPostMessage = (message: any): message is {
+  html?: string;
+  subject?: string;
+}  => {
+  return Object.prototype.hasOwnProperty.call(message, 'html') && (typeof message.html === 'string' || !message.html);
+}
+/**
+ * Legacy Galaxy addons are sending empty event data when requesting a popup to be closed.
+ *
+ * @param {*} message
+ * @return {*}  {message is {}}
+ */
+export const isLegacyGalaxyAppCloseMessage = (message: any): message is {} => {
+  return !!message &&  Object.keys(message).length === 0;
+}
