@@ -38,8 +38,6 @@ All of the [SDK scopes](../src/manifest/api/Scopes.ts) are resource grouped in:
 - **mail aliases** (mail aliases read)
 - **mailboxes** (mailboxes all|delete|read|write)
 - **mailings** (mailings all|read|write)
-- **messenger conversations** (messenger conversations all|read|write)
-- **messenger messages** (messenger messages all|read|write)
 - **opportunities** (opportunities all|delete|read|write)
 - **opportunity prospect roles** (opportunity prospect roles all|delete|read|write)
 - **opportunity stages** (opportunity stages all|delete|read|write)
