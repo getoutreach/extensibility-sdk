@@ -82,14 +82,6 @@ export enum Scopes {
   MAILINGS_READ = 'mailings.read',
   MAILINGS_WRITE = 'mailings.write',
 
-  MESSENGER_CONVERSATIONS_ALL = 'messengerConversations.all',
-  MESSENGER_CONVERSATIONS_READ = 'messengerConversations.read',
-  MESSENGER_CONVERSATIONS_WRITE = 'messengerConversations.write',
-
-  MESSENGER_MESSAGES_ALL = 'messengerMessages.all',
-  MESSENGER_MESSAGES_READ = 'messengerMessages.read',
-  MESSENGER_MESSAGES_WRITE = 'messengerMessages.write',
-
   OPPORTUNITIES_ALL = 'opportunities.all',
   OPPORTUNITIES_DELETE = 'opportunities.delete',
   OPPORTUNITIES_READ = 'opportunities.read',
