@@ -4,6 +4,7 @@ import { Extension } from './extensions/Extension';
 import { ManifestApi } from './ManifestApi';
 import { ManifestStore } from './ManifestStore';
 import { ManifestWebhook } from './ManifestWebhook';
+import { ManifestApiS2S } from './ManifestApiS2S';
 
 /**
  * Definition of the application manifest file containing all of the information
@@ -27,6 +28,8 @@ export class Application {
    * @memberof Application
    */
   public api?: ManifestApi;
+
+  public apiS2S?: ManifestApiS2S;
 
   /**
    * An optional section containing configuration information
