@@ -30,7 +30,7 @@ export class ManifestApiS2S {
    * @type {string}
    * @memberof ManifestApiS2S
    */
-  applicationId: string;
+  s2sId: string;
 
   /**
    * One or more public keys used for accessing the Galaxy API org token endpoints.

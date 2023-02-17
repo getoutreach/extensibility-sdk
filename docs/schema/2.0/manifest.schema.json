@@ -174,7 +174,7 @@
           "type": "string"
         }
       },
-      "applicationId": {
+      "s2sId": {
         "type": "string"
       },
       "publicKeys": {
