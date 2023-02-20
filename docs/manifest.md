@@ -22,6 +22,10 @@ Table of content:
     - [scopes](#scopes)
     - [client](#client)
     - [redirectUris](#redirecturis)
+  - [Outreach S2S API access section ("apiS2S")](#outreach-s2s-api-access-section-apis2s)
+    - [scopes](#scopes)
+    - [s2sId](#s2sid)
+    - [publicKeys](#publicKeys)
   - [Webhook](#webhook)
     - [events](#events)
     - [url (events)](#url-events)
@@ -253,18 +257,18 @@ separate URL, but in both cases, it has to be implemented in a way matching
 
 This section is optional. If the application doesn't need server access to outreach API, this section can be omitted.
 
-### S2S Scopes
+### scopes
 
 In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
 application needs to perform.
 
 S2S Scopes is a subset of [API Scopes](scopes.md).
 
-### S2S Id
+### s2sId
 
 The id of a server client.
 
-### S2S public keys
+### publicKeys
 
 List of public keys used for authentication. Each public key contains human-readable name and value.
 
