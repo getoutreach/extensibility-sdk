@@ -7,7 +7,7 @@ import { ManifestWebhook } from './ManifestWebhook';
 import { ManifestApiS2S } from './ManifestApiS2S';
 
 /**
- * Definition of the application manifest file containing all of the information
+ * Definition of the application manifest file containing all the information
  * needed for Outreach extensibility platform hosting.
  *
  * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#manifest-file
@@ -29,6 +29,17 @@ export class Application {
    */
   public api?: ManifestApi;
 
+  /**
+   * API section contains the data needed for enabling
+   * Outreach API access for addon's back-end
+   * In case addon doesn't need server access to Outreach API
+   * this section can be omitted from configuration.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#api-s2s-optional
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api-s2s.md
+   * @type {ManifestApiS2S}
+   * @memberof Application
+   */
   public apiS2S?: ManifestApiS2S;
 
   /**

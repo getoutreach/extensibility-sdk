@@ -249,6 +249,25 @@ consent with granting access to Outreach API in his name. These URLs can be the 
 separate URL, but in both cases, it has to be implemented in a way matching
 [Outreach API access requirements](outreach-api.md).
 
+## Outreach S2S API access section ("apiS2S")
+
+This section is optional. If the application doesn't need server access to outreach API, this section can be omitted.
+
+### S2S Scopes
+
+In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
+application needs to perform.
+
+S2S Scopes is a subset of [API Scopes](scopes.md).
+
+### S2S Id
+
+The id of a server client.
+
+### S2S public keys
+
+List of public keys used for authentication. Each public key contains human-readable name and value.
+
 ## Webhook
 
 This section is optional. If the application doesn't need to be notified when certain application events happen on
