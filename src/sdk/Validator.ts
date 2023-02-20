@@ -3,6 +3,7 @@ import { Application } from '../manifest/Application';
 import { Scopes } from '../manifest/api/Scopes';
 import { StoreType } from '../manifest/store/StoreType';
 import { WebHookEvents } from '../manifest/api/WebHookEvents';
+import { ScopesS2S } from '../manifest/api/ScopesS2S';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -39,6 +40,44 @@ export const validate = (application: Application): string[] => {
       application.api.redirectUris.forEach((redirectUri) => {
         if (!utils.urlValidation(redirectUri)) {
           issues.push('Manifest Api section needs to have valid redirect urls. Value: ' + redirectUri);
+        }
+      });
+    }
+  }
+
+  if (application.apiS2S) {
+    if (!application.apiS2S.scopes) {
+      issues.push('Undefined s2s scopes');
+    } else if (!Array.isArray(application.apiS2S.scopes)) {
+      issues.push('S2s scopes value is not an array. Value: ' + application.apiS2S.scopes);
+    } else {
+      application.apiS2S.scopes.forEach((scope) => {
+        if (!Object.values(ScopesS2S).includes(scope as ScopesS2S)) {
+          issues.push('Invalid s2s scope value. Value: ' + scope);
+        }
+      });
+    }
+
+    if (!application.apiS2S.s2sId) {
+      issues.push('Manifest S2S api section needs to have s2sId value.');
+    }
+
+    if (!application.apiS2S.publicKeys) {
+      issues.push('Undefined s2s api publicKeys');
+    } else if (!Array.isArray(application.apiS2S.publicKeys)) {
+      issues.push('S2s api publicKeys value is not an array. Value: ' + application.apiS2S.publicKeys);
+    } else {
+      application.apiS2S.publicKeys.forEach((publicKey) => {
+        if (!publicKey) {
+          issues.push('Invalid s2s api public key value. Value: ' + publicKey);
+        } else {
+          if (!publicKey.name) {
+            issues.push('Invalid s2s api public key name value. Value: ' + publicKey.name);
+          }
+
+          if (!publicKey.value) {
+            issues.push('Invalid s2s api public key value. Value: ' + publicKey.value);
+          }
         }
       });
     }

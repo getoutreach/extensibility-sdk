@@ -14,6 +14,7 @@ import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
 import { DecorationStyle } from '../src';
 import { WebHookEvents } from '../src/manifest/api/WebHookEvents';
+import { ScopesS2S } from '../src/manifest/api/ScopesS2S';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -94,6 +95,42 @@ describe('manifest tests', () => {
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Manifest Api section needs to have valid redirect urls. Value: bananas');
+    });
+  });
+
+  describe('apiS2S', () => {
+    test('only valid scope should be acceptable', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+
+      manifest.apiS2S!.scopes = ['BANANA', ScopesS2S.ACCOUNTS_ALL, ScopesS2S.CALLS_ALL] as any;
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid s2s scope value. Value: BANANA');
+    });
+
+    test('s2sId should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+
+      delete (manifest.apiS2S as any).s2sId;
+      var issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Manifest S2S api section needs to have s2sId value.');
+    });
+
+    test('publicKeys should be valid', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.apiS2S!.publicKeys = [
+        {
+          name: '',
+          value: '',
+        },
+      ];
+
+      var issues = validate(manifest);
+      expect(issues.length).toBe(2);
+      expect(issues[0]).toBe('Invalid s2s api public key name value. Value: ');
+      expect(issues[1]).toBe('Invalid s2s api public key value. Value: ');
     });
   });
 
@@ -349,6 +386,17 @@ const getNewValidApplicationManifest = (): Application => {
     client: {
       id: 'AbCd123456qW',
     },
+  };
+
+  application.apiS2S = {
+    scopes: [ScopesS2S.ACCOUNTS_ALL, ScopesS2S.CALLS_ALL],
+    publicKeys: [
+      {
+        name: 'My key',
+        value: 'PUBLIC KEY',
+      },
+    ],
+    s2sId: 'AbCd123456qW',
   };
 
   application.webhook = {
