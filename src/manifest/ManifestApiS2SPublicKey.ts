@@ -1,6 +1,6 @@
 /**
  * Public key used for accessing s2s endpoints
- * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#s2s-public-keys
+ * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#publicKeys
  * @export
  * @class ManifestApiS2SPublicKey
  */
