@@ -203,8 +203,6 @@ export class ManifestTranslator {
       app.api.scopes = firstExt.api.scopes;
       app.api.client.id = firstExt.api.applicationId;
       app.api.redirectUris = [firstExt.api.redirectUri];
-      // not supported in V1 manifest
-      app.api.publicKeys = [];
     }
     app.configuration = firstExt.configuration;
 

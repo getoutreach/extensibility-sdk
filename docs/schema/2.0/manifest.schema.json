@@ -145,24 +145,11 @@
     "api": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
-        },
         "scopes": {
           "type": "array",
           "items": {
             "type": "string"
           }
-        },
-        "applicationId": {
-          "type": "string"
-        },
-        "redirectUri": {
-          "type": "string",
-          "format": "uri"
-        },
-        "connect": {
-          "type": "string"
         },
         "redirectUris": {
           "type": "array",
@@ -177,12 +164,30 @@
               "type": "string"
             }
           }
-        },
-        "publicKeys": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
+        }
+      }
+    },
+    "apiS2S": {
+      "scopes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "guid": {
+        "type": "string"
+      },
+      "publicKeys": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
           }
         }
       }

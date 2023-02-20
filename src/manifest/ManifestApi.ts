@@ -39,12 +39,4 @@ export class ManifestApi {
    * @memberof ManifestApi
    */
   redirectUris: string[];
-
-  /**
-   * One or more public keys used for accessing the Galaxy API org token endpoints.
-   *
-   * @type {string[]}
-   * @memberof ManifestApi
-   */
-  publicKeys?: string[];
 }

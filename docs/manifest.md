@@ -22,6 +22,10 @@ Table of content:
     - [scopes](#scopes)
     - [client](#client)
     - [redirectUris](#redirecturis)
+  - [Outreach S2S API access section ("apiS2S")](#outreach-s2s-api-access-section-apis2s)
+    - [scopes (s2s)](#scopes-s2s)
+    - [guid](#guid)
+    - [publicKeys](#publicKeys)
   - [Webhook](#webhook)
     - [events](#events)
     - [url (events)](#url-events)
@@ -106,6 +110,20 @@ opportunity tab extension.
       "id": "AbCd123456qW"
     },
     "redirectUris": ["https://application-host.com/hello-world"]
+  },
+  "apiS2S": {
+    "scopes": ["accounts.all", "calls.all"],
+    "guid": "AbCd123456qW",
+    "publicKeys": [
+      {
+        "name": "My key 1",
+        "value": "-----BEGIN PUBLIC KEY----- 2MIIBI...QAB -----END PUBLIC KEY-----"
+      },
+      {
+        "name": "My key 2",
+        "value": "-----BEGIN PUBLIC KEY----- 2MAIBf...QaB -----END PUBLIC KEY-----"
+      }
+    ]
   },
   "webhook": {
     "events": ["*"],
@@ -248,6 +266,25 @@ This URLs are defined in Outreach OAuth settings, which the authorization form w
 consent with granting access to Outreach API in his name. These URLs can be the same as the [host url](#url) or a
 separate URL, but in both cases, it has to be implemented in a way matching
 [Outreach API access requirements](outreach-api.md).
+
+## Outreach S2S API access section ("apiS2S")
+
+This section is optional. If the application doesn't need server access to outreach API, this section can be omitted.
+
+### scopes (s2s)
+
+In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
+application needs to perform.
+
+S2S Scopes is a subset of [API Scopes](scopes.md).
+
+### guid
+
+The id of a server client.
+
+### publicKeys
+
+List of public keys used for authentication. Each public key contains human-readable name and value.
 
 ## Webhook
 
