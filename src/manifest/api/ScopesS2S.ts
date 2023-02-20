@@ -3,7 +3,7 @@
 /**
  * List of Outreach API S2S scopes app can request
  *
- * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/s2s-scopes.md
+ * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/scopes.md
  * @export
  * @enum {number}
  */
