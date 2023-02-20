@@ -58,8 +58,8 @@ export const validate = (application: Application): string[] => {
       });
     }
 
-    if (!application.apiS2S.s2sId) {
-      issues.push('Manifest S2S api section needs to have s2sId value.');
+    if (!application.apiS2S.guid) {
+      issues.push('Manifest S2S api section needs to have guid value.');
     }
 
     if (!application.apiS2S.publicKeys) {

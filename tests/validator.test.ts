@@ -112,10 +112,10 @@ describe('manifest tests', () => {
     test('s2sId should be defined', () => {
       const manifest = getNewValidApplicationManifest();
 
-      delete (manifest.apiS2S as any).s2sId;
+      delete (manifest.apiS2S as any).guid;
       var issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest S2S api section needs to have s2sId value.');
+      expect(issues[0]).toBe('Manifest S2S api section needs to have guid value.');
     });
 
     test('publicKeys should be valid', () => {
@@ -396,7 +396,7 @@ const getNewValidApplicationManifest = (): Application => {
         value: 'PUBLIC KEY',
       },
     ],
-    s2sId: 'AbCd123456qW',
+    guid: 'AbCd123456qW',
   };
 
   application.webhook = {

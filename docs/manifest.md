@@ -24,7 +24,7 @@ Table of content:
     - [redirectUris](#redirecturis)
   - [Outreach S2S API access section ("apiS2S")](#outreach-s2s-api-access-section-apis2s)
     - [scopes (s2s)](#scopes-s2s)
-    - [s2sId](#s2sid)
+    - [guid](#guid)
     - [publicKeys](#publicKeys)
   - [Webhook](#webhook)
     - [events](#events)
@@ -77,7 +77,9 @@ opportunity tab extension.
       "termsOfUseUrl": "https://someurl.com/tos",
       "websiteUrl": "https://someurl.com/"
     },
-    "categories": ["account_based_marketing"],
+    "categories": [
+      "account_based_marketing"
+    ],
     "description": {
       "en": "Some description (en)"
     },
@@ -86,7 +88,9 @@ opportunity tab extension.
     },
     "iconUrl": "https://someurl.com/image.png",
     "identifier": "app-identifier",
-    "locales": ["en"],
+    "locales": [
+      "en"
+    ],
     "medias": [
       {
         "url": "https://someurl.com/image.png",
@@ -105,14 +109,38 @@ opportunity tab extension.
     "version": "0.10"
   },
   "api": {
-    "scopes": ["accounts.all", "calls.all"],
+    "scopes": [
+      "accounts.all",
+      "calls.all"
+    ],
     "client": {
       "id": "AbCd123456qW"
     },
-    "redirectUris": ["https://application-host.com/hello-world"]
+    "redirectUris": [
+      "https://application-host.com/hello-world"
+    ]
+  },
+  "apiS2S": {
+    "scopes": [
+      "accounts.all",
+      "calls.all"
+    ],
+    "guid": "AbCd123456qW",
+    "publicKeys": [
+      {
+        "name": "My key 1",
+        "value": "-----BEGIN PUBLIC KEY----- 2MIIBI...QAB -----END PUBLIC KEY-----"
+      },
+      {
+        "name": "My key 2",
+        "value": "-----BEGIN PUBLIC KEY----- 2MAIBf...QaB -----END PUBLIC KEY-----"
+      }
+    ]
   },
   "webhook": {
-    "events": ["*"],
+    "events": [
+      "*"
+    ],
     "url": "https://application-host.com/webhook"
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
@@ -130,7 +158,9 @@ opportunity tab extension.
   ],
   "extensions": [
     {
-      "context": ["usr.id"],
+      "context": [
+        "usr.id"
+      ],
       "identifier": "hello-world-app",
       "environment": {
         "fullWidth": false,
@@ -145,7 +175,10 @@ opportunity tab extension.
       "version": "0.98"
     },
     {
-      "context": ["usr.id", "opp.id"],
+      "context": [
+        "usr.id",
+        "opp.id"
+      ],
       "identifier": "hello-world-opportunity",
       "environment": {
         "fullWidth": false,
@@ -264,7 +297,7 @@ application needs to perform.
 
 S2S Scopes is a subset of [API Scopes](scopes.md).
 
-### s2sId
+### guid
 
 The id of a server client.
 

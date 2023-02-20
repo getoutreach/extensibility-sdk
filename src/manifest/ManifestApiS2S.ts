@@ -22,13 +22,13 @@ export class ManifestApiS2S {
   scopes: ScopesS2S[];
 
   /**
-   * Outreach API server client data used for authentication
+   * Outreach API server client guid used for authentication
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#s2sid
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#guid
    * @type {string}
    * @memberof ManifestApiS2S
    */
-  s2sId: string;
+  guid: string;
 
   /**
    * One or more public keys used for accessing endpoints.
