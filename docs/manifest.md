@@ -77,9 +77,7 @@ opportunity tab extension.
       "termsOfUseUrl": "https://someurl.com/tos",
       "websiteUrl": "https://someurl.com/"
     },
-    "categories": [
-      "account_based_marketing"
-    ],
+    "categories": ["account_based_marketing"],
     "description": {
       "en": "Some description (en)"
     },
@@ -88,9 +86,7 @@ opportunity tab extension.
     },
     "iconUrl": "https://someurl.com/image.png",
     "identifier": "app-identifier",
-    "locales": [
-      "en"
-    ],
+    "locales": ["en"],
     "medias": [
       {
         "url": "https://someurl.com/image.png",
@@ -109,22 +105,14 @@ opportunity tab extension.
     "version": "0.10"
   },
   "api": {
-    "scopes": [
-      "accounts.all",
-      "calls.all"
-    ],
+    "scopes": ["accounts.all", "calls.all"],
     "client": {
       "id": "AbCd123456qW"
     },
-    "redirectUris": [
-      "https://application-host.com/hello-world"
-    ]
+    "redirectUris": ["https://application-host.com/hello-world"]
   },
   "apiS2S": {
-    "scopes": [
-      "accounts.all",
-      "calls.all"
-    ],
+    "scopes": ["accounts.all", "calls.all"],
     "guid": "AbCd123456qW",
     "publicKeys": [
       {
@@ -138,9 +126,7 @@ opportunity tab extension.
     ]
   },
   "webhook": {
-    "events": [
-      "*"
-    ],
+    "events": ["*"],
     "url": "https://application-host.com/webhook"
   },
   "externalInstallationUrl": "https://somestore.com/acme/application",
@@ -158,9 +144,7 @@ opportunity tab extension.
   ],
   "extensions": [
     {
-      "context": [
-        "usr.id"
-      ],
+      "context": ["usr.id"],
       "identifier": "hello-world-app",
       "environment": {
         "fullWidth": false,
@@ -175,10 +159,7 @@ opportunity tab extension.
       "version": "0.98"
     },
     {
-      "context": [
-        "usr.id",
-        "opp.id"
-      ],
+      "context": ["usr.id", "opp.id"],
       "identifier": "hello-world-opportunity",
       "environment": {
         "fullWidth": false,
