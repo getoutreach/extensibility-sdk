@@ -35,8 +35,7 @@ export class Application {
    * In case addon doesn't need server access to Outreach API
    * this section can be omitted from configuration.
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#api-s2s-optional
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api-s2s.md
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#outreach-s2s-api-access-section-apis2s
    * @type {ManifestApiS2S}
    * @memberof Application
    */

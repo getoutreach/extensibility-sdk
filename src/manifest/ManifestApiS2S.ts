@@ -5,8 +5,7 @@ import { ManifestApiS2SPublicKey } from './ManifestApiS2SPublicKey';
 
 /**
  * Optional section defining parameters needed for accessing Outreach API from back-end.
- * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#api-s2s-optional
- * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/outreach-api-s2s.md
+ * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#outreach-s2s-api-access-section-apis2s
  * @export
  * @class ManifestApiS2S
  */
@@ -25,7 +24,7 @@ export class ManifestApiS2S {
   /**
    * Outreach API server client data used for authentication
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#s2s-id
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#s2sid
    * @type {string}
    * @memberof ManifestApiS2S
    */
@@ -34,7 +33,7 @@ export class ManifestApiS2S {
   /**
    * One or more public keys used for accessing endpoints.
    *
-   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#s2s-public-keys
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#publicKeys
    * @type {ManifestApiS2SPublicKey[]}
    * @memberof ManifestApiS2S
    */
