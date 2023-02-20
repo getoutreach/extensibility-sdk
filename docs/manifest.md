@@ -23,7 +23,7 @@ Table of content:
     - [client](#client)
     - [redirectUris](#redirecturis)
   - [Outreach S2S API access section ("apiS2S")](#outreach-s2s-api-access-section-apis2s)
-    - [scopes](#scopes)
+    - [scopes (s2s)](#scopes-s2s)
     - [s2sId](#s2sid)
     - [publicKeys](#publicKeys)
   - [Webhook](#webhook)
@@ -257,7 +257,7 @@ separate URL, but in both cases, it has to be implemented in a way matching
 
 This section is optional. If the application doesn't need server access to outreach API, this section can be omitted.
 
-### scopes
+### scopes (s2s)
 
 In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
 application needs to perform.
