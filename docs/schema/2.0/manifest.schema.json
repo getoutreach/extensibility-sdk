@@ -186,8 +186,7 @@
               "type": "string"
             },
             "value": {
-              "type": "string",
-              "format": "uri"
+              "type": "string"
             }
           }
         }
