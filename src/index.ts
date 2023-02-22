@@ -96,10 +96,13 @@ export { hasAppIdProperty, utils } from './utils';
 export { Application } from './manifest/Application';
 export { ManifestApi } from './manifest/ManifestApi';
 export { ManifestApiClient } from './manifest/ManifestApiClient';
+export { ManifestApiS2S } from './manifest/ManifestApiS2S';
+export { ManifestApiS2SPublicKey } from './manifest/ManifestApiS2SPublicKey';
 export { ManifestAuthor } from './manifest/ManifestAuthor';
 export { ManifestStore } from './manifest/ManifestStore';
 export { ManifestWebhook } from './manifest/ManifestWebhook';
 export { Scopes } from './manifest/api/Scopes';
+export { ScopesS2S } from './manifest/api/ScopesS2S';
 
 export { Category } from './manifest/store/Category';
 export { LocalizedString } from './manifest/store/LocalizedString';
