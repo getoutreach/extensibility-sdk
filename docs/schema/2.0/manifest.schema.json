@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
   "properties": {
+    "identifier": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 128,
+      "pattern": "^[a-z0-9_-]+$"
+    },
     "store": {
       "type": "object",
       "properties": {
@@ -37,24 +43,25 @@
         "categories": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "account_based_marketing",
+              "chat",
+              "conversation_intelligence",
+              "crm",
+              "direct_mail",
+              "inbox",
+              "integration_platform",
+              "marketing",
+              "privacy_security",
+              "sales_assets_management",
+              "sales_intelligence_data",
+              "sales_productivity",
+              "video",
+              "voice"
+            ]
           },
-          "enum": [
-            "account_based_marketing",
-            "chat",
-            "conversation_intelligence",
-            "crm",
-            "direct_mail",
-            "inbox",
-            "integration_platform",
-            "marketing",
-            "privacy_security",
-            "sales_assets_management",
-            "sales_intelligence_data",
-            "sales_productivity",
-            "video",
-            "voice"
-          ]
+          "uniqueItems": true
         },
         "description": {
           "type": "object",
@@ -77,18 +84,6 @@
         "iconUrl": {
           "type": "string",
           "format": "uri"
-        },
-        "identifier": {
-          "type": "string",
-          "minLength": 6,
-          "maxLength": 128,
-          "pattern": "^[a-zA-Z0-9._-]+$"
-        },
-        "locales": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "medias": {
           "type": "array",
@@ -124,7 +119,7 @@
           "maxLength": 64
         }
       },
-      "required": ["author", "headline", "description", "icon", "identifier", "title", "version"]
+      "required": ["author", "headline", "description", "icon", "title"]
     },
     "webhook": {
       "type": "object",
@@ -137,10 +132,13 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["install", "uninstall", "setup"]
-          }
+            "enum": ["INSTALL", "UNINSTALL", "SETUP"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
-      }
+      },
+      "required": ["url", "events"]
     },
     "api": {
       "type": "object",
@@ -149,7 +147,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "uniqueItems": true
         },
         "redirectUris": {
           "type": "array",
@@ -165,32 +164,40 @@
             }
           }
         }
-      }
+      },
+      "required": ["scopes", "redirectUris", "client"]
     },
     "apiS2S": {
-      "scopes": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "guid": {
-        "type": "string"
-      },
-      "publicKeys": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "value": {
-              "type": "string"
-            }
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "publicKeys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
-      }
+      },
+      "required": ["scopes", "publicKeys", "guid"]
     },
     "externalInstallationUrl": {
       "type": "string",
@@ -350,9 +357,9 @@
             }
           }
         },
-        "required": ["identifier", "type", "version", "host", "environment"]
+        "required": ["type"]
       }
     }
   },
-  "required": ["store", "extensions"]
+  "required": ["identifier", "store"]
 }
