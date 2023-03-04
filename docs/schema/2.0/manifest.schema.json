@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
+  "additionalProperties": false,
   "properties": {
     "identifier": {
       "type": "string",
@@ -10,9 +11,11 @@
     },
     "store": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "author": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "company": {
               "type": "string"
@@ -85,10 +88,17 @@
           "type": "string",
           "format": "uri"
         },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "medias": {
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "title": {
                 "type": "string"
@@ -123,6 +133,7 @@
     },
     "webhook": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "url": {
           "type": "string",
@@ -142,6 +153,7 @@
     },
     "api": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "scopes": {
           "type": "array",
@@ -156,19 +168,15 @@
             "type": "string"
           }
         },
-        "client": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            }
-          }
+        "clientId": {
+          "type": "string"
         }
       },
-      "required": ["scopes", "redirectUris", "client"]
+      "required": ["scopes", "redirectUris", "clientId"]
     },
     "apiS2S": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "scopes": {
           "type": "array",
@@ -184,6 +192,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "name": {
                 "type": "string"
@@ -207,10 +216,14 @@
       "type": "string",
       "format": "uri"
     },
+    "disableTimeoutMonitoring": {
+      "type": "boolean"
+    },
     "configuration": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "key": {
             "type": "string"
@@ -242,7 +255,21 @@
           "options": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "object",
+                  "properties": {
+                    "en": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
@@ -253,6 +280,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "version": {
             "type": "string",
@@ -262,6 +290,24 @@
           "identifier": {
             "type": "string",
             "maxLength": 128
+          },
+          "title": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": ["en"]
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": ["en"]
           },
           "type": {
             "type": "string",
@@ -291,8 +337,12 @@
               "data-prospect-events"
             ]
           },
+          "fullWidth": {
+            "type": "boolean"
+          },
           "host": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "url": {
                 "type": "string",
@@ -316,17 +366,14 @@
               },
               "event": {
                 "type": "string"
-              }
-            }
-          },
-          "environment": {
-            "type": "object",
-            "properties": {
-              "fullWidth": {
-                "type": "boolean"
               },
               "decoration": {
-                "type": "string"
+                "type": "string",
+                "enum": ["none", "full", "simple"]
+              },
+              "notificationsUrl": {
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -338,11 +385,13 @@
           },
           "settings": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "recommended": {
                 "type": "array",
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "width": {
                       "type": "number"
