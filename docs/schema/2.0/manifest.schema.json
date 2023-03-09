@@ -162,6 +162,9 @@
           },
           "uniqueItems": true
         },
+        "scopesAll": {
+          "type": "boolean"
+        },
         "redirectUris": {
           "type": "array",
           "items": {
