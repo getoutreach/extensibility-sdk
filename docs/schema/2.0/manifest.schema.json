@@ -1,12 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
+  "additionalProperties": false,
   "properties": {
+    "identifier": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 128,
+      "pattern": "^[a-z0-9_-]+$"
+    },
     "store": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "author": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "company": {
               "type": "string"
@@ -37,24 +46,25 @@
         "categories": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "account_based_marketing",
+              "chat",
+              "conversation_intelligence",
+              "crm",
+              "direct_mail",
+              "inbox",
+              "integration_platform",
+              "marketing",
+              "privacy_security",
+              "sales_assets_management",
+              "sales_intelligence_data",
+              "sales_productivity",
+              "video",
+              "voice"
+            ]
           },
-          "enum": [
-            "account_based_marketing",
-            "chat",
-            "conversation_intelligence",
-            "crm",
-            "direct_mail",
-            "inbox",
-            "integration_platform",
-            "marketing",
-            "privacy_security",
-            "sales_assets_management",
-            "sales_intelligence_data",
-            "sales_productivity",
-            "video",
-            "voice"
-          ]
+          "uniqueItems": true
         },
         "description": {
           "type": "object",
@@ -78,12 +88,6 @@
           "type": "string",
           "format": "uri"
         },
-        "identifier": {
-          "type": "string",
-          "minLength": 6,
-          "maxLength": 128,
-          "pattern": "^[a-zA-Z0-9._-]+$"
-        },
         "locales": {
           "type": "array",
           "items": {
@@ -94,6 +98,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "title": {
                 "type": "string"
@@ -124,10 +129,11 @@
           "maxLength": 64
         }
       },
-      "required": ["author", "headline", "description", "icon", "identifier", "title", "version"]
+      "required": ["author", "headline", "description", "icon", "title"]
     },
     "webhook": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "url": {
           "type": "string",
@@ -137,19 +143,27 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["install", "uninstall", "setup"]
-          }
+            "enum": ["INSTALL", "UNINSTALL", "SETUP"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
-      }
+      },
+      "required": ["url", "events"]
     },
     "api": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "scopes": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "uniqueItems": true
+        },
+        "scopesAll": {
+          "type": "boolean"
         },
         "redirectUris": {
           "type": "array",
@@ -157,40 +171,45 @@
             "type": "string"
           }
         },
-        "client": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "apiS2S": {
-      "scopes": {
-        "type": "array",
-        "items": {
+        "clientId": {
           "type": "string"
         }
       },
-      "guid": {
-        "type": "string"
-      },
-      "publicKeys": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "value": {
-              "type": "string"
-            }
+      "required": ["scopes", "redirectUris", "clientId"]
+    },
+    "apiS2S": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "publicKeys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
-      }
+      },
+      "required": ["scopes", "publicKeys", "guid"]
     },
     "externalInstallationUrl": {
       "type": "string",
@@ -200,10 +219,14 @@
       "type": "string",
       "format": "uri"
     },
+    "disableTimeoutMonitoring": {
+      "type": "boolean"
+    },
     "configuration": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "key": {
             "type": "string"
@@ -235,7 +258,21 @@
           "options": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "object",
+                  "properties": {
+                    "en": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
@@ -246,6 +283,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "version": {
             "type": "string",
@@ -255,6 +293,24 @@
           "identifier": {
             "type": "string",
             "maxLength": 128
+          },
+          "title": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": ["en"]
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": ["en"]
           },
           "type": {
             "type": "string",
@@ -284,8 +340,12 @@
               "data-prospect-events"
             ]
           },
+          "fullWidth": {
+            "type": "boolean"
+          },
           "host": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "url": {
                 "type": "string",
@@ -309,17 +369,14 @@
               },
               "event": {
                 "type": "string"
-              }
-            }
-          },
-          "environment": {
-            "type": "object",
-            "properties": {
-              "fullWidth": {
-                "type": "boolean"
               },
               "decoration": {
-                "type": "string"
+                "type": "string",
+                "enum": ["none", "full", "simple"]
+              },
+              "notificationsUrl": {
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -331,11 +388,13 @@
           },
           "settings": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "recommended": {
                 "type": "array",
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "width": {
                       "type": "number"
@@ -350,9 +409,9 @@
             }
           }
         },
-        "required": ["identifier", "type", "version", "host", "environment"]
+        "required": ["type"]
       }
     }
   },
-  "required": ["store", "extensions"]
+  "required": ["identifier", "store"]
 }
