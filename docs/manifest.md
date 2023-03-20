@@ -248,12 +248,18 @@ This section is optional. If the application doesn't need access to outreach API
 In the scopes section, the application creator defines Outreach API scopes needed for performing API calls the
 application needs to perform.
 
-A complete list of all of the API scopes can be found on [API Scopes page](scopes.md).
+A complete list of all the API scopes can be found on [API Scopes page](scopes.md).
 
 On the first [SDK authentication](sdk.md#add-on-authentication) Outreach, the user is asked to consent to grant
 requested scopes to the application
 
 ![API consent screen](assets/api-consent.png)
+
+### scopesAll
+
+Use the full list of scopes for authentication. The content of `scopes` property is ignored. For development only. 
+
+It is not possible to publish the application with this flag turned on.
 
 ### client
 
