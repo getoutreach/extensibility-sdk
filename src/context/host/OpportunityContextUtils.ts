@@ -5,6 +5,21 @@ import { OpportunityContext } from './OpportunityContext';
 
 export const initOpportunityContext = (context: OpportunityContext, param: ContextParam): boolean => {
   switch (param.key) {
+    case OpportunityContextKeys.ACCOUNT_DOMAIN:
+      context.accountDomain = param.value;
+      break;
+    case OpportunityContextKeys.ACCOUNT_EXTERNAL_ID:
+      context.accountExternalId = param.value;
+      break;
+    case OpportunityContextKeys.ACCOUNT_EXTERNAL_PROVIDER:
+      context.accountExternalProvider = param.value;
+      break;
+    case OpportunityContextKeys.ACCOUNT_ID:
+      context.accountId = param.value;
+      break;
+    case OpportunityContextKeys.ACCOUNT_NAME:
+      context.accountName = param.value;
+      break;
     case OpportunityContextKeys.AMOUNT:
       if (param.value) {
         context.amount = parseInt(param.value);
@@ -32,6 +47,18 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
       break;
     case OpportunityContextKeys.NEXT_STEP:
       context.nextStep = param.value;
+      break;
+    case OpportunityContextKeys.OWNER_EMAIL:
+      context.ownerEmail = param.value;
+      break;
+    case OpportunityContextKeys.OWNER_ID:
+      context.ownerGlobalId = param.value;
+      break;
+    case OpportunityContextKeys.OWNER_NAME:
+      context.ownerName = param.value;
+      break;
+    case OpportunityContextKeys.OWNER_USER:
+      context.ownerUsername = param.value;
       break;
     case OpportunityContextKeys.PROBABILITY:
       context.probability = param.value;
@@ -504,12 +531,48 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
 
 export const toOpportunityParams = (context: OpportunityContext): ContextParam[] => {
   const params: ContextParam[] = [];
+  if (context.accountDomain) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_DOMAIN,
+      value: context.accountDomain,
+    });
+  }
+
+  if (context.accountExternalId) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_EXTERNAL_ID,
+      value: context.accountExternalId,
+    });
+  }
+
+  if (context.accountExternalProvider) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_EXTERNAL_PROVIDER,
+      value: context.accountExternalProvider,
+    });
+  }
+
+  if (context.accountId) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_ID,
+      value: context.accountId,
+    });
+  }
+
+  if (context.accountName) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_NAME,
+      value: context.accountName,
+    });
+  }
+
   if (context.amount) {
     params.push({
       key: OpportunityContextKeys.AMOUNT,
       value: context.amount.toString(),
     });
   }
+
   if (context.description) {
     params.push({
       key: OpportunityContextKeys.DESCRIPTION,
@@ -558,6 +621,40 @@ export const toOpportunityParams = (context: OpportunityContext): ContextParam[]
     });
   }
 
+  if (context.opportunityType) {
+    params.push({
+      key: OpportunityContextKeys.TYPE,
+      value: context.opportunityType,
+    });
+  }
+
+  if (context.ownerEmail) {
+    params.push({
+      key: OpportunityContextKeys.OWNER_EMAIL,
+      value: context.ownerEmail,
+    });
+  }
+
+  if (context.ownerGlobalId) {
+    params.push({
+      key: OpportunityContextKeys.OWNER_ID,
+      value: context.ownerGlobalId,
+    });
+  }
+
+  if (context.ownerName) {
+    params.push({
+      key: OpportunityContextKeys.OWNER_NAME,
+      value: context.ownerName,
+    });
+  }
+
+  if (context.ownerUsername) {
+    params.push({
+      key: OpportunityContextKeys.OWNER_USER,
+      value: context.ownerUsername,
+    });
+  }
   if (context.probability) {
     params.push({
       key: OpportunityContextKeys.PROBABILITY,
@@ -569,13 +666,6 @@ export const toOpportunityParams = (context: OpportunityContext): ContextParam[]
     params.push({
       key: OpportunityContextKeys.TAGS,
       value: context.tags,
-    });
-  }
-
-  if (context.opportunityType) {
-    params.push({
-      key: OpportunityContextKeys.TYPE,
-      value: context.opportunityType,
     });
   }
 

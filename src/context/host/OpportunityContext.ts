@@ -5,6 +5,16 @@ import { initOpportunityContext, toOpportunityParams } from './OpportunityContex
 import { IOpportunityContext } from '../interfaces/IOpportunityContext';
 
 export class OpportunityContext extends CustomContext implements IOpportunityContext {
+  accountDomain?: string | null;
+
+  accountExternalId?: string | null;
+
+  accountExternalProvider?: string | null;
+
+  accountId?: string | null;
+
+  accountName?: string | null;
+
   amount?: number | null;
 
   description?: string | null;
@@ -22,6 +32,14 @@ export class OpportunityContext extends CustomContext implements IOpportunityCon
   nextStep?: string | null;
 
   opportunityType?: string | null;
+
+  ownerEmail?: string | null;
+
+  ownerGlobalId?: string | null;
+
+  ownerName?: string | null;
+
+  ownerUsername?: string | null;
 
   probability?: string | null;
 
