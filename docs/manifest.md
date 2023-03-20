@@ -257,7 +257,7 @@ requested scopes to the application
 
 ### scopesAll
 
-Use the full list of scopes for authentication. The content of `scopes` property is ignored. For development only. 
+Use the full list of scopes for authentication. The content of `scopes` property is ignored. For development only.
 
 It is not possible to publish the application with this flag turned on.
 
