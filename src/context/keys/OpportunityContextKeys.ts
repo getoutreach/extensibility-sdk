@@ -9,6 +9,31 @@
  */
 export enum OpportunityContextKeys {
   /**
+   * The domain of the opportunity account
+   */
+  ACCOUNT_DOMAIN = 'opp.accdom',
+
+  /**
+   * Account external id  (eg. Salesforce id) (if any)
+   */
+  ACCOUNT_EXTERNAL_ID = 'opp.accextid',
+
+  /**
+   * Account external plugin type  (Salesforce, Dynamics etc) (if any)
+   */
+  ACCOUNT_EXTERNAL_PROVIDER = 'opp.accextpr',
+
+  /**
+   * The Outreach id of the opportunity account
+   */
+  ACCOUNT_ID = 'opp.accid',
+
+  /**
+   * The name of the opportunity account
+   */
+  ACCOUNT_NAME = 'opp.accname',
+
+  /**
    * The amount the opportunity is worth.
    */
   AMOUNT = 'opp.amnt',
@@ -47,6 +72,26 @@ export enum OpportunityContextKeys {
    * The next step to take for the opportunity.
    */
   NEXT_STEP = 'opp.nstp',
+
+  /**
+   * Opportunity owner email
+   */
+  OWNER_EMAIL = 'opp.owneml',
+
+  /**
+   * A global cross-org outreach identifier of the opportunity owner
+   */
+  OWNER_ID = 'opp.ownid',
+
+  /**
+   * Full name of the opportunity owner
+   */
+  OWNER_NAME = 'opp.ownname',
+
+  /**
+   * Outreach user name of the owner
+   */
+  OWNER_USER = 'opp.ownuser',
 
   /**
    * The chances of the opportunity succeeding, represented as a percentage.

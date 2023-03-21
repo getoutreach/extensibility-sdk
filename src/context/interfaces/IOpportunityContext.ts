@@ -3,6 +3,43 @@ import { IExternalInfoContext } from './IExternalInfoContext';
 
 export interface IOpportunityContext extends ICustomContext {
   /**
+   * The domain of the opportunity account
+   *
+   * @type {string}
+   */
+  accountDomain?: string | null;
+
+  /**
+   * Account external id  (eg. Salesforce id) (if any)
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  accountExternalId?: string | null;
+
+  /**
+   * Account external plugin type  (Salesforce, Dynamics etc) (if any)
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  accountExternalProvider?: string | null;
+
+  /**
+   * The Outreach id of the opportunity account
+   *
+   * @type {string}
+   */
+  accountId?: string | null;
+
+  /**
+   * The name of the opportunity account
+   *
+   * @type {string}
+   */
+  accountName?: string | null;
+
+  /**
    * The amount the opportunity is worth.
    *
    * @type {number}
@@ -64,6 +101,38 @@ export interface IOpportunityContext extends ICustomContext {
    * @type {string}
    */
   opportunityType?: string | null;
+
+  /**
+   * Opportunity owner email
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  ownerEmail?: string | null;
+
+  /**
+   * A global cross-org outreach identifier of the opportunity owner
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  ownerGlobalId?: string | null;
+
+  /**
+   * Full name of the opportunity owner
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  ownerName?: string | null;
+
+  /**
+   * Outreach user name of the owner
+   *
+   * @type {(string | null)}
+   * @memberof IOpportunityContext
+   */
+  ownerUsername?: string | null;
 
   /**
    * The chances of the opportunity succeeding, represented as a percentage.
