@@ -312,6 +312,15 @@
             },
             "required": ["en"]
           },
+          "template": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": ["en"]
+          },
           "type": {
             "type": "string",
             "enum": [
