@@ -22,6 +22,16 @@ export class ManifestApi {
   scopes: Scopes[];
 
   /**
+   * When this flag is checked, the full list of scopes will be used for Outreach API authentication.
+   * The content of scopes property will be ignored.
+   *
+   * @see https://github.com/getoutreach/extensibility-sdk/blob/master/docs/manifest.md#scopesAll
+   * @type {boolean}
+   * @memberof ManifestApi
+   */
+  scopesAll: boolean;
+
+  /**
    *
    * Outreach API client data used for authentication
    *

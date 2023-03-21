@@ -383,6 +383,7 @@ const getNewValidApplicationManifest = (): Application => {
   application.api = {
     scopes: [Scopes.ACCOUNTS_ALL, Scopes.CALLS_ALL],
     redirectUris: ['https://addon-host.com/hello-world'],
+    scopesAll: false,
     client: {
       id: 'AbCd123456qW',
     },
