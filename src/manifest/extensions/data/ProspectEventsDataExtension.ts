@@ -73,6 +73,10 @@ export class ProspectEventsDataExtension extends DataExtension {
       }
     }
 
+    if (!this.title) {
+      issues.push('title definition is missing');
+    }
+
     if (!this.context) {
       issues.push('Context section is missing');
     } else {
