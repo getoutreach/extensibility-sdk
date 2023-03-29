@@ -363,21 +363,9 @@
               "component": {
                 "type": "string"
               },
-              "template": {
-                "type": "string"
-              },
               "icon": {
                 "type": "string",
                 "format": "uri"
-              },
-              "category": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "event": {
-                "type": "string"
               },
               "decoration": {
                 "type": "string",
