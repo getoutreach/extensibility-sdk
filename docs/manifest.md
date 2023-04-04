@@ -34,7 +34,6 @@ Table of content:
   - [Extensions section (extensions)](#extensions-section-extensions)
     - [Shared extension properties](#shared-extension-properties)
       - [identifier (extension)](#identifier-extension)
-      - [version (extension)](#version-extension)
     - [Tab extension properties](#tab-extension-properties)
       - [context (tab extension)](#context-tab-extension)
         - [Shell application extension](#shell-application-extension)
@@ -155,8 +154,7 @@ opportunity tab extension.
         "url": "http://someurl.com/host/app",
         "notificationsUrl": "https://addon-host.com/notification"
       },
-      "type": "shell-application",
-      "version": "0.98"
+      "type": "shell-application"
     },
     {
       "context": ["usr.id", "opp.id"],
@@ -169,8 +167,7 @@ opportunity tab extension.
         "icon": "http://someurl.com/favicon.png",
         "url": "http://someurl.com/host/opp"
       },
-      "type": "tab-opportunity",
-      "version": "0.99"
+      "type": "tab-opportunity"
     }
   ]
 }
@@ -353,10 +350,6 @@ Every extension has to implement a set of common properties defined in
 #### identifier (extension)
 
 A unique identifier of the extension (used in logs, telemetry, etc.)
-
-#### version (extension)
-
-The current version of the extension (used in logs, telemetry, etc.)
 
 ### Tab extension properties
 
