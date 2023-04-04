@@ -101,7 +101,6 @@ const getValidOpportunityTabExtension = (): OpportunityTabExtension => {
   tabExtension.host = {
     url: 'http://someurl.com/host',
   };
-  tabExtension.version = '0.99';
   tabExtension.context = [UserContextKeys.ID, OpportunityContextKeys.ID];
 
   return tabExtension;

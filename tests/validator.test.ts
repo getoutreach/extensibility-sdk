@@ -316,7 +316,6 @@ const getNewValidApplicationManifest = (): Application => {
   opportunityTabExtension.host = {
     url: 'http://someurl.com/host',
   };
-  opportunityTabExtension.version = '0.99';
   opportunityTabExtension.context = [UserContextKeys.ID, OpportunityContextKeys.ID];
 
   const appTabExtension = new ApplicationShellExtension();
@@ -326,7 +325,6 @@ const getNewValidApplicationManifest = (): Application => {
     url: 'http://someurl.com/host',
     decoration: DecorationStyle.NONE,
   };
-  appTabExtension.version = '0.98';
   appTabExtension.context = [UserContextKeys.ID];
 
   const application = new Application();

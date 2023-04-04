@@ -130,7 +130,6 @@ const getValidExtension = (): ProspectEventsDataExtension => {
     name: 'name_1',
     template: 'template for {{prospect}}',
   };
-  ext.version = '0.99';
   ext.context = [];
 
   return ext;
