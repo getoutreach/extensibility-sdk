@@ -27,14 +27,4 @@ export class TileExtensionHost extends ExtensionHost {
    * @memberof TileExtensionHost
    */
   component?: string;
-
-  /**
-   * An adaptive card template which will be used for rendering the tile.
-   *
-   @see https://adaptivecards.io/samples/
-   *
-   * @type {string}
-   * @memberof TileExtensionHost
-   */
-  template?: string;
 }

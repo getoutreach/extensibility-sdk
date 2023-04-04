@@ -2,6 +2,7 @@ import { utils } from '../../../utils';
 import { DataExtension } from './DataExtension';
 import { DataExtensionType } from './DataExtensionType';
 import { ProspectEventsHost } from './ProspectEventsHost';
+import { LocalizedString } from '../../store/LocalizedString';
 
 export class ProspectEventsDataExtension extends DataExtension {
   /**
@@ -19,6 +20,15 @@ export class ProspectEventsDataExtension extends DataExtension {
    * @memberof ProspectEventsDataExtension
    */
   public host: ProspectEventsHost;
+
+  /**
+   * Tokenized template representation of the event.
+   * e.g.  "A message was sent to {{prospect}} on Drift"
+   *
+   * @type {LocalizedString}
+   * @memberof ProspectEventsDataExtension
+   */
+  template!: LocalizedString;
 
   /**
    * Validates the data extension configuration
@@ -43,26 +53,6 @@ export class ProspectEventsDataExtension extends DataExtension {
         issues.push('Host type is invalid. Value: ' + this.type);
       }
 
-      if (!this.host.category) {
-        issues.push('Host category definition is missing');
-      }
-      if (!this.host.event) {
-        issues.push('Host event definition is missing');
-      }
-      if (!this.host.name) {
-        issues.push('Host name definition is missing');
-      }
-      if (!this.host.template) {
-        issues.push('Host template definition is missing');
-      } else {
-        const match = /{{.*}}/.exec(this.host.template);
-        if (match) {
-          if (match[0] !== '{{prospect}}' && match[0] !== '{{user}}') {
-            issues.push('Unsupported token: ' + match[0]);
-          }
-        }
-      }
-
       if (!this.host.icon) {
         issues.push('Host icon definition is missing');
       } else {
@@ -70,6 +60,21 @@ export class ProspectEventsDataExtension extends DataExtension {
           issues.push('Host icon definition is invalid. Value: ' + this.host.icon);
         }
       }
+    }
+
+    if (!this.template) {
+      issues.push('Template definition is missing');
+    } else {
+      const match = /{{.*}}/.exec(this.template.en);
+      if (match) {
+        if (match[0] !== '{{prospect}}' && match[0] !== '{{user}}') {
+          issues.push('Unsupported token: ' + match[0]);
+        }
+      }
+    }
+
+    if (!this.title) {
+      issues.push('title definition is missing');
     }
 
     if (!this.context) {

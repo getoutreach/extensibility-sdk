@@ -51,24 +51,14 @@ describe('TileExension validate tests', () => {
       expect(issues.length).toBe(0);
     });
 
-    test('host.url - missing is acceptable if template is there', () => {
-      const tileExtension = getValidProspectTileExtension();
-      delete tileExtension.host.url;
-      tileExtension.host.template = 'some template';
-
-      var issues = tileExtension.validate();
-      expect(issues.length).toBe(0);
-    });
-
     test('host.url - missing all is not acceptable', () => {
       const tileExtension = getValidProspectTileExtension();
       delete tileExtension.host.url;
-      delete tileExtension.host.template;
       delete tileExtension.host.component;
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Host definition is missing url/template/component value.');
+      expect(issues[0]).toBe('Host definition is missing url/component value.');
     });
 
     test('host.icon - only url should be acceptable', () => {
@@ -130,7 +120,12 @@ const getValidProspectTileExtension = (): ProspectTileExtension => {
   };
   tileExtension.context = [UserContextKeys.ID, ProspectContextKeys.ID];
   tileExtension.settings = {
-    recommended: [{ width: 2, height: 2 }],
+    recommended: [
+      {
+        width: 2,
+        height: 2,
+      },
+    ],
   };
 
   return tileExtension;
