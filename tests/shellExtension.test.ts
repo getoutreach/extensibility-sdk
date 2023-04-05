@@ -128,7 +128,6 @@ const getValidShellApplicationExtension = (): ApplicationShellExtension => {
     url: 'http://someurl.com/host',
     decoration: DecorationStyle.NONE,
   };
-  shellAppExtension.version = '0.99';
   shellAppExtension.context = [UserContextKeys.ID];
 
   return shellAppExtension;

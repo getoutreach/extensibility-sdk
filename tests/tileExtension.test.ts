@@ -118,7 +118,6 @@ const getValidProspectTileExtension = (): ProspectTileExtension => {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
-  tileExtension.version = '0.99';
   tileExtension.context = [UserContextKeys.ID, ProspectContextKeys.ID];
   tileExtension.settings = {
     recommended: [

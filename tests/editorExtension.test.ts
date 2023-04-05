@@ -132,7 +132,6 @@ const getValidShellEditorExtension = (): EditorExtension => {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
-  editorExtension.version = '0.99';
   editorExtension.context = [UserContextKeys.ID];
 
   editorExtension.settings = {

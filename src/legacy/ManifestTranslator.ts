@@ -230,7 +230,6 @@ export class ManifestTranslator {
       extension.identifier = ext.identifier;
       extension.title = ext.title;
       extension.host.url = ext.host.url;
-      extension.version = ext.version;
 
       if (extension.host instanceof ShellExtensionHost) {
         extension.host.icon = ext.host.icon;

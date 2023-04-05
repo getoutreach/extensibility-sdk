@@ -52,14 +52,6 @@ export abstract class Extension {
   public type: ExtensionType;
 
   /**
-   * Extension version
-   *
-   * @type {string}
-   * @memberof Extension
-   */
-  version: string;
-
-  /**
    * Enables extension to contribute to building up
    * outreach context which will be send to addon creator
    *

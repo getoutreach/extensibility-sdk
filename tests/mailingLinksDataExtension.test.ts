@@ -42,7 +42,6 @@ const getValidExtension = (): MailingLinksDataExtension => {
   ext.host = {
     url: 'http://someurl.com/host',
   };
-  ext.version = '0.99';
   ext.context = [];
 
   return ext;

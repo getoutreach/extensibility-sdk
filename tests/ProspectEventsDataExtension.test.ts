@@ -112,7 +112,6 @@ const getValidExtension = (): ProspectEventsDataExtension => {
   ext.host = {
     icon: 'http://someurl.com/host',
   };
-  ext.version = '0.99';
   ext.context = [];
 
   return ext;

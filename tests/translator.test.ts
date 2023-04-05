@@ -66,7 +66,6 @@ describe('Manifest translator tests', () => {
     expect(tabProspectExt.host.url).toBe(v1Manifests[0].host.url);
     expect(tabProspectExt.identifier).toBe(v1Manifests[0].identifier);
     expect(tabProspectExt.title).toBe(v1Manifests[0].title);
-    expect(tabProspectExt.version).toBe(v1Manifests[0].version);
 
     expect(result!.extensions[1].type).toBe(ShellExtensionType.APPLICATION);
     const shellAppExt = result!.extensions[1] as ApplicationShellExtension;
@@ -77,7 +76,6 @@ describe('Manifest translator tests', () => {
     expect(shellAppExt.host.notificationsUrl).toBeUndefined();
     expect(shellAppExt.identifier).toBe(v1Manifests[1].identifier);
     expect(shellAppExt.title).toBe(v1Manifests[1].title);
-    expect(shellAppExt.version).toBe(v1Manifests[1].version);
 
     expect(result!.extensions[2].type).toBe(TabExtensionType.OPPORTUNITY);
     const tabOpportunityExt = result!.extensions[2] as OpportunityTabExtension;
@@ -94,7 +92,6 @@ describe('Manifest translator tests', () => {
     expect(tabOpportunityExt.host.url).toBe(v1Manifests[2].host.url);
     expect(tabOpportunityExt.identifier).toBe(v1Manifests[2].identifier);
     expect(tabOpportunityExt.title).toBe(v1Manifests[2].title);
-    expect(tabOpportunityExt.version).toBe(v1Manifests[2].version);
   });
 
   describe('disableTimeoutMonitoring', () => {
