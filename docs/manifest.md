@@ -150,8 +150,8 @@ opportunity tab extension.
         "decoration": "none"
       },
       "host": {
-        "icon": "http://someurl.com/favicon.png",
-        "url": "http://someurl.com/host/app",
+        "icon": "https://someurl.com/favicon.png",
+        "url": "https://someurl.com/host/app",
         "notificationsUrl": "https://addon-host.com/notification"
       },
       "type": "shell-application"
@@ -164,8 +164,8 @@ opportunity tab extension.
         "decoration": "none"
       },
       "host": {
-        "icon": "http://someurl.com/favicon.png",
-        "url": "http://someurl.com/host/opp"
+        "icon": "https://someurl.com/favicon.png",
+        "url": "https://someurl.com/host/opp"
       },
       "type": "tab-opportunity"
     }
@@ -470,14 +470,14 @@ contextual parameters as query parameters.
 e.g.
 
 ```javascript
-manifest.host.url = 'http://somesite.com/something';
+manifest.host.url = 'https://somesite.com/something';
 manifest.context = ['opp.id', 'usr.id'];
 ```
 
 In the case of an Outreach user with id 456 looking at opportunity 123, this will result during the runtime.
 
 ```bash
- http://somesite.com/something?opp.id=123&usr.id=456
+ https://somesite.com/something?opp.id=123&usr.id=456
 ```
 
 In addition to this default behavior, the application creator can customize how the URL is constructed by applying
@@ -486,13 +486,13 @@ simple templatization in addition to this default behavior.
 e.g.
 
 ```javascript
-manifest.host.url = 'http://somesite.com/something/{usr.id}';
+manifest.host.url = 'https://somesite.com/something/{usr.id}';
 ```
 
 will become during the runtime
 
 ```bash
-http://somesite.com/something/456?opp.id=123
+https://somesite.com/something/456?opp.id=123
 ```
 
 > _NB: as opp.id was not tokenized, it was appended as query parameter following the default naming convention_
@@ -502,13 +502,13 @@ The application creator can templatize the name of the query parameters.
 e.g.
 
 ```javascript
-manifest.host.url = 'http://somesite.com/something/{usr.id}?oid={opp.id}';
+manifest.host.url = 'https://somesite.com/something/{usr.id}?oid={opp.id}';
 ```
 
 will become during the runtime
 
 ```bash
-http://somesite.com/something/456?oid=123
+https://somesite.com/something/456?oid=123
 ```
 
 #### icon (of extension)

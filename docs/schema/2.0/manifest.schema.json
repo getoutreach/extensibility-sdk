@@ -354,7 +354,7 @@
             "properties": {
               "url": {
                 "type": "string",
-                "format": "uri"
+                "format": "uri-template"
               },
               "component": {
                 "type": "string"

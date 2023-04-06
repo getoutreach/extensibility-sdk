@@ -137,7 +137,7 @@ As you can see in the example above, the clientId value is an example of the val
 will need it very early. The url used for loading will have an additional parameter for clientId
 
 ```http
-http://some-site.com/application?...&clientId=a12345
+https://some-site.com/application?...&clientId=a12345
 ```
 
 #### SDK support
