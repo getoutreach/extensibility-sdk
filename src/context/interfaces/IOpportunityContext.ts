@@ -3,6 +3,13 @@ import { IExternalInfoContext } from './IExternalInfoContext';
 
 export interface IOpportunityContext extends ICustomContext {
   /**
+   * The custom id value of the opportunity account
+   *
+   * @type {string}
+   */
+  accountCustomId?: string | null;
+
+  /**
    * The domain of the opportunity account
    *
    * @type {string}

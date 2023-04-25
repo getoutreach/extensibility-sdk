@@ -5,6 +5,8 @@ import { initOpportunityContext, toOpportunityParams } from './OpportunityContex
 import { IOpportunityContext } from '../interfaces/IOpportunityContext';
 
 export class OpportunityContext extends CustomContext implements IOpportunityContext {
+  accountCustomId?: string | null;
+
   accountDomain?: string | null;
 
   accountExternalId?: string | null;

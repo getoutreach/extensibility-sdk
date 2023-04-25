@@ -58,6 +58,14 @@ describe('OpportunityContextUtils', () => {
 
   describe('account properties', () => {
     describe('initOpportunityContext', () => {
+      it('account custom id will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.ACCOUNT_CUSTOM_ID,
+          value: 'some-value',
+        });
+        expect(ctx.accountCustomId).toBe('some-value');
+      });
+
       it('account domain context will be set', () => {
         initOpportunityContext(ctx, {
           key: OpportunityContextKeys.ACCOUNT_DOMAIN,
@@ -96,6 +104,13 @@ describe('OpportunityContextUtils', () => {
     });
 
     describe('toOpportunityParams', () => {
+      it('will pack account custom id', () => {
+        ctx.accountCustomId = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.ACCOUNT_CUSTOM_ID);
+        expect(params[0].value).toBe('some-value');
+      });
       it('will pack account domain', () => {
         ctx.accountDomain = 'some-value';
         const params = toOpportunityParams(ctx);
@@ -103,28 +118,28 @@ describe('OpportunityContextUtils', () => {
         expect(params[0].key).toBe(OpportunityContextKeys.ACCOUNT_DOMAIN);
         expect(params[0].value).toBe('some-value');
       });
-      it('will pack account domain', () => {
+      it('will pack account external id', () => {
         ctx.accountExternalId = 'some-value';
         const params = toOpportunityParams(ctx);
         expect(params.length).toBe(2);
         expect(params[0].key).toBe(OpportunityContextKeys.ACCOUNT_EXTERNAL_ID);
         expect(params[0].value).toBe('some-value');
       });
-      it('will pack account domain', () => {
+      it('will pack account external provider', () => {
         ctx.accountExternalProvider = 'some-value';
         const params = toOpportunityParams(ctx);
         expect(params.length).toBe(2);
         expect(params[0].key).toBe(OpportunityContextKeys.ACCOUNT_EXTERNAL_PROVIDER);
         expect(params[0].value).toBe('some-value');
       });
-      it('will pack account domain', () => {
+      it('will pack account id', () => {
         ctx.accountId = 'some-value';
         const params = toOpportunityParams(ctx);
         expect(params.length).toBe(2);
         expect(params[0].key).toBe(OpportunityContextKeys.ACCOUNT_ID);
         expect(params[0].value).toBe('some-value');
       });
-      it('will pack account domain', () => {
+      it('will pack account name', () => {
         ctx.accountName = 'some-value';
         const params = toOpportunityParams(ctx);
         expect(params.length).toBe(2);
