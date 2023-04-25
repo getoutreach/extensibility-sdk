@@ -5,6 +5,9 @@ import { OpportunityContext } from './OpportunityContext';
 
 export const initOpportunityContext = (context: OpportunityContext, param: ContextParam): boolean => {
   switch (param.key) {
+    case OpportunityContextKeys.ACCOUNT_CUSTOM_ID:
+      context.accountCustomId = param.value;
+      break;
     case OpportunityContextKeys.ACCOUNT_DOMAIN:
       context.accountDomain = param.value;
       break;
@@ -531,6 +534,14 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
 
 export const toOpportunityParams = (context: OpportunityContext): ContextParam[] => {
   const params: ContextParam[] = [];
+
+  if (context.accountCustomId) {
+    params.push({
+      key: OpportunityContextKeys.ACCOUNT_CUSTOM_ID,
+      value: context.accountCustomId,
+    });
+  }
+
   if (context.accountDomain) {
     params.push({
       key: OpportunityContextKeys.ACCOUNT_DOMAIN,

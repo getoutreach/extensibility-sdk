@@ -11,6 +11,11 @@ export enum OpportunityContextKeys {
   /**
    * The domain of the opportunity account
    */
+  ACCOUNT_CUSTOM_ID = 'opp.acccstmId',
+
+  /**
+   * The domain of the opportunity account
+   */
   ACCOUNT_DOMAIN = 'opp.accdom',
 
   /**
