@@ -25,5 +25,5 @@ export enum ExternalInfoProvider {
   /**
    * Dynamics plugin data source
    */
-  DYNAMICS = 2,
+  DYNAMICS = 3,
 }
