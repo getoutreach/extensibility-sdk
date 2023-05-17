@@ -531,7 +531,7 @@ export class ExtensibilitySdk {
   }
 
   public getAppToken = async (): Promise<string | null> => {
-    window.parent.postMessage('getAppToken', '*');
+    window.parent?.postMessage('getAppToken', '*');
 
     return new Promise((resolve) => {
       window.addEventListener('message', (event) => {
