@@ -530,6 +530,18 @@ export class ExtensibilitySdk {
     window.parent.postMessage(postMessage, runtime.origin);
   }
 
+  public getAppToken = async (): Promise<string | null> => {
+    window.parent.postMessage('getAppToken', '*');
+
+    return new Promise((resolve) => {
+      window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'appToken') {
+          resolve(event.data.token);
+        }
+      });
+    });
+  };
+
   private handleLoadInfoMessage = (message: LoadInfoMessage) => {
     let logLevel = LogLevel.Debug;
     if (message.loadTime > 2000) {
