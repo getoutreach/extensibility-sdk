@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const { user, prospect, organization } = await extensibilitySdk.init();
 
-  const token = await extensibilitySdk.getAppToken();
-  console.log('And the token is', token);
+  const data = await extensibilitySdk.getAppToken();
+
+  await extensibilitySdk.callApi(data.token, data.installationId);
 
   console.log(organization);
-
   // Now render data that came from Outreach.
   // Replace with what you usually use for rendering in your framework. For example React components.
 

@@ -536,11 +536,23 @@ export class ExtensibilitySdk {
     return new Promise((resolve) => {
       window.addEventListener('message', (event) => {
         if (event.data && event.data.type === 'appToken') {
-          resolve(event.data.token);
+          resolve(event.data);
         }
       });
     });
   };
+
+  public callApi = async (token: string, installationId: string) => {
+    console.log(`Calling the API... with token: ${token} and installationId: ${installationId}`);
+    const response = await fetch('https://api.outreach-staging.com/api/v2/accounts/154851?appId=' + installationId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Bearer: token
+      },
+    });
+    console.log('The API response', response);
+  }
 
   private handleLoadInfoMessage = (message: LoadInfoMessage) => {
     let logLevel = LogLevel.Debug;
