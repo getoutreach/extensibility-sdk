@@ -208,6 +208,9 @@ class Task<T> {
   public onrejected: (reason: any) => void;
 }
 
+let apiToken: string | null = null;
+let installationId: string | null = null;
+
 export class ExtensibilitySdk {
   private initTimer?: number;
   private initTask?: Task<IOutreachContext>;
@@ -530,7 +533,7 @@ export class ExtensibilitySdk {
     window.parent.postMessage(postMessage, runtime.origin);
   }
 
-  public getAppToken = async (): Promise<string | null> => {
+  private getAppToken = async (): Promise<{ token: string; installationId: string } | null> => {
     window.parent?.postMessage('getAppToken', '*');
 
     return new Promise((resolve) => {
@@ -542,17 +545,32 @@ export class ExtensibilitySdk {
     });
   };
 
-  public callApi = async (token: string, installationId: string) => {
-    console.log(`Calling the API... with token: ${token} and installationId: ${installationId}`);
-    const response = await fetch('https://api.outreach-staging.com/api/v2/accounts/154851?appId=' + installationId, {
+  public callApi = async (url: string) => {
+    if (!apiToken || !installationId) {
+      const data = await this.getAppToken();
+
+      if (data) {
+        apiToken = data.token;
+        installationId = data.installationId;
+      }
+    }
+
+    if (!apiToken || !installationId) {
+      throw new Error('No token or installationId');
+    }
+
+    console.log(`Calling the API... with token: ${apiToken} and installationId: ${installationId}`);
+    const response = await fetch(`${url}?appId=${installationId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Bearer: token
+        Bearer: apiToken,
       },
     });
     console.log('The API response', response);
-  }
+
+    return response;
+  };
 
   private handleLoadInfoMessage = (message: LoadInfoMessage) => {
     let logLevel = LogLevel.Debug;
