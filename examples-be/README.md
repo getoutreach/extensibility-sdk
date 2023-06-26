@@ -7,6 +7,8 @@ It is written in TypeScript language using [NestJS](https://nestjs.com/) framewo
 We recommend to start looking into it from the AppController class.
 It is an entry point for webhook or External configuration setup URL calls by Outreach.
 
+Outreach S2S API is described in [Outreach developers documentation](https://developers.outreach.io/api/s2s-access/).
+
 ## Installation
 
 ```bash

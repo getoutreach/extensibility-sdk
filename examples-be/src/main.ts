@@ -28,6 +28,10 @@ class TokenService {
     private httpService: HttpService,
   ) {}
 
+  /**
+   * Generating application-based token https://developers.outreach.io/api/app-token/#generating-app-token
+   * @private
+   */
   private getAppBasedToken(): Promise<string> {
     const iat = Date.now() / 1000;
 
@@ -48,6 +52,10 @@ class TokenService {
     return this.getInstallationBasedToken(installationId);
   }
 
+  /**
+   * Getting installation-based access token: https://developers.outreach.io/api/app-token/#get-s2s-access-token
+   * @param installationId
+   */
   public async getInstallationBasedToken(
     installationId: string,
   ): Promise<string> {
@@ -68,6 +76,10 @@ class TokenService {
     return data.data.meta.accessToken;
   }
 
+  /**
+   * Getting installation information: https://developers.outreach.io/api/app-token/#get-installation-information
+   * @param installSetupToken
+   */
   public async getSetupBasedToken(installSetupToken: string): Promise<string> {
     const appBasedToken = await this.getAppBasedToken();
 
@@ -93,6 +105,7 @@ class AppController {
   /**
    * Put this endpoint URL into Webhook configuration of your app, and it will be
    * called by Outreach after app installation.
+   * https://developers.outreach.io/client-extensions/app-lifecycle-webhooks/
    * @param webhookData request payload
    */
   @Post('webhook')
@@ -107,6 +120,7 @@ class AppController {
    * user will get redirected here after app installation.
    * @param installSetupToken a special token for getting information about installation. Added as a query parameter to
    * External configuration setup URL by Outreach
+   * https://developers.outreach.io/client-extensions/app-installation-settings/#external-configuration-setup-url
    */
   @Get('setup')
   setup(
@@ -119,6 +133,7 @@ class AppController {
    * An example endpoint showing how to submit new custom event to a prospect's
    * activity feed using information received from a webhook or
    * External configuration setup URL call.
+   * https://developers.outreach.io/client-extensions/activity-feed-custom-events/
    * @param eventId custom event id
    * @param prospectId prospect id
    * @param orgId organization id
