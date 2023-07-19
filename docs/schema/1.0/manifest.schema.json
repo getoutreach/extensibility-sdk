@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/1.0/manifest.schema.json",
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "maxLength": 64
+    },
+    "identifier": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "store": {
+      "type": "string",
+      "enum": ["private", "public", "personal"]
+    },
+    "title": {
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": ["en"]
+    },
+    "description": {
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": ["en"]
+    },
+    "host": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "tab-account",
+            "tab-opportunity",
+            "tab-prospect",
+            "tab-reports",
+            "left-side-menu",
+            "shell-action",
+            "shell-application",
+            "shell-companion",
+            "shell-knowledge",
+            "shell-tool",
+            "tab-prospect-sidebar",
+            "tab-prospect-action",
+            "tab-opportunity-sidebar",
+            "tab-opportunity-action",
+            "tab-account-sidebar",
+            "tab-account-action",
+            "tile-home",
+            "tile-account",
+            "tile-opportunity",
+            "tile-prospect"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "fullWidth": {
+              "type": "boolean"
+            },
+            "decoration": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["type"]
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "websiteUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "privacyUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "termsOfUseUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["websiteUrl"]
+    },
+    "context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "connect": {
+          "type": "string"
+        }
+      }
+    },
+    "configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["number", "date", "url", "options", "select", "string"]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "urlInclude": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              }
+            }
+          },
+          "defaultValue": {
+            "type": "string"
+          },
+          "validator": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["key", "type", "text"]
+      }
+    }
+  },
+  "required": ["version", "identifier", "title", "host", "author"]
+}
