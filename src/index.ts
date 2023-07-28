@@ -291,10 +291,13 @@ export class ExtensibilitySdk {
           'error'
         );
       } else if (ctx.loadTime > 2000) {
-        this.notify(
-          `Addon loading takes longer than 2 seconds. Load time:${ctx.loadTime}. Ready time: ${ctx.readyTime}. SessionId: ${sessionId}`,
-          'warning'
-        );
+        logger.current.log({
+          origin: EventOrigin.ADDON,
+          type: EventType.INTERNAL,
+          level: LogLevel.Warning,
+          message: `Addon loading takes longer than 2 seconds. Load time:${ctx.loadTime}. Ready time: ${ctx.readyTime}. SessionId: ${sessionId}`,
+          context: ['Addon loading takes more time than it should'],
+        });
       }
     };
   }
