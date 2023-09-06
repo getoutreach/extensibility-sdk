@@ -45,6 +45,8 @@ export class OpportunityContext extends CustomContext implements IOpportunityCon
 
   probability?: string | null;
 
+  stage?: string | null;
+
   tags?: string | null;
 
   /**

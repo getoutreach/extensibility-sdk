@@ -149,6 +149,13 @@ export interface IOpportunityContext extends ICustomContext {
   probability?: string | null;
 
   /**
+   * The stage of the opportunity.
+   * @type {string}
+   * @memberof IOpportunityContext
+   */
+  stage?: string | null;
+
+  /**
    * Tags associated with the opportunity.
    *
    * @type {string}
