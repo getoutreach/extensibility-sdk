@@ -40,7 +40,7 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
       context.externalProviderId = param.value;
       break;
     case OpportunityContextKeys.EXTERNAL_PROVIDER:
-      context.externalProviderId = param.value;
+      context.externalProviderName = param.value;
       break;
     case OpportunityContextKeys.ID:
       context.id = param.value!;

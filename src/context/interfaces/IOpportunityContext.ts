@@ -79,7 +79,7 @@ export interface IOpportunityContext extends ICustomContext {
    *
    * @type {string}
    */
-  externalProviderName?: string;
+  externalProviderName?: string | null;
 
   /**
    * Unique opportunity identifier.
