@@ -251,11 +251,13 @@ describe('OpportunityContextUtils', () => {
 
     describe('toOpportunityParams', () => {
       it('will pack external created at', () => {
-        ctx.externalCreatedAt = new Date('2021-01-01');
+        const date = new Date('2021-01-01T00:00:00.000Z');
+
+        ctx.externalCreatedAt = date;
         const params = toOpportunityParams(ctx);
         expect(params.length).toBe(2);
         expect(params[0].key).toBe(OpportunityContextKeys.EXTERNAL_CREATED_AT);
-        expect(params[0].value).toBe('Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)');
+        expect(params[0].value).toBe(date.toString());
       });
       it('will pack external provider id', () => {
         ctx.externalProviderId = 'some-value';
