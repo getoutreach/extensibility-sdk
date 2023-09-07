@@ -25,7 +25,7 @@ export class OpportunityContext extends CustomContext implements IOpportunityCon
 
   externalProviderId?: string | null;
 
-  externalProviderName?: string;
+  externalProviderName?: string | null;
 
   id: string;
 
@@ -44,6 +44,8 @@ export class OpportunityContext extends CustomContext implements IOpportunityCon
   ownerUsername?: string | null;
 
   probability?: string | null;
+
+  stage?: string | null;
 
   tags?: string | null;
 

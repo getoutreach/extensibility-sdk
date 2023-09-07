@@ -223,4 +223,176 @@ describe('OpportunityContextUtils', () => {
       });
     });
   });
+
+  describe('external provider properties', () => {
+    describe('initOpportunityContext', () => {
+      it('external created at context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.EXTERNAL_CREATED_AT,
+          value: '2100-01-01',
+        });
+        expect(ctx.externalCreatedAt).toStrictEqual(new Date('2100-01-01'));
+      });
+      it('external provider id context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.EXTERNAL_ID,
+          value: 'some-value',
+        });
+        expect(ctx.externalProviderId).toBe('some-value');
+      });
+      it('external provider name context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.EXTERNAL_PROVIDER,
+          value: 'some-value',
+        });
+        expect(ctx.externalProviderName).toBe('some-value');
+      });
+    });
+
+    describe('toOpportunityParams', () => {
+      it('will pack external created at', () => {
+        const date = new Date('2021-01-01T00:00:00.000Z');
+
+        ctx.externalCreatedAt = date;
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.EXTERNAL_CREATED_AT);
+        expect(params[0].value).toBe(date.toString());
+      });
+      it('will pack external provider id', () => {
+        ctx.externalProviderId = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.EXTERNAL_ID);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack external provider name', () => {
+        ctx.externalProviderName = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.EXTERNAL_PROVIDER);
+        expect(params[0].value).toBe('some-value');
+      });
+    });
+  });
+
+  describe('opportunity properties', () => {
+    describe('initOpportunityContext', () => {
+      it('description context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.DESCRIPTION,
+          value: 'some-value',
+        });
+        expect(ctx.description).toBe('some-value');
+      });
+      it('id context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.ID,
+          value: 'some-value',
+        });
+        expect(ctx.id).toBe('some-value');
+      });
+      it('name context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.NAME,
+          value: 'some-value',
+        });
+        expect(ctx.name).toBe('some-value');
+      });
+      it('next step context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.NEXT_STEP,
+          value: 'some-value',
+        });
+        expect(ctx.nextStep).toBe('some-value');
+      });
+      it('opportunity type context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.TYPE,
+          value: 'some-value',
+        });
+        expect(ctx.opportunityType).toBe('some-value');
+      });
+      it('probability context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.PROBABILITY,
+          value: 'some-value',
+        });
+        expect(ctx.probability).toBe('some-value');
+      });
+      it('stage context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.STAGE,
+          value: 'some-value',
+        });
+        expect(ctx.stage).toBe('some-value');
+      });
+      it('tags context will be set', () => {
+        initOpportunityContext(ctx, {
+          key: OpportunityContextKeys.TAGS,
+          value: 'some-value',
+        });
+        expect(ctx.tags).toBe('some-value');
+      });
+    });
+
+    describe('toOpportunityParams', () => {
+      it('will pack description', () => {
+        ctx.description = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.DESCRIPTION);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack id', () => {
+        ctx.id = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.ID);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack name', () => {
+        ctx.name = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.NAME);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack next step', () => {
+        ctx.nextStep = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.NEXT_STEP);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack opportunity type', () => {
+        ctx.opportunityType = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.TYPE);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack probability', () => {
+        ctx.probability = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.PROBABILITY);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack stage', () => {
+        ctx.stage = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.STAGE);
+        expect(params[0].value).toBe('some-value');
+      });
+      it('will pack tags', () => {
+        ctx.tags = 'some-value';
+        const params = toOpportunityParams(ctx);
+        expect(params.length).toBe(2);
+        expect(params[0].key).toBe(OpportunityContextKeys.TAGS);
+        expect(params[0].value).toBe('some-value');
+      });
+    });
+  });
 });

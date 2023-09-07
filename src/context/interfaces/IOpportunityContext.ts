@@ -79,7 +79,7 @@ export interface IOpportunityContext extends ICustomContext {
    *
    * @type {string}
    */
-  externalProviderName?: string;
+  externalProviderName?: string | null;
 
   /**
    * Unique opportunity identifier.
@@ -147,6 +147,13 @@ export interface IOpportunityContext extends ICustomContext {
    * @type {string}
    */
   probability?: string | null;
+
+  /**
+   * The stage of the opportunity.
+   * @type {string}
+   * @memberof IOpportunityContext
+   */
+  stage?: string | null;
 
   /**
    * Tags associated with the opportunity.

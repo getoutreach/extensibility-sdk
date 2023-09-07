@@ -40,7 +40,7 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
       context.externalProviderId = param.value;
       break;
     case OpportunityContextKeys.EXTERNAL_PROVIDER:
-      context.externalProviderId = param.value;
+      context.externalProviderName = param.value;
       break;
     case OpportunityContextKeys.ID:
       context.id = param.value!;
@@ -65,6 +65,9 @@ export const initOpportunityContext = (context: OpportunityContext, param: Conte
       break;
     case OpportunityContextKeys.PROBABILITY:
       context.probability = param.value;
+      break;
+    case OpportunityContextKeys.STAGE:
+      context.stage = param.value;
       break;
     case OpportunityContextKeys.TAGS:
       context.tags = param.value;
@@ -666,10 +669,18 @@ export const toOpportunityParams = (context: OpportunityContext): ContextParam[]
       value: context.ownerUsername,
     });
   }
+
   if (context.probability) {
     params.push({
       key: OpportunityContextKeys.PROBABILITY,
       value: context.probability,
+    });
+  }
+
+  if (context.stage) {
+    params.push({
+      key: OpportunityContextKeys.STAGE,
+      value: context.stage,
     });
   }
 

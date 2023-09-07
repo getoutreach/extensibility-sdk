@@ -104,6 +104,11 @@ export enum OpportunityContextKeys {
   PROBABILITY = 'opp.prob',
 
   /**
+   * The stage of the opportunity.
+   */
+  STAGE = 'opp.stage',
+
+  /**
    * Tags associated with the opportunity.
    */
   TAGS = 'opp.tags',
