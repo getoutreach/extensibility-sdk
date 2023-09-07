@@ -48,11 +48,10 @@ jobs:
           name: Package SDK
           command: yarn package
       - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      - run:
-          name: Publish package
-          command: npm publish
+          name: Publish NPM package
+          command: |
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
 
 workflows:
   version: 2.1
@@ -61,6 +60,8 @@ workflows:
       - test
 
       - build_public_package:
+          context:
+            - npm-credentials
           requires:
             - test
           filters:
