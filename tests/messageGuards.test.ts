@@ -1,5 +1,4 @@
 import {
-  isDecorationMessage,
   isEnvironmentMessage,
   isLegacyGalaxyAppCloseMessage,
   isLegacyGalaxyAppPostMessage,
@@ -11,34 +10,6 @@ import {
 import { MessageType } from '../src/sdk/messages/MessageType';
 
 describe('Message Guard Tests', () => {
-  describe('Decoration message', () => {
-    test('Valid message will be accepted', () => {
-      const msg = {
-        type: MessageType.REQUEST_DECORATION_UPDATE,
-        value: '1',
-      };
-
-      expect(isDecorationMessage(msg)).toBe(true);
-    });
-
-    test('Invalid type  message will be rejected', () => {
-      const msg = {
-        type: 'NOT VALID',
-        value: '1',
-      };
-
-      expect(isDecorationMessage(msg)).toBe(false);
-    });
-
-    test('Missing value prop will be rejected', () => {
-      const msg = {
-        type: MessageType.REQUEST_DECORATION_UPDATE,
-      };
-
-      expect(isDecorationMessage(msg)).toBe(false);
-    });
-  });
-
   describe('Environment message', () => {
     test('Valid decoration message will be accepted', () => {
       const msg = {
@@ -197,15 +168,15 @@ describe('Message Guard Tests', () => {
   describe('isLegacyGalaxyAppCloseMessage message', () => {
     test('Valid message will be accepted', () => {
       const msg = {};
-  
+
       expect(isLegacyGalaxyAppCloseMessage(msg)).toBe(true);
     });
-  
+
     test('Invalid type message will be rejected', () => {
       const msg = {
         key: 'value',
       };
-  
+
       expect(isLegacyGalaxyAppCloseMessage(msg)).toBe(false);
     });
   });
@@ -213,38 +184,35 @@ describe('Message Guard Tests', () => {
   describe('isLegacyGalaxyAppPostMessage message', () => {
     test('Valid message with content will be accepted', () => {
       const msg = {
-        html:  " something"
+        html: ' something',
       };
-  
+
       expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
     });
 
     test('Valid message with undefined content will be accepted', () => {
       const msg = {
-        html:  undefined
+        html: undefined,
       };
-  
+
       expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
     });
-
 
     test('Valid message with null content will be accepted', () => {
       const msg = {
-        html:  null
+        html: null,
       };
-  
+
       expect(isLegacyGalaxyAppPostMessage(msg)).toBe(true);
     });
-  
-  
+
     test(' it will be rejected without html property', () => {
       const msg = {
         key: 'value',
       };
-  
+
       expect(isLegacyGalaxyAppPostMessage(msg)).toBe(false);
     });
-
 
     test('it will be rejected with empty object', () => {
       const msg = {};
@@ -252,5 +220,3 @@ describe('Message Guard Tests', () => {
     });
   });
 });
-
-

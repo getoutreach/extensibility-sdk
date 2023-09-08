@@ -6,7 +6,6 @@ import { MessageType } from './sdk/messages/MessageType';
 import { OutreachContext } from './context/OutreachContext';
 import { NotificationType } from './sdk/messages/NotificationType';
 import { NotificationMessage } from './sdk/messages/NotificationMessage';
-import { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 import { LogLevel } from './sdk/logging/LogLevel';
 import { ReadyMessage } from './sdk/messages/ReadyMessage';
 
@@ -71,7 +70,6 @@ export { EventType } from './sdk/logging/EventType';
 export { LogLevel } from './sdk/logging/LogLevel';
 export { ILogger } from './sdk/logging/ILogger';
 
-export { DecorationUpdateMessage } from './sdk/messages/DecorationMessage';
 export { EnvironmentInfo } from './sdk/messages/EnvironmentInfo';
 export { EnvironmentMessage } from './sdk/messages/EnvironmentMessage';
 export { InitMessage } from './sdk/messages/InitMessage';
@@ -163,7 +161,6 @@ export { MailingLinksDataExtension } from './manifest/extensions/data/MailingLin
 export { ProspectEventsDataExtension } from './manifest/extensions/data/ProspectEventsDataExtension';
 
 export {
-  isDecorationMessage,
   isEnvironmentMessage,
   isNavigationMessage,
   isNotificationMessage,
@@ -332,31 +329,6 @@ export class ExtensibilitySdk {
       level: LogLevel.Info,
       message: `[CXT] Addon is sending ${message.type} message to host`,
       context: [`Notification text: ${text}`, `Notification type: ${type}`],
-    });
-  };
-
-  /**
-   * Sends request to Outreach hosting app to notify Outreach user
-   * about a certain even happening in addon.
-   *
-   * @param {string} value The new decoration value being requested to be shown by the host
-   * @memberof ExtensibilitySdk
-   */
-  public decorate = async (value: string) => {
-    await this.verifySdkInitialized();
-
-    const message = new DecorationUpdateMessage();
-    message.value = value;
-
-    this.sendMessage(message, true);
-
-    logger.current.log({
-      origin: EventOrigin.ADDON,
-      type: EventType.MESSAGE,
-      messageType: message.type,
-      level: LogLevel.Info,
-      message: `[CXT] Addon is sending ${message.type} message to host`,
-      context: [`Decoration text: ${value}`],
     });
   };
 
@@ -637,7 +609,6 @@ export class ExtensibilitySdk {
         this.handleOAuthCompletedMessage(addonMessage as OAuthDialogCompletedMessage);
         break;
       case MessageType.READY:
-      case MessageType.REQUEST_DECORATION_UPDATE:
       case MessageType.REQUEST_NOTIFY:
       case MessageType.REQUEST_RELOAD:
         logger.current.log({
