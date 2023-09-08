@@ -15,13 +15,6 @@ describe('ShellExtension init tests', () => {
 
     expect(shellExt.host.url).toBe('https://app-host.com/opp-id-123?usr=usr-id-123');
   });
-
-  test('init will tokenize notification url', () => {
-    const shellExt = getValidShellApplicationExtension();
-    shellExt.host.notificationsUrl = 'https://app-host.com/{opp.id}?usr={usr.id}';
-    shellExt.init(getOutreachContext());
-    expect(shellExt.host.notificationsUrl).toBe('https://app-host.com/opp-id-123?usr=usr-id-123');
-  });
 });
 
 describe('ShellExension validate tests', () => {
@@ -70,21 +63,6 @@ describe('ShellExension validate tests', () => {
       var issues = shellExt.validate();
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Host type  is invalid. Value: BANANAS');
-    });
-
-    test('host.notificationUrl - is optional property', () => {
-      const shellExt = getValidShellApplicationExtension();
-      delete shellExt.host.notificationsUrl;
-      var issues = shellExt.validate();
-      expect(issues.length).toBe(0);
-    });
-
-    test('host.notificationUrl - only url should be acceptable', () => {
-      const shellExt = getValidShellApplicationExtension();
-      shellExt.host.notificationsUrl = 'bananas';
-      var issues = shellExt.validate();
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Notifications url definition is invalid url. Value: bananas');
     });
   });
 

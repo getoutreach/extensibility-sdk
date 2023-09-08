@@ -136,7 +136,6 @@ export class ManifestTranslator {
       host: {
         icon: ext.host instanceof ShellExtensionHost ? ext.host.icon : '',
         url: ext.host.url!,
-        notificationsUrl: ext.host instanceof ShellExtensionHost ? ext.host.notificationsUrl || '' : '',
         type: manifestType,
         environment: {
           fullWidth: tabExt,
@@ -422,7 +421,6 @@ export class ManifestTranslator {
     }
 
     extension.host = new ShellExtensionHost();
-    extension.host.notificationsUrl = ext.host.notificationsUrl;
     extension.host.decoration = DecorationStyle.FULL;
 
     if (ext.host.environment) {

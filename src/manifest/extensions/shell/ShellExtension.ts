@@ -65,11 +65,8 @@ export class ShellExtension extends Extension {
         });
       });
 
-      // 2. complete the tokenize url with contextual data of host url and notifications url
+      // 2. complete the tokenize url with contextual data of host url
       this.host.url = utils.tokenizeUrl(this.host.url!, context.toParams()).url;
-      if (this.host.notificationsUrl) {
-        this.host.notificationsUrl = utils.tokenizeUrl(this.host.notificationsUrl, context.toParams()).url;
-      }
     } catch (e) {
       logger.current.log({
         origin: EventOrigin.ADDON,
@@ -110,12 +107,6 @@ export class ShellExtension extends Extension {
 
       if (!this.type || !Object.values(ShellExtensionType).includes(this.type as ShellExtensionType)) {
         issues.push('Host type  is invalid. Value: ' + this.type);
-      }
-
-      if (this.host.notificationsUrl) {
-        if (!utils.hostUrlValidation(this.host.notificationsUrl, this.context)) {
-          issues.push('Notifications url definition is invalid url. Value: ' + this.host.notificationsUrl);
-        }
       }
     }
 

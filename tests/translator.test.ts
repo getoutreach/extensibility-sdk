@@ -73,7 +73,6 @@ describe('Manifest translator tests', () => {
     expect(shellAppExt.host.decoration).toBe(DecorationStyle.FULL);
     expect(shellAppExt.host.icon).toBe(v1Manifests[1].host.icon);
     expect(shellAppExt.host.url).toBe(v1Manifests[1].host.url);
-    expect(shellAppExt.host.notificationsUrl).toBeUndefined();
     expect(shellAppExt.identifier).toBe(v1Manifests[1].identifier);
     expect(shellAppExt.title).toBe(v1Manifests[1].title);
 
