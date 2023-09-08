@@ -29,7 +29,8 @@ describe('OpportunityContextUtils', () => {
   it('will unpack external info', () => {
     var params: ContextParam = {
       key: OpportunityContextKeys.EXTERNAL,
-      value: '[{"e":true,"i":"1","n":"name-1","p":1,"t":"type-1"},{"e":true,"i":"2","n":"name-2","p":2,"t":"type-2"},{"e":true,"i":"3","n":"name-3","p":3,"t":"type-3"}]',
+      value:
+        '[{"e":true,"i":"1","n":"name-1","p":1,"t":"type-1"},{"e":true,"i":"2","n":"name-2","p":2,"t":"type-2"},{"e":true,"i":"3","n":"name-3","p":3,"t":"type-3"}]',
     };
 
     const result = initOpportunityContext(ctx, params);
