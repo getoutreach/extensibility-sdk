@@ -195,5 +195,5 @@ export enum Scopes {
   WEBHOOKS_READ = 'webhooks.read',
   WEBHOOKS_WRITE = 'webhooks.write',
 
-  SCIM = 'scim'
+  SCIM = 'scim',
 }

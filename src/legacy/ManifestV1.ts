@@ -25,7 +25,6 @@ export interface ManifestV1 {
     url: string;
     icon: string;
     environment: ManifestHostEnvironment;
-    notificationsUrl?: string;
   };
   author: {
     company?: string;

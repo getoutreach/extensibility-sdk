@@ -362,14 +362,6 @@
               "icon": {
                 "type": "string",
                 "format": "uri"
-              },
-              "decoration": {
-                "type": "string",
-                "enum": ["none", "full", "simple"]
-              },
-              "notificationsUrl": {
-                "type": "string",
-                "format": "uri"
               }
             }
           },

@@ -23,12 +23,6 @@ export enum MessageType {
    */
   // eslint-disable-next-line no-unused-vars
   REQUEST_NOTIFY = 'cxt:sdk:notify',
-  /**
-   * Message sent from client to host requesting host to update addon extension point adornment
-   * (e.g. Tab title to "Messages(2)"")
-   */
-  // eslint-disable-next-line no-unused-vars
-  REQUEST_DECORATION_UPDATE = 'cxt:sdk:decorate',
 
   /**
    * Message sent from the addon to host requesting host to navigate its iframe to another Outreach page.

@@ -1,26 +1,9 @@
-import { DecorationUpdateMessage } from './DecorationMessage';
 import { EnhanceTextEditorMessage } from './EnhanceTextEditorMessage';
 import { EnvironmentMessage } from './EnvironmentMessage';
 import { MessageType } from './MessageType';
 import { NavigationMessage } from './NavigationMessage';
 import { NotificationMessage } from './NotificationMessage';
 import { ReadyMessage } from './ReadyMessage';
-
-export const isDecorationMessage = (messageInfo: any): messageInfo is DecorationUpdateMessage => {
-  if (!Object.prototype.hasOwnProperty.call(messageInfo, 'type') || typeof messageInfo.type !== 'string') {
-    return false;
-  }
-
-  if (messageInfo.type !== MessageType.REQUEST_DECORATION_UPDATE) {
-    return false;
-  }
-
-  if (!Object.prototype.hasOwnProperty.call(messageInfo, 'value') || typeof messageInfo.value !== 'string') {
-    return false;
-  }
-
-  return true;
-};
 
 export const isEnvironmentMessage = (messageInfo: any): messageInfo is EnvironmentMessage => {
   if (!Object.prototype.hasOwnProperty.call(messageInfo, 'type') || typeof messageInfo.type !== 'string') {
@@ -114,12 +97,14 @@ export const isTextEditorEnhancementMessage = (messageInfo: any): messageInfo is
   return true;
 };
 
-export const isLegacyGalaxyAppPostMessage = (message: any): message is {
+export const isLegacyGalaxyAppPostMessage = (
+  message: any
+): message is {
   html?: string;
   subject?: string;
-}  => {
+} => {
   return Object.prototype.hasOwnProperty.call(message, 'html') && (typeof message.html === 'string' || !message.html);
-}
+};
 /**
  * Legacy Galaxy addons are sending empty event data when requesting a popup to be closed.
  *
@@ -127,5 +112,5 @@ export const isLegacyGalaxyAppPostMessage = (message: any): message is {
  * @return {*}  {message is {}}
  */
 export const isLegacyGalaxyAppCloseMessage = (message: any): message is {} => {
-  return !!message &&  Object.keys(message).length === 0;
-}
+  return !!message && Object.keys(message).length === 0;
+};

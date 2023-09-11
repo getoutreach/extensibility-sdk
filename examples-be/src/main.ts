@@ -1,14 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import * as bodyParser from 'body-parser';
-import {
-  Body,
-  Controller,
-  Get,
-  Injectable,
-  Module,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Injectable, Module, Post, Query } from '@nestjs/common';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { JwtService } from '@nestjs/jwt';
 import { firstValueFrom } from 'rxjs';
@@ -23,10 +15,7 @@ import { firstValueFrom } from 'rxjs';
 class TokenService {
   private orgInstallationMap: Map<string, string> = new Map();
 
-  constructor(
-    private jwtService: JwtService,
-    private httpService: HttpService,
-  ) {}
+  constructor(private jwtService: JwtService, private httpService: HttpService) {}
 
   /**
    * Generating application-based token https://developers.outreach.io/api/app-token/#generating-app-token
@@ -56,22 +45,15 @@ class TokenService {
    * Getting installation-based access token: https://developers.outreach.io/api/app-token/#get-s2s-access-token
    * @param installationId
    */
-  public async getInstallationBasedToken(
-    installationId: string,
-  ): Promise<string> {
+  public async getInstallationBasedToken(installationId: string): Promise<string> {
     const appBasedToken = await this.getAppBasedToken();
 
     const url = `https://accounts.outreach.io/api/installs/${installationId}/actions/accessToken`;
     const options = { headers: { Authorization: `Bearer ${appBasedToken}` } };
 
-    const { data } = await firstValueFrom(
-      this.httpService.post(url, undefined, options),
-    );
+    const { data } = await firstValueFrom(this.httpService.post(url, undefined, options));
 
-    this.orgInstallationMap.set(
-      data.data.relationships.org.data.id,
-      installationId,
-    );
+    this.orgInstallationMap.set(data.data.relationships.org.data.id, installationId);
 
     return data.data.meta.accessToken;
   }
@@ -87,8 +69,8 @@ class TokenService {
       this.httpService.post(
         `https://accounts.outreach.io/api/installs/${installSetupToken}/actions/setupToken`,
         undefined,
-        { headers: { Authorization: `Bearer ${appBasedToken}` } },
-      ),
+        { headers: { Authorization: `Bearer ${appBasedToken}` } }
+      )
     );
 
     return this.getInstallationBasedToken(data.data.id);
@@ -97,10 +79,7 @@ class TokenService {
 
 @Controller()
 class AppController {
-  constructor(
-    private tokenService: TokenService,
-    private httpService: HttpService,
-  ) {}
+  constructor(private tokenService: TokenService, private httpService: HttpService) {}
 
   /**
    * Put this endpoint URL into Webhook configuration of your app, and it will be
@@ -123,9 +102,7 @@ class AppController {
    * https://developers.outreach.io/client-extensions/app-installation-settings/#external-configuration-setup-url
    */
   @Get('setup')
-  setup(
-    @Query('installSetupToken') installSetupToken: string,
-  ): Promise<string> {
+  setup(@Query('installSetupToken') installSetupToken: string): Promise<string> {
     return this.tokenService.getSetupBasedToken(installSetupToken);
   }
 
@@ -142,7 +119,7 @@ class AppController {
   async submitEvent(
     @Query('eventId') eventId: string,
     @Query('prospectId') prospectId: string,
-    @Query('orgId') orgId: string,
+    @Query('orgId') orgId: string
   ): Promise<any> {
     const requestData = {
       data: {
@@ -150,7 +127,7 @@ class AppController {
         attributes: {
           name: eventId,
           externalUrl: 'https://my-app.test/messages/123',
-          body: 'This is an additional event payload that will be displayed in the prospect event feed.'
+          body: 'This is an additional event payload that will be displayed in the prospect event feed.',
         },
         relationships: {
           prospect: {
@@ -166,11 +143,9 @@ class AppController {
     const token = await this.tokenService.getOrgBasedToken(orgId);
 
     const { data } = await firstValueFrom(
-      this.httpService.post(
-        'https://api.outreach.io/api/v2/events',
-        requestData,
-        { headers: { Authorization: `Bearer ${token}` } },
-      ),
+      this.httpService.post('https://api.outreach.io/api/v2/events', requestData, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
     );
 
     return data;
@@ -189,10 +164,9 @@ async function bootstrap() {
 
   app.use(
     bodyParser.json({
-      type: (req: any) =>
-        req.get('Content-Type') === 'application/vnd.api+json',
+      type: (req: any) => req.get('Content-Type') === 'application/vnd.api+json',
       strict: false,
-    }),
+    })
   );
 
   await app.listen(3000);
