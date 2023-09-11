@@ -23,7 +23,6 @@ import { ProspectContextKeys } from '../context/keys/ProspectContextKeys';
 import { UserContextKeys } from '../context/keys/UserContextKeys';
 import { Application } from '../manifest/Application';
 import { ExtensionHost } from '../manifest/extensions/ExtensionHost';
-import { DecorationStyle } from '../manifest/extensions/shell/DecorationStyle';
 import { ShellExtension } from '../manifest/extensions/shell/ShellExtension';
 import { ShellExtensionHost } from '../manifest/extensions/shell/ShellExtensionHost';
 import { ShellExtensionType } from '../manifest/extensions/shell/ShellExtensionType';
@@ -139,7 +138,6 @@ export class ManifestTranslator {
         type: manifestType,
         environment: {
           fullWidth: tabExt,
-          decoration: ext.host instanceof ShellExtensionHost ? ext.host.decoration : 'none',
         },
       },
       identifier: ext.identifier,
@@ -421,22 +419,6 @@ export class ManifestTranslator {
     }
 
     extension.host = new ShellExtensionHost();
-    extension.host.decoration = DecorationStyle.FULL;
-
-    if (ext.host.environment) {
-      switch (ext.host.environment.decoration) {
-        case 'none':
-          extension.host.decoration = DecorationStyle.NONE;
-          break;
-        case 'simple':
-          extension.host.decoration = DecorationStyle.SIMPLE;
-          break;
-        case 'full':
-          extension.host.decoration = DecorationStyle.FULL;
-          break;
-      }
-    }
-
     extension.context = ext.context.map((ctx) => {
       const userKey = ManifestTranslator.getEnumKeyByEnumValue(UserContextKeys, ctx);
       if (userKey) {

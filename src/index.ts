@@ -122,7 +122,6 @@ export {
 export { ExtensionHost } from './manifest/extensions/ExtensionHost';
 
 export { ShellExtension } from './manifest/extensions/shell/ShellExtension';
-export { DecorationStyle } from './manifest/extensions/shell/DecorationStyle';
 export { ShellExtensionHost } from './manifest/extensions/shell/ShellExtensionHost';
 export { ShellExtensionType } from './manifest/extensions/shell/ShellExtensionType';
 export { ActionShellExtension } from './manifest/extensions/shell/types/ActionShellExtension';

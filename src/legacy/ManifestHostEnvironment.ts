@@ -7,15 +7,4 @@ export class ManifestHostEnvironment {
    * @memberof ManifestHostEnvironment
    */
   public fullWidth?: boolean;
-
-  /**
-   * Type of the decoration to be used for badge decorations.
-   *  - none - no decoration badge
-   *  - simple - a dot will be shown in case of badge decoration message with count > 0
-   * - full - a badge with counter will be shown.
-   *
-   * @type {('none' | 'simple' | 'full')}
-   * @memberof ManifestHostEnvironment
-   */
-  public decoration?: 'none' | 'simple' | 'full' = 'none';
 }

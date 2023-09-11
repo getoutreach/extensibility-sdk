@@ -11,7 +11,7 @@ import { MessageType } from '../src/sdk/messages/MessageType';
 
 describe('Message Guard Tests', () => {
   describe('Environment message', () => {
-    test('Valid decoration message will be accepted', () => {
+    test('Valid message will be accepted', () => {
       const msg = {
         type: MessageType.REQUEST_ENVIRONMENT_UPDATE,
         environment: {
@@ -22,7 +22,7 @@ describe('Message Guard Tests', () => {
       expect(isEnvironmentMessage(msg)).toBe(true);
     });
 
-    test('Invalid type decoration message will be rejected', () => {
+    test('Invalid type message will be rejected', () => {
       const msg = {
         type: 'NOT VALID',
         environment: {

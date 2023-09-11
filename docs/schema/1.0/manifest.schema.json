@@ -73,9 +73,6 @@
           "properties": {
             "fullWidth": {
               "type": "boolean"
-            },
-            "decoration": {
-              "type": "string"
             }
           }
         }

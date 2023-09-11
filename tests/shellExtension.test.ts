@@ -5,7 +5,6 @@ import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKe
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { OutreachContext } from '../src/context/OutreachContext';
 import { ShellExtension } from '../src/manifest/extensions/shell/ShellExtension';
-import { DecorationStyle } from '../src';
 
 describe('ShellExtension init tests', () => {
   test('init will tokenize host url', () => {
@@ -104,7 +103,6 @@ const getValidShellApplicationExtension = (): ApplicationShellExtension => {
   shellAppExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
-    decoration: DecorationStyle.NONE,
   };
   shellAppExtension.context = [UserContextKeys.ID];
 

@@ -1,7 +1,6 @@
 import {
   AccountContextKeys,
   ApplicationShellExtension,
-  DecorationStyle,
   OpportunityContextKeys,
   OpportunityTabExtension,
   ProspectContextKeys,
@@ -70,7 +69,6 @@ describe('Manifest translator tests', () => {
     expect(result!.extensions[1].type).toBe(ShellExtensionType.APPLICATION);
     const shellAppExt = result!.extensions[1] as ApplicationShellExtension;
     expect(shellAppExt.context).toEqual([UserContextKeys.ID, UserContextKeys.FIRST_NAME, UserContextKeys.LAST_NAME]);
-    expect(shellAppExt.host.decoration).toBe(DecorationStyle.FULL);
     expect(shellAppExt.host.icon).toBe(v1Manifests[1].host.icon);
     expect(shellAppExt.host.url).toBe(v1Manifests[1].host.url);
     expect(shellAppExt.identifier).toBe(v1Manifests[1].identifier);
@@ -168,7 +166,6 @@ const v1Manifests = [
       type: 'left-side-menu',
       environment: {
         fullWidth: true,
-        decoration: 'full',
       },
     },
     store: 'personal',
@@ -211,7 +208,6 @@ const v1Manifests = [
       type: 'tab-opportunity',
       environment: {
         fullWidth: true,
-        decoration: 'full',
       },
     },
     store: 'personal',

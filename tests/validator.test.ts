@@ -12,7 +12,6 @@ import { Locale } from '../src/sdk/Locale';
 import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
-import { DecorationStyle } from '../src';
 import { WebHookEvents } from '../src/manifest/api/WebHookEvents';
 import { ScopesS2S } from '../src/manifest/api/ScopesS2S';
 
@@ -323,7 +322,6 @@ const getNewValidApplicationManifest = (): Application => {
   appTabExtension.host = {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
-    decoration: DecorationStyle.NONE,
   };
   appTabExtension.context = [UserContextKeys.ID];
 
