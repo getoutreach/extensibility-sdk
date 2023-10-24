@@ -1,5 +1,5 @@
 {
-  "name": "@outreach/extensibility-sdk",
+  "name": "@getoutreach/extensibility-sdk",
   "main": "build/index.d.ts",
   "out": "../dist/index.d.ts"
 }
