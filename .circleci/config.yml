@@ -50,7 +50,7 @@ jobs:
       - run:
           name: Publish NPM package
           command: |
-            npm set //npm.pkg.github.com/:_authToken=$GITHUB_TOKEN
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
             npm publish
 
 workflows:
@@ -62,7 +62,6 @@ workflows:
       - build_public_package:
           context:
             - npm-credentials
-            - github-credentials
           requires:
             - test
           filters:
