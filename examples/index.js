@@ -11,17 +11,23 @@ function iframeSource(opportunity) {
   * https://developers.outreach.io/client-extensions/javascript-sdk/#the-outreachcontext-object
   */
 
-  if (opportunity && opportunity.stage === 'Prospecting') {
-    return 'https://example.com'
+  let pageId;
+  let sectionId;
+  if (opportunity && opportunity.stage === 'C - Negotiations') {
+    pageId = '1004128';
+    sectionId = '1004134';
   }
 
   if (opportunity && opportunity.stage === 'Closed Won') {
-    return 'https://example.com'
+    pageId = '1004130';
+    sectionId = '1004145';
   }
 
-  if (opportunity && opportunity.stage === 'Closed Lost') {
-    return 'https://example.com'
-  }
+  /**
+   * If there is no pageId and sectionId we show blank page
+   * You can show default page here
+   */
+  if (!pageId || !sectionId) return 'about:blank';
 
   return 'about:blank';
 }
@@ -53,5 +59,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Now render data that came from Outreach.
   // Replace with what you usually use for rendering in your framework. For example React components.
   console.log('SDK initialized');
+  console.log('Opportunity data:', opportunity)
   displayIframe(opportunity);
 });
