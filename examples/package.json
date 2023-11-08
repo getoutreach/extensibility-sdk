@@ -9,7 +9,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "@outreach/extensibility-sdk": "^0.5.41",
