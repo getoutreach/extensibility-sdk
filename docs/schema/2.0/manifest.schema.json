@@ -342,6 +342,8 @@
               "tab-reports",
               "content-editor",
               "data-mailing-links",
+              "data-account-events",
+              "data-opportunity-events",
               "data-prospect-events"
             ]
           },
@@ -357,6 +359,9 @@
                 "format": "uri-template"
               },
               "component": {
+                "type": "string"
+              },
+              "filter": {
                 "type": "string"
               },
               "icon": {
