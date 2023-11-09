@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   entry: './index.js',
@@ -25,5 +26,10 @@ module.exports = {
   devServer: {
     port: 3000,
     allowedHosts: 'all',
+    https: {
+      key: fs.readFileSync('./localhost.key'),
+      cert: fs.readFileSync('./localhost.crt'),
+    },
+    host: 'extension.outreach-dev.com'
   }
 };
