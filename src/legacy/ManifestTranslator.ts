@@ -3,7 +3,6 @@ import {
   ActionShellExtension,
   AllContextKeys,
   CompanionShellExtension,
-  ConfigurationItem,
   ContentExtensionType,
   EditorExtension,
   EmailContextKeys,
@@ -307,10 +306,6 @@ export class ManifestTranslator {
 
     if (app.api) {
       application.api = Object.assign(new ManifestApi(), app.api);
-    }
-
-    if (app.configuration) {
-      application.configuration = app.configuration.map((item) => Object.assign(new ConfigurationItem(), item));
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);

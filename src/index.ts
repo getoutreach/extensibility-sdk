@@ -651,6 +651,7 @@ export class ExtensibilitySdk {
     outreachContext.locale = runtime.locale;
     outreachContext.theme = runtime.theme;
     outreachContext.userIdentifier = runtime.userIdentifier;
+    outreachContext.config = runtime.configuration;
 
     const accountContext = new AccountContext();
     const opportunityContext = new OpportunityContext();
