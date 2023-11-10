@@ -640,7 +640,7 @@ export class ExtensibilitySdk {
   private preprocessInitMessage = (initMessage: InitMessage): OutreachContext => {
     runtime.application = ManifestTranslator.hydrate(initMessage.application);
     runtime.authorizationHost = initMessage.authorizationHost;
-    runtime.configuration = initMessage.configuration;
+    runtime.configuration = { ...initMessage.configuration };
     runtime.extension = initMessage.extension;
     runtime.locale = initMessage.locale;
     runtime.sessionId = initMessage.sessionId;
@@ -651,7 +651,7 @@ export class ExtensibilitySdk {
     outreachContext.locale = runtime.locale;
     outreachContext.theme = runtime.theme;
     outreachContext.userIdentifier = runtime.userIdentifier;
-    outreachContext.config = runtime.configuration;
+    outreachContext.config = { ...runtime.configuration };
 
     const accountContext = new AccountContext();
     const opportunityContext = new OpportunityContext();

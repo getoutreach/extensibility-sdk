@@ -175,6 +175,7 @@ const v1Manifests = [
         fullWidth: true,
       },
     },
+    store: 'personal',
     title: {
       en: 'Hello world (OREX)',
       'de-DE': 'German',
