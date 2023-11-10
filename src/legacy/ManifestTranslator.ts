@@ -2,6 +2,7 @@ import {
   AccountTileExtension,
   ActionShellExtension,
   AllContextKeys,
+  ConfigurationItem,
   CompanionShellExtension,
   ContentExtensionType,
   EditorExtension,
@@ -309,6 +310,10 @@ export class ManifestTranslator {
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);
+
+    if (app.configuration) {
+      application.configuration = app.configuration.map((item) => Object.assign(new ConfigurationItem(), item));
+    }
 
     application.extensions = app.extensions.map((ext) => {
       switch (ext.type) {
