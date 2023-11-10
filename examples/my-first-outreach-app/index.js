@@ -1,4 +1,4 @@
-import extensibilitySdk from '../src'
+import extensibilitySdk from '../../src'
 import { displayProspectInfo, displayUserInfo } from './helpers';
 
 document.addEventListener('DOMContentLoaded', async () => {
