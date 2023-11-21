@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
+  "type": "object",
   "additionalProperties": false,
   "properties": {
     "identifier": {
       "type": "string",
-      "minLength": 6,
       "maxLength": 128,
       "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$"
     },
@@ -40,8 +40,7 @@
               "type": "string",
               "format": "uri"
             }
-          },
-          "required": ["websiteUrl", "privacyUrl", "termsOfUseUrl", "company", "email"]
+          }
         },
         "categories": {
           "type": "array",
@@ -128,8 +127,7 @@
           "pattern": "^[0-9]+(\\.[0-9]+)?$",
           "maxLength": 64
         }
-      },
-      "required": ["author", "headline", "description", "icon", "title"]
+      }
     },
     "webhook": {
       "type": "object",
@@ -282,124 +280,288 @@
     "extensions": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string",
-            "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
-            "maxLength": 128
-          },
-          "title": {
-            "type": "object",
-            "properties": {
-              "en": {
-                "type": "string"
-              }
-            },
-            "required": ["en"]
-          },
-          "description": {
-            "type": "object",
-            "properties": {
-              "en": {
-                "type": "string"
-              }
-            },
-            "required": ["en"]
-          },
-          "template": {
-            "type": "object",
-            "properties": {
-              "en": {
-                "type": "string"
-              }
-            },
-            "required": ["en"]
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "shell-action",
-              "shell-application",
-              "shell-companion",
-              "shell-knowledge",
-              "shell-sidekick",
-              "shell-tool",
-              "tab-account",
-              "tab-account-action",
-              "tab-account-sidebar",
-              "tab-opportunity",
-              "tab-opportunity-action",
-              "tab-opportunity-sidebar",
-              "tab-prospect",
-              "tab-prospect-action",
-              "tab-prospect-sidebar",
-              "tile-home",
-              "tile-account",
-              "tile-opportunity",
-              "tile-prospect",
-              "tab-reports",
-              "content-editor",
-              "data-mailing-links",
-              "data-account-events",
-              "data-opportunity-events",
-              "data-prospect-events"
-            ]
-          },
-          "fullWidth": {
-            "type": "boolean"
-          },
-          "host": {
+        "oneOf": [
+          {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "url": {
+              "type": {
                 "type": "string",
-                "format": "uri-template"
+                "enum": ["content-editor"]
               },
-              "component": {
-                "type": "string"
+              "context": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": ["url"]
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
+              },
+              "settings": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "recommended": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "width": {
+                          "type": "number"
+                        },
+                        "height": {
+                          "type": "number"
+                        }
+                      },
+                      "required": ["width", "height"]
+                    }
+                  }
+                }
+              }
+            },
+            "required": ["type", "host"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["data-mailing-links"]
               },
               "filter": {
                 "type": "string"
               },
-              "icon": {
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  }
+                },
+                "required": ["url"]
+              },
+              "identifier": {
                 "type": "string",
-                "format": "uri"
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
               }
-            }
+            },
+            "required": ["type", "host"]
           },
-          "context": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "settings": {
+          {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "recommended": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "data-account-events",
+                  "data-opportunity-events",
+                  "data-prospect-events"
+                ]
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
+              },
+              "template": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": ["en"]
+              },
+              "title": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": ["en"]
+              }
+            },
+            "required": ["type", "template", "title"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["shell-application"]
+              },
+              "context": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "width": {
-                      "type": "number"
-                    },
-                    "height": {
-                      "type": "number"
-                    }
-                  },
-                  "required": ["width", "height"]
+                  "type": "string"
                 }
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": ["url"]
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
               }
-            }
+            },
+            "required": ["type", "host"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "tab-account",
+                  "tab-opportunity",
+                  "tab-prospect",
+                  "tab-reports"
+                ]
+              },
+              "context": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fullWidth": {
+                "type": "boolean"
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  }
+                },
+                "required": ["url"]
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
+              }
+            },
+            "required": ["type", "host"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["tile-account", "tile-opportunity", "tile-prospect"]
+              },
+              "context": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": ["en"]
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  },
+                  "component": {
+                    "type": "string"
+                  }
+                }
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
+              },
+              "settings": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "recommended": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "width": {
+                          "type": "number"
+                        },
+                        "height": {
+                          "type": "number"
+                        }
+                      },
+                      "required": ["width", "height"]
+                    }
+                  }
+                }
+              },
+              "title": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": ["en"]
+              }
+            },
+            "required": ["type", "host"]
           }
-        },
-        "required": ["type"]
+        ]
       }
     }
   },
