@@ -97,6 +97,10 @@ export enum Scopes {
   OPPORTUNITY_STAGES_READ = 'opportunityStages.read',
   OPPORTUNITY_STAGES_WRITE = 'opportunityStages.write',
 
+  ORG_SETTINGS_ALL = 'orgSettings.all',
+  ORG_SETTINGS_READ = 'orgSettings.read',
+  ORG_SETTINGS_WRITE = 'orgSettings.write',
+
   PERSONAS_ALL = 'personas.all',
   PERSONAS_DELETE = 'personas.delete',
   PERSONAS_READ = 'personas.read',

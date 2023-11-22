@@ -127,7 +127,8 @@
           "pattern": "^[0-9]+(\\.[0-9]+)?$",
           "maxLength": 64
         }
-      }
+      },
+      "required": ["title"]
     },
     "webhook": {
       "type": "object",
@@ -173,7 +174,14 @@
           "type": "string"
         }
       },
-      "required": ["scopes", "redirectUris", "clientId"]
+      "anyOf": [
+        {
+          "required": ["scopesAll", "redirectUris"]
+        },
+        {
+          "required": ["scopes", "redirectUris"]
+        }
+      ]
     },
     "apiS2S": {
       "type": "object",
@@ -207,7 +215,7 @@
           "uniqueItems": true
         }
       },
-      "required": ["scopes", "publicKeys", "guid"]
+      "required": ["scopes", "publicKeys"]
     },
     "externalInstallationUrl": {
       "type": "string",
@@ -293,7 +301,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "uniqueItems": true
               },
               "host": {
                 "type": "object",
@@ -321,6 +330,7 @@
                 "properties": {
                   "recommended": {
                     "type": "array",
+                    "minLength": 1,
                     "items": {
                       "type": "object",
                       "additionalProperties": false,
@@ -335,10 +345,11 @@
                       "required": ["width", "height"]
                     }
                   }
-                }
+                },
+                "required": ["recommended"]
               }
             },
-            "required": ["type", "host"]
+            "required": ["type", "host", "identifier", "settings"]
           },
           {
             "type": "object",
@@ -368,7 +379,7 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host"]
+            "required": ["type", "host", "identifier"]
           },
           {
             "type": "object",
@@ -406,7 +417,7 @@
                 "required": ["en"]
               }
             },
-            "required": ["type", "template", "title"]
+            "required": ["type", "template", "title", "identifier"]
           },
           {
             "type": "object",
@@ -420,7 +431,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "uniqueItems": true
               },
               "host": {
                 "type": "object",
@@ -443,7 +455,7 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host"]
+            "required": ["type", "host", "identifier"]
           },
           {
             "type": "object",
@@ -462,7 +474,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "uniqueItems": true
               },
               "fullWidth": {
                 "type": "boolean"
@@ -484,7 +497,7 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host"]
+            "required": ["type", "host", "identifier"]
           },
           {
             "type": "object",
@@ -533,6 +546,7 @@
                 "properties": {
                   "recommended": {
                     "type": "array",
+                    "minLength": 1,
                     "items": {
                       "type": "object",
                       "additionalProperties": false,
@@ -547,7 +561,8 @@
                       "required": ["width", "height"]
                     }
                   }
-                }
+                },
+                "required": ["recommended"]
               },
               "title": {
                 "type": "object",
@@ -559,7 +574,7 @@
                 "required": ["en"]
               }
             },
-            "required": ["type", "host"]
+            "required": ["type", "host", "identifier"]
           }
         ]
       }
