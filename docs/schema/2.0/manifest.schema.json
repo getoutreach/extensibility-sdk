@@ -48,6 +48,7 @@
             "type": "string",
             "enum": [
               "account_based_marketing",
+              "account_plan",
               "chat",
               "conversation_intelligence",
               "crm",
