@@ -64,8 +64,8 @@ describe('sdk tests', () => {
       jest.restoreAllMocks();
     });
 
-    describe('Outreachcontext initialized', () => {
-      it('will resolve context promise when success', async () => {
+    describe('OutreachContext initialized', () => {
+      it('Supported email context parameters are populated', async () => {
         var message = new InitMessage();
         message.result = '200';
         message.application = new Application();
@@ -74,7 +74,15 @@ describe('sdk tests', () => {
           { key: UserContextKeys.ID, value: '1' },
           {
             key: EmailContextKeys.TO,
-            value: '[{"email":"test@user.com","name":"Test User"}]',
+            value: '[{"email":"to@user.com","name":"Test User"}]',
+          },
+          {
+            key: EmailContextKeys.CC,
+            value: '[{"email":"cc@user.com","name":"Test User"}]',
+          },
+          {
+            key: EmailContextKeys.BCC,
+            value: '[{"email":"bcc@user.com","name":"Test User"}]',
           },
           { key: EmailContextKeys.SUBJECT, value: 'Test Subject' },
         ];
@@ -84,7 +92,9 @@ describe('sdk tests', () => {
         const outreachContext = await sdk.init();
 
         expect(outreachContext?.user?.id).toBe('1');
-        expect(outreachContext?.email?.to).toEqual([{ email: 'test@user.com', name: 'Test User' }]);
+        expect(outreachContext?.email?.to).toEqual([{ email: 'to@user.com', name: 'Test User' }]);
+        expect(outreachContext?.email?.cc).toEqual([{ email: 'cc@user.com', name: 'Test User' }]);
+        expect(outreachContext?.email?.bcc).toEqual([{ email: 'bcc@user.com', name: 'Test User' }]);
         expect(outreachContext?.email?.subject).toEqual('Test Subject');
       });
     });
