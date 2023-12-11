@@ -33,6 +33,7 @@ import { OrganizationContext } from './context/host/OrganizationContext';
 import { IOutreachContext } from './context/interfaces/IOutreachContext';
 import { OAuthDialogCompletedMessage } from './sdk/messages/OAuthDialogCompletedMessage';
 import { EnhanceTextEditorMessage } from './sdk/messages/EnhanceTextEditorMessage';
+import { EmailContext } from './context/host/EmailContext';
 
 export { ConfigurationItem } from './configuration/ConfigurationItem';
 export { ConfigurationItemOption } from './configuration/ConfigurationItemOption';
@@ -653,6 +654,7 @@ export class ExtensibilitySdk {
 
     const accountContext = new AccountContext();
     const opportunityContext = new OpportunityContext();
+    const emailContext = new EmailContext();
     const userContext = new UserContext();
     const prospectContext = new ProspectContext();
     const organizationContext = new OrganizationContext();
@@ -675,6 +677,11 @@ export class ExtensibilitySdk {
         outreachContext.prospect = outreachContext.prospect || prospectContext;
       }
 
+      handled = emailContext.initFrom(param);
+      if (handled) {
+        outreachContext.email = outreachContext.email || emailContext;
+      }
+
       handled = userContext.initFrom(param);
       if (handled) {
         outreachContext.user = outreachContext.user || userContext;
@@ -686,7 +693,7 @@ export class ExtensibilitySdk {
       }
     }
 
-    // collect all of the url params host sent
+    // collect all the url params host sent
     outreachContext.host = {
       urlParams: initMessage.locationSearchParams,
     };
