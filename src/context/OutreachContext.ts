@@ -8,6 +8,7 @@ import { ContextParam, Locale, Theme } from '..';
 import { ConfigurationValue } from '../configuration/ConfigurationValue';
 import { OrganizationContext } from './host/OrganizationContext';
 import { IOutreachContext } from './interfaces/IOutreachContext';
+import { EmailContext } from './host/EmailContext';
 
 export class OutreachContext implements IOutreachContext {
   /**
@@ -34,6 +35,8 @@ export class OutreachContext implements IOutreachContext {
 
   public prospect?: ProspectContext;
 
+  public email?: EmailContext;
+
   public host: HostContext;
 
   public config?: ConfigurationValue[];
@@ -55,6 +58,10 @@ export class OutreachContext implements IOutreachContext {
 
     if (this.user) {
       this.user.toParams().forEach((p) => params.push(p));
+    }
+
+    if (this.email) {
+      this.email.toParams().forEach((p) => params.push(p));
     }
 
     if (this.organization) {
