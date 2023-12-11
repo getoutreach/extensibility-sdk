@@ -1,4 +1,13 @@
-import { ExtensibilitySdk, Message, OAuthDialogCompletedMessage } from '../src/index';
+import {
+  Application,
+  EmailContextKeys,
+  ExtensibilitySdk,
+  InitMessage,
+  ManifestStore,
+  Message,
+  OAuthDialogCompletedMessage,
+  UserContextKeys,
+} from '../src/index';
 import runtime, { RuntimeContext } from '../src/sdk/RuntimeContext';
 import oauthService from '../src/sdk/services/oauthService';
 
@@ -10,11 +19,14 @@ describe('sdk tests', () => {
     let originalEventListener: (event: string, handler: EventListenerOrEventListenerObject) => void;
     let originalOpenPopup: (redirectUri?: string, state?: { [key: string]: string }) => void;
     let originalTimeout: any;
+    let originalClearTimeout: any;
     let originalRuntime: RuntimeContext;
 
     beforeEach(async () => {
       originalTimeout = window.setTimeout;
+      originalClearTimeout = window.clearTimeout;
       window.setTimeout = jest.fn().mockImplementation(() => 123) as any;
+      window.clearTimeout = jest.fn().mockImplementation() as any;
 
       originalOpenPopup = oauthService.openPopup;
       oauthService.openPopup = jest.fn();
@@ -45,10 +57,36 @@ describe('sdk tests', () => {
       runtime.application = originalRuntime.application;
       runtime.origin = originalRuntime.origin;
 
+      window.clearTimeout = originalClearTimeout;
       window.setTimeout = originalTimeout;
       window.addEventListener = originalEventListener;
       oauthService.openPopup = originalOpenPopup;
       jest.restoreAllMocks();
+    });
+
+    describe('Outreachcontext initialized', () => {
+      it('will resolve context promise when success', async () => {
+        var message = new InitMessage();
+        message.result = '200';
+        message.application = new Application();
+        message.application.store = new ManifestStore();
+        message.context = [
+          { key: UserContextKeys.ID, value: '1' },
+          {
+            key: EmailContextKeys.TO,
+            value: '[{"email":"test@user.com","name":"Test User"}]',
+          },
+          { key: EmailContextKeys.SUBJECT, value: 'Test Subject' },
+        ];
+
+        handleMessage(message);
+
+        const outreachContext = await sdk.init();
+
+        expect(outreachContext?.user?.id).toBe('1');
+        expect(outreachContext?.email?.to).toEqual([{ email: 'test@user.com', name: 'Test User' }]);
+        expect(outreachContext?.email?.subject).toEqual('Test Subject');
+      });
     });
 
     describe('OAUTH_DIALOG_COMPLETED', () => {
