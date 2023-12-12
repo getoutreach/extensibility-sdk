@@ -7,6 +7,7 @@ import { IOpportunityContext } from './IOpportunityContext';
 import { IProspectContext } from './IProspectContext';
 import { IHostContext } from './IHostContext';
 import { IConfigurationValue } from './IConfigurationValue';
+import { IEmailContext } from './IEmailContext';
 
 export interface IOutreachContext {
   /**
@@ -64,6 +65,13 @@ export interface IOutreachContext {
    * @type {IProspectContext}
    */
   prospect?: IProspectContext;
+
+  /**
+   * Current Outreach text editor email context information (if any)
+   *
+   * @type {IEmailContext}
+   */
+  email?: IEmailContext;
 
   /**
    * Context of the addon hosting environment
