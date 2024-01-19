@@ -27,7 +27,7 @@ class TokenService {
     const payload = {
       iat,
       exp: iat + 3600,
-      iss: process.env.OUTREACH_APP_ID,
+      iss: process.env.OUTREACH_APP_S2S_GUID,
     };
 
     return this.jwtService.signAsync(payload, {
@@ -48,7 +48,7 @@ class TokenService {
   public async getInstallationBasedToken(installationId: string): Promise<string> {
     const appBasedToken = await this.getAppBasedToken();
 
-    const url = `https://accounts.outreach.io/api/installs/${installationId}/actions/accessToken`;
+    const url = `https://api.outreach.io/api/app/installs/${installationId}/actions/accessToken`;
     const options = { headers: { Authorization: `Bearer ${appBasedToken}` } };
 
     const { data } = await firstValueFrom(this.httpService.post(url, undefined, options));
@@ -67,7 +67,7 @@ class TokenService {
 
     const { data } = await firstValueFrom(
       this.httpService.post(
-        `https://accounts.outreach.io/api/installs/${installSetupToken}/actions/setupToken`,
+        `https://api.outreach.io/api/app/installs/${installSetupToken}/actions/setupToken`,
         undefined,
         { headers: { Authorization: `Bearer ${appBasedToken}` } }
       )
