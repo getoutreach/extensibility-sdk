@@ -24,7 +24,12 @@ $ yarn install
 
 ## Running the app
 
+Prepare the S2S GUID and private key as described in the [Outreach documentation](https://developers.outreach.io/api/s2s-access/#enabling-s2s-api-access).
+
 ```bash
+export OUTREACH_APP_S2S_GUID="my-S2S-GUID-copied-from-Dev-Portal"
+export OUTREACH_PRIVATE_KEY=$(cat /path/to/generated/s2s/keys/outreach_private_key.pem)
+
 # development
 $ yarn run start
 
@@ -34,3 +39,5 @@ $ yarn run start:dev
 # production mode
 $ yarn run start:prod
 ```
+
+Now the project is running at http://localhost:3000.
