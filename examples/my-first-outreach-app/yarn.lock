@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@getoutreach/extensibility-sdk@^0.5.41":
+  version "0.10.0"
+  resolved "https://npm.pkg.github.com/download/@getoutreach/extensibility-sdk/0.10.0/7c64aa27ca0a5d38583a052fc42e2670896c5ec0#7c64aa27ca0a5d38583a052fc42e2670896c5ec0"
+  integrity sha512-HrrWopPgFM/debOw/8nc9HMS+nATAPYyKXxn1dCmCr5jERX/a/WU14CkCnNrtrTPwyWwQgWL1aAAAGIhGvN88A==
+
 "@jridgewell/gen-mapping@^0.3.0":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
@@ -51,11 +56,6 @@
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
-
-"@outreach/extensibility-sdk@^0.5.41":
-  version "0.5.41"
-  resolved "https://registry.yarnpkg.com/@outreach/extensibility-sdk/-/extensibility-sdk-0.5.41.tgz#38345b86c4cfcffacd9e53e9a862a102b774d4f4"
-  integrity sha512-foI19MJ9h0XBJcKDbZ3PsIKbGRxWJaPYOZfc1B2l217ul0BnpQLiH3qYkZnv3PylUhL4imuPJvp9LSlNnYLi+A==
 
 "@types/body-parser@*":
   version "1.19.5"

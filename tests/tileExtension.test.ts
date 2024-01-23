@@ -45,7 +45,7 @@ describe('TileExension validate tests', () => {
     test('host.url - missing is acceptable if component is there', () => {
       const tileExtension = getValidProspectTileExtension();
       delete tileExtension.host.url;
-      tileExtension.host.component = '@outreach/extensibility-components';
+      tileExtension.host.component = '@getoutreach/extensibility-components';
 
       var issues = tileExtension.validate();
       expect(issues.length).toBe(0);
