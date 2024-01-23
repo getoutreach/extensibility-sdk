@@ -12,6 +12,11 @@ export enum Category {
   ACCOUNT_BASED_MARKETING = 'account_based_marketing',
 
   /**
+   * Account plan extension category
+   */
+  ACCOUNT_PLAN = 'account_plan',
+
+  /**
    * Chat extension category
    */
   CHAT = 'chat',
