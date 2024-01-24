@@ -13,6 +13,8 @@ export enum ScopesS2S {
   ACCOUNTS_READ = 'accounts.read',
   ACCOUNTS_WRITE = 'accounts.write',
 
+  AUDITLOGS_READ = 'auditLogs.read',
+
   CALLS_ALL = 'calls.all',
   CALLS_DELETE = 'calls.delete',
   CALLS_READ = 'calls.read',
@@ -49,7 +51,6 @@ export enum ScopesS2S {
   TASKS_ALL = 'tasks.all',
   TASKS_DELETE = 'tasks.delete',
   TASKS_READ = 'tasks.read',
-  TASKS_WRITE = 'tasks.write',
 
   TEMPLATES_READ = 'templates.read',
 
