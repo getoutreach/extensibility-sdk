@@ -51,7 +51,6 @@ export enum ScopesS2S {
   TASKS_ALL = 'tasks.all',
   TASKS_DELETE = 'tasks.delete',
   TASKS_READ = 'tasks.read',
-  TASKS_WRITE = 'tasks.write',
 
   TEMPLATES_READ = 'templates.read',
 
