@@ -62,6 +62,7 @@ workflows:
       - build_public_package:
           context:
             - npm-credentials
+            - github-credentials
           requires:
             - test
           filters:
