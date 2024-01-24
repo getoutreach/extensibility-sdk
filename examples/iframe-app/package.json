@@ -1,5 +1,5 @@
 {
-  "name": "@outreach/extensibility-sdk-examples",
+  "name": "@getoutreach/extensibility-sdk-examples",
   "license": "MIT",
   "version": "0.5.25",
   "private": false,
@@ -13,7 +13,7 @@
     "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "@outreach/extensibility-sdk": "^0.5.41",
+    "@getoutreach/extensibility-sdk": "^0.5.41",
     "html-webpack-plugin": "^5.5.3",
     "ts-loader": "^9.3.0",
     "webpack": "^5.72.0",
