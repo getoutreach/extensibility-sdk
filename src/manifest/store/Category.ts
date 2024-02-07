@@ -80,4 +80,9 @@ export enum Category {
    * Voice extension category
    */
   VOICE = 'voice',
+
+  /**
+   * Admin Dashboard extension category
+   */
+  ADMIN_DASHBOARD = 'voice',
 }
