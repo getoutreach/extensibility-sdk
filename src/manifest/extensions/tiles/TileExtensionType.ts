@@ -31,4 +31,9 @@ export enum TileExtensionType {
    * Prospect  overview intelligent tile extension
    */
   PROSPECT = 'tile-prospect',
+
+  /**
+   * Admin Dashboard overview intelligent tile extension
+   */
+  ADMIN_DASHBOARD = 'tile-admin-dashboard',
 }
