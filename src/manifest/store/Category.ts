@@ -84,5 +84,5 @@ export enum Category {
   /**
    * Admin Dashboard extension category
    */
-  ADMIN_DASHBOARD = 'voice',
+  ADMIN = 'admin',
 }
