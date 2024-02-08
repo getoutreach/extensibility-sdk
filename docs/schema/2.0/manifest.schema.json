@@ -61,7 +61,8 @@
               "sales_intelligence_data",
               "sales_productivity",
               "video",
-              "voice"
+              "voice",
+              "admin"
             ]
           },
           "uniqueItems": true
@@ -506,7 +507,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["tile-account", "tile-opportunity", "tile-prospect"]
+                "enum": ["tile-account", "tile-opportunity", "tile-prospect", "tile-admin-dashboard"]
               },
               "context": {
                 "type": "array",
