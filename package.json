@@ -20,6 +20,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "deploy": "npm run check && npm run package && npm publish",
+    "scopesgen": "node ./scripts/scopesgen.js",
     "tag-version": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
   },
   "repository": {
@@ -44,6 +45,7 @@
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^4.1.0",
     "jest": "^26.6.3",
+    "js-yaml": "^4.1.0",
     "mdx-local-link-checker": "^2.1.1",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.1",
