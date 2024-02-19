@@ -36,4 +36,9 @@ export enum TileExtensionType {
    * Admin Dashboard overview intelligent tile extension
    */
   ADMIN_DASHBOARD = 'tile-admin-dashboard',
+
+  /**
+   * Report strike zone tile extension
+   */
+  REPORT_STRIKE_ZONE = 'tile-report-strike-zone',
 }
