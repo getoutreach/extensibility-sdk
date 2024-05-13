@@ -1,0 +1,17 @@
+openapi: 3.0.1
+info:
+  title: Extensibility Sdk
+  description: Repo containing source code of the SDK add-on creators use to create Outreach applications
+  x-cortex-git:
+    github:
+      alias: cortex
+      repository: getoutreach/extensibility-sdk
+  x-cortex-tag: extensibility-sdk
+  x-cortex-type: service
+  x-cortex-groups:
+    - api:true
+    - service:false
+  x-cortex-owners:
+    - name: fnd-ade
+      type: GROUP
+      provider: CORTEX
