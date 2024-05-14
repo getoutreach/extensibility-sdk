@@ -62,7 +62,8 @@
               "sales_productivity",
               "video",
               "voice",
-              "admin"
+              "admin",
+              "meetings"
             ]
           },
           "uniqueItems": true
