@@ -63,7 +63,8 @@
               "video",
               "voice",
               "admin",
-              "meetings"
+              "meetings",
+              "data_warehouse"
             ]
           },
           "uniqueItems": true
