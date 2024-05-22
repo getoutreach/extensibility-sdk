@@ -85,4 +85,14 @@ export enum Category {
    * Admin Dashboard extension category
    */
   ADMIN = 'admin',
+
+  /**
+   * Meetings extension category
+   */
+  MEETINGS = 'meetings',
+ 
+  /**
+   * Data warehouse extension category
+   */
+  DATA_WAREHOUSE = 'data_warehouse',
 }
