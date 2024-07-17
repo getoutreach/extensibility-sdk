@@ -54,6 +54,11 @@ export enum Scopes {
 
   CUSTOM_DUTIES_WRITE = 'customDuties.write',
 
+  CUSTOM_OBJECT_RECORDS_ALL = 'customObjectRecords.all',
+  CUSTOM_OBJECT_RECORDS_DELETE = 'customObjectRecords.delete',
+  CUSTOM_OBJECT_RECORDS_READ = 'customObjectRecords.read',
+  CUSTOM_OBJECT_RECORDS_WRITE = 'customObjectRecords.write',
+
   DUTIES_READ = 'duties.read',
 
   EMAIL_ADDRESSES_ALL = 'emailAddresses.all',
