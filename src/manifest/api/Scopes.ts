@@ -52,6 +52,11 @@ export enum Scopes {
   CONTENT_CATEGORY_OWNERSHIPS_READ = 'contentCategoryOwnerships.read',
   CONTENT_CATEGORY_OWNERSHIPS_WRITE = 'contentCategoryOwnerships.write',
 
+  CURRENCY_TYPES_ALL = 'currencyTypes.all',
+  CURRENCY_TYPES_DELETE = 'currencyTypes.delete',
+  CURRENCY_TYPES_READ = 'currencyTypes.read',
+  CURRENCY_TYPES_WRITE = 'currencyTypes.write',
+
   CUSTOM_DUTIES_WRITE = 'customDuties.write',
 
   CUSTOM_OBJECT_RECORDS_ALL = 'customObjectRecords.all',
