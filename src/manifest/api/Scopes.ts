@@ -124,6 +124,11 @@ export enum Scopes {
   PHONE_NUMBERS_READ = 'phoneNumbers.read',
   PHONE_NUMBERS_WRITE = 'phoneNumbers.write',
 
+  PRODUCTS_ALL = 'products.all',
+  PRODUCTS_DELETE = 'products.delete',
+  PRODUCTS_READ = 'products.read',
+  PRODUCTS_WRITE = 'products.write',
+
   PROFILES_ALL = 'profiles.all',
   PROFILES_DELETE = 'profiles.delete',
   PROFILES_READ = 'profiles.read',
@@ -133,6 +138,11 @@ export enum Scopes {
   PROSPECTS_DELETE = 'prospects.delete',
   PROSPECTS_READ = 'prospects.read',
   PROSPECTS_WRITE = 'prospects.write',
+
+  PURCHASES_ALL = 'purchases.all',
+  PURCHASES_DELETE = 'purchases.delete',
+  PURCHASES_READ = 'purchases.read',
+  PURCHASES_WRITE = 'purchases.write',
 
   RECIPIENTS_ALL = 'recipients.all',
   RECIPIENTS_DELETE = 'recipients.delete',
@@ -189,7 +199,17 @@ export enum Scopes {
   TASKS_READ = 'tasks.read',
   TASKS_WRITE = 'tasks.write',
 
+  TASK_DISPOSITIONS_ALL = 'taskDispositions.all',
+  TASK_DISPOSITIONS_DELETE = 'taskDispositions.delete',
+  TASK_DISPOSITIONS_READ = 'taskDispositions.read',
+  TASK_DISPOSITIONS_WRITE = 'taskDispositions.write',
+
   TASK_PRIORITIES_READ = 'taskPriorities.read',
+
+  TASK_PURPOSES_ALL = 'taskPurposes.all',
+  TASK_PURPOSES_DELETE = 'taskPurposes.delete',
+  TASK_PURPOSES_READ = 'taskPurposes.read',
+  TASK_PURPOSES_WRITE = 'taskPurposes.write',
 
   TEAMS_ALL = 'teams.all',
   TEAMS_DELETE = 'teams.delete',
