@@ -18,7 +18,9 @@ export enum Scopes {
 
   AUDIT_LOGS_READ = 'auditLogs.read',
 
+  BATCHES_ALL = 'batches.all',
   BATCHES_READ = 'batches.read',
+  BATCHES_WRITE = 'batches.write',
 
   CALLS_ALL = 'calls.all',
   CALLS_DELETE = 'calls.delete',
