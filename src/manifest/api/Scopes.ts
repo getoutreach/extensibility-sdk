@@ -84,6 +84,10 @@ export enum Scopes {
   FAVORITES_READ = 'favorites.read',
   FAVORITES_WRITE = 'favorites.write',
 
+  IMPORTS_ALL = 'imports.all',
+  IMPORTS_READ = 'imports.read',
+  IMPORTS_WRITE = 'imports.write',
+
   JOB_ROLES_ALL = 'jobRoles.all',
   JOB_ROLES_READ = 'jobRoles.read',
   JOB_ROLES_WRITE = 'jobRoles.write',
