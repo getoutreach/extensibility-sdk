@@ -41,4 +41,9 @@ export enum TileExtensionType {
    * Report strike zone tile extension
    */
   REPORT_STRIKE_ZONE = 'tile-report-strike-zone',
+
+  /**
+   * Report custom dashboard tile extension
+   */
+  CUSTOM_DASHBOARD = 'tile-custom-dashboard',
 }
