@@ -64,6 +64,7 @@
               "voice",
               "admin",
               "meetings",
+              "reports",
               "data_warehouse"
             ]
           },
@@ -509,7 +510,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["tile-account", "tile-opportunity", "tile-prospect", "tile-admin-dashboard"]
+                "enum": ["tile-account", "tile-opportunity", "tile-prospect", "tile-admin-dashboard", "tile-custom-dashboard"]
               },
               "context": {
                 "type": "array",
