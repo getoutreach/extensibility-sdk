@@ -16,6 +16,10 @@ export enum ScopesS2S {
 
   AUDIT_LOGS_READ = 'auditLogs.read',
 
+  BATCHES_ALL = 'batches.all',
+  BATCHES_READ = 'batches.read',
+  BATCHES_WRITE = 'batches.write',
+
   CALLS_ALL = 'calls.all',
   CALLS_DELETE = 'calls.delete',
   CALLS_READ = 'calls.read',
@@ -24,6 +28,10 @@ export enum ScopesS2S {
   EVENTS_ALL = 'events.all',
   EVENTS_READ = 'events.read',
   EVENTS_WRITE = 'events.write',
+
+  IMPORTS_ALL = 'imports.all',
+  IMPORTS_READ = 'imports.read',
+  IMPORTS_WRITE = 'imports.write',
 
   MAILINGS_READ = 'mailings.read',
 
