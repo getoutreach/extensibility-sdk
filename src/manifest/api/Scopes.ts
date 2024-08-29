@@ -14,8 +14,6 @@ export enum Scopes {
   ACCOUNTS_READ = 'accounts.read',
   ACCOUNTS_WRITE = 'accounts.write',
 
-  AUDITS_READ = 'audits.read',
-
   AUDIT_LOGS_READ = 'auditLogs.read',
 
   BATCHES_ALL = 'batches.all',
@@ -67,6 +65,11 @@ export enum Scopes {
   CUSTOM_OBJECT_RECORDS_DELETE = 'customObjectRecords.delete',
   CUSTOM_OBJECT_RECORDS_READ = 'customObjectRecords.read',
   CUSTOM_OBJECT_RECORDS_WRITE = 'customObjectRecords.write',
+
+  DATED_CONVERSION_RATES_ALL = 'datedConversionRates.all',
+  DATED_CONVERSION_RATES_DELETE = 'datedConversionRates.delete',
+  DATED_CONVERSION_RATES_READ = 'datedConversionRates.read',
+  DATED_CONVERSION_RATES_WRITE = 'datedConversionRates.write',
 
   DUTIES_READ = 'duties.read',
 
