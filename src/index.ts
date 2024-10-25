@@ -217,7 +217,6 @@ export class ExtensibilitySdk {
   /**
    * Load handler is being invoked after the addon is fully loaded,
    * and it provides to addon creator performance information on addon loading.
-   * Default implementation would show a toast if addon loading times were longer than 2 seconds.
    * Addon creator can implement its load handler and handle the received performance data
    * differently (report it to its telemetry service, show a custom addon UI, etc.)
    *
@@ -276,26 +275,6 @@ export class ExtensibilitySdk {
         message: `[CXT] Addon received message:${message.type}  from host`,
         context: [JSON.stringify(message)],
       });
-    };
-
-    // Default implementation of a handler showing a toast if loading times are longer then 2 seconds
-    this.onLoad = (ctx: LoadingContext) => {
-      const sessionId = this.getRuntime().sessionId;
-
-      if (ctx.loadTime > 5000) {
-        this.notify(
-          `Addon loading takes longer than 5 seconds. Load time:${ctx.loadTime}. Ready time: ${ctx.readyTime}. SessionId: ${sessionId}`,
-          'error'
-        );
-      } else if (ctx.loadTime > 2000) {
-        logger.current.log({
-          origin: EventOrigin.ADDON,
-          type: EventType.INTERNAL,
-          level: LogLevel.Warning,
-          message: `Addon loading takes longer than 2 seconds. Load time:${ctx.loadTime}. Ready time: ${ctx.readyTime}. SessionId: ${sessionId}`,
-          context: ['Addon loading takes more time than it should'],
-        });
-      }
     };
   }
 
