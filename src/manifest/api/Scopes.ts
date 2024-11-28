@@ -20,6 +20,8 @@ export enum Scopes {
   BATCHES_READ = 'batches.read',
   BATCHES_WRITE = 'batches.write',
 
+  BATCH_ITEMS_READ = 'batchItems.read',
+
   CALLS_ALL = 'calls.all',
   CALLS_DELETE = 'calls.delete',
   CALLS_READ = 'calls.read',
