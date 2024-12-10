@@ -96,14 +96,13 @@ export enum Category {
    */
   DATA_WAREHOUSE = 'data_warehouse',
 
-    /**
+  /**
    * Reports Dashboard extension category
    */
-    REPORTS = 'reports',
+  REPORTS = 'reports',
 
   /**
    * Records extension category
    */
-    RECORDS = 'records',
-
+  RECORDS = 'records',
 }
