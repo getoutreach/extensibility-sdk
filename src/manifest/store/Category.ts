@@ -90,7 +90,7 @@ export enum Category {
    * Meetings extension category
    */
   MEETINGS = 'meetings',
- 
+
   /**
    * Data warehouse extension category
    */
@@ -100,5 +100,10 @@ export enum Category {
    * Reports Dashboard extension category
    */
     REPORTS = 'reports',
+
+  /**
+   * Records extension category
+   */
+    RECORDS = 'records',
 
 }
