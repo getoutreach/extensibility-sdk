@@ -65,7 +65,8 @@
               "admin",
               "meetings",
               "reports",
-              "data_warehouse"
+              "data_warehouse",
+              "records"
             ]
           },
           "uniqueItems": true
