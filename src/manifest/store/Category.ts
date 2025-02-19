@@ -105,4 +105,9 @@ export enum Category {
    * Records extension category
    */
   RECORDS = 'records',
+
+  /**
+   * Grouping and navigation category
+   */
+  GROUPING_AND_NAVIGATION = 'grouping_and_navigation',
 }
