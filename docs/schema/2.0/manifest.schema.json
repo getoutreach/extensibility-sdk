@@ -66,7 +66,8 @@
               "meetings",
               "reports",
               "data_warehouse",
-              "records"
+              "records",
+              "grouping_and_navigation"
             ]
           },
           "uniqueItems": true
@@ -393,11 +394,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": [
-                  "data-account-events",
-                  "data-opportunity-events",
-                  "data-prospect-events"
-                ]
+                "enum": ["data-account-events", "data-opportunity-events", "data-prospect-events"]
               },
               "identifier": {
                 "type": "string",
@@ -469,12 +466,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": [
-                  "tab-account",
-                  "tab-opportunity",
-                  "tab-prospect",
-                  "tab-reports"
-                ]
+                "enum": ["tab-account", "tab-opportunity", "tab-prospect", "tab-reports"]
               },
               "context": {
                 "type": "array",
@@ -511,7 +503,13 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["tile-account", "tile-opportunity", "tile-prospect", "tile-admin-dashboard", "tile-custom-dashboard"]
+                "enum": [
+                  "tile-account",
+                  "tile-opportunity",
+                  "tile-prospect",
+                  "tile-admin-dashboard",
+                  "tile-custom-dashboard"
+                ]
               },
               "context": {
                 "type": "array",
