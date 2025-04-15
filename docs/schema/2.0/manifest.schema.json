@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/getoutreach/extensibility-sdk/docs/schema/2.0/manifest.schema.json",
+  "$id": "https://github.com/getoutreach/extensibility-sdk/blob/main/docs/schema/2.0/manifest.schema.json",
   "type": "object",
   "additionalProperties": false,
   "properties": {
