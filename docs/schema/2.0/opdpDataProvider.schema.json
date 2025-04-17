@@ -224,5 +224,5 @@
       "required": ["id", "name", "baseURL", "authentication", "endpoints"]
     }
   },
-  "required": ["type", "manifest", "manifest-url"]
+  "required": ["manifest", "manifest-url"]
 }
