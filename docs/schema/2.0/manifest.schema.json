@@ -582,19 +582,6 @@
               }
             },
             "required": ["type", "host", "identifier"]
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "data-provider"
-                ]
-              }
-            },
-            "required": ["type"]
           }
         ]
       }
