@@ -225,7 +225,18 @@
       "required": ["scopes", "publicKeys"]
     },
     "opdpDataProvider": {
-      "$ref": "./opdpDataProvider.schema.json"
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "manifest-url": {
+          "type": "string",
+          "format": "uri-template"
+        },
+        "manifest": {
+          "$ref": "./opdpManifest.schema.json"
+        }
+      },
+      "required": ["manifest", "manifest-url"]
     },
     "externalInstallationUrl": {
       "type": "string",
