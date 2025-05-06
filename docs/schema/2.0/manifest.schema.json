@@ -236,7 +236,7 @@
           "$ref": "./opdpManifest.schema.json"
         }
       },
-      "required": ["manifest", "manifest-url"]
+      "required": ["manifest"]
     },
     "externalInstallationUrl": {
       "type": "string",
