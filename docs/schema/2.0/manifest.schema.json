@@ -260,7 +260,7 @@
           },
           "type": {
             "type": "string",
-            "enum": ["number", "date", "url", "options", "select", "string"]
+            "enum": ["number", "date", "url", "options", "select", "string", "password"]
           },
           "required": {
             "type": "boolean"
