@@ -209,5 +209,5 @@
       }
     }
   },
-  "required": ["id", "name", "baseURL", "authentication", "endpoints"]
+  "required": ["name", "baseURL", "authentication", "endpoints"]
 }
