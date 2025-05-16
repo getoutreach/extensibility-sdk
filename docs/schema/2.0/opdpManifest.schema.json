@@ -4,11 +4,6 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "Unique identifier for the provider."
-    },
     "name": {
       "type": "string",
       "pattern": "^[\\p{L}\\p{N}\\p{Z}\\p{P}]+$",
@@ -214,5 +209,5 @@
       }
     }
   },
-  "required": ["id", "name", "baseURL", "authentication", "endpoints"]
+  "required": ["name", "baseURL", "authentication", "endpoints"]
 }
