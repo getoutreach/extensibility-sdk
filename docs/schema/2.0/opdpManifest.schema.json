@@ -136,6 +136,78 @@
                 },
                 "required": ["providedData", "maxPerCall"]
               }
+            },
+            "accountEnrichmentTypes": {
+              "type": "object",
+              "properties": {
+                "firmographics": {
+                  "type": "object",
+                  "properties": {
+                    "supportedFields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "name",
+                          "domain",
+                          "description",
+                          "websiteUrl",
+                          "linkedInUrl",
+                          "twitterUrl",
+                          "youtubeUrl",
+                          "address",
+                          "isoCountryCode",
+                          "isoSubdivisionCode",
+                          "phoneNumber",
+                          "companyType",
+                          "naicsCodes",
+                          "sicCodes",
+                          "primaryIndustry",
+                          "foundedDate",
+                          "stockTicker",
+                          "annualRevenue",
+                          "numberOfEmployees"
+                        ]
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": ["supportedFields"]
+                }
+              }
+            },
+            "prospectEnrichmentTypes": {
+              "type": "object",
+              "properties": {
+                "demographics": {
+                  "type": "object",
+                  "properties": {
+                    "supportedFields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "firstName",
+                          "lastName",
+                          "middleName",
+                          "gender",
+                          "dateOfBirth",
+                          "address",
+                          "isoCountryCode",
+                          "isoSubdivisionCode",
+                          "skills",
+                          "interests",
+                          "linkedInUrl",
+                          "twitterUrl",
+                          "facebookUrl"
+                        ]
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": ["supportedFields"]
+                }
+              }
             }
           }
         },
