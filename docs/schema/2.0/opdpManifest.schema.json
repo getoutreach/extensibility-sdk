@@ -19,23 +19,6 @@
         {
           "type": "object",
           "properties": {
-            "apiKey": {
-              "type": "object",
-              "properties": {
-                "header": {
-                  "type": "string",
-                  "pattern": "^[_0-9A-Za-z-]+$",
-                  "description": "Header name for API key authentication."
-                }
-              },
-              "required": ["header"]
-            }
-          },
-          "required": ["apiKey"]
-        },
-        {
-          "type": "object",
-          "properties": {
             "type": {
               "type": "string",
               "const": "apiKey"
