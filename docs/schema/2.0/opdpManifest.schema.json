@@ -14,22 +14,38 @@
       "pattern": "^https://[a-zA-Z0-9-]+\\.[a-zA-Z0-9-/.]+/opdp/v0\\.9$",
       "description": "Base URL of the provider."
     },
-    "authentication": {
-      "type": "object",
-      "properties": {
-        "apiKey": {
+    "securityScheme": {
+      "oneOf": [
+        {
           "type": "object",
           "properties": {
-            "header": {
+            "type": {
               "type": "string",
-              "pattern": "^[_0-9A-Za-z-]+$",
-              "description": "Header name for API key authentication."
+              "const": "apiKey"
+            },
+            "name": {
+              "type": "string"
+            },
+            "in": {
+              "type": "string",
+              "const": "header"
             }
           },
-          "required": ["header"]
+          "required": ["type", "name", "in"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "oauth2"
+            }
+          },
+          "required": ["type"],
+          "additionalProperties": false
         }
-      },
-      "required": ["apiKey"]
+      ]
     },
     "endpoints": {
       "type": "object",
@@ -281,5 +297,5 @@
       }
     }
   },
-  "required": ["name", "baseURL", "authentication", "endpoints"]
+  "required": ["name", "baseURL", "securityScheme", "endpoints"]
 }
