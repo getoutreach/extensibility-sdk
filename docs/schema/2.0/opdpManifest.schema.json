@@ -297,5 +297,5 @@
       }
     }
   },
-  "required": ["name", "baseURL", "authentication", "endpoints"]
+  "required": ["name", "baseURL", "securityScheme", "endpoints"]
 }
