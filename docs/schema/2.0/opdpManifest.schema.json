@@ -1,18 +1,25 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/getoutreach/extensibility-sdk/main/docs/schema/2.0/opdpManifest.schema.json",
-  "additionalProperties": false,
   "type": "object",
+  "required": [
+    "name",
+    "baseURL",
+    "securityScheme",
+    "endpoints"
+  ],
   "properties": {
     "name": {
       "type": "string",
-      "pattern": "^[\\p{L}\\p{N}\\p{Z}\\p{P}]+$",
-      "description": "Name of the provider."
+      "description": "A user-facing name for the provider.",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[\\p{L}\\p{N}\\p{Z}\\p{P}]+$"
     },
     "baseURL": {
       "type": "string",
-      "pattern": "^https://[a-zA-Z0-9-]+\\.[a-zA-Z0-9-/.]+/opdp/v0\\.9$",
-      "description": "Base URL of the provider."
+      "format": "uri",
+      "description": "The base URL path where this provider's endpoints can be accessed."
     },
     "securityScheme": {
       "oneOf": [
@@ -31,7 +38,11 @@
               "const": "header"
             }
           },
-          "required": ["type", "name", "in"],
+          "required": [
+            "type",
+            "name",
+            "in"
+          ],
           "additionalProperties": false
         },
         {
@@ -42,7 +53,9 @@
               "const": "oauth2"
             }
           },
-          "required": ["type"],
+          "required": [
+            "type"
+          ],
           "additionalProperties": false
         }
       ]
@@ -52,33 +65,37 @@
       "properties": {
         "associate": {
           "type": "object",
+          "description": "Describes the provider's support for associate endpoints.\n\nA provider can indicate that it does not support any of\nthese endpoints by omitting the field.\n",
           "properties": {
-            "prospects": {
-              "type": "object",
-              "properties": {
-                "maxPerCall": {
-                  "type": "integer",
-                  "minimum": 1,
-                  "description": "Maximum number of prospects per call."
-                }
-              },
-              "required": ["maxPerCall"]
-            },
             "accounts": {
               "type": "object",
+              "required": [
+                "maxPerCall"
+              ],
               "properties": {
                 "maxPerCall": {
                   "type": "integer",
-                  "minimum": 1,
-                  "description": "Maximum number of accounts per call."
+                  "minimum": 1
                 }
-              },
-              "required": ["maxPerCall"]
+              }
+            },
+            "prospects": {
+              "required": [
+                "maxPerCall"
+              ],
+              "type": "object",
+              "properties": {
+                "maxPerCall": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
             }
           }
         },
         "enrich": {
           "type": "object",
+          "description": "Describes the provider's support for enrich endpoints.\n\nA provider can indicate that it does not support any of\nthese endpoints by omitting the field.\n",
           "properties": {
             "accountDataGroups": {
               "type": "object",
@@ -99,6 +116,7 @@
                         "ipo",
                         "fundingRounds",
                         "acquisitions",
+                        "acquired",
                         "investmentsMade",
                         "plStatements",
                         "linkedInPosts",
@@ -106,17 +124,16 @@
                         "blogPosts",
                         "newsArticles"
                       ]
-                    },
-                    "minItems": 1,
-                    "description": "List of provided account data kinds."
+                    }
                   },
                   "maxPerCall": {
                     "type": "integer",
-                    "minimum": 1,
-                    "description": "Maximum number of accounts per call for this group."
+                    "minimum": 1
                   }
-                },
-                "required": ["providedData", "maxPerCall"]
+                }
+              },
+              "propertyNames": {
+                "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
               }
             },
             "prospectDataGroups": {
@@ -140,56 +157,16 @@
                         "podcastAppearances",
                         "blogPosts"
                       ]
-                    },
-                    "minItems": 1,
-                    "description": "List of provided prospect data kinds."
+                    }
                   },
                   "maxPerCall": {
                     "type": "integer",
-                    "minimum": 1,
-                    "description": "Maximum number of prospects per call for this group."
+                    "minimum": 1
                   }
-                },
-                "required": ["providedData", "maxPerCall"]
-              }
-            },
-            "accountEnrichmentTypes": {
-              "type": "object",
-              "properties": {
-                "firmographics": {
-                  "type": "object",
-                  "properties": {
-                    "supportedFields": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": [
-                          "name",
-                          "domain",
-                          "description",
-                          "websiteUrl",
-                          "linkedInUrl",
-                          "twitterUrl",
-                          "youtubeUrl",
-                          "address",
-                          "isoCountryCode",
-                          "isoSubdivisionCode",
-                          "phoneNumber",
-                          "companyType",
-                          "naicsCodes",
-                          "sicCodes",
-                          "primaryIndustry",
-                          "foundedDate",
-                          "stockTicker",
-                          "annualRevenue",
-                          "numberOfEmployees"
-                        ]
-                      },
-                      "minItems": 1
-                    }
-                  },
-                  "required": ["supportedFields"]
                 }
+              },
+              "propertyNames": {
+                "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
               }
             },
             "prospectEnrichmentTypes": {
@@ -197,11 +174,14 @@
               "properties": {
                 "demographics": {
                   "type": "object",
+                  "required": [
+                    "supportedFields"
+                  ],
                   "properties": {
                     "supportedFields": {
+                      "description": "List of supported prospect demographics fields.\n",
                       "type": "array",
                       "items": {
-                        "type": "string",
                         "enum": [
                           "firstName",
                           "lastName",
@@ -217,11 +197,48 @@
                           "twitterUrl",
                           "facebookUrl"
                         ]
-                      },
-                      "minItems": 1
+                      }
                     }
-                  },
-                  "required": ["supportedFields"]
+                  }
+                }
+              }
+            },
+            "accountEnrichmentTypes": {
+              "type": "object",
+              "properties": {
+                "firmographics": {
+                  "type": "object",
+                  "required": [
+                    "supportedFields"
+                  ],
+                  "properties": {
+                    "supportedFields": {
+                      "description": "List of supported account firmographics fields.\n\nNote that the spec elsewhere requires providers to\nsupport name and domain, so we would expect this list\nto always contain at least these two.\n\nThe provider must specify this information if it\nsupports the firmographics enrichment type.\n",
+                      "type": "array",
+                      "items": {
+                        "enum": [
+                          "name",
+                          "domain",
+                          "description",
+                          "websiteUrl",
+                          "linkedInUrl",
+                          "twitterUrl",
+                          "address",
+                          "isoCountryCode",
+                          "isoSubdivisionCode",
+                          "phoneNumber",
+                          "companyType",
+                          "naicsCodes",
+                          "sicCodes",
+                          "primaryIndustry",
+                          "foundedDate",
+                          "stockTicker",
+                          "annualRevenue",
+                          "numberOfEmployees"
+                        ]
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -229,31 +246,95 @@
         },
         "identify": {
           "type": "object",
+          "description": "Describes the provider's support for identify endpoints.\n\nA provider can indicate that id does not support any of these\nendpoints by omitting the field.\n",
+          "required": [
+            "accountFilters",
+            "prospectFilters"
+          ],
           "properties": {
             "accountFilters": {
               "type": "object",
+              "required": [
+                "country",
+                "countrySubdivision",
+                "numberOfEmployees",
+                "annualRevenue",
+                "age",
+                "industry",
+                "companyType"
+              ],
               "properties": {
-                "country": {"type": "object"},
-                "countrySubdivision": {"type": "object"},
-                "location": {"type": "object"},
-                "numberOfEmployees": {"type": "object"},
-                "annualRevenue": {"type": "object"},
-                "age": {"type": "object"},
+                "country": {
+                  "description": "If present, indicates support for country filtering.",
+                  "type": "object"
+                },
+                "countrySubdivision": {
+                  "description": "If present, indicates support for country subdivision filtering.",
+                  "type": "object"
+                },
+                "location": {
+                  "description": "If present, indicates support for fine-grained location filtering.",
+                  "type": "object"
+                },
+                "numberOfEmployees": {
+                  "description": "If present, indicates support for employee count filtering.",
+                  "type": "object"
+                },
+                "annualRevenue": {
+                  "description": "If present, indicates support for annual revenue filtering.",
+                  "type": "object"
+                },
+                "age": {
+                  "description": "If present, indicates support for company age filtering.",
+                  "type": "object"
+                },
                 "industry": {
+                  "description": "If present, indicates support for industry filtering.",
                   "type": "object",
+                  "required": [
+                    "supportedTaxonomies"
+                  ],
                   "properties": {
                     "supportedTaxonomies": {
+                      "description": "Indicates which taxonomies are supported.",
                       "type": "array",
-                      "items": {"type": "string"}
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "NAICS2017",
+                          "NAICS2022",
+                          "SIC",
+                          "LinkedIn"
+                        ]
+                      }
                     }
                   }
                 },
                 "companyType": {
+                  "description": "If present, indicates support for company type filtering.",
                   "type": "object",
+                  "required": [
+                    "supportedValues"
+                  ],
                   "properties": {
                     "supportedValues": {
+                      "description": "Indicates which enum values this provider supports.",
                       "type": "array",
-                      "items": {"type": "string"}
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "description": "The type of entity or organization.",
+                        "enum": [
+                          "public",
+                          "private",
+                          "education",
+                          "nonprofit",
+                          "government",
+                          "other"
+                        ]
+                      }
                     }
                   }
                 }
@@ -261,41 +342,138 @@
             },
             "prospectFilters": {
               "type": "object",
+              "required": [
+                "country",
+                "countrySubdivision",
+                "department",
+                "seniority",
+                "emailAvailability",
+                "phoneAvailability",
+                "linkedInAvailability",
+                "accountIds"
+              ],
               "properties": {
-                "country": {"type": "object"},
-                "countrySubdivision": {"type": "object"},
-                "location": {"type": "object"},
+                "country": {
+                  "description": "If present, indicates support for country filtering.",
+                  "type": "object"
+                },
+                "countrySubdivision": {
+                  "description": "If present, indicates support for country subdivision filtering.",
+                  "type": "object"
+                },
+                "location": {
+                  "description": "If present, indicates support for fine-grained location filtering.",
+                  "type": "object"
+                },
                 "department": {
+                  "description": "If present, indicates support for department filtering.",
                   "type": "object",
+                  "required": [
+                    "supportedValues"
+                  ],
                   "properties": {
                     "supportedValues": {
+                      "description": "Indicates which enum values this provider supports.\n",
                       "type": "array",
-                      "items": {"type": "string"}
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "Customer Service",
+                          "Design",
+                          "Education",
+                          "Engineering",
+                          "Finance",
+                          "General",
+                          "Health",
+                          "Human Resources",
+                          "Legal",
+                          "Marketing",
+                          "Media",
+                          "Operations",
+                          "Public Relations",
+                          "Real Estate",
+                          "Sales",
+                          "Trades",
+                          "Unknown",
+                          "IT",
+                          "Procurement",
+                          "C-Suite",
+                          "Other"
+                        ]
+                      }
                     }
                   }
                 },
                 "seniority": {
+                  "description": "If present, indicates support for seniority filtering.",
                   "type": "object",
+                  "required": [
+                    "supportedValues"
+                  ],
                   "properties": {
                     "supportedValues": {
+                      "description": "Indicates which enum values this provider supports.\n",
                       "type": "array",
-                      "items": {"type": "string"}
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "Board Member",
+                          "Director",
+                          "Manager",
+                          "VP",
+                          "Partner",
+                          "CXO",
+                          "Non-Managerial",
+                          "Senior",
+                          "Entry",
+                          "Training",
+                          "Unpaid"
+                        ]
+                      }
                     }
                   }
                 },
-                "yearsOfExperience": {"type": "object"},
-                "timeInRole": {"type": "object"},
-                "emailAvailability": {"type": "object"},
-                "phoneAvailability": {"type": "object"},
-                "linkedInAvailability": {"type": "object"},
-                "accountIds": {"type": "object"}
+                "jobTitleIncludes": {
+                  "description": "If present, indicates suppotr for job title filtering.",
+                  "type": "object"
+                },
+                "yearsOfExperience": {
+                  "description": "If present, indicates support for years of experience filtering.",
+                  "type": "object"
+                },
+                "timeInRole": {
+                  "description": "If present, indicates support for time in role filtering.",
+                  "type": "object"
+                },
+                "emailAvailability": {
+                  "description": "If present, indicates support for email availability filtering.",
+                  "type": "object"
+                },
+                "phoneAvailability": {
+                  "description": "If present, indicates support for phone availability filtering.",
+                  "type": "object"
+                },
+                "linkedInAvailability": {
+                  "description": "If present, indicates support for LinkedIn availability filtering.",
+                  "type": "object"
+                },
+                "accountIds": {
+                  "description": "If present, indicates support for account ID filtering.",
+                  "type": "object"
+                }
               }
             }
           }
         },
-        "whoami": {"type": "object"}
+        "whoami": {
+          "type": "object",
+          "description": "Describes the provider's support for whoami endpoints.\n\nA provider can indicate that it does not support any of\nthese endpoints by omitting the field.\n"
+        }
       }
     }
-  },
-  "required": ["name", "baseURL", "securityScheme", "endpoints"]
+  }
 }
