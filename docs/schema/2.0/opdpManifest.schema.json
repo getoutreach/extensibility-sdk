@@ -19,7 +19,8 @@
     "baseURL": {
       "type": "string",
       "format": "uri",
-      "description": "The base URL path where this provider's endpoints can be accessed."
+      "description": "The base URL path where this provider's endpoints can be accessed.",
+      "pattern": "^https://[a-zA-Z0-9-]+\\.[a-zA-Z0-9-/.]+/opdp/v0\\.9$"
     },
     "securityScheme": {
       "oneOf": [
@@ -122,7 +123,8 @@
                         "linkedInPosts",
                         "xPosts",
                         "blogPosts",
-                        "newsArticles"
+                        "newsArticles",
+                        "tenKSummary"
                       ]
                     }
                   },
@@ -247,223 +249,233 @@
         "identify": {
           "type": "object",
           "description": "Describes the provider's support for identify endpoints.\n\nA provider can indicate that id does not support any of these\nendpoints by omitting the field.\n",
-          "required": [
-            "accountFilters",
-            "prospectFilters"
-          ],
           "properties": {
-            "accountFilters": {
+            "accounts": {
               "type": "object",
               "required": [
-                "country",
-                "countrySubdivision",
-                "numberOfEmployees",
-                "annualRevenue",
-                "age",
-                "industry",
-                "companyType"
+                "filters"
               ],
               "properties": {
-                "country": {
-                  "description": "If present, indicates support for country filtering.",
-                  "type": "object"
+                "maxPageSize": {
+                  "type": "integer",
+                  "description": "The maximum page size supported by this provider in\n`/identify/accounts/*` endpoints.\n"
                 },
-                "countrySubdivision": {
-                  "description": "If present, indicates support for country subdivision filtering.",
-                  "type": "object"
-                },
-                "location": {
-                  "description": "If present, indicates support for fine-grained location filtering.",
-                  "type": "object"
-                },
-                "numberOfEmployees": {
-                  "description": "If present, indicates support for employee count filtering.",
-                  "type": "object"
-                },
-                "annualRevenue": {
-                  "description": "If present, indicates support for annual revenue filtering.",
-                  "type": "object"
-                },
-                "age": {
-                  "description": "If present, indicates support for company age filtering.",
-                  "type": "object"
-                },
-                "industry": {
-                  "description": "If present, indicates support for industry filtering.",
+                "filters": {
                   "type": "object",
-                  "required": [
-                    "supportedTaxonomies"
-                  ],
                   "properties": {
-                    "supportedTaxonomies": {
-                      "description": "Indicates which taxonomies are supported.",
-                      "type": "array",
-                      "minItems": 1,
-                      "uniqueItems": true,
-                      "items": {
-                        "enum": [
-                          "NAICS2017",
-                          "NAICS2022",
-                          "SIC",
-                          "LinkedIn"
-                        ]
+                    "country": {
+                      "description": "If present, indicates support for country filtering.",
+                      "type": "object"
+                    },
+                    "countrySubdivision": {
+                      "description": "If present, indicates support for country subdivision filtering.",
+                      "type": "object"
+                    },
+                    "location": {
+                      "description": "If present, indicates support for fine-grained location filtering.",
+                      "type": "object"
+                    },
+                    "numberOfEmployees": {
+                      "description": "If present, indicates support for employee count filtering.",
+                      "type": "object"
+                    },
+                    "annualRevenue": {
+                      "description": "If present, indicates support for annual revenue filtering.",
+                      "type": "object"
+                    },
+                    "age": {
+                      "description": "If present, indicates support for company age filtering.",
+                      "type": "object"
+                    },
+                    "industry": {
+                      "description": "If present, indicates support for industry filtering.",
+                      "type": "object",
+                      "required": [
+                        "supportedTaxonomies"
+                      ],
+                      "properties": {
+                        "supportedTaxonomies": {
+                          "description": "Indicates which taxonomies are supported.",
+                          "type": "array",
+                          "minItems": 1,
+                          "uniqueItems": true,
+                          "items": {
+                            "enum": [
+                              "NAICS2017",
+                              "NAICS2022",
+                              "SIC",
+                              "LinkedIn"
+                            ]
+                          }
+                        }
                       }
-                    }
-                  }
-                },
-                "companyType": {
-                  "description": "If present, indicates support for company type filtering.",
-                  "type": "object",
-                  "required": [
-                    "supportedValues"
-                  ],
-                  "properties": {
-                    "supportedValues": {
-                      "description": "Indicates which enum values this provider supports.",
-                      "type": "array",
-                      "minItems": 1,
-                      "uniqueItems": true,
-                      "items": {
-                        "type": "string",
-                        "description": "The type of entity or organization.",
-                        "enum": [
-                          "public",
-                          "private",
-                          "education",
-                          "nonprofit",
-                          "government",
-                          "other"
-                        ]
+                    },
+                    "companyType": {
+                      "description": "If present, indicates support for company type filtering.",
+                      "type": "object",
+                      "required": [
+                        "supportedValues"
+                      ],
+                      "properties": {
+                        "supportedValues": {
+                          "description": "Indicates which enum values this provider supports.",
+                          "type": "array",
+                          "minItems": 1,
+                          "uniqueItems": true,
+                          "items": {
+                            "type": "string",
+                            "description": "The type of entity or organization.",
+                            "enum": [
+                              "public",
+                              "private",
+                              "education",
+                              "nonprofit",
+                              "government",
+                              "other"
+                            ]
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
             },
-            "prospectFilters": {
+            "prospects": {
               "type": "object",
               "required": [
-                "country",
-                "countrySubdivision",
-                "department",
-                "seniority",
-                "emailAvailability",
-                "phoneAvailability",
-                "linkedInAvailability",
-                "accountIds"
+                "filters"
               ],
               "properties": {
-                "country": {
-                  "description": "If present, indicates support for country filtering.",
-                  "type": "object"
+                "maxPageSize": {
+                  "type": "integer",
+                  "description": "The maximum page size supported by this provider in\n`/identify/prospects/*` endpoints.\n"
                 },
-                "countrySubdivision": {
-                  "description": "If present, indicates support for country subdivision filtering.",
-                  "type": "object"
-                },
-                "location": {
-                  "description": "If present, indicates support for fine-grained location filtering.",
-                  "type": "object"
-                },
-                "department": {
-                  "description": "If present, indicates support for department filtering.",
+                "filters": {
                   "type": "object",
                   "required": [
-                    "supportedValues"
+                    "country",
+                    "countrySubdivision",
+                    "department",
+                    "seniority",
+                    "emailAvailability",
+                    "phoneAvailability",
+                    "accountIds"
                   ],
                   "properties": {
-                    "supportedValues": {
-                      "description": "Indicates which enum values this provider supports.\n",
-                      "type": "array",
-                      "minItems": 1,
-                      "uniqueItems": true,
-                      "items": {
-                        "type": "string",
-                        "enum": [
-                          "Customer Service",
-                          "Design",
-                          "Education",
-                          "Engineering",
-                          "Finance",
-                          "General",
-                          "Health",
-                          "Human Resources",
-                          "Legal",
-                          "Marketing",
-                          "Media",
-                          "Operations",
-                          "Public Relations",
-                          "Real Estate",
-                          "Sales",
-                          "Trades",
-                          "Unknown",
-                          "IT",
-                          "Procurement",
-                          "C-Suite",
-                          "Other"
-                        ]
+                    "country": {
+                      "description": "If present, indicates support for country filtering.",
+                      "type": "object"
+                    },
+                    "countrySubdivision": {
+                      "description": "If present, indicates support for country subdivision filtering.",
+                      "type": "object"
+                    },
+                    "location": {
+                      "description": "If present, indicates support for fine-grained location filtering.",
+                      "type": "object"
+                    },
+                    "department": {
+                      "description": "If present, indicates support for department filtering.",
+                      "type": "object",
+                      "required": [
+                        "supportedValues"
+                      ],
+                      "properties": {
+                        "supportedValues": {
+                          "description": "Indicates which enum values this provider supports.\n",
+                          "type": "array",
+                          "minItems": 1,
+                          "uniqueItems": true,
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "Customer Service",
+                              "Design",
+                              "Education",
+                              "Engineering",
+                              "Finance",
+                              "General",
+                              "Health",
+                              "Human Resources",
+                              "Legal",
+                              "Marketing",
+                              "Media",
+                              "Operations",
+                              "Public Relations",
+                              "Real Estate",
+                              "Sales",
+                              "Trades",
+                              "Unknown",
+                              "IT",
+                              "Procurement",
+                              "C-Suite",
+                              "Other"
+                            ]
+                          }
+                        }
                       }
+                    },
+                    "seniority": {
+                      "description": "If present, indicates support for seniority filtering.",
+                      "type": "object",
+                      "required": [
+                        "supportedValues"
+                      ],
+                      "properties": {
+                        "supportedValues": {
+                          "description": "Indicates which enum values this provider supports.\n",
+                          "type": "array",
+                          "minItems": 1,
+                          "uniqueItems": true,
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "Board Member",
+                              "Director",
+                              "Manager",
+                              "VP",
+                              "Partner",
+                              "CXO",
+                              "Non-Managerial",
+                              "Senior",
+                              "Entry",
+                              "Training",
+                              "Unpaid"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "jobTitleIncludes": {
+                      "description": "If present, indicates suppotr for job title filtering.",
+                      "type": "object"
+                    },
+                    "yearsOfExperience": {
+                      "description": "If present, indicates support for years of experience filtering.",
+                      "type": "object"
+                    },
+                    "timeInRole": {
+                      "description": "If present, indicates support for time in role filtering.",
+                      "type": "object"
+                    },
+                    "emailAvailability": {
+                      "description": "If present, indicates support for email availability filtering.",
+                      "type": "object"
+                    },
+                    "phoneAvailability": {
+                      "description": "If present, indicates support for phone availability filtering.",
+                      "type": "object"
+                    },
+                    "linkedInAvailability": {
+                      "description": "If present, indicates support for LinkedIn availability filtering.",
+                      "type": "object"
+                    },
+                    "accountIds": {
+                      "description": "If present, indicates support for account ID filtering.",
+                      "type": "object"
                     }
                   }
-                },
-                "seniority": {
-                  "description": "If present, indicates support for seniority filtering.",
-                  "type": "object",
-                  "required": [
-                    "supportedValues"
-                  ],
-                  "properties": {
-                    "supportedValues": {
-                      "description": "Indicates which enum values this provider supports.\n",
-                      "type": "array",
-                      "minItems": 1,
-                      "uniqueItems": true,
-                      "items": {
-                        "type": "string",
-                        "enum": [
-                          "Board Member",
-                          "Director",
-                          "Manager",
-                          "VP",
-                          "Partner",
-                          "CXO",
-                          "Non-Managerial",
-                          "Senior",
-                          "Entry",
-                          "Training",
-                          "Unpaid"
-                        ]
-                      }
-                    }
-                  }
-                },
-                "jobTitleIncludes": {
-                  "description": "If present, indicates suppotr for job title filtering.",
-                  "type": "object"
-                },
-                "yearsOfExperience": {
-                  "description": "If present, indicates support for years of experience filtering.",
-                  "type": "object"
-                },
-                "timeInRole": {
-                  "description": "If present, indicates support for time in role filtering.",
-                  "type": "object"
-                },
-                "emailAvailability": {
-                  "description": "If present, indicates support for email availability filtering.",
-                  "type": "object"
-                },
-                "phoneAvailability": {
-                  "description": "If present, indicates support for phone availability filtering.",
-                  "type": "object"
-                },
-                "linkedInAvailability": {
-                  "description": "If present, indicates support for LinkedIn availability filtering.",
-                  "type": "object"
-                },
-                "accountIds": {
-                  "description": "If present, indicates support for account ID filtering.",
-                  "type": "object"
                 }
               }
             }
