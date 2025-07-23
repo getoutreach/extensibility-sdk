@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as Ajv from 'ajv';
+const Ajv2020 = require('ajv/dist/2020').default;
+const addFormats = require('ajv-formats');
 
 const schemaPath = path.join(__dirname, '../docs/schema/2.0/opdpManifest.schema.json');
 const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
@@ -9,7 +10,9 @@ describe('opdpManifest schema', () => {
   it('should require baseURL property', () => {
     expect(schema.required).toContain('baseURL');
 
-    const ajv = new (Ajv as any)();
+    const ajv = new Ajv2020({ strict: false, allErrors: true, $data: true });
+    addFormats(ajv);
+
     const validate = ajv.compile(schema);
     const data = {
       name: 'Test',
