@@ -7,7 +7,7 @@ const schemaPath = path.join(__dirname, '../docs/schema/2.0/opdpManifest.schema.
 const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
 
 describe('opdpManifest schema', () => {
-  it('should require baseURL property', () => {
+  it('baseURL property should be required', () => {
     expect(schema.required).toContain('baseURL');
 
     const ajv = new Ajv2020({ strict: false, allErrors: true, $data: true });
@@ -30,7 +30,7 @@ describe('opdpManifest schema', () => {
     ).toBe(true);
   });
 
-  it('should not define internalURL property', () => {
+  it('opdp manifest should not define internalURL property', () => {
     expect(schema.properties).not.toHaveProperty('internalURL');
   });
 });
