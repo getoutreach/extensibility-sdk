@@ -16,14 +16,6 @@ export enum ScopesS2S {
 
   AUDIT_LOGS_READ = 'auditLogs.read',
 
-  BATCHES_ALL = 'batches.all',
-  BATCHES_READ = 'batches.read',
-  BATCHES_WRITE = 'batches.write',
-
-  BATCH_ITEMS_ALL = 'batchItems.all',
-  BATCH_ITEMS_READ = 'batchItems.read',
-  BATCH_ITEMS_WRITE = 'batchItems.write',
-
   CALLS_ALL = 'calls.all',
   CALLS_DELETE = 'calls.delete',
   CALLS_READ = 'calls.read',
