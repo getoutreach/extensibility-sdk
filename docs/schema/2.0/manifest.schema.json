@@ -522,7 +522,8 @@
                   "tile-opportunity",
                   "tile-prospect",
                   "tile-admin-dashboard",
-                  "tile-custom-dashboard"
+                  "tile-custom-dashboard",
+                  "tile-persona-home"
                 ]
               },
               "context": {
