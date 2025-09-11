@@ -46,4 +46,9 @@ export enum TileExtensionType {
    * Report custom dashboard tile extension
    */
   CUSTOM_DASHBOARD = 'tile-custom-dashboard',
+
+  /**
+   * Persona home page tile extension
+   */
+  PERSONA_HOME = 'tile-persona-home',
 }
