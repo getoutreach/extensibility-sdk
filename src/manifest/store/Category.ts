@@ -110,4 +110,9 @@ export enum Category {
    * Grouping and navigation category
    */
   GROUPING_AND_NAVIGATION = 'grouping_and_navigation',
+  
+  /**
+   * Agents category
+   */
+  AGENTS = 'agents',
 }
