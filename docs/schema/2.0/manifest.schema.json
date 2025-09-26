@@ -68,7 +68,9 @@
               "data_warehouse",
               "records",
               "grouping_and_navigation",
-              "agents"
+              "agents",
+              "execution",
+              "performance"
             ]
           },
           "uniqueItems": true

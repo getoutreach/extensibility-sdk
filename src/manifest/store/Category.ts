@@ -115,4 +115,14 @@ export enum Category {
    * Agents category
    */
   AGENTS = 'agents',
+
+  /**
+   * Execution category
+   */
+  EXECUTION = 'execution',
+
+  /**
+   * Performance category
+   */
+  PERFORMANCE = 'performance',
 }
