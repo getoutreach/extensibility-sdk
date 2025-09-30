@@ -22,11 +22,6 @@ export enum Category {
   CHAT = 'chat',
 
   /**
-   * Conversation intelligence extension category
-   */
-  CONVERSATION_INTELLIGENCE = 'conversation_intelligence',
-
-  /**
    * CRM extension category
    */
   CRM = 'crm',
@@ -110,7 +105,7 @@ export enum Category {
    * Grouping and navigation category
    */
   GROUPING_AND_NAVIGATION = 'grouping_and_navigation',
-  
+
   /**
    * Agents category
    */
