@@ -14,6 +14,11 @@ export enum Scopes {
   ACCOUNTS_READ = 'accounts.read',
   ACCOUNTS_WRITE = 'accounts.write',
 
+  ACCOUNT_NOTES_ALL = 'accountNotes.all',
+  ACCOUNT_NOTES_DELETE = 'accountNotes.delete',
+  ACCOUNT_NOTES_READ = 'accountNotes.read',
+  ACCOUNT_NOTES_WRITE = 'accountNotes.write',
+
   AUDIT_LOGS_READ = 'auditLogs.read',
 
   BATCHES_ALL = 'batches.all',
@@ -155,6 +160,11 @@ export enum Scopes {
   PROSPECTS_DELETE = 'prospects.delete',
   PROSPECTS_READ = 'prospects.read',
   PROSPECTS_WRITE = 'prospects.write',
+
+  PROSPECT_NOTES_ALL = 'prospectNotes.all',
+  PROSPECT_NOTES_DELETE = 'prospectNotes.delete',
+  PROSPECT_NOTES_READ = 'prospectNotes.read',
+  PROSPECT_NOTES_WRITE = 'prospectNotes.write',
 
   PURCHASES_ALL = 'purchases.all',
   PURCHASES_DELETE = 'purchases.delete',
