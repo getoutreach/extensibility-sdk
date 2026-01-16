@@ -126,7 +126,9 @@
                         "newsArticles",
                         "tenKSummary",
                         "zoomInfoIntent",
-                        "intent"
+                        "intent",
+                        "websiteVisitSignal",
+                        "prospectWebsiteVisitSignal"
                       ]
                     }
                   },
