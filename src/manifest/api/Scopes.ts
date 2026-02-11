@@ -63,22 +63,12 @@ export enum Scopes {
   CONTENT_CATEGORY_OWNERSHIPS_READ = 'contentCategoryOwnerships.read',
   CONTENT_CATEGORY_OWNERSHIPS_WRITE = 'contentCategoryOwnerships.write',
 
-  CURRENCY_TYPES_ALL = 'currencyTypes.all',
-  CURRENCY_TYPES_DELETE = 'currencyTypes.delete',
-  CURRENCY_TYPES_READ = 'currencyTypes.read',
-  CURRENCY_TYPES_WRITE = 'currencyTypes.write',
-
   CUSTOM_DUTIES_WRITE = 'customDuties.write',
 
   CUSTOM_OBJECT_RECORDS_ALL = 'customObjectRecords.all',
   CUSTOM_OBJECT_RECORDS_DELETE = 'customObjectRecords.delete',
   CUSTOM_OBJECT_RECORDS_READ = 'customObjectRecords.read',
   CUSTOM_OBJECT_RECORDS_WRITE = 'customObjectRecords.write',
-
-  DATED_CONVERSION_RATES_ALL = 'datedConversionRates.all',
-  DATED_CONVERSION_RATES_DELETE = 'datedConversionRates.delete',
-  DATED_CONVERSION_RATES_READ = 'datedConversionRates.read',
-  DATED_CONVERSION_RATES_WRITE = 'datedConversionRates.write',
 
   DUTIES_READ = 'duties.read',
 
@@ -103,6 +93,8 @@ export enum Scopes {
   JOB_ROLES_ALL = 'jobRoles.all',
   JOB_ROLES_READ = 'jobRoles.read',
   JOB_ROLES_WRITE = 'jobRoles.write',
+
+  KAIA_RECORDINGS_READ = 'kaiaRecordings.read',
 
   KAIA_VOICE_IMPORTS_WRITE = 'kaiaVoiceImports.write',
 
