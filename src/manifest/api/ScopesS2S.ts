@@ -29,6 +29,8 @@ export enum ScopesS2S {
   IMPORTS_READ = 'imports.read',
   IMPORTS_WRITE = 'imports.write',
 
+  KAIA_RECORDINGS_READ = 'kaiaRecordings.read',
+
   MAILINGS_READ = 'mailings.read',
 
   OPPORTUNITIES_ALL = 'opportunities.all',

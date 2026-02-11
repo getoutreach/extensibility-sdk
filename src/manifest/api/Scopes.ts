@@ -104,6 +104,8 @@ export enum Scopes {
   JOB_ROLES_READ = 'jobRoles.read',
   JOB_ROLES_WRITE = 'jobRoles.write',
 
+  KAIA_RECORDINGS_READ = 'kaiaRecordings.read',
+
   KAIA_VOICE_IMPORTS_WRITE = 'kaiaVoiceImports.write',
 
   MAILBOXES_ALL = 'mailboxes.all',
