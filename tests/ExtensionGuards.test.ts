@@ -17,6 +17,7 @@ import {
   isHomeTasksTileExtension,
   isIconExtension,
   isKnowledgeShellExtension,
+  isMcpConnectorExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,
   isProspectActionExtension,
@@ -32,6 +33,7 @@ import { CompanionShellExtension } from '../src/manifest/extensions/shell/types/
 import { KnowledgeShellExtension } from '../src/manifest/extensions/shell/types/KnowledgeShellExtension';
 import { SidekickShellExtension } from '../src/manifest/extensions/shell/types/SidekickShellExtension';
 import { ToolShellExtension } from '../src/manifest/extensions/shell/types/ToolShellExtension';
+import { ConnectorMcpExtension } from '../src/manifest/extensions/mcp/types/ConnectorMcpExtension';
 import { AccountTabExtension } from '../src/manifest/extensions/tabs/types/AccountTabExtension';
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
 import { ProspectActionTabExtension } from '../src/manifest/extensions/tabs/types/ProspectActionTabExtension';
@@ -77,6 +79,8 @@ describe('ExtensionGuards', () => {
     [new SidekickShellExtension(), isProspectTileExtension, false],
     [new EditorExtension(), isContentEditorExtension, true],
     [new SidekickShellExtension(), isContentEditorExtension, false],
+    [new ConnectorMcpExtension(), isMcpConnectorExtension, true],
+    [new SidekickShellExtension(), isMcpConnectorExtension, false],
     [new MailingLinksDataExtension(), isDataMailingExtension, true],
     [new SidekickShellExtension(), isDataMailingExtension, false],
 
@@ -87,6 +91,7 @@ describe('ExtensionGuards', () => {
     [new ProspectTileExtension(), isIconExtension, true],
     [new OpportunityTileExtension(), isIconExtension, true],
     [new EditorExtension(), isIconExtension, true],
+    [new ConnectorMcpExtension(), isIconExtension, true],
     [new ProspectEventsDataExtension(), isIconExtension, true],
     [new SidekickShellExtension(), isIconExtension, false],
 

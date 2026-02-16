@@ -596,6 +596,44 @@
               }
             },
             "required": ["type", "host", "identifier"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["mcp-connector"]
+              },
+              "context": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri-template"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": ["url"]
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]+[a-z0-9]$",
+                "maxLength": 128
+              }
+            },
+            "required": ["type", "host", "identifier"]
           }
         ]
       }

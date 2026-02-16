@@ -4,12 +4,14 @@ import {
   AllContextKeys,
   ConfigurationItem,
   CompanionShellExtension,
+  ConnectorMcpExtension,
   ContentExtensionType,
   EditorExtension,
   EmailContextKeys,
   HomeEmailsTileExtension,
   HomeTasksTileExtension,
   ManifestApi,
+  McpExtensionType,
   OpportunityTileExtension,
   ProspectTileExtension,
   TileExtensionType,
@@ -349,6 +351,9 @@ export class ManifestTranslator {
 
         case ContentExtensionType.EDITOR:
           return Object.assign(new EditorExtension(), ext);
+
+        case McpExtensionType.CONNECTOR:
+          return Object.assign(new ConnectorMcpExtension(), ext);
 
         default:
           throw new Error("Can't hydrate extension " + JSON.stringify(ext));

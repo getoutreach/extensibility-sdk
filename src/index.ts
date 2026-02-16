@@ -131,6 +131,11 @@ export { CompanionShellExtension } from './manifest/extensions/shell/types/Compa
 export { SidekickShellExtension } from './manifest/extensions/shell/types/SidekickShellExtension';
 export { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
 
+export { McpExtension } from './manifest/extensions/mcp/McpExtension';
+export { McpExtensionHost } from './manifest/extensions/mcp/McpExtensionHost';
+export { McpExtensionType } from './manifest/extensions/mcp/McpExtensionType';
+export { ConnectorMcpExtension } from './manifest/extensions/mcp/types/ConnectorMcpExtension';
+
 export { ContentExtensionType } from './manifest/extensions/editor/ContentExtensionType';
 
 export { TabExtension } from './manifest/extensions/tabs/TabExtension';
@@ -183,6 +188,7 @@ export {
   isHomeTasksTileExtension,
   isIconExtension,
   isKnowledgeShellExtension,
+  isMcpConnectorExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,
   isProspectActionExtension,
