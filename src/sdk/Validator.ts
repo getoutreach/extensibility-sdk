@@ -4,6 +4,7 @@ import { Scopes } from '../manifest/api/Scopes';
 import { StoreType } from '../manifest/store/StoreType';
 import { WebHookEvents } from '../manifest/api/WebHookEvents';
 import { ScopesS2S } from '../manifest/api/ScopesS2S';
+import { McpConnectorAuthMethod } from '../manifest/ManifestMcpConnector';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -80,6 +81,22 @@ export const validate = (application: Application): string[] => {
           }
         }
       });
+    }
+  }
+
+  if (application.mcpConnector) {
+    if (!application.mcpConnector.url) {
+      issues.push('Undefined mcpConnector url');
+    } else if (!utils.urlValidation(application.mcpConnector.url)) {
+      issues.push('Manifest mcpConnector section needs to have valid url. Value: ' + application.mcpConnector.url);
+    }
+
+    if (!application.mcpConnector.authMethod) {
+      issues.push('Undefined mcpConnector authMethod');
+    } else if (
+      !Object.values(McpConnectorAuthMethod).includes(application.mcpConnector.authMethod as McpConnectorAuthMethod)
+    ) {
+      issues.push('Invalid mcpConnector authMethod value. Value: ' + application.mcpConnector.authMethod);
     }
   }
 

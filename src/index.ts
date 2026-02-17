@@ -98,6 +98,7 @@ export { ManifestApiClient } from './manifest/ManifestApiClient';
 export { ManifestApiS2S } from './manifest/ManifestApiS2S';
 export { ManifestApiS2SPublicKey } from './manifest/ManifestApiS2SPublicKey';
 export { ManifestAuthor } from './manifest/ManifestAuthor';
+export { ManifestMcpConnector, McpConnectorAuthMethod } from './manifest/ManifestMcpConnector';
 export { ManifestStore } from './manifest/ManifestStore';
 export { ManifestWebhook } from './manifest/ManifestWebhook';
 export { Scopes } from './manifest/api/Scopes';

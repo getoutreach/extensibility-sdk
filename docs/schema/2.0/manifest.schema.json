@@ -226,6 +226,21 @@
       },
       "required": ["scopes", "publicKeys"]
     },
+    "mcpConnector": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "authMethod": {
+          "type": "string",
+          "enum": ["oauth-dcr", "no-auth"]
+        }
+      },
+      "required": ["url", "authMethod"]
+    },
     "opdpDataProvider": {
       "type": "object",
       "additionalProperties": false,
