@@ -4,7 +4,7 @@ import { Scopes } from '../manifest/api/Scopes';
 import { StoreType } from '../manifest/store/StoreType';
 import { WebHookEvents } from '../manifest/api/WebHookEvents';
 import { ScopesS2S } from '../manifest/api/ScopesS2S';
-import { McpConnectorAuthMethod } from '../manifest/ManifestMcpConnector';
+import { McpServerAuthMethod } from '../manifest/ManifestMcpServer';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -84,19 +84,19 @@ export const validate = (application: Application): string[] => {
     }
   }
 
-  if (application.mcpConnector) {
-    if (!application.mcpConnector.url) {
-      issues.push('Undefined mcpConnector url');
-    } else if (!utils.urlValidation(application.mcpConnector.url)) {
-      issues.push('Manifest mcpConnector section needs to have valid url. Value: ' + application.mcpConnector.url);
+  if (application.mcpServer) {
+    if (!application.mcpServer.url) {
+      issues.push('Undefined mcpServer url');
+    } else if (!utils.urlValidation(application.mcpServer.url)) {
+      issues.push('Manifest mcpServer section needs to have valid url. Value: ' + application.mcpServer.url);
     }
 
-    if (!application.mcpConnector.authMethod) {
-      issues.push('Undefined mcpConnector authMethod');
+    if (!application.mcpServer.authMethod) {
+      issues.push('Undefined mcpServer authMethod');
     } else if (
-      !Object.values(McpConnectorAuthMethod).includes(application.mcpConnector.authMethod as McpConnectorAuthMethod)
+      !Object.values(McpServerAuthMethod).includes(application.mcpServer.authMethod as McpServerAuthMethod)
     ) {
-      issues.push('Invalid mcpConnector authMethod value. Value: ' + application.mcpConnector.authMethod);
+      issues.push('Invalid mcpServer authMethod value. Value: ' + application.mcpServer.authMethod);
     }
   }
 

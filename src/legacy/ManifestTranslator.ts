@@ -37,7 +37,7 @@ import { ReportsTabExtension } from '../manifest/extensions/tabs/types/ReportsTa
 import { ManifestApiClient } from '../manifest/ManifestApiClient';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
-import { ManifestMcpConnector } from '../manifest/ManifestMcpConnector';
+import { ManifestMcpServer } from '../manifest/ManifestMcpServer';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
@@ -310,8 +310,8 @@ export class ManifestTranslator {
       application.api = Object.assign(new ManifestApi(), app.api);
     }
 
-    if (app.mcpConnector) {
-      application.mcpConnector = Object.assign(new ManifestMcpConnector(), app.mcpConnector);
+    if (app.mcpServer) {
+      application.mcpServer = Object.assign(new ManifestMcpServer(), app.mcpServer);
     }
 
     application.store = Object.assign(new ManifestStore(), app.store);

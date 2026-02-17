@@ -226,7 +226,7 @@
       },
       "required": ["scopes", "publicKeys"]
     },
-    "mcpConnector": {
+    "mcpServer": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
