@@ -5,6 +5,7 @@ import { Application } from '../src/manifest/Application';
 import { Category } from '../src/manifest/store/Category';
 import { StoreType } from '../src/manifest/store/StoreType';
 import { Scopes } from '../src/manifest/api/Scopes';
+import { McpConnectorAuthMethod } from '../src/manifest/ManifestMcpConnector';
 
 import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
 
@@ -130,6 +131,56 @@ describe('manifest tests', () => {
       expect(issues.length).toBe(2);
       expect(issues[0]).toBe('Invalid s2s api public key name value. Value: ');
       expect(issues[1]).toBe('Invalid s2s api public key value. Value: ');
+    });
+  });
+
+  describe('mcpConnector', () => {
+    test('url should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpConnector = {
+        url: '',
+        authMethod: McpConnectorAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpConnector url');
+    });
+
+    test('url should be valid', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.mcpConnector = {
+        url: 'bananas',
+        authMethod: McpConnectorAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Manifest mcpConnector section needs to have valid url. Value: bananas');
+    });
+
+    test('authMethod should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpConnector = {
+        url: 'https://example.com/mcp',
+        authMethod: '' as any,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpConnector authMethod');
+    });
+
+    test('authMethod should be valid', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.mcpConnector = {
+        url: 'https://example.com/mcp',
+        authMethod: 'BANANA' as any,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid mcpConnector authMethod value. Value: BANANA');
     });
   });
 

@@ -4,14 +4,12 @@ import {
   AllContextKeys,
   ConfigurationItem,
   CompanionShellExtension,
-  ConnectorMcpExtension,
   ContentExtensionType,
   EditorExtension,
   EmailContextKeys,
   HomeEmailsTileExtension,
   HomeTasksTileExtension,
   ManifestApi,
-  McpExtensionType,
   OpportunityTileExtension,
   ProspectTileExtension,
   TileExtensionType,
@@ -39,6 +37,7 @@ import { ReportsTabExtension } from '../manifest/extensions/tabs/types/ReportsTa
 import { ManifestApiClient } from '../manifest/ManifestApiClient';
 import { ManifestAuthor } from '../manifest/ManifestAuthor';
 import { ManifestStore } from '../manifest/ManifestStore';
+import { ManifestMcpConnector } from '../manifest/ManifestMcpConnector';
 import { StoreType } from '../manifest/store/StoreType';
 import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
@@ -311,6 +310,10 @@ export class ManifestTranslator {
       application.api = Object.assign(new ManifestApi(), app.api);
     }
 
+    if (app.mcpConnector) {
+      application.mcpConnector = Object.assign(new ManifestMcpConnector(), app.mcpConnector);
+    }
+
     application.store = Object.assign(new ManifestStore(), app.store);
 
     if (app.configuration) {
@@ -351,9 +354,6 @@ export class ManifestTranslator {
 
         case ContentExtensionType.EDITOR:
           return Object.assign(new EditorExtension(), ext);
-
-        case McpExtensionType.CONNECTOR:
-          return Object.assign(new ConnectorMcpExtension(), ext);
 
         default:
           throw new Error("Can't hydrate extension " + JSON.stringify(ext));

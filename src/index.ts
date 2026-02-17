@@ -98,6 +98,7 @@ export { ManifestApiClient } from './manifest/ManifestApiClient';
 export { ManifestApiS2S } from './manifest/ManifestApiS2S';
 export { ManifestApiS2SPublicKey } from './manifest/ManifestApiS2SPublicKey';
 export { ManifestAuthor } from './manifest/ManifestAuthor';
+export { ManifestMcpConnector, McpConnectorAuthMethod } from './manifest/ManifestMcpConnector';
 export { ManifestStore } from './manifest/ManifestStore';
 export { ManifestWebhook } from './manifest/ManifestWebhook';
 export { Scopes } from './manifest/api/Scopes';
@@ -130,11 +131,6 @@ export { ApplicationShellExtension } from './manifest/extensions/shell/types/App
 export { CompanionShellExtension } from './manifest/extensions/shell/types/CompanionShellExtension';
 export { SidekickShellExtension } from './manifest/extensions/shell/types/SidekickShellExtension';
 export { ToolShellExtension } from './manifest/extensions/shell/types/ToolShellExtension';
-
-export { McpExtension } from './manifest/extensions/mcp/McpExtension';
-export { McpExtensionHost } from './manifest/extensions/mcp/McpExtensionHost';
-export { McpExtensionType } from './manifest/extensions/mcp/McpExtensionType';
-export { ConnectorMcpExtension } from './manifest/extensions/mcp/types/ConnectorMcpExtension';
 
 export { ContentExtensionType } from './manifest/extensions/editor/ContentExtensionType';
 
@@ -188,7 +184,6 @@ export {
   isHomeTasksTileExtension,
   isIconExtension,
   isKnowledgeShellExtension,
-  isMcpConnectorExtension,
   isOpportunityTabExtension,
   isOpportunityTileExtension,
   isProspectActionExtension,

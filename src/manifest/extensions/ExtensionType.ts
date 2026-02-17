@@ -1,7 +1,5 @@
 import { DataExtensionType } from './data/DataExtensionType';
 import { ContentExtensionType } from './editor/ContentExtensionType';
-import { McpExtensionType } from './mcp/McpExtensionType';
-import { ConnectorMcpExtension } from './mcp/types/ConnectorMcpExtension';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ActionShellExtension } from './shell/types/ActionShellExtension';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
@@ -24,8 +22,7 @@ export type ExtensionType =
   | TileExtensionType
   | ShellExtensionType
   | ContentExtensionType
-  | DataExtensionType
-  | McpExtensionType;
+  | DataExtensionType;
 
 export type ProspectExtensionType =
   | TabExtensionType.PROSPECT
@@ -56,7 +53,6 @@ export type AppExtension =
   | CompanionShellExtension
   | SidekickShellExtension
   | ToolShellExtension
-  | ActionShellExtension
-  | ConnectorMcpExtension;
+  | ActionShellExtension;
 
 export type GeneralExtension = AppExtension | ReportsTabExtension;

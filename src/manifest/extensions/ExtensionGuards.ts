@@ -3,8 +3,6 @@ import { MailingLinksDataExtension } from './data/MailingLinksDataExtension';
 import { ContentExtensionType } from './editor/ContentExtensionType';
 import { EditorExtension } from './editor/EditorExtension';
 import { ExtensionType } from './ExtensionType';
-import { McpExtensionType } from './mcp/McpExtensionType';
-import { ConnectorMcpExtension } from './mcp/types/ConnectorMcpExtension';
 import { ShellExtensionType } from './shell/ShellExtensionType';
 import { ApplicationShellExtension } from './shell/types/ApplicationShellExtension';
 import { CompanionShellExtension } from './shell/types/CompanionShellExtension';
@@ -113,10 +111,6 @@ export const isContentEditorExtension = (extension: any): extension is EditorExt
   return extension?.type === ContentExtensionType.EDITOR;
 };
 
-export const isMcpConnectorExtension = (extension: { type: ExtensionType }): extension is ConnectorMcpExtension => {
-  return extension?.type === McpExtensionType.CONNECTOR;
-};
-
 export const isDataMailingExtension = (extension: any): extension is MailingLinksDataExtension => {
   return extension?.type === DataExtensionType.MAILING_LINKS;
 };
@@ -139,7 +133,6 @@ export const isIconExtension = (ext: {
     case TileExtensionType.OPPORTUNITY:
     case ContentExtensionType.EDITOR:
     case DataExtensionType.PROSPECT_EVENTS:
-    case McpExtensionType.CONNECTOR:
       return true;
     default:
       return false;
