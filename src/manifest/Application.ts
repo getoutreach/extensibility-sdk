@@ -5,7 +5,7 @@ import { ManifestApi } from './ManifestApi';
 import { ManifestStore } from './ManifestStore';
 import { ManifestWebhook } from './ManifestWebhook';
 import { ManifestApiS2S } from './ManifestApiS2S';
-import { ManifestMcpConnector } from './ManifestMcpConnector';
+import { ManifestMcpServer } from './ManifestMcpServer';
 
 /**
  * Definition of the application manifest file containing all the information
@@ -47,10 +47,10 @@ export class Application {
    * to MCP (Model Context Protocol) servers.
    * This section can be omitted if MCP connector is not needed.
    *
-   * @type {ManifestMcpConnector}
+   * @type {ManifestMcpServer}
    * @memberof Application
    */
-  public mcpConnector?: ManifestMcpConnector;
+  public mcpServer?: ManifestMcpServer;
 
   /**
    * An optional section containing configuration information

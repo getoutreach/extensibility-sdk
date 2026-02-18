@@ -5,7 +5,7 @@
  * @export
  * @enum {string}
  */
-export enum McpConnectorAuthMethod {
+export enum McpServerAuthMethod {
   /**
    * OAuth 2.1 with Dynamic Client Registration
    */
@@ -19,22 +19,22 @@ export enum McpConnectorAuthMethod {
 /**
  * Optional section defining parameters for MCP (Model Context Protocol) connector.
  * @export
- * @class ManifestMcpConnector
+ * @class ManifestMcpServer
  */
-export class ManifestMcpConnector {
+export class ManifestMcpServer {
   /**
    * URL of the MCP server endpoint
    *
    * @type {string}
-   * @memberof ManifestMcpConnector
+   * @memberof ManifestMcpServer
    */
   url: string;
 
   /**
    * Authentication method to use when connecting to the MCP server
    *
-   * @type {McpConnectorAuthMethod}
-   * @memberof ManifestMcpConnector
+   * @type {McpServerAuthMethod}
+   * @memberof ManifestMcpServer
    */
-  authMethod: McpConnectorAuthMethod;
+  authMethod: McpServerAuthMethod;
 }
