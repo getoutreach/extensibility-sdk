@@ -236,7 +236,7 @@
         },
         "authMethod": {
           "type": "string",
-          "enum": ["oauth-dcr", "no-auth"]
+          "enum": ["OAUTH_DCR", "NO_AUTH"]
         }
       },
       "required": ["url", "authMethod"]
