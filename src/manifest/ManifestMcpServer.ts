@@ -9,11 +9,11 @@ export enum McpServerAuthMethod {
   /**
    * OAuth 2.1 with Dynamic Client Registration
    */
-  OAUTH_DCR = 'oauth-dcr',
+  OAUTH_DCR = 'OAUTH_DCR',
   /**
    * No authentication required
    */
-  NO_AUTH = 'no-auth',
+  NO_AUTH = 'NO_AUTH',
 }
 
 /**
