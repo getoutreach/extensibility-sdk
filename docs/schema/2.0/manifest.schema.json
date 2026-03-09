@@ -69,7 +69,9 @@
               "grouping_and_navigation",
               "agents",
               "execution",
-              "performance"
+              "performance",
+              "fields",
+              "health_and_activity"
             ]
           },
           "uniqueItems": true

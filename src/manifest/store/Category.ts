@@ -120,4 +120,14 @@ export enum Category {
    * Performance category
    */
   PERFORMANCE = 'performance',
+
+   /**
+   * Fields category
+   */
+  FIELDS = 'fields',
+
+   /**
+   * Health and activity category
+   */
+  HEALTH_AND_ACTIVITY = 'health_and_activity',
 }
