@@ -8,125 +8,125 @@ export enum TileGroup {
   /**
    * Account based marketing extension group
    */
-  ACCOUNT_BASED_MARKETING = 'account_based_marketing',
+  ACCOUNT_BASED_MARKETING = 'ACCOUNT_BASED_MARKETING',
 
   /**
    * Account plan extension group
    */
-  ACCOUNT_PLAN = 'account_plan',
+  ACCOUNT_PLAN = 'ACCOUNT_PLAN',
 
   /**
    * Chat extension group
    */
-  CHAT = 'chat',
+  CHAT = 'CHAT',
 
   /**
    * CRM extension group
    */
-  CRM = 'crm',
+  CRM = 'CRM',
 
   /**
    * Direct mail extension group
    */
-  DIRECT_MAIL = 'direct_mail',
+  DIRECT_MAIL = 'DIRECT_MAIL',
 
   /**
    * Inbox extension group
    */
-  INBOX = 'inbox',
+  INBOX = 'INBOX',
 
   /**
    * Integration platform extension group
    */
-  INTEGRATION_PLATFORM = 'integration_platform',
+  INTEGRATION_PLATFORM = 'INTEGRATION_PLATFORM',
 
   /**
    * Marketing extension group
    */
-  MARKETING = 'marketing',
+  MARKETING = 'MARKETING',
 
   /**
    * Privacy and security extension group
    */
-  PRIVACY_SECURITY = 'privacy_security',
+  PRIVACY_SECURITY = 'PRIVACY_SECURITY',
 
   /**
    * Sales assets management extension group
    */
-  SALES_ASSETS_MANAGEMENT = 'sales_assets_management',
+  SALES_ASSETS_MANAGEMENT = 'SALES_ASSETS_MANAGEMENT',
 
   /**
    * Sales intelligence data extension group
    */
-  SALES_INTELLIGENCE_DATA = 'sales_intelligence_data',
+  SALES_INTELLIGENCE_DATA = 'SALES_INTELLIGENCE_DATA',
 
   /**
    * Sales productivity extension group
    */
-  SALES_PRODUCTIVITY = 'sales_productivity',
+  SALES_PRODUCTIVITY = 'SALES_PRODUCTIVITY',
 
   /**
    * Video extension group
    */
-  VIDEO = 'video',
+  VIDEO = 'VIDEO',
 
   /**
    * Voice extension group
    */
-  VOICE = 'voice',
+  VOICE = 'VOICE',
 
   /**
    * Admin Dashboard extension group
    */
-  ADMIN = 'admin',
+  ADMIN = 'ADMIN',
 
   /**
    * Meetings extension group
    */
-  MEETINGS = 'meetings',
+  MEETINGS = 'MEETINGS',
 
   /**
    * Data warehouse extension group
    */
-  DATA_WAREHOUSE = 'data_warehouse',
+  DATA_WAREHOUSE = 'DATA_WAREHOUSE',
 
   /**
    * Reports Dashboard extension group
    */
-  REPORTS = 'reports',
+  REPORTS = 'REPORTS',
 
   /**
    * Records extension group
    */
-  RECORDS = 'records',
+  RECORDS = 'RECORDS',
 
   /**
    * Grouping and navigation group
    */
-  GROUPING_AND_NAVIGATION = 'grouping_and_navigation',
+  GROUPING_AND_NAVIGATION = 'GROUPING_AND_NAVIGATION',
 
   /**
    * Agents group
    */
-  AGENTS = 'agents',
+  AGENTS = 'AGENTS',
 
   /**
    * Execution group
    */
-  EXECUTION = 'execution',
+  EXECUTION = 'EXECUTION',
 
   /**
    * Performance group
    */
-  PERFORMANCE = 'performance',
+  PERFORMANCE = 'PERFORMANCE',
+
+  /**
+   * Fields group
+   */
+  FIELDS = 'FIELDS',
 
   /**
    * Health and activity group
    */
-  FIELDS = 'fields',
-
-  /**
-   * Health and activity group
-   */
-  HEALTH_AND_ACTIVITY = 'health_and_activity',
+  HEALTH_AND_ACTIVITY = 'HEALTH_AND_ACTIVITY',
 }
