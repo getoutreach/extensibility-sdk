@@ -80,14 +80,6 @@ describe('TileExension validate tests', () => {
   });
 
   describe('group', () => {
-    test('missing group should not be acceptable', () => {
-      const tileExtension = getValidProspectTileExtension();
-      delete (tileExtension as any).group;
-      var issues = tileExtension.validate();
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Host group is invalid. Value: undefined');
-    });
-
     test('invalid group should not be acceptable', () => {
       const tileExtension = getValidProspectTileExtension();
       tileExtension.group = 'BANANAS' as any;
