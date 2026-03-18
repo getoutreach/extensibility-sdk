@@ -81,7 +81,9 @@
               "type": "string"
             }
           },
-          "required": ["en"]
+          "required": [
+            "en"
+          ]
         },
         "headline": {
           "type": "object",
@@ -90,7 +92,9 @@
               "type": "string"
             }
           },
-          "required": ["en"]
+          "required": [
+            "en"
+          ]
         },
         "iconUrl": {
           "type": "string",
@@ -113,7 +117,10 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["image", "video"]
+                "enum": [
+                  "image",
+                  "video"
+                ]
               },
               "url": {
                 "type": "string",
@@ -129,7 +136,9 @@
               "type": "string"
             }
           },
-          "required": ["en"]
+          "required": [
+            "en"
+          ]
         },
         "version": {
           "type": "string",
@@ -137,7 +146,9 @@
           "maxLength": 64
         }
       },
-      "required": ["title"]
+      "required": [
+        "title"
+      ]
     },
     "webhook": {
       "type": "object",
@@ -151,13 +162,20 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["INSTALL", "UNINSTALL", "SETUP"]
+            "enum": [
+              "INSTALL",
+              "UNINSTALL",
+              "SETUP"
+            ]
           },
           "minItems": 1,
           "uniqueItems": true
         }
       },
-      "required": ["url", "events"]
+      "required": [
+        "url",
+        "events"
+      ]
     },
     "api": {
       "type": "object",
@@ -185,10 +203,16 @@
       },
       "anyOf": [
         {
-          "required": ["scopesAll", "redirectUris"]
+          "required": [
+            "scopesAll",
+            "redirectUris"
+          ]
         },
         {
-          "required": ["scopes", "redirectUris"]
+          "required": [
+            "scopes",
+            "redirectUris"
+          ]
         }
       ]
     },
@@ -224,7 +248,10 @@
           "uniqueItems": true
         }
       },
-      "required": ["scopes", "publicKeys"]
+      "required": [
+        "scopes",
+        "publicKeys"
+      ]
     },
     "mcpServer": {
       "type": "object",
@@ -236,10 +263,16 @@
         },
         "authMethod": {
           "type": "string",
-          "enum": ["OAUTH_DCR", "NO_AUTH"]
+          "enum": [
+            "OAUTH_DCR",
+            "NO_AUTH"
+          ]
         }
       },
-      "required": ["url", "authMethod"]
+      "required": [
+        "url",
+        "authMethod"
+      ]
     },
     "opdpDataProvider": {
       "type": "object",
@@ -253,7 +286,9 @@
           "$ref": "./opdpManifest.schema.json"
         }
       },
-      "required": ["manifest"]
+      "required": [
+        "manifest"
+      ]
     },
     "externalInstallationUrl": {
       "type": "string",
@@ -277,7 +312,15 @@
           },
           "type": {
             "type": "string",
-            "enum": ["number", "date", "url", "options", "select", "string", "password"]
+            "enum": [
+              "number",
+              "date",
+              "url",
+              "options",
+              "select",
+              "string",
+              "password"
+            ]
           },
           "required": {
             "type": "boolean"
@@ -320,7 +363,11 @@
             }
           }
         },
-        "required": ["key", "type", "text"]
+        "required": [
+          "key",
+          "type",
+          "text"
+        ]
       }
     },
     "extensions": {
@@ -333,7 +380,9 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["content-editor"]
+                "enum": [
+                  "content-editor"
+                ]
               },
               "context": {
                 "type": "array",
@@ -355,7 +404,9 @@
                     "format": "uri"
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               "identifier": {
                 "type": "string",
@@ -380,14 +431,24 @@
                           "type": "number"
                         }
                       },
-                      "required": ["width", "height"]
+                      "required": [
+                        "width",
+                        "height"
+                      ]
                     }
                   }
                 },
-                "required": ["recommended"]
+                "required": [
+                  "recommended"
+                ]
               }
             },
-            "required": ["type", "host", "identifier", "settings"]
+            "required": [
+              "type",
+              "host",
+              "identifier",
+              "settings"
+            ]
           },
           {
             "type": "object",
@@ -395,7 +456,9 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["data-mailing-links"]
+                "enum": [
+                  "data-mailing-links"
+                ]
               },
               "filter": {
                 "type": "string"
@@ -409,7 +472,9 @@
                     "format": "uri-template"
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               "identifier": {
                 "type": "string",
@@ -417,7 +482,11 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host", "identifier"]
+            "required": [
+              "type",
+              "host",
+              "identifier"
+            ]
           },
           {
             "type": "object",
@@ -425,7 +494,11 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["data-account-events", "data-opportunity-events", "data-prospect-events"]
+                "enum": [
+                  "data-account-events",
+                  "data-opportunity-events",
+                  "data-prospect-events"
+                ]
               },
               "identifier": {
                 "type": "string",
@@ -439,7 +512,9 @@
                     "type": "string"
                   }
                 },
-                "required": ["en"]
+                "required": [
+                  "en"
+                ]
               },
               "title": {
                 "type": "object",
@@ -448,10 +523,17 @@
                     "type": "string"
                   }
                 },
-                "required": ["en"]
+                "required": [
+                  "en"
+                ]
               }
             },
-            "required": ["type", "template", "title", "identifier"]
+            "required": [
+              "type",
+              "template",
+              "title",
+              "identifier"
+            ]
           },
           {
             "type": "object",
@@ -459,7 +541,9 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["shell-application"]
+                "enum": [
+                  "shell-application"
+                ]
               },
               "context": {
                 "type": "array",
@@ -481,7 +565,9 @@
                     "format": "uri"
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               "identifier": {
                 "type": "string",
@@ -489,7 +575,11 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host", "identifier"]
+            "required": [
+              "type",
+              "host",
+              "identifier"
+            ]
           },
           {
             "type": "object",
@@ -497,7 +587,12 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["tab-account", "tab-opportunity", "tab-prospect", "tab-reports"]
+                "enum": [
+                  "tab-account",
+                  "tab-opportunity",
+                  "tab-prospect",
+                  "tab-reports"
+                ]
               },
               "context": {
                 "type": "array",
@@ -518,7 +613,9 @@
                     "format": "uri-template"
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               "identifier": {
                 "type": "string",
@@ -526,7 +623,11 @@
                 "maxLength": 128
               }
             },
-            "required": ["type", "host", "identifier"]
+            "required": [
+              "type",
+              "host",
+              "identifier"
+            ]
           },
           {
             "type": "object",
@@ -543,6 +644,36 @@
                   "tile-persona-home"
                 ]
               },
+              "group": {
+                "type": "string",
+                "enum": [
+                  "account_based_marketing",
+                  "account_plan",
+                  "chat",
+                  "crm",
+                  "direct_mail",
+                  "inbox",
+                  "integration_platform",
+                  "marketing",
+                  "privacy_security",
+                  "sales_assets_management",
+                  "sales_intelligence_data",
+                  "sales_productivity",
+                  "video",
+                  "voice",
+                  "admin",
+                  "meetings",
+                  "reports",
+                  "data_warehouse",
+                  "records",
+                  "grouping_and_navigation",
+                  "agents",
+                  "execution",
+                  "performance",
+                  "fields",
+                  "health_and_activity"
+                ]
+              },
               "context": {
                 "type": "array",
                 "items": {
@@ -556,7 +687,9 @@
                     "type": "string"
                   }
                 },
-                "required": ["en"]
+                "required": [
+                  "en"
+                ]
               },
               "host": {
                 "type": "object",
@@ -594,11 +727,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["width", "height"]
+                      "required": [
+                        "width",
+                        "height"
+                      ]
                     }
                   }
                 },
-                "required": ["recommended"]
+                "required": [
+                  "recommended"
+                ]
               },
               "title": {
                 "type": "object",
@@ -607,14 +745,24 @@
                     "type": "string"
                   }
                 },
-                "required": ["en"]
+                "required": [
+                  "en"
+                ]
               }
             },
-            "required": ["type", "host", "identifier"]
+            "required": [
+              "type",
+              "host",
+              "identifier",
+              "group"
+            ]
           }
         ]
       }
     }
   },
-  "required": ["identifier", "store"]
+  "required": [
+    "identifier",
+    "store"
+  ]
 }

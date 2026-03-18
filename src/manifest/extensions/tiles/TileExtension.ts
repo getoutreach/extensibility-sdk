@@ -3,6 +3,7 @@ import { utils } from '../../../utils';
 import { Extension } from '../Extension';
 import { TileExtensionHost } from './TileExtensionHost';
 import { TileExtensionType } from './TileExtensionType';
+import { TileGroup } from './TileGroup';
 import { TileSettings } from './TileSettings';
 
 import logger from '../../../sdk/logging/Logger';
@@ -19,6 +20,14 @@ export class TileExtension extends Extension {
    * @memberof TileExtension
    */
   public type: TileExtensionType;
+
+  /**
+   * Group property defines the Add-Tile-Panel grouping for the tile.
+   *
+   * @type {TileGroup}
+   * @memberof TileExtension
+   */
+  public group: TileGroup;
 
   /**
    * Optional property defining the text, which will be shown in the tile selector
@@ -73,6 +82,10 @@ export class TileExtension extends Extension {
 
       if (!this.type || !Object.values(TileExtensionType).includes(this.type as TileExtensionType)) {
         issues.push('Host type  is invalid. Value: ' + this.type);
+      }
+
+      if (!this.group || !Object.values(TileGroup).includes(this.group as TileGroup)) {
+        issues.push('Host group is invalid. Value: ' + this.group);
       }
     }
 

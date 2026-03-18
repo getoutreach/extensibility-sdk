@@ -5,6 +5,7 @@ import { ProspectContextKeys } from '../src/context/keys/ProspectContextKeys';
 import { UserContextKeys } from '../src/context/keys/UserContextKeys';
 import { OutreachContext } from '../src/context/OutreachContext';
 import { TileExtension } from '../src/manifest/extensions/tiles/TileExtension';
+import { TileGroup } from '../src/manifest/extensions/tiles/TileGroup';
 import { ProspectTileExtension } from '../src/manifest/extensions/tiles/types/ProspectTileExtension';
 
 describe('Tile extension init tests', () => {
@@ -78,6 +79,24 @@ describe('TileExension validate tests', () => {
     });
   });
 
+  describe('group', () => {
+    test('missing group should not be acceptable', () => {
+      const tileExtension = getValidProspectTileExtension();
+      delete (tileExtension as any).group;
+      var issues = tileExtension.validate();
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Host group is invalid. Value: undefined');
+    });
+
+    test('invalid group should not be acceptable', () => {
+      const tileExtension = getValidProspectTileExtension();
+      tileExtension.group = 'BANANAS' as any;
+      var issues = tileExtension.validate();
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Host group is invalid. Value: BANANAS');
+    });
+  });
+
   describe('context', () => {
     test('only valid prospect contexts should be acceptable', () => {
       const tileExtension = getValidProspectTileExtension();
@@ -118,6 +137,7 @@ const getValidProspectTileExtension = (): ProspectTileExtension => {
     icon: 'http://someurl.com/favicon.png',
     url: 'http://someurl.com/host',
   };
+  tileExtension.group = TileGroup.SALES_INTELLIGENCE_DATA;
   tileExtension.context = [UserContextKeys.ID, ProspectContextKeys.ID];
   tileExtension.settings = {
     recommended: [
