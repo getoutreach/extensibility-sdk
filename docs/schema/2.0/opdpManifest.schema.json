@@ -77,6 +77,19 @@
                 "maxPerCall": {
                   "type": "integer",
                   "minimum": 1
+                },
+                "supportedMatchKeys": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on account name."
+                    },
+                    "domain": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on account domain."
+                    }
+                  }
                 }
               }
             },
@@ -89,6 +102,31 @@
                 "maxPerCall": {
                   "type": "integer",
                   "minimum": 1
+                },
+                "supportedMatchKeys": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on prospect's email."
+                    },
+                    "firstName": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on prospect's first name."
+                    },
+                    "lastName": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on prospect's last name."
+                    },
+                    "accountID": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on prospect's account ID."
+                    },
+                    "externalURL": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on prospect's external profile URL (e.g. LinkedIn)."
+                    }
+                  }
                 }
               }
             }
