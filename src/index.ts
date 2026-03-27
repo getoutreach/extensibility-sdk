@@ -143,6 +143,7 @@ export { ReportsTabExtension } from './manifest/extensions/tabs/types/ReportsTab
 
 export { TileExtension } from './manifest/extensions/tiles/TileExtension';
 export { TileExtensionType } from './manifest/extensions/tiles/TileExtensionType';
+export { TileGroup } from './manifest/extensions/tiles/TileGroup';
 export { HomeEmailsTileExtension } from './manifest/extensions/tiles/types/HomeEmailsTileExtension';
 export { HomeTasksTileExtension } from './manifest/extensions/tiles/types/HomeTasksTileExtension';
 export { AccountTileExtension } from './manifest/extensions/tiles/types/AccountTileExtension';
