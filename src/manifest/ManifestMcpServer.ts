@@ -14,6 +14,90 @@ export enum McpServerAuthMethod {
    * No authentication required
    */
   NO_AUTH = 'NO_AUTH',
+  /**
+   * Preregistered OAuth client
+   */
+  PREREGISTERED_OAUTH_CLIENT = 'PREREGISTERED_OAUTH_CLIENT',
+}
+
+/**
+ * A property of the preregistered OAuth client configuration.
+ * When deferToInstallation is false, value is required.
+ * When deferToInstallation is true, value must not be set (it will be provided at installation time).
+ * @export
+ * @class PreregisteredOauthClientProperty
+ */
+export class PreregisteredOauthClientProperty {
+  /**
+   * The property value. Required when deferToInstallation is false, must not be set when deferToInstallation is true.
+   *
+   * @type {string}
+   * @memberof PreregisteredOauthClientProperty
+   */
+  value?: string;
+
+  /**
+   * Whether the value will be provided at installation time. When true, value must not be set.
+   *
+   * @type {boolean}
+   * @memberof PreregisteredOauthClientProperty
+   */
+  deferToInstallation: boolean;
+}
+
+/**
+ * Configuration for a preregistered OAuth client
+ * @export
+ * @class PreregisteredOauthClient
+ */
+export class PreregisteredOauthClient {
+  /**
+   * The authorization endpoint URL
+   *
+   * @type {PreregisteredOauthClientProperty}
+   * @memberof PreregisteredOauthClient
+   */
+  authorizationEndpoint: PreregisteredOauthClientProperty;
+
+  /**
+   * The token endpoint URL
+   *
+   * @type {PreregisteredOauthClientProperty}
+   * @memberof PreregisteredOauthClient
+   */
+  tokenEndpoint: PreregisteredOauthClientProperty;
+
+  /**
+   * The OAuth scopes
+   *
+   * @type {PreregisteredOauthClientProperty}
+   * @memberof PreregisteredOauthClient
+   */
+  scopes: PreregisteredOauthClientProperty;
+
+  /**
+   * The OAuth client ID
+   *
+   * @type {PreregisteredOauthClientProperty}
+   * @memberof PreregisteredOauthClient
+   */
+  clientId: PreregisteredOauthClientProperty;
+
+  /**
+   * The OAuth client secret
+   *
+   * @type {PreregisteredOauthClientProperty}
+   * @memberof PreregisteredOauthClient
+   */
+  clientSecret: PreregisteredOauthClientProperty;
+
+  /**
+   * URL to the OAuth documentation
+   *
+   * @type {string}
+   * @memberof PreregisteredOauthClient
+   */
+  documentationUrl?: string;
 }
 
 /**
@@ -37,4 +121,12 @@ export class ManifestMcpServer {
    * @memberof ManifestMcpServer
    */
   authMethod: McpServerAuthMethod;
+
+  /**
+   * Configuration for a preregistered OAuth client
+   *
+   * @type {PreregisteredOauthClient}
+   * @memberof ManifestMcpServer
+   */
+  preregisteredOauthClient?: PreregisteredOauthClient;
 }

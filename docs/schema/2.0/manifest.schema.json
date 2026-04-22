@@ -1,6 +1,31 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/getoutreach/extensibility-sdk/main/docs/schema/2.0/manifest.schema.json",
+  "definitions": {
+    "preregisteredOauthClientProperty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "deferToInstallation": {
+          "type": "boolean"
+        }
+      },
+      "required": ["deferToInstallation"],
+      "if": {
+        "properties": {
+          "deferToInstallation": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "required": ["value", "deferToInstallation"]
+      }
+    }
+  },
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -236,7 +261,33 @@
         },
         "authMethod": {
           "type": "string",
-          "enum": ["OAUTH_DCR", "NO_AUTH"]
+          "enum": ["OAUTH_DCR", "NO_AUTH", "PREREGISTERED_OAUTH_CLIENT"]
+        },
+        "preregisteredOauthClient": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "authorizationEndpoint": {
+              "$ref": "#/definitions/preregisteredOauthClientProperty"
+            },
+            "tokenEndpoint": {
+              "$ref": "#/definitions/preregisteredOauthClientProperty"
+            },
+            "scopes": {
+              "$ref": "#/definitions/preregisteredOauthClientProperty"
+            },
+            "clientId": {
+              "$ref": "#/definitions/preregisteredOauthClientProperty"
+            },
+            "clientSecret": {
+              "$ref": "#/definitions/preregisteredOauthClientProperty"
+            },
+            "documentationUrl": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["authorizationEndpoint", "tokenEndpoint", "scopes", "clientId", "clientSecret"]
         }
       },
       "required": ["url", "authMethod"]

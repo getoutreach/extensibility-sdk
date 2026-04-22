@@ -1,20 +1,20 @@
-import { utils } from '../src/utils';
-import { validate } from '../src/sdk/Validator';
+import { utils } from '../src';
+import { validate } from '../src';
 
-import { Application } from '../src/manifest/Application';
-import { Category } from '../src/manifest/store/Category';
-import { StoreType } from '../src/manifest/store/StoreType';
-import { Scopes } from '../src/manifest/api/Scopes';
-import { McpServerAuthMethod } from '../src/manifest/ManifestMcpServer';
+import { Application } from '../src';
+import { Category } from '../src';
+import { StoreType } from '../src';
+import { Scopes } from '../src';
+import { McpServerAuthMethod } from '../src';
 
-import { OpportunityTabExtension } from '../src/manifest/extensions/tabs/types/OpportunityTabExtension';
+import { OpportunityTabExtension } from '../src';
 
-import { Locale } from '../src/sdk/Locale';
-import { OpportunityContextKeys } from '../src/context/keys/OpportunityContextKeys';
-import { UserContextKeys } from '../src/context/keys/UserContextKeys';
-import { ApplicationShellExtension } from '../src/manifest/extensions/shell/types/ApplicationShellExtension';
+import { Locale } from '../src';
+import { OpportunityContextKeys } from '../src';
+import { UserContextKeys } from '../src';
+import { ApplicationShellExtension } from '../src';
 import { WebHookEvents } from '../src/manifest/api/WebHookEvents';
-import { ScopesS2S } from '../src/manifest/api/ScopesS2S';
+import { ScopesS2S } from '../src';
 
 describe('manifest tests', () => {
   describe('valid', () => {
@@ -181,6 +181,153 @@ describe('manifest tests', () => {
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('Invalid mcpServer authMethod value. Value: BANANA');
+    });
+
+    test('preregisteredOauthClient should be defined when authMethod is PREREGISTERED_OAUTH_CLIENT', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient');
+    });
+
+    test('preregisteredOauthClient required properties should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {} as any,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(5);
+      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient authorizationEndpoint');
+      expect(issues[1]).toBe('Undefined mcpServer preregisteredOauthClient tokenEndpoint');
+      expect(issues[2]).toBe('Undefined mcpServer preregisteredOauthClient scopes');
+      expect(issues[3]).toBe('Undefined mcpServer preregisteredOauthClient clientId');
+      expect(issues[4]).toBe('Undefined mcpServer preregisteredOauthClient clientSecret');
+    });
+
+    test('preregisteredOauthClient properties should have deferToInstallation defined', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: {} as any,
+          tokenEndpoint: { deferToInstallation: true },
+          scopes: { deferToInstallation: false, value: 'read write' },
+          clientId: { deferToInstallation: false, value: 'my-client' },
+          clientSecret: { deferToInstallation: false, value: 'my-secret' },
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient authorizationEndpoint deferToInstallation');
+    });
+
+    test('preregisteredOauthClient properties should have value when deferToInstallation is false', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
+          tokenEndpoint: { deferToInstallation: false },
+          scopes: { deferToInstallation: false, value: 'read write' },
+          clientId: { deferToInstallation: false, value: 'my-client' },
+          clientSecret: { deferToInstallation: false, value: 'my-secret' },
+        } as any,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Undefined mcpServer preregisteredOauthClient tokenEndpoint value (required when deferToInstallation is false)'
+      );
+    });
+
+    test('preregisteredOauthClient properties should not have value when deferToInstallation is true', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: { deferToInstallation: true, value: 'https://auth.example.com' },
+          tokenEndpoint: { deferToInstallation: true },
+          scopes: { deferToInstallation: true },
+          clientId: { deferToInstallation: true },
+          clientSecret: { deferToInstallation: true },
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe(
+        'Unexpected mcpServer preregisteredOauthClient authorizationEndpoint value (should not be set when deferToInstallation is true)'
+      );
+    });
+
+    test('preregisteredOauthClient documentationUrl should be valid', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: { deferToInstallation: true },
+          tokenEndpoint: { deferToInstallation: true },
+          scopes: { deferToInstallation: true },
+          clientId: { deferToInstallation: true },
+          clientSecret: { deferToInstallation: true },
+          documentationUrl: 'bananas',
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid mcpServer preregisteredOauthClient documentationUrl. Value: bananas');
+    });
+
+    test('preregisteredOauthClient should be valid with all deferred properties', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: { deferToInstallation: true },
+          tokenEndpoint: { deferToInstallation: true },
+          scopes: { deferToInstallation: true },
+          clientId: { deferToInstallation: true },
+          clientSecret: { deferToInstallation: true },
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(0);
+    });
+
+    test('preregisteredOauthClient should be valid with all values provided', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
+        preregisteredOauthClient: {
+          authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
+          tokenEndpoint: { deferToInstallation: false, value: 'https://token.example.com' },
+          scopes: { deferToInstallation: false, value: 'read write' },
+          clientId: { deferToInstallation: false, value: 'my-client' },
+          clientSecret: { deferToInstallation: false, value: 'my-secret' },
+          documentationUrl: 'https://docs.example.com',
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(0);
     });
   });
 
