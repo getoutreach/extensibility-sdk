@@ -1,20 +1,19 @@
-import { utils } from '../src';
-import { validate } from '../src';
-
-import { Application } from '../src';
-import { Category } from '../src';
-import { StoreType } from '../src';
-import { Scopes } from '../src';
-import { McpServerAuthMethod } from '../src';
-
-import { OpportunityTabExtension } from '../src';
-
-import { Locale } from '../src';
-import { OpportunityContextKeys } from '../src';
-import { UserContextKeys } from '../src';
-import { ApplicationShellExtension } from '../src';
+import {
+  utils,
+  validate,
+  Application,
+  Category,
+  StoreType,
+  Scopes,
+  McpServerAuthMethod,
+  OpportunityTabExtension,
+  Locale,
+  OpportunityContextKeys,
+  UserContextKeys,
+  ApplicationShellExtension,
+  ScopesS2S,
+} from '../src';
 import { WebHookEvents } from '../src/manifest/api/WebHookEvents';
-import { ScopesS2S } from '../src';
 
 describe('manifest tests', () => {
   describe('valid', () => {
