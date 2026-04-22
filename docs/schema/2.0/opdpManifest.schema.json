@@ -163,7 +163,6 @@
                         "blogPosts",
                         "newsArticles",
                         "tenKSummary",
-                        "zoomInfoIntent",
                         "intent",
                         "websiteVisitSignal",
                         "prospectWebsiteVisitSignal",
