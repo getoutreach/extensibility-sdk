@@ -263,7 +263,7 @@
           "type": "string",
           "enum": ["OAUTH_DCR", "NO_AUTH", "PREREGISTERED_OAUTH_CLIENT"]
         },
-        "preregisteredOauthClientConfig": {
+        "preregisteredOauthClientProperties": {
           "type": "object",
           "additionalProperties": false,
           "properties": {

@@ -48,14 +48,14 @@ export class PreregisteredOauthClientProperty {
 /**
  * Configuration for a preregistered OAuth client
  * @export
- * @class PreregisteredOauthClientConfig
+ * @class PreregisteredOauthClientProperties
  */
-export class PreregisteredOauthClientConfig {
+export class PreregisteredOauthClientProperties {
   /**
    * The authorization endpoint URL
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   authorizationEndpoint: PreregisteredOauthClientProperty;
 
@@ -63,7 +63,7 @@ export class PreregisteredOauthClientConfig {
    * The token endpoint URL
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   tokenEndpoint: PreregisteredOauthClientProperty;
 
@@ -71,7 +71,7 @@ export class PreregisteredOauthClientConfig {
    * The OAuth scopes
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   scopes: PreregisteredOauthClientProperty;
 
@@ -79,7 +79,7 @@ export class PreregisteredOauthClientConfig {
    * The OAuth client ID
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   clientId: PreregisteredOauthClientProperty;
 
@@ -87,7 +87,7 @@ export class PreregisteredOauthClientConfig {
    * The OAuth client secret
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   clientSecret: PreregisteredOauthClientProperty;
 
@@ -95,7 +95,7 @@ export class PreregisteredOauthClientConfig {
    * URL to the OAuth documentation
    *
    * @type {string}
-   * @memberof PreregisteredOauthClientConfig
+   * @memberof PreregisteredOauthClientProperties
    */
   documentationUrl?: string;
 }
@@ -125,8 +125,8 @@ export class ManifestMcpServer {
   /**
    * Configuration for a preregistered OAuth client
    *
-   * @type {PreregisteredOauthClientConfig}
+   * @type {PreregisteredOauthClientProperties}
    * @memberof ManifestMcpServer
    */
-  preregisteredOauthClientConfig?: PreregisteredOauthClientConfig;
+  preregisteredOauthClientProperties?: PreregisteredOauthClientProperties;
 }
