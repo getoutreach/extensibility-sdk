@@ -98,10 +98,10 @@ export const validate = (application: Application): string[] => {
     }
 
     if (application.mcpServer.authMethod === McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT) {
-      if (!application.mcpServer.preregisteredOauthClient) {
-        issues.push('Undefined mcpServer preregisteredOauthClient');
+      if (!application.mcpServer.preregisteredOauthClientConfig) {
+        issues.push('Undefined mcpServer preregisteredOauthClientConfig');
       } else {
-        const requiredProps: Array<keyof typeof application.mcpServer.preregisteredOauthClient> = [
+        const requiredProps: Array<keyof typeof application.mcpServer.preregisteredOauthClientConfig> = [
           'authorizationEndpoint',
           'tokenEndpoint',
           'scopes',
@@ -109,21 +109,23 @@ export const validate = (application: Application): string[] => {
           'clientSecret',
         ];
         requiredProps.forEach((prop) => {
-          const propValue = application.mcpServer!.preregisteredOauthClient![prop] as PreregisteredOauthClientProperty;
+          const propValue = application.mcpServer!.preregisteredOauthClientConfig![
+            prop
+          ] as PreregisteredOauthClientProperty;
           if (!propValue) {
-            issues.push('Undefined mcpServer preregisteredOauthClient ' + prop);
+            issues.push('Undefined mcpServer preregisteredOauthClientConfig ' + prop);
           } else {
             if (propValue.deferToInstallation === undefined || propValue.deferToInstallation === null) {
-              issues.push('Undefined mcpServer preregisteredOauthClient ' + prop + ' deferToInstallation');
+              issues.push('Undefined mcpServer preregisteredOauthClientConfig ' + prop + ' deferToInstallation');
             } else if (!propValue.deferToInstallation && !propValue.value) {
               issues.push(
-                'Undefined mcpServer preregisteredOauthClient ' +
+                'Undefined mcpServer preregisteredOauthClientConfig ' +
                   prop +
                   ' value (required when deferToInstallation is false)'
               );
             } else if (propValue.deferToInstallation && propValue.value) {
               issues.push(
-                'Unexpected mcpServer preregisteredOauthClient ' +
+                'Unexpected mcpServer preregisteredOauthClientConfig ' +
                   prop +
                   ' value (should not be set when deferToInstallation is true)'
               );
@@ -132,12 +134,12 @@ export const validate = (application: Application): string[] => {
         });
 
         if (
-          application.mcpServer.preregisteredOauthClient.documentationUrl &&
-          !utils.urlValidation(application.mcpServer.preregisteredOauthClient.documentationUrl)
+          application.mcpServer.preregisteredOauthClientConfig.documentationUrl &&
+          !utils.urlValidation(application.mcpServer.preregisteredOauthClientConfig.documentationUrl)
         ) {
           issues.push(
-            'Invalid mcpServer preregisteredOauthClient documentationUrl. Value: ' +
-              application.mcpServer.preregisteredOauthClient.documentationUrl
+            'Invalid mcpServer preregisteredOauthClientConfig documentationUrl. Value: ' +
+              application.mcpServer.preregisteredOauthClientConfig.documentationUrl
           );
         }
       }

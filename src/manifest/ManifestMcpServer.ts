@@ -48,14 +48,14 @@ export class PreregisteredOauthClientProperty {
 /**
  * Configuration for a preregistered OAuth client
  * @export
- * @class PreregisteredOauthClient
+ * @class PreregisteredOauthClientConfig
  */
-export class PreregisteredOauthClient {
+export class PreregisteredOauthClientConfig {
   /**
    * The authorization endpoint URL
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   authorizationEndpoint: PreregisteredOauthClientProperty;
 
@@ -63,7 +63,7 @@ export class PreregisteredOauthClient {
    * The token endpoint URL
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   tokenEndpoint: PreregisteredOauthClientProperty;
 
@@ -71,7 +71,7 @@ export class PreregisteredOauthClient {
    * The OAuth scopes
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   scopes: PreregisteredOauthClientProperty;
 
@@ -79,7 +79,7 @@ export class PreregisteredOauthClient {
    * The OAuth client ID
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   clientId: PreregisteredOauthClientProperty;
 
@@ -87,7 +87,7 @@ export class PreregisteredOauthClient {
    * The OAuth client secret
    *
    * @type {PreregisteredOauthClientProperty}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   clientSecret: PreregisteredOauthClientProperty;
 
@@ -95,7 +95,7 @@ export class PreregisteredOauthClient {
    * URL to the OAuth documentation
    *
    * @type {string}
-   * @memberof PreregisteredOauthClient
+   * @memberof PreregisteredOauthClientConfig
    */
   documentationUrl?: string;
 }
@@ -125,8 +125,8 @@ export class ManifestMcpServer {
   /**
    * Configuration for a preregistered OAuth client
    *
-   * @type {PreregisteredOauthClient}
+   * @type {PreregisteredOauthClientConfig}
    * @memberof ManifestMcpServer
    */
-  preregisteredOauthClient?: PreregisteredOauthClient;
+  preregisteredOauthClientConfig?: PreregisteredOauthClientConfig;
 }

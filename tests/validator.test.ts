@@ -182,7 +182,7 @@ describe('manifest tests', () => {
       expect(issues[0]).toBe('Invalid mcpServer authMethod value. Value: BANANA');
     });
 
-    test('preregisteredOauthClient should be defined when authMethod is PREREGISTERED_OAUTH_CLIENT', () => {
+    test('preregisteredOauthClientConfig should be defined when authMethod is PREREGISTERED_OAUTH_CLIENT', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
@@ -191,32 +191,32 @@ describe('manifest tests', () => {
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient');
+      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClientConfig');
     });
 
-    test('preregisteredOauthClient required properties should be defined', () => {
+    test('preregisteredOauthClientConfig required properties should be defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {} as any,
+        preregisteredOauthClientConfig: {} as any,
       };
 
       const issues = validate(manifest);
       expect(issues.length).toBe(5);
-      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient authorizationEndpoint');
-      expect(issues[1]).toBe('Undefined mcpServer preregisteredOauthClient tokenEndpoint');
-      expect(issues[2]).toBe('Undefined mcpServer preregisteredOauthClient scopes');
-      expect(issues[3]).toBe('Undefined mcpServer preregisteredOauthClient clientId');
-      expect(issues[4]).toBe('Undefined mcpServer preregisteredOauthClient clientSecret');
+      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClientConfig authorizationEndpoint');
+      expect(issues[1]).toBe('Undefined mcpServer preregisteredOauthClientConfig tokenEndpoint');
+      expect(issues[2]).toBe('Undefined mcpServer preregisteredOauthClientConfig scopes');
+      expect(issues[3]).toBe('Undefined mcpServer preregisteredOauthClientConfig clientId');
+      expect(issues[4]).toBe('Undefined mcpServer preregisteredOauthClientConfig clientSecret');
     });
 
-    test('preregisteredOauthClient properties should have deferToInstallation defined', () => {
+    test('preregisteredOauthClientConfig properties should have deferToInstallation defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: {} as any,
           tokenEndpoint: { deferToInstallation: true },
           scopes: { deferToInstallation: false, value: 'read write' },
@@ -227,15 +227,17 @@ describe('manifest tests', () => {
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClient authorizationEndpoint deferToInstallation');
+      expect(issues[0]).toBe(
+        'Undefined mcpServer preregisteredOauthClientConfig authorizationEndpoint deferToInstallation'
+      );
     });
 
-    test('preregisteredOauthClient properties should have value when deferToInstallation is false', () => {
+    test('preregisteredOauthClientConfig properties should have value when deferToInstallation is false', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
           tokenEndpoint: { deferToInstallation: false },
           scopes: { deferToInstallation: false, value: 'read write' },
@@ -247,16 +249,16 @@ describe('manifest tests', () => {
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
-        'Undefined mcpServer preregisteredOauthClient tokenEndpoint value (required when deferToInstallation is false)'
+        'Undefined mcpServer preregisteredOauthClientConfig tokenEndpoint value (required when deferToInstallation is false)'
       );
     });
 
-    test('preregisteredOauthClient properties should not have value when deferToInstallation is true', () => {
+    test('preregisteredOauthClientConfig properties should not have value when deferToInstallation is true', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: { deferToInstallation: true, value: 'https://auth.example.com' },
           tokenEndpoint: { deferToInstallation: true },
           scopes: { deferToInstallation: true },
@@ -268,16 +270,16 @@ describe('manifest tests', () => {
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe(
-        'Unexpected mcpServer preregisteredOauthClient authorizationEndpoint value (should not be set when deferToInstallation is true)'
+        'Unexpected mcpServer preregisteredOauthClientConfig authorizationEndpoint value (should not be set when deferToInstallation is true)'
       );
     });
 
-    test('preregisteredOauthClient documentationUrl should be valid', () => {
+    test('preregisteredOauthClientConfig documentationUrl should be valid', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: { deferToInstallation: true },
           tokenEndpoint: { deferToInstallation: true },
           scopes: { deferToInstallation: true },
@@ -289,15 +291,15 @@ describe('manifest tests', () => {
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Invalid mcpServer preregisteredOauthClient documentationUrl. Value: bananas');
+      expect(issues[0]).toBe('Invalid mcpServer preregisteredOauthClientConfig documentationUrl. Value: bananas');
     });
 
-    test('preregisteredOauthClient should be valid with all deferred properties', () => {
+    test('preregisteredOauthClientConfig should be valid with all deferred properties', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: { deferToInstallation: true },
           tokenEndpoint: { deferToInstallation: true },
           scopes: { deferToInstallation: true },
@@ -310,12 +312,12 @@ describe('manifest tests', () => {
       expect(issues.length).toBe(0);
     });
 
-    test('preregisteredOauthClient should be valid with all values provided', () => {
+    test('preregisteredOauthClientConfig should be valid with all values provided', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
-        preregisteredOauthClient: {
+        preregisteredOauthClientConfig: {
           authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
           tokenEndpoint: { deferToInstallation: false, value: 'https://token.example.com' },
           scopes: { deferToInstallation: false, value: 'read write' },

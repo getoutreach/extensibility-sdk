@@ -101,7 +101,7 @@ export { ManifestAuthor } from './manifest/ManifestAuthor';
 export {
   ManifestMcpServer,
   McpServerAuthMethod,
-  PreregisteredOauthClient,
+  PreregisteredOauthClientConfig,
   PreregisteredOauthClientProperty,
 } from './manifest/ManifestMcpServer';
 export { ManifestStore } from './manifest/ManifestStore';
