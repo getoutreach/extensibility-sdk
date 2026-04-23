@@ -85,10 +85,16 @@ export const validate = (application: Application): string[] => {
   }
 
   if (application.mcpServer) {
-    if (!application.mcpServer.url) {
-      issues.push('Undefined mcpServer url');
-    } else if (!utils.urlValidation(application.mcpServer.url)) {
-      issues.push('Manifest mcpServer section needs to have valid url. Value: ' + application.mcpServer.url);
+    if (application.mcpServer.url && !utils.urlValidation(application.mcpServer.url)) {
+      issues.push('Invalid mcpServer url. Value: ' + application.mcpServer.url);
+    }
+
+    if (application.mcpServer.urls) {
+      application.mcpServer.urls.forEach((url) => {
+        if (!utils.urlValidation(url)) {
+          issues.push('Invalid mcpServer url in urls array. Value: ' + url);
+        }
+      });
     }
 
     if (!application.mcpServer.authMethod) {

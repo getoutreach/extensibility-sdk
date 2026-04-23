@@ -234,12 +234,18 @@
           "type": "string",
           "format": "uri"
         },
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "authMethod": {
           "type": "string",
           "enum": ["OAUTH_DCR", "NO_AUTH"]
         }
       },
-      "required": ["url", "authMethod"]
+      "required": ["authMethod"]
     },
     "opdpDataProvider": {
       "type": "object",

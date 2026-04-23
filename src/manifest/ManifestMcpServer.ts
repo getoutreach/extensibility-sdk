@@ -28,7 +28,15 @@ export class ManifestMcpServer {
    * @type {string}
    * @memberof ManifestMcpServer
    */
-  url: string;
+  url?: string;
+
+  /**
+   * URLs of MCP server endpoints
+   *
+   * @type {array of strings}
+   * @memberof ManifestMcpServer
+   */
+  urls?: string[];
 
   /**
    * Authentication method to use when connecting to the MCP server
