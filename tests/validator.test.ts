@@ -232,7 +232,7 @@ describe('manifest tests', () => {
       );
     });
 
-    test('preregisteredOauthClientProperties properties should have value when deferToInstallation is false', () => {
+    test('preregisteredOauthClientProperties properties should have value when deferToInstallation is false for required value', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'https://example.com/mcp',

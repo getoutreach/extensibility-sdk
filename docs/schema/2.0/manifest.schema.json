@@ -13,17 +13,7 @@
           "type": "boolean"
         }
       },
-      "required": ["deferToInstallation"],
-      "if": {
-        "properties": {
-          "deferToInstallation": {
-            "const": false
-          }
-        }
-      },
-      "then": {
-        "required": ["value", "deferToInstallation"]
-      }
+      "required": ["deferToInstallation"]
     }
   },
   "type": "object",

@@ -118,11 +118,13 @@ export const validate = (application: Application): string[] => {
             if (propValue.deferToInstallation === undefined || propValue.deferToInstallation === null) {
               issues.push('Undefined mcpServer preregisteredOauthClientProperties ' + prop + ' deferToInstallation');
             } else if (!propValue.deferToInstallation && !propValue.value) {
-              issues.push(
-                'Undefined mcpServer preregisteredOauthClientProperties ' +
+              if (prop !== 'scopes' && prop !== 'authorizationEndpoint') {
+                issues.push(
+                  'Undefined mcpServer preregisteredOauthClientProperties ' +
                   prop +
                   ' value (required when deferToInstallation is false)'
-              );
+                );
+              }
             } else if (propValue.deferToInstallation && propValue.value) {
               issues.push(
                 'Unexpected mcpServer preregisteredOauthClientProperties ' +
