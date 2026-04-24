@@ -134,19 +134,44 @@ describe('manifest tests', () => {
   });
 
   describe('mcpServer', () => {
-    test('url should be defined', () => {
+    test('url(s) cannot be empty, if urlsDeferToInstallation is falsey', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: '',
         authMethod: McpServerAuthMethod.OAUTH_DCR,
       };
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Undefined mcpServer url');
+      expect(issues[0]).toBe('mcpServer url(s) required when urlsDeferToInstallation is falsey');
     });
 
-    test('url should be valid', () => {
+    test('url should be empty, if urlsDeferToInstallation is true', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        urlsDeferToInstallation: true,
+        authMethod: McpServerAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('mcpServer url should be empty when urlsDeferToInstallation is true');
+    });
+
+    test('urls should be empty, if urlsDeferToInstallation is true', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        urls: ['https://example.com/mcp'],
+        urlsDeferToInstallation: true,
+        authMethod: McpServerAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('mcpServer urls should be empty when urlsDeferToInstallation is true');
+    });
+
+    test('url should be valid, if defined', () => {
       const manifest: Application = getNewValidApplicationManifest();
       manifest.mcpServer = {
         url: 'bananas',
@@ -155,8 +180,20 @@ describe('manifest tests', () => {
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Manifest mcpServer section needs to have valid url. Value: bananas');
-    });
+      expect(issues[0]).toBe('Invalid mcpServer url. Value: bananas');
+    }); 
+
+    test('url should be valid, if defined in urls', () => {
+      const manifest: Application = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        urls: ['bananas'],
+        authMethod: McpServerAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid mcpServer url in urls array. Value: bananas');
+    }); 
 
     test('authMethod should be defined', () => {
       const manifest = getNewValidApplicationManifest();

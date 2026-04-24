@@ -85,10 +85,30 @@ export const validate = (application: Application): string[] => {
   }
 
   if (application.mcpServer) {
-    if (!application.mcpServer.url) {
-      issues.push('Undefined mcpServer url');
-    } else if (!utils.urlValidation(application.mcpServer.url)) {
-      issues.push('Manifest mcpServer section needs to have valid url. Value: ' + application.mcpServer.url);
+    if (!application.mcpServer.urlsDeferToInstallation && !application.mcpServer.url &&
+      (!application.mcpServer.urls || application.mcpServer.urls.length === 0)
+    ) {
+      issues.push('mcpServer url(s) required when urlsDeferToInstallation is falsey');
+    }
+
+    if (application.mcpServer.url) {
+      if (application.mcpServer.urlsDeferToInstallation) {
+        issues.push('mcpServer url should be empty when urlsDeferToInstallation is true');
+      }
+      if (!utils.urlValidation(application.mcpServer.url)) {
+        issues.push('Invalid mcpServer url. Value: ' + application.mcpServer.url);
+      }
+    }
+
+    if (application.mcpServer.urls) {
+      if (application.mcpServer.urls.length > 0 && application.mcpServer.urlsDeferToInstallation) {
+        issues.push('mcpServer urls should be empty when urlsDeferToInstallation is true');
+      }
+      application.mcpServer.urls.forEach((url) => {
+        if (!utils.urlValidation(url)) {
+          issues.push('Invalid mcpServer url in urls array. Value: ' + url);
+        }
+      });
     }
 
     if (!application.mcpServer.authMethod) {

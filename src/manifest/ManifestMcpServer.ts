@@ -112,7 +112,23 @@ export class ManifestMcpServer {
    * @type {string}
    * @memberof ManifestMcpServer
    */
-  url: string;
+  url?: string;
+
+  /**
+   * URLs of MCP server endpoints
+   *
+   * @type {string[]}
+   * @memberof ManifestMcpServer
+   */
+  urls?: string[];
+
+  /**
+   * Indicates whether the URLs should defer to the installation settings
+   *
+   * @type {boolean}
+   * @memberof ManifestMcpServer
+   */
+  urlsDeferToInstallation?: boolean;
 
   /**
    * Authentication method to use when connecting to the MCP server
