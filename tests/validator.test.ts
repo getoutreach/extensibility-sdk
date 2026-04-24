@@ -135,14 +135,41 @@ describe('manifest tests', () => {
   });
 
   describe('mcpServer', () => {
-    test('url can be empty', () => {
+    test('url(s) cannot be empty, if urlsDeferToInstallation is falsey', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         authMethod: McpServerAuthMethod.OAUTH_DCR,
       };
 
       const issues = validate(manifest);
-      expect(issues.length).toBe(0);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('mcpServer url(s) required when urlsDeferToInstallation is falsey');
+    });
+
+    test('url should be empty, if urlsDeferToInstallation is true', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        urlsDeferToInstallation: true,
+        authMethod: McpServerAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('mcpServer url should be empty when urlsDeferToInstallation is true');
+    });
+
+    test('urls should be empty, if urlsDeferToInstallation is true', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        urls: ['https://example.com/mcp'],
+        urlsDeferToInstallation: true,
+        authMethod: McpServerAuthMethod.OAUTH_DCR,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('mcpServer urls should be empty when urlsDeferToInstallation is true');
     });
 
     test('url should be valid, if defined', () => {

@@ -39,6 +39,14 @@ export class ManifestMcpServer {
   urls?: string[];
 
   /**
+   * Indicates whether the URLs should defer to the installation settings
+   *
+   * @type {boolean}
+   * @memberof ManifestMcpServer
+   */
+  urlsDeferToInstallation?: boolean;
+
+  /**
    * Authentication method to use when connecting to the MCP server
    *
    * @type {McpServerAuthMethod}

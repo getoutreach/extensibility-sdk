@@ -241,6 +241,9 @@
             "format": "uri"
           }
         },
+        "urlsDeferToInstallation": {
+          "type": "boolean"
+        },
         "authMethod": {
           "type": "string",
           "enum": ["OAUTH_DCR", "NO_AUTH"]
