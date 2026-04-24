@@ -33,7 +33,7 @@ export class ManifestMcpServer {
   /**
    * URLs of MCP server endpoints
    *
-   * @type {array of strings}
+   * @type {string[]}
    * @memberof ManifestMcpServer
    */
   urls?: string[];
