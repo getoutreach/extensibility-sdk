@@ -621,7 +621,8 @@
                   "EXECUTION",
                   "PERFORMANCE",
                   "FIELDS",
-                  "HEALTH_AND_ACTIVITY"
+                  "HEALTH_AND_ACTIVITY",
+                  "KPI"
                 ]
               },
               "context": {
