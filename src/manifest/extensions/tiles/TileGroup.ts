@@ -129,4 +129,9 @@ export enum TileGroup {
    * Health and activity group
    */
   HEALTH_AND_ACTIVITY = 'HEALTH_AND_ACTIVITY',
+
+  /**
+   * KPI group
+   */
+  KPI = 'KPI',
 }
