@@ -63,8 +63,6 @@ export enum Scopes {
   CONTENT_CATEGORY_OWNERSHIPS_READ = 'contentCategoryOwnerships.read',
   CONTENT_CATEGORY_OWNERSHIPS_WRITE = 'contentCategoryOwnerships.write',
 
-  CUSTOM_DUTIES_WRITE = 'customDuties.write',
-
   CUSTOM_OBJECT_RECORDS_ALL = 'customObjectRecords.all',
   CUSTOM_OBJECT_RECORDS_DELETE = 'customObjectRecords.delete',
   CUSTOM_OBJECT_RECORDS_READ = 'customObjectRecords.read',
