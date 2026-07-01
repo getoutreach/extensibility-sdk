@@ -11,7 +11,7 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
-  globals: {
-    window: {}
-  }
+  setupFiles: [
+    '<rootDir>/jest.setup.js'
+  ]
 };
