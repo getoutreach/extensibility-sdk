@@ -15,7 +15,7 @@ jobs:
   test:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:lts
     steps:
       - checkout
       - run:
@@ -34,7 +34,7 @@ jobs:
   build_public_package:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:lts
     steps:
       - checkout
       - check-version

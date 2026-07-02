@@ -12,11 +12,6 @@ export enum Category {
   ACCOUNT_BASED_MARKETING = 'account_based_marketing',
 
   /**
-   * Account plan extension category
-   */
-  ACCOUNT_PLAN = 'account_plan',
-
-  /**
    * Chat extension category
    */
   CHAT = 'chat',
@@ -97,27 +92,7 @@ export enum Category {
   REPORTS = 'reports',
 
   /**
-   * Records extension category
-   */
-  RECORDS = 'records',
-
-  /**
-   * Grouping and navigation category
-   */
-  GROUPING_AND_NAVIGATION = 'grouping_and_navigation',
-
-  /**
    * Agents category
    */
   AGENTS = 'agents',
-
-  /**
-   * Execution category
-   */
-  EXECUTION = 'execution',
-
-  /**
-   * Performance category
-   */
-  PERFORMANCE = 'performance',
 }
