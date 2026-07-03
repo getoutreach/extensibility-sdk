@@ -79,7 +79,7 @@
               "meetings",
               "data_warehouse",
               "grouping_and_navigation",
-              "agents",
+              "agents"
             ]
           },
           "uniqueItems": true
