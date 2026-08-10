@@ -4,7 +4,7 @@ import { Scopes } from '../manifest/api/Scopes';
 import { StoreType } from '../manifest/store/StoreType';
 import { WebHookEvents } from '../manifest/api/WebHookEvents';
 import { ScopesS2S } from '../manifest/api/ScopesS2S';
-import { McpServerAuthMethod, PreregisteredOauthClientProperty } from '../manifest/ManifestMcpServer';
+import { McpServerAuthMethod, PreregisteredOauthClientProperty, ApiKeyProperties } from '../manifest/ManifestMcpServer';
 
 /**
  * Validates given manifest if it contains all of the required fields with correct values.
@@ -162,6 +162,32 @@ export const validate = (application: Application): string[] => {
           issues.push(
             'Invalid mcpServer preregisteredOauthClientProperties documentationUrl. Value: ' +
               application.mcpServer.preregisteredOauthClientProperties.documentationUrl
+          );
+        }
+      }
+    }
+
+    if (
+      application.mcpServer.authMethod === McpServerAuthMethod.ORG_API_KEY ||
+      application.mcpServer.authMethod === McpServerAuthMethod.USER_API_KEY
+    ) {
+      if (!application.mcpServer.apiKeyProperties) {
+        issues.push('Undefined mcpServer apiKeyProperties');
+      } else {
+        const requiredProps: Array<keyof ApiKeyProperties> = ['tokenFormat', 'authHeader'];
+        requiredProps.forEach((prop) => {
+          if (!application.mcpServer!.apiKeyProperties![prop]) {
+            issues.push('Undefined mcpServer apiKeyProperties ' + prop);
+          }
+        });
+
+        if (
+          application.mcpServer.apiKeyProperties.documentationUrl &&
+          !utils.urlValidation(application.mcpServer.apiKeyProperties.documentationUrl)
+        ) {
+          issues.push(
+            'Invalid mcpServer apiKeyProperties documentationUrl. Value: ' +
+              application.mcpServer.apiKeyProperties.documentationUrl
           );
         }
       }

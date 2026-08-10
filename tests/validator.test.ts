@@ -367,6 +367,77 @@ describe('manifest tests', () => {
       const issues = validate(manifest);
       expect(issues.length).toBe(0);
     });
+
+    test('apiKeyProperties should be defined when authMethod is ORG_API_KEY', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.ORG_API_KEY,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpServer apiKeyProperties');
+    });
+
+    test('apiKeyProperties should be defined when authMethod is USER_API_KEY', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.USER_API_KEY,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Undefined mcpServer apiKeyProperties');
+    });
+
+    test('apiKeyProperties required properties should be defined', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.ORG_API_KEY,
+        apiKeyProperties: {} as any,
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(2);
+      expect(issues[0]).toBe('Undefined mcpServer apiKeyProperties tokenFormat');
+      expect(issues[1]).toBe('Undefined mcpServer apiKeyProperties authHeader');
+    });
+
+    test('apiKeyProperties documentationUrl should be valid', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.USER_API_KEY,
+        apiKeyProperties: {
+          tokenFormat: 'Bearer {token}',
+          authHeader: 'Authorization',
+          documentationUrl: 'bananas',
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(1);
+      expect(issues[0]).toBe('Invalid mcpServer apiKeyProperties documentationUrl. Value: bananas');
+    });
+
+    test('apiKeyProperties should be valid with all values provided', () => {
+      const manifest = getNewValidApplicationManifest();
+      manifest.mcpServer = {
+        url: 'https://example.com/mcp',
+        authMethod: McpServerAuthMethod.ORG_API_KEY,
+        apiKeyProperties: {
+          tokenFormat: 'Bearer {token}',
+          authHeader: 'Authorization',
+          documentationUrl: 'https://docs.example.com',
+        },
+      };
+
+      const issues = validate(manifest);
+      expect(issues.length).toBe(0);
+    });
   });
 
   describe('webhook', () => {
