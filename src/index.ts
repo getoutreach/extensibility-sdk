@@ -103,6 +103,7 @@ export {
   McpServerAuthMethod,
   PreregisteredOauthClientProperties,
   PreregisteredOauthClientProperty,
+  ApiKeyProperties,
 } from './manifest/ManifestMcpServer';
 export { ManifestStore } from './manifest/ManifestStore';
 export { ManifestWebhook } from './manifest/ManifestWebhook';

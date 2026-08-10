@@ -18,6 +18,14 @@ export enum McpServerAuthMethod {
    * Preregistered OAuth client
    */
   PREREGISTERED_OAUTH_CLIENT = 'PREREGISTERED_OAUTH_CLIENT',
+  /**
+   * Organization-level API key
+   */
+  ORG_API_KEY = 'ORG_API_KEY',
+  /**
+   * User-level API key
+   */
+  USER_API_KEY = 'USER_API_KEY',
 }
 
 /**
@@ -101,6 +109,37 @@ export class PreregisteredOauthClientProperties {
 }
 
 /**
+ * Configuration for API key based authentication
+ * @export
+ * @class ApiKeyProperties
+ */
+export class ApiKeyProperties {
+  /**
+   * The format of the API key token
+   *
+   * @type {string}
+   * @memberof ApiKeyProperties
+   */
+  tokenFormat: string;
+
+  /**
+   * The header used to send the API key
+   *
+   * @type {string}
+   * @memberof ApiKeyProperties
+   */
+  authHeader: string;
+
+  /**
+   * URL to the API key documentation
+   *
+   * @type {string}
+   * @memberof ApiKeyProperties
+   */
+  documentationUrl?: string;
+}
+
+/**
  * Optional section defining parameters for MCP (Model Context Protocol) connector.
  * @export
  * @class ManifestMcpServer
@@ -145,4 +184,12 @@ export class ManifestMcpServer {
    * @memberof ManifestMcpServer
    */
   preregisteredOauthClientProperties?: PreregisteredOauthClientProperties;
+
+  /**
+   * Configuration for API key based authentication
+   *
+   * @type {ApiKeyProperties}
+   * @memberof ManifestMcpServer
+   */
+  apiKeyProperties?: ApiKeyProperties;
 }

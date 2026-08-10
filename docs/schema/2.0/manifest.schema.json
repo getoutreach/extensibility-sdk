@@ -257,7 +257,7 @@
         },
         "authMethod": {
           "type": "string",
-          "enum": ["OAUTH_DCR", "NO_AUTH", "PREREGISTERED_OAUTH_CLIENT"]
+          "enum": ["OAUTH_DCR", "NO_AUTH", "PREREGISTERED_OAUTH_CLIENT", "ORG_API_KEY", "USER_API_KEY"]
         },
         "preregisteredOauthClientProperties": {
           "type": "object",
@@ -284,6 +284,23 @@
             }
           },
           "required": ["authorizationEndpoint", "tokenEndpoint", "scopes", "clientId", "clientSecret"]
+        },
+        "apiKeyProperties": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tokenFormat": {
+              "type": "string"
+            },
+            "authHeader": {
+              "type": "string"
+            },
+            "documentationUrl": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["tokenFormat", "authHeader"]
         }
       },
       "required": ["authMethod"]
