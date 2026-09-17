@@ -122,6 +122,14 @@
                       "type": "object",
                       "description": "If present, indicates support for association based on prospect's account ID."
                     },
+                     "accountName": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on the name of the prospect's account."
+                    },
+                    "accountDomain": {
+                      "type": "object",
+                      "description": "If present, indicates support for association based on the domain of the prospect's account."
+                    },
                     "externalURL": {
                       "type": "object",
                       "description": "If present, indicates support for association based on prospect's external profile URL (e.g. LinkedIn)."
