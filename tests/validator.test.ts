@@ -240,12 +240,13 @@ describe('manifest tests', () => {
       };
 
       const issues = validate(manifest);
-      expect(issues.length).toBe(5);
+      expect(issues.length).toBe(6);
       expect(issues[0]).toBe('Undefined mcpServer preregisteredOauthClientProperties authorizationEndpoint');
       expect(issues[1]).toBe('Undefined mcpServer preregisteredOauthClientProperties tokenEndpoint');
       expect(issues[2]).toBe('Undefined mcpServer preregisteredOauthClientProperties scopes');
       expect(issues[3]).toBe('Undefined mcpServer preregisteredOauthClientProperties clientId');
       expect(issues[4]).toBe('Undefined mcpServer preregisteredOauthClientProperties clientSecret');
+      expect(issues[5]).toBe('Undefined mcpServer preregisteredOauthClientProperties documentationUrl');
     });
 
     test('preregisteredOauthClientProperties properties should have deferToInstallation defined', () => {
@@ -259,6 +260,7 @@ describe('manifest tests', () => {
           scopes: { deferToInstallation: false, value: 'read write' },
           clientId: { deferToInstallation: false, value: 'my-client' },
           clientSecret: { deferToInstallation: false, value: 'my-secret' },
+          documentationUrl: 'https://docs.example.com',
         },
       };
 
@@ -280,6 +282,7 @@ describe('manifest tests', () => {
           scopes: { deferToInstallation: false, value: 'read write' },
           clientId: { deferToInstallation: false, value: 'my-client' },
           clientSecret: { deferToInstallation: false, value: 'my-secret' },
+          documentationUrl: 'https://docs.example.com',
         } as any,
       };
 
@@ -301,6 +304,7 @@ describe('manifest tests', () => {
           scopes: { deferToInstallation: true },
           clientId: { deferToInstallation: true },
           clientSecret: { deferToInstallation: true },
+          documentationUrl: 'https://docs.example.com',
         },
       };
 
@@ -342,6 +346,7 @@ describe('manifest tests', () => {
           scopes: { deferToInstallation: true },
           clientId: { deferToInstallation: true },
           clientSecret: { deferToInstallation: true },
+          documentationUrl: 'https://docs.example.com',
         },
       };
 
@@ -401,9 +406,10 @@ describe('manifest tests', () => {
       };
 
       const issues = validate(manifest);
-      expect(issues.length).toBe(2);
+      expect(issues.length).toBe(3);
       expect(issues[0]).toBe('Undefined mcpServer apiKeyProperties tokenFormat');
       expect(issues[1]).toBe('Undefined mcpServer apiKeyProperties authHeader');
+      expect(issues[2]).toBe('Undefined mcpServer apiKeyProperties documentationUrl');
     });
 
     test('apiKeyProperties documentationUrl should be valid', () => {

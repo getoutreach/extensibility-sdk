@@ -283,7 +283,14 @@
               "format": "uri"
             }
           },
-          "required": ["authorizationEndpoint", "tokenEndpoint", "scopes", "clientId", "clientSecret"]
+          "required": [
+            "authorizationEndpoint",
+            "tokenEndpoint",
+            "scopes",
+            "clientId",
+            "clientSecret",
+            "documentationUrl"
+          ]
         },
         "apiKeyProperties": {
           "type": "object",
@@ -300,7 +307,7 @@
               "format": "uri"
             }
           },
-          "required": ["tokenFormat", "authHeader"]
+          "required": ["tokenFormat", "authHeader", "documentationUrl"]
         }
       },
       "required": ["authMethod"]

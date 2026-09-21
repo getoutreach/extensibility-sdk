@@ -105,7 +105,7 @@ export class PreregisteredOauthClientProperties {
    * @type {string}
    * @memberof PreregisteredOauthClientProperties
    */
-  documentationUrl?: string;
+  documentationUrl: string;
 }
 
 /**
@@ -136,7 +136,7 @@ export class ApiKeyProperties {
    * @type {string}
    * @memberof ApiKeyProperties
    */
-  documentationUrl?: string;
+  documentationUrl: string;
 }
 
 /**
