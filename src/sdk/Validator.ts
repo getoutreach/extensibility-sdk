@@ -155,10 +155,9 @@ export const validate = (application: Application): string[] => {
           }
         });
 
-        if (
-          application.mcpServer.preregisteredOauthClientProperties.documentationUrl &&
-          !utils.urlValidation(application.mcpServer.preregisteredOauthClientProperties.documentationUrl)
-        ) {
+        if (!application.mcpServer.preregisteredOauthClientProperties.documentationUrl) {
+          issues.push('Undefined mcpServer preregisteredOauthClientProperties documentationUrl');
+        } else if (!utils.urlValidation(application.mcpServer.preregisteredOauthClientProperties.documentationUrl)) {
           issues.push(
             'Invalid mcpServer preregisteredOauthClientProperties documentationUrl. Value: ' +
               application.mcpServer.preregisteredOauthClientProperties.documentationUrl
@@ -174,7 +173,7 @@ export const validate = (application: Application): string[] => {
       if (!application.mcpServer.apiKeyProperties) {
         issues.push('Undefined mcpServer apiKeyProperties');
       } else {
-        const requiredProps: Array<keyof ApiKeyProperties> = ['tokenFormat', 'authHeader'];
+        const requiredProps: Array<keyof ApiKeyProperties> = ['tokenFormat', 'authHeader', 'documentationUrl'];
         requiredProps.forEach((prop) => {
           if (!application.mcpServer!.apiKeyProperties![prop]) {
             issues.push('Undefined mcpServer apiKeyProperties ' + prop);
