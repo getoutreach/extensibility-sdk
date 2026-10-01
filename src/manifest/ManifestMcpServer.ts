@@ -146,14 +146,6 @@ export class ApiKeyProperties {
  */
 export class ManifestMcpServer {
   /**
-   * URL of the MCP server endpoint
-   *
-   * @type {string}
-   * @memberof ManifestMcpServer
-   */
-  url?: string;
-
-  /**
    * URLs of MCP server endpoints
    *
    * @type {string[]}
