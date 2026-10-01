@@ -85,19 +85,10 @@ export const validate = (application: Application): string[] => {
   }
 
   if (application.mcpServer) {
-    if (!application.mcpServer.urlsDeferToInstallation && !application.mcpServer.url &&
+    if (!application.mcpServer.urlsDeferToInstallation &&
       (!application.mcpServer.urls || application.mcpServer.urls.length === 0)
     ) {
-      issues.push('mcpServer url(s) required when urlsDeferToInstallation is falsey');
-    }
-
-    if (application.mcpServer.url) {
-      if (application.mcpServer.urlsDeferToInstallation) {
-        issues.push('mcpServer url should be empty when urlsDeferToInstallation is true');
-      }
-      if (!utils.urlValidation(application.mcpServer.url)) {
-        issues.push('Invalid mcpServer url. Value: ' + application.mcpServer.url);
-      }
+      issues.push('mcpServer urls required when urlsDeferToInstallation is falsey');
     }
 
     if (application.mcpServer.urls) {

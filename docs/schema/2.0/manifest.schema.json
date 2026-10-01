@@ -241,10 +241,6 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "url": {
-          "type": "string",
-          "format": "uri"
-        },
         "urls": {
           "type": "array",
           "items": {

@@ -134,7 +134,7 @@ describe('manifest tests', () => {
   });
 
   describe('mcpServer', () => {
-    test('url(s) cannot be empty, if urlsDeferToInstallation is falsey', () => {
+    test('urls cannot be empty, if urlsDeferToInstallation is falsey', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
         authMethod: McpServerAuthMethod.OAUTH_DCR,
@@ -142,20 +142,7 @@ describe('manifest tests', () => {
 
       const issues = validate(manifest);
       expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('mcpServer url(s) required when urlsDeferToInstallation is falsey');
-    });
-
-    test('url should be empty, if urlsDeferToInstallation is true', () => {
-      const manifest = getNewValidApplicationManifest();
-      manifest.mcpServer = {
-        url: 'https://example.com/mcp',
-        urlsDeferToInstallation: true,
-        authMethod: McpServerAuthMethod.OAUTH_DCR,
-      };
-
-      const issues = validate(manifest);
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('mcpServer url should be empty when urlsDeferToInstallation is true');
+      expect(issues[0]).toBe('mcpServer urls required when urlsDeferToInstallation is falsey');
     });
 
     test('urls should be empty, if urlsDeferToInstallation is true', () => {
@@ -170,18 +157,6 @@ describe('manifest tests', () => {
       expect(issues.length).toBe(1);
       expect(issues[0]).toBe('mcpServer urls should be empty when urlsDeferToInstallation is true');
     });
-
-    test('url should be valid, if defined', () => {
-      const manifest: Application = getNewValidApplicationManifest();
-      manifest.mcpServer = {
-        url: 'bananas',
-        authMethod: McpServerAuthMethod.OAUTH_DCR,
-      };
-
-      const issues = validate(manifest);
-      expect(issues.length).toBe(1);
-      expect(issues[0]).toBe('Invalid mcpServer url. Value: bananas');
-    }); 
 
     test('url should be valid, if defined in urls', () => {
       const manifest: Application = getNewValidApplicationManifest();
@@ -198,7 +173,7 @@ describe('manifest tests', () => {
     test('authMethod should be defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: '' as any,
       };
 
@@ -210,7 +185,7 @@ describe('manifest tests', () => {
     test('authMethod should be valid', () => {
       const manifest: Application = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: 'BANANA' as any,
       };
 
@@ -222,7 +197,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties should be defined when authMethod is PREREGISTERED_OAUTH_CLIENT', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
       };
 
@@ -234,7 +209,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties required properties should be defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {} as any,
       };
@@ -252,7 +227,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties properties should have deferToInstallation defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: {} as any,
@@ -274,7 +249,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties properties should have value when deferToInstallation is false for required value', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
@@ -296,7 +271,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties properties should not have value when deferToInstallation is true', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: { deferToInstallation: true, value: 'https://auth.example.com' },
@@ -318,7 +293,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties documentationUrl should be valid', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: { deferToInstallation: true },
@@ -338,7 +313,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties should be valid with all deferred properties', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: { deferToInstallation: true },
@@ -357,7 +332,7 @@ describe('manifest tests', () => {
     test('preregisteredOauthClientProperties should be valid with all values provided', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.PREREGISTERED_OAUTH_CLIENT,
         preregisteredOauthClientProperties: {
           authorizationEndpoint: { deferToInstallation: false, value: 'https://auth.example.com' },
@@ -376,7 +351,7 @@ describe('manifest tests', () => {
     test('apiKeyProperties should be defined when authMethod is ORG_API_KEY', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.ORG_API_KEY,
       };
 
@@ -388,7 +363,7 @@ describe('manifest tests', () => {
     test('apiKeyProperties should be defined when authMethod is USER_API_KEY', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.USER_API_KEY,
       };
 
@@ -400,7 +375,7 @@ describe('manifest tests', () => {
     test('apiKeyProperties required properties should be defined', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.ORG_API_KEY,
         apiKeyProperties: {} as any,
       };
@@ -415,7 +390,7 @@ describe('manifest tests', () => {
     test('apiKeyProperties documentationUrl should be valid', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.USER_API_KEY,
         apiKeyProperties: {
           tokenFormat: 'Bearer {token}',
@@ -432,7 +407,7 @@ describe('manifest tests', () => {
     test('apiKeyProperties should be valid with all values provided', () => {
       const manifest = getNewValidApplicationManifest();
       manifest.mcpServer = {
-        url: 'https://example.com/mcp',
+        urls: ['https://example.com/mcp'],
         authMethod: McpServerAuthMethod.ORG_API_KEY,
         apiKeyProperties: {
           tokenFormat: 'Bearer {token}',
