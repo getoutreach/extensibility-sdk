@@ -149,6 +149,38 @@ describe('Manifest translator tests', () => {
       expect(result!.disableTimeoutMonitoring).toBe(true);
     });
   });
+
+  describe('getEnumKeyByEnumValue', () => {
+    test('returns the key for a known value', () => {
+      expect(ManifestTranslator.getEnumKeyByEnumValue(UserContextKeys, UserContextKeys.ID)).toBe('ID');
+    });
+
+    test('returns null for an unknown value', () => {
+      expect(ManifestTranslator.getEnumKeyByEnumValue(UserContextKeys, 'not.a.context.key')).toBeNull();
+    });
+
+    test('returns the first key when several keys share a value', () => {
+      const duplicated = { FIRST: 'same', SECOND: 'same', OTHER: 'other' };
+      expect(ManifestTranslator.getEnumKeyByEnumValue(duplicated, 'same')).toBe('FIRST');
+    });
+
+    test('does not resolve inherited object properties', () => {
+      expect(ManifestTranslator.getEnumKeyByEnumValue({ A: 'a' }, 'toString')).toBeNull();
+      expect(ManifestTranslator.getEnumKeyByEnumValue({ A: 'a' }, '__proto__')).toBeNull();
+    });
+
+    test('returns consistent results on repeated lookups against the same enum', () => {
+      expect(ManifestTranslator.getEnumKeyByEnumValue(AccountContextKeys, AccountContextKeys.ID)).toBe('ID');
+      expect(ManifestTranslator.getEnumKeyByEnumValue(AccountContextKeys, AccountContextKeys.ID)).toBe('ID');
+      expect(ManifestTranslator.getEnumKeyByEnumValue(AccountContextKeys, 'missing')).toBeNull();
+    });
+
+    test('getContextEnumValue resolves keys across context enums', () => {
+      expect(ManifestTranslator.getContextEnumValue(UserContextKeys.ID)).toBe(UserContextKeys.ID);
+      expect(ManifestTranslator.getContextEnumValue(ProspectContextKeys.ID)).toBe(ProspectContextKeys.ID);
+      expect(ManifestTranslator.getContextEnumValue('missing')).toBeNull();
+    });
+  });
 });
 
 const v1Manifests = [

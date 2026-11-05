@@ -43,6 +43,11 @@ import { Locale } from '../sdk/Locale';
 import { ManifestV1 } from './ManifestV1';
 import { ManifestV1Api } from './ManifestV1Api';
 
+/**
+ * Reverse lookup (value -> first key holding that value) per enum object, built on first use.
+ */
+const enumReverseIndexes = new WeakMap<object, Map<string, string>>();
+
 export class ManifestTranslator {
   public static getAddonManifest(app: Application, ext: TabExtension | ShellExtension): ManifestV1 | null {
     let manifestType:
@@ -283,8 +288,19 @@ export class ManifestTranslator {
     myEnum: T,
     enumValue: string
   ): keyof T | null {
-    const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue);
-    return keys.length > 0 ? keys[0] : null;
+    let index = enumReverseIndexes.get(myEnum);
+    if (!index) {
+      index = new Map<string, string>();
+      const keys = Object.keys(myEnum);
+      // Fill back-to-front so the first key holding a value wins, matching the previous linear scan.
+      for (let i = keys.length - 1; i >= 0; i--) {
+        index.set(myEnum[keys[i]], keys[i]);
+      }
+      enumReverseIndexes.set(myEnum, index);
+    }
+
+    const key = index.get(enumValue);
+    return key === undefined ? null : key;
   }
 
   public static mapEnums<T extends { [index: string]: string }>(myEnum: T, enumValues: string[]): (keyof T)[] {
